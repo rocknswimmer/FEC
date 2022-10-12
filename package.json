@@ -1,0 +1,40 @@
+{
+  "name": "fec",
+  "version": "1.0.0",
+  "description": "Front End Capstone",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack --mode=development",
+    "build": "webpack --mode=production",
+    "dev": "webpack serve --open",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    // "url": "git+https://github.com/CorinnaCole/FEC.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    // "url": "https://github.com/CorinnaCole/FEC/issues"
+  },
+  // "homepage": "https://ghttps://github.com/fecgreyjoy/FEC",
+  "devDependencies": {
+    "@babel/core": "^7.19.3",
+    "@babel/preset-env": "^7.19.4",
+    "@babel/preset-react": "^7.18.6",
+    "nodemon": "^2.0.20",
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0",
+    "webpack-dev-server": "^4.11.1"
+  },
+  "dependencies": {
+    "babel-loader": "^8.2.5",
+    "css-loader": "^6.7.1",
+    "express": "^4.18.2",
+    "react": "^18.2.0",
+    "save-dev": "^0.0.1-security",
+    "style-loader": "^3.3.1"
+  }
+}
