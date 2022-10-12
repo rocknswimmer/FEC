@@ -9,17 +9,6 @@
     "dev": "webpack serve --open",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    // "url": "git+https://github.com/CorinnaCole/FEC.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/CorinnaCole/FEC/issues"
-  },
-  "homepage": "https://github.com/CorinnaCole/FEC#readme",
   "devDependencies": {
     "@babel/core": "^7.19.3",
     "@babel/preset-env": "^7.19.4",
