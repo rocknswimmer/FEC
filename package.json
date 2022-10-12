@@ -11,15 +11,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/CorinnaCole/FEC.git"
+    // "url": "git+https://github.com/CorinnaCole/FEC.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/CorinnaCole/FEC/issues"
+    // "url": "https://github.com/CorinnaCole/FEC/issues"
   },
-  "homepage": "https://github.com/CorinnaCole/FEC#readme",
+  // "homepage": "https://ghttps://github.com/fecgreyjoy/FEC",
   "devDependencies": {
     "@babel/core": "^7.19.3",
     "@babel/preset-env": "^7.19.4",
