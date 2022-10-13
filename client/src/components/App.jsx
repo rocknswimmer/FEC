@@ -5,22 +5,22 @@ import Reviews from './Reviews/Review.jsx';
 
 const App = () => {
 
-  const [product, setProduct] = useState({});
+  const [product, setProduct] = useState(37311);
 
   useEffect(() => {
-    // get request
-    //set state to result of request
+    const start = 37311;
+    const randomId = 37311 + Math.floor(Math.random() * 4);
+    setProduct(randomId);
   }, []);
 
   return (
     <div>
       <h1>House Greyjoy</h1>
-      {/* <View />
-      <Questions /> */}
-      <Reviews />
+      <View productId = {product} />
+      {/* <Questions />  */}
+      < Reviews productId={product} />
     </div>
   );
 };
 
 export default App;
-
