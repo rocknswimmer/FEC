@@ -4,6 +4,8 @@
   "description": "Front End Capstone",
   "main": "index.js",
   "scripts": {
+    "server-dev": "npx nodemon --watch server server/index.js",
+    "client-dev": "npx webpack --watch",
     "start": "webpack --mode=development",
     "build": "webpack --mode=production",
     "dev": "webpack serve --open",
