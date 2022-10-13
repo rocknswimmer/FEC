@@ -1,0 +1,3 @@
+const poll = () => {
+  var string = '';
+}
