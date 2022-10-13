@@ -1,5 +1,8 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
+import Reviews from './Reviews/Review.jsx';
+
+
 const App = () => {
 
   const [product, setProduct] = useState({});
@@ -13,8 +16,8 @@ const App = () => {
     <div>
       <h1>House Greyjoy</h1>
       {/* <View />
-      <Questions />
-      <Reviews /> */}
+      <Questions /> */}
+      <Reviews />
     </div>
   );
 };
