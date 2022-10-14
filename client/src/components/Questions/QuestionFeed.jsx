@@ -9,6 +9,7 @@ const QuestionFeed = (props) => {
       {[1, 1, 1].map(() => {
         return <QuestionEntry />;
       })}
+      <a>Load More Answers</a>
     </div>
   );
 };
