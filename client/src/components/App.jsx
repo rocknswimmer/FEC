@@ -1,6 +1,8 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import Reviews from './Reviews/Review.jsx';
+import Reviews from './Reviews/Reviews.jsx';
+// import View from './View/View.jsx';
+import Questions from './Questions/Questions.jsx';
 
 
 const App = () => {
@@ -16,8 +18,8 @@ const App = () => {
   return (
     <div>
       <h1>House Greyjoy</h1>
-      <View productId = {product} />
-      {/* <Questions />  */}
+      {/* <View productId = {product} /> */}
+      <Questions productId = {product} />
       < Reviews productId={product} />
     </div>
   );
