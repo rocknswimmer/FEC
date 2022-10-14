@@ -16,11 +16,11 @@ const App = () => {
   }, []);
 
   return (
-    <div>
+    <div id="app">
       <h1>House Greyjoy</h1>
       <View productId = {product} />
       <Questions productId = {product} />
-      < Reviews productId={product} />
+      <Reviews productId={product} />
     </div>
   );
 };

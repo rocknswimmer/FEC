@@ -8,6 +8,7 @@ const ReviewsList = (props) => {
   return (
     <div>
       <div>I am a Reviews List</div>
+
       <ReviewsListEntry />
     </div>
   );

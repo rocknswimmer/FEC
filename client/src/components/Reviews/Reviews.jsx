@@ -11,13 +11,15 @@ const Reviews = (props) => {
   console.log(props);
 
   return (
-    <div>
-      <h3 id="rev-header">RATINGS AND REVIEWS</h3>
-      <div id="rev-container">
-        <div>
+    <div id="rev-container">
+      <div>
+        <h3 id="rev-header">RATINGS AND REVIEWS</h3>
+      </div>
+      <div id="rev-summary-list-divider">
+        <div class="summary">
           <Summary />
         </div>
-        <div>
+        <div class="list">
           <Dropdown />
           <ReviewsList />
           <Buttons />
