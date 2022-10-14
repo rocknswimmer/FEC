@@ -1,0 +1,29 @@
+a {
+  text-decoration: underline;
+}
+
+.questions-search {
+  width: 90%;
+  padding: 10px 35px 10px 15px;
+  border: thick black 5px;
+}
+
+.questions-search-form {
+  display: flex;
+  flex-direction: row;
+}
+
+.question-search-button {
+  background: transparent;
+  border: none;
+  outline: none;
+  margin-left: -33px;
+  align-self: center;
+}
+
+.question-search-button img {
+  width: 20px;
+  height: 20px;
+  object-fit: cover;
+  align-self: center;
+}
