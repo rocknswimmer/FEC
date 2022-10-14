@@ -12,11 +12,17 @@ const Reviews = (props) => {
 
   return (
     <div>
-      <h3>I'm a Reviews parent component</h3>
-      <Summary />
-      <Dropdown />
-      <ReviewsList />
-      <Buttons />
+      <h3 id="rev-header">RATINGS AND REVIEWS</h3>
+      <div id="rev-container">
+        <div>
+          <Summary />
+        </div>
+        <div>
+          <Dropdown />
+          <ReviewsList />
+          <Buttons />
+        </div>
+      </div>
     </div>
   );
 };
