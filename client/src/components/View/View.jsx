@@ -28,6 +28,11 @@ const View = ({ productId }) => {
 
   const [currentStyle, setCurrentStyle] = useState({});
 
+  //useEffect
+  useEffect(() => {
+    getCurrentProduct(productId);
+  }, []);
+
   //Get methods for View and StyleSelector
   const getCurrentProduct = (productId) => {
     axios.get('/products', {
@@ -41,10 +46,10 @@ const View = ({ productId }) => {
       })
       .catch(err => {
         console.log('There is an error in the getCurrentProduct fn ', err);
-      })
+      });
   };
 
-  const getCurrentStyle = () => { };
+  // const getCurrentStyle = (id) => { };
 
   return (
     <div>
