@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import Reviews from './Reviews/Review.jsx';
+import Reviews from './Reviews/Reviews.jsx';
 
 
 const App = () => {
