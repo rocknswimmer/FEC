@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 
-const SelectedStyle = ({productId}) => {
+const SelectedStyle = ({otherStyles}) => {
   return (
     <div>
-      I'm the SelectedStyle.jsx and this is the product Id {productId} i received from App
+      {/* I'm the SelectedStyle.jsx and this is the product Id {productId} i received from App */}
 
 
     </div>

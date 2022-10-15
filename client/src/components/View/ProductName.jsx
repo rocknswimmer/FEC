@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
 
-const ProductName = ({productId}) => {
+const ProductName = ({productInfo}) => {
+  console.log(productInfo);
   return (
     <div>
-      I'm the ProductName.jsx and this is the product Id {productId} i received from App
-
+      <>Stars *****</>
+      <h4 className = "category">CATEGORY</h4>
+      <h1>{productInfo.name}</h1>
+      <p>${productInfo.default_price}</p>
 
     </div>
   );

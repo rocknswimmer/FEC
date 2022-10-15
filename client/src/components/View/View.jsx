@@ -8,30 +8,9 @@ import ItemSelection from './SelectedStyle.jsx';
 
 const View = ({ productId }) => {
   //Establish pieces of state for View and StyleSelector
-  const [currentProduct, setCurrentProduct] = useState({
-    "id": 37311,
-    "campus": "hr-rfe",
-    "name": "",
-    "slogan": "",
-    "description": "",
-    "category": "",
-    "default_price": "",
-    "created_at": "",
-    "updated_at": "",
-    "features": [
-      {
-        "feature": "",
-        "value": ""
-      }
-    ]
-  });
+  const [currentProduct, setCurrentProduct] = useState({});
 
-  const [currentStyle, setCurrentStyle] = useState({});
-
-  //useEffect
-  useEffect(() => {
-    getCurrentProduct(productId);
-  }, []);
+  const [otherStyles, setOtherStyles] = useState([]);
 
   //Get methods for View and StyleSelector
   const getCurrentProduct = (productId) => {
@@ -41,24 +20,45 @@ const View = ({ productId }) => {
       }
     })
       .then(results => {
-        //console.log('Here are the successful results of of getCurrentProduct ', results);
-        setCurrentProduct(results);
+        let newProduct = results.data;
+        setCurrentProduct(newProduct);
       })
       .catch(err => {
-        //console.log('There is an error in the getCurrentProduct fn ', err);
+        console.log('There is an error in the getCurrentProduct fn ', err);
       });
   };
 
-  // const getCurrentStyle = (id) => { };
+  const getOtherStyles = (productId) => {
+    const endPoint = `/products/:product_id/styles`;
+    axios.get(endPoint, {
+      params: {
+        "id": productId
+      }
+    })
+      .then(results => {
+        setOtherStyles(results.data.results);
+      })
+      .catch(err => {
+        console.log('Here is an error in getOtherStyles ->', err);
+      });
+  };
+
+  //useEffect
+  useEffect(() => {
+    getCurrentProduct(productId);
+    getOtherStyles(productId);
+  }, []);
 
   return (
-    <div>
-      I'm the View.jsx and this is the product Id {productId} i received from App
-      <ProductImage />
-      <ProductName />
-      <SelectedStyle />
-      <ItemSelection />
-      <Description />
+    <div className="view-main">
+      <ProductImage otherStyles = {otherStyles}/>
+      <div>
+        <ProductName productInfo={currentProduct} />
+        <SelectedStyle otherStyles={otherStyles} />
+        <ItemSelection />
+      </div>
+
+      <Description productInfo={currentProduct} />
     </div>
   );
 };
