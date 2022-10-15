@@ -1,0 +1,7 @@
+.view-main {
+  box-sizing: border-box;
+  display: flexbox;
+  background-color: #D5DBE7;
+  width: 100%;
+  padding: 20px;
+}

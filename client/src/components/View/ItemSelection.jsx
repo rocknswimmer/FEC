@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const ItemSelection = ({productId}) => {
+const ItemSelection = ({otherStyles}) => {
   return (
     <div>
       I'm the ItemSelection.jsx and this is the product Id {productId} i received from App
