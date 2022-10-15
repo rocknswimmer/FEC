@@ -20,10 +20,11 @@ const Reviews = ({productId}) => {
       params: {
         id: productId,
         count: 6,
-        page: 4
+        page: 1
       }
     })
       .then((response) => {
+        setReviewsList(response.data.results);
         console.log('in client request', response);
       })
       .catch((err) => {
@@ -41,12 +42,12 @@ const Reviews = ({productId}) => {
         <h3 id="rev-header">RATINGS AND REVIEWS</h3>
       </div>
       <div id="rev-summary-list-divider">
-        <div class="summary">
+        <div className="summary">
           <Summary />
         </div>
-        <div class="list">
-          <Dropdown />
-          <ReviewsList />
+        <div className="list">
+          <Dropdown reviewsList={reviewsList}/>
+          <ReviewsList reviewsList={reviewsList}/>
           <Buttons />
         </div>
       </div>

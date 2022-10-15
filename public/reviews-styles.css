@@ -27,4 +27,14 @@
 .list {
   flex: 600px;
   flex-shrink: 0;
+  /* border-bottom: solid black */
+}
+
+.rev-entry {
+  border-bottom: solid grey 1px;
+}
+
+.rev-star-date {
+  display: flex;
+  justify-content: space-between;
 }

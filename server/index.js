@@ -78,11 +78,11 @@ app.get('/reviews/', (req, res) => {
   //console.log('reviews query', req.query);
   let apiUrl = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/';
 
-  console.log(req.query)
+  console.log(req.query);
   let options = {
     params: {
-      page: 2,
-      count: 20,
+      page: 1,
+      count: 6,
       sort: 'newest',
       product_id: req.query.id
     },
