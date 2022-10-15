@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import ReviewsList from './ReviewsList.jsx';
 import Dropdown from './Dropdown.jsx';
 import Summary from './Summary.jsx';
@@ -6,9 +7,31 @@ import Buttons from './Buttons.jsx';
 
 
 
-const Reviews = (props) => {
+const Reviews = ({productId}) => {
 
-  console.log(props);
+  const [reviewsList, setReviewsList] = useState([]);
+
+  useEffect(() => {
+    getReviews(productId);
+  });
+
+
+  const getReviews = (id) => {
+
+    axios({
+      url: '/reviews/',
+      method: 'get',
+      params: {
+        id: productId
+      }
+    })
+      .then((response) => {
+        console.log('in client request', response);
+      })
+      .catch((err) => {
+        console.log('error in client request', err);
+      });
+  };
 
   return (
     <div id="rev-container">

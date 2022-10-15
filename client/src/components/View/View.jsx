@@ -41,11 +41,11 @@ const View = ({ productId }) => {
       }
     })
       .then(results => {
-        console.log('Here are the successful results of of getCurrentProduct ', results);
+        //console.log('Here are the successful results of of getCurrentProduct ', results);
         setCurrentProduct(results);
       })
       .catch(err => {
-        console.log('There is an error in the getCurrentProduct fn ', err);
+        //console.log('There is an error in the getCurrentProduct fn ', err);
       });
   };
 
