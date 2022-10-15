@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
 
-const Description = ({productId}) => {
+const Description = ({productInfo}) => {
   return (
     <div>
-      I'm the Description.jsx and this is the product Id {productId} i received from App
-
-
+      <h3>{productInfo.slogan}</h3>
+      <p>{productInfo.description}</p>
     </div>
   );
 };
