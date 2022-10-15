@@ -38,11 +38,11 @@ app.get('/reviews/', (req, res) => {
   //console.log('reviews query', req.query);
   let apiUrl = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/';
 
-
+  console.log(req.query)
   let options = {
     params: {
-      page: 1,
-      count: 5,
+      page: 2,
+      count: 20,
       sort: 'newest',
       product_id: req.query.id
     },
@@ -53,9 +53,8 @@ app.get('/reviews/', (req, res) => {
 
   axios.get(apiUrl, options)
     .then((data) => {
-      console.log(data.data);
-      res.status(200);
-      res.send(data.data);
+      //console.log(data.data);
+      res.json(data.data);
       res.end();
     })
     .catch((err) => {

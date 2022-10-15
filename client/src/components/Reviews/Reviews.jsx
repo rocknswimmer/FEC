@@ -22,7 +22,9 @@ const Reviews = ({productId}) => {
       url: '/reviews/',
       method: 'get',
       params: {
-        id: productId
+        id: productId,
+        count: 6,
+        page: 4
       }
     })
       .then((response) => {
