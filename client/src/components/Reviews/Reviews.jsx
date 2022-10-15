@@ -11,10 +11,6 @@ const Reviews = ({productId}) => {
 
   const [reviewsList, setReviewsList] = useState([]);
 
-  useEffect(() => {
-    getReviews(productId);
-  });
-
 
   const getReviews = (id) => {
 
@@ -34,6 +30,10 @@ const Reviews = ({productId}) => {
         console.log('error in client request', err);
       });
   };
+
+  useEffect(() => {
+    getReviews(productId);
+  }, []);
 
   return (
     <div id="rev-container">
