@@ -45,7 +45,7 @@
   border-radius: 5px;
   z-index: 2;
   margin: auto;
-  padding: 1em 2em 2em;
+  /* padding: 1em 2em 2em; */
   position: fixed;
   top: 50%;
   left: 50%;
