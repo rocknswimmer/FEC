@@ -26,7 +26,7 @@ const Reviews = ({productId}) => {
     })
       .then((response) => {
         setReviewsList(response.data.results);
-        console.log('in client request', response);
+        // console.log('in client request', response);
       })
       .catch((err) => {
         console.log('error in client request', err);
