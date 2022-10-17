@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import styled from 'styled-components';
 import ReviewsList from './ReviewsList.jsx';
 import Dropdown from './Dropdown.jsx';
 import Summary from './Summary.jsx';
@@ -36,22 +37,40 @@ const Reviews = ({productId}) => {
     getReviews(productId);
   }, []);
 
+  const ReviewsContainer = styled.div`
+    padding: 10px;
+    margin: 32px;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    overflow-y: scroll;
+  `;
+
+  const SummaryListDivider = styled.div`
+  width: 100%;
+  display: flex;
+  flex-shrink: 0;
+  overflow: scroll;
+  `;
+
   return (
-    <div id="rev-container">
+    <ReviewsContainer>
       <div>
-        <h3 id="rev-header">RATINGS AND REVIEWS</h3>
-      </div>
-      <div id="rev-summary-list-divider">
-        <div className="summary">
-          <Summary />
+        <div>
+          <h3 id="rev-header">RATINGS AND REVIEWS</h3>
         </div>
-        <div className="list">
-          <Dropdown reviewsList={reviewsList}/>
-          <ReviewsList reviewsList={reviewsList}/>
-          <Buttons />
-        </div>
+        <SummaryListDivider>
+          <div className="summary">
+            <Summary />
+          </div>
+          <div className="list">
+            <Dropdown reviewsList={reviewsList}/>
+            <ReviewsList reviewsList={reviewsList}/>
+            <Buttons />
+          </div>
+        </SummaryListDivider>
       </div>
-    </div>
+    </ReviewsContainer>
   );
 };
 
