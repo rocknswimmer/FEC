@@ -3,6 +3,8 @@ import QuestionFeed from './QuestionFeed.jsx';
 import axios from 'axios';
 
 const Questions = (props) => {
+  const [questions, setQuestions] = useState([]);
+  const [moreQuestions, setMoreQuestions] = useState(false);
 
   const getCurrentQuestions = () => {
     axios.get('/qa/questions/', {
@@ -11,21 +13,8 @@ const Questions = (props) => {
       }
     })
       .then(results => {
-        console.log('questions: ', results.data.results);
-      })
-      .catch(err => {
-        console.log('There is an error getting questions from server ', err);
-      });
-  };
-
-  const getCurrentAnswers = () => {
-    axios.get('/qa/questions/:question_id/answers', {
-      params: {
-        'id': props.productId
-      }
-    })
-      .then(results => {
-        console.log('questions: ', results.data.results);
+        // console.log('questions: ', results.data.results);
+        setQuestions(results.data.results);
       })
       .catch(err => {
         console.log('There is an error getting questions from server ', err);
@@ -36,8 +25,12 @@ const Questions = (props) => {
     getCurrentQuestions();
   }, []);
 
+  const loadMoreQuestions = () => {
+    setMoreQuestions(!moreQuestions);
+  };
+
   return (
-    <div>
+    <div id="questions">
       <div>Q&A Widget to go here!</div>
       <form className="question-search-form">
         <input className="questions-search" type="text" placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS..." />
@@ -45,8 +38,9 @@ const Questions = (props) => {
           <img src="search.png"/>
         </button>
       </form>
-      <QuestionFeed />
-      <button>MORE ANSWERED QUESTIONS</button>
+      <QuestionFeed questions={questions} moreQuestions={moreQuestions} />
+      {(questions[0] && questions.length > 2) && !moreQuestions && <button onClick={loadMoreQuestions}>MORE ANSWERED QUESTIONS</button>}
+      {(questions[0] && questions.length > 2) && moreQuestions && <button onClick={loadMoreQuestions}>LESS ANSWERED QUESTIONS</button>}
       <button>ADD A QUESTION +</button>
     </div>
   );

@@ -2,8 +2,11 @@ a {
   text-decoration: underline;
 }
 
+#questions {
+  width: 90%;
+}
 .questions-search {
-  width: 85%;
+  width: 95%;
   padding: 10px 35px 10px 15px;
   border: thick black 5px;
 }
