@@ -7,9 +7,15 @@ const ReviewsList = ({reviewsList}) => {
   // console.log(reviewsList);
   return (
     <div>
+<<<<<<< HEAD
       {/* {reviewsList.map((review) => (
         <ReviewsListEntry review={review} />
       ))} */}
+=======
+      {reviewsList.map((review, i) => (
+        <ReviewsListEntry review={review} key={i}/>
+      ))}
+>>>>>>> f1ce8876fad2e65e9d5dacd277a40dec79961cbc
     </div>
   );
 };

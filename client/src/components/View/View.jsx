@@ -66,7 +66,7 @@ const View = ({ productId }) => {
       <div>
         <ProductName productInfo={currentProduct} />
 
-       {otherStyles.length > 0 && <SelectedStyle otherStyles={otherStyles} productId={productId} />}
+        {otherStyles.length > 0 && <SelectedStyle otherStyles={otherStyles} productId={productId} />}
 
 
         {/* <ItemSelection productId = {productId}/> */}
