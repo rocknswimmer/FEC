@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 
-const Dropdown = (props) => {
+const Dropdown = ({reviewsList}) => {
 
   return (
     <div>
-      <div>I will be a drop down list to sort by relevance, recent, or helpful</div>
+      <div>{reviewsList.length} reviews, sorted by relevance</div>
     </div>
   );
 };
