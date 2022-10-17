@@ -79,7 +79,7 @@ const ReviewsListEntry = ({review}) => {
               <div>
 
                 <Thumbnail src={photo.url} onClick={() => { togglePhoto(photo.url); togglePhotoClicked(photo); }} key={i} ></Thumbnail>
-                {showModal ? <PhotosModal toggle={togglePhoto} visible={showModal} photo={photo} togglePhotoClicked={togglePhotoClicked}/> : null}
+                {showModal ? <PhotosModal key={i + 1} toggle={togglePhoto} visible={showModal} photo={photo} togglePhotoClicked={togglePhotoClicked}/> : null}
               </div>
             ))}
           </div>
