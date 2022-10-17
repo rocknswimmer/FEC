@@ -32,7 +32,7 @@ const Reviews = ({productId}) => {
       url: '/reviews/',
       method: 'get',
       params: {
-        id: productId,
+        id: 37312,
         count: 6,
         page: 1
       }

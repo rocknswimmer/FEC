@@ -6,20 +6,30 @@ border-bottom: solid grey 1px;
 padding: 30px;
 display: flex-column;
 align-items: space-between;
-font-family: arial;
 `;
 
 const ReviewTitle = styled.div`
   font-weight: bold;
 `;
 
+const Thumbnail = styled.img `
+  width: 40px;
+  height: 40px;
+`;
+
+
+
 const ReviewsListEntry = ({review}) => {
 
   const [over250, setOver250] = useState(review.body.length > 50);
-
+  const [showModal, setShowModal] = useState(false);
 
   const toggleShowMore = () => {
     setOver250(!over250);
+  };
+
+  const togglePhoto = () => {
+    setShowModal(!showModal);
   };
 
   let starTest = (int) => {
@@ -32,6 +42,7 @@ const ReviewsListEntry = ({review}) => {
 
   return (
     <ReviewEntry>
+      {console.log(review)}
       <div className="rev-star-date">
         <div>{starTest(review.rating)}</div>
         <small><div>{review.reviewer_name}, {review.date}</div></small>
@@ -48,6 +59,15 @@ const ReviewsListEntry = ({review}) => {
               <button onClick={() => (toggleShowMore())}>Show More</button>
             </div>
           </div> : review.body}
+      </div>
+      <div>
+        {review.photos.length > 0 ?
+          <div>
+            {review.photos.map((photo) => (
+              <Thumbnail src={photo.url} onClick={() => {alert('hi!')}}></Thumbnail>
+            ))}
+          </div>
+          : null}
       </div>
     </ReviewEntry>
   );

@@ -64,7 +64,7 @@ app.get('/reviews/', (req, res) => {
     params: {
       page: 1,
       count: 6,
-      sort: 'newest',
+      sort: 'relevance',
       product_id: req.query.id
     },
     headers: {
