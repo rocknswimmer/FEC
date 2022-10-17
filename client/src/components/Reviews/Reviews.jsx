@@ -6,12 +6,25 @@ import Dropdown from './Dropdown.jsx';
 import Summary from './Summary.jsx';
 import Buttons from './Buttons.jsx';
 
+const ReviewsContainer = styled.div`
+padding: 10px;
+margin: 32px;
+display: flex;
+flex-direction: column;
+flex-shrink: 0;
+overflow-y: scroll;
+`;
 
+const SummaryListDivider = styled.div`
+width: 100%;
+display: flex;
+flex-shrink: 0;
+overflow: scroll;
+`;
 
 const Reviews = ({productId}) => {
 
   const [reviewsList, setReviewsList] = useState([]);
-
 
   const getReviews = (id) => {
 
@@ -37,21 +50,7 @@ const Reviews = ({productId}) => {
     getReviews(productId);
   }, []);
 
-  const ReviewsContainer = styled.div`
-    padding: 10px;
-    margin: 32px;
-    display: flex;
-    flex-direction: column;
-    flex-shrink: 0;
-    overflow-y: scroll;
-  `;
 
-  const SummaryListDivider = styled.div`
-  width: 100%;
-  display: flex;
-  flex-shrink: 0;
-  overflow: scroll;
-  `;
 
   return (
     <ReviewsContainer>
