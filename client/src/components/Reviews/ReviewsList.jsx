@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import ReviewsListEntry from './ReviewsListEntry.jsx';
 
-const ReviewsList = (props) => {
+const ReviewsList = ({reviewsList}) => {
 
   //Map ReviewListEntries here
-
+  console.log(reviewsList);
   return (
     <div>
-      <div>I am a Reviews List</div>
-      <ReviewsListEntry />
+      {reviewsList.map((review) => (
+        <ReviewsListEntry review={review} />
+      ))}
     </div>
   );
 };

@@ -6,21 +6,21 @@ import Questions from './Questions/Questions.jsx';
 
 
 const App = () => {
+  const randomId = 37311 + Math.floor(Math.random() * 4);
+  const [product, setProduct] = useState(randomId);
 
-  const [product, setProduct] = useState(37311);
+  // useEffect(() => {
+  //   const start = 37311;
 
-  useEffect(() => {
-    const start = 37311;
-    const randomId = 37311 + Math.floor(Math.random() * 4);
-    setProduct(randomId);
-  }, []);
+  //   setProduct(randomId);
+  // }, []);
 
   return (
-    <div>
+    <div id="app">
       <h1>House Greyjoy</h1>
       <View productId = {product} />
       <Questions productId = {product} />
-      < Reviews productId={product} />
+      <Reviews productId={product} />
     </div>
   );
 };

@@ -1,0 +1,40 @@
+
+#rev-container {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  overflow-y: scroll;
+}
+
+#rev-summary-list-divider {
+  width: 100%;
+  display: flex;
+  flex-shrink: 0;
+  overflow: scroll;
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.summary {
+  flex: 300px;
+  flex-shrink: 0;
+}
+
+.list {
+  flex: 600px;
+  flex-shrink: 0;
+  /* border-bottom: solid black */
+}
+
+.rev-entry {
+  border-bottom: solid grey 1px;
+}
+
+.rev-star-date {
+  display: flex;
+  justify-content: space-between;
+}
