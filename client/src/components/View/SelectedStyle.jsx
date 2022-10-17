@@ -1,13 +1,34 @@
 import React, { useState, useEffect } from 'react';
+import {RoundImage, StyleDiv} from './Styled/SelectedStyleImage.styled.jsx';
+import styled from 'styled-components';
+import {FaCheckCircle} from 'react-icons/fa';
 
-const SelectedStyle = ({otherStyles}) => {
+
+
+const SelectedStyle = ( {otherStyles, productId, changeDisplayedStyle, currentDisplayedStyle} ) => {
+  //clickListener for displayedStyle
+  const changeDisplayedStyleHandler = (event) => {
+    changeDisplayedStyle(index);
+  };
+
   return (
-    <div>
-      {/* I'm the SelectedStyle.jsx and this is the product Id {productId} i received from App */}
+    <StyleDiv>
+      {
+        otherStyles.map((style, index) => {
 
+          let imgSrc = style.photos[0].thumbnail_url;
 
-    </div>
+          return <RoundImage key = {index} img={imgSrc} onClick ={(event) => {
+            changeDisplayedStyle(index);
+          }} >{currentDisplayedStyle.name === style.name && <FaCheckCircle style={{color: 'red'}}/>}</RoundImage>;
+        })
+      }
+      {/* <FaCheckCircle style={{color: 'red'}}/> */}
+    </StyleDiv>
   );
 };
 
 export default SelectedStyle;
+
+
+{/* <img key ={index} src = {imgSrc} />  */}

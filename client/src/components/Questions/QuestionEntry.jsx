@@ -2,17 +2,36 @@ import React, { useState, useEffect } from 'react';
 import Answers from './Answers.jsx';
 
 const QuestionEntry = (props) => {
+  const answers = Object.keys(props.question.answers).map((key) => {
+    return props.question.answers[key];
+  });
 
-  var yesCount = "(count to go here)";
+  if (answers.length > 2) {
+    var firstAnswers = answers.slice(0, 2);
+  }
+
+  const [loadMoreAnswers, setLoadMoreAnswers] = useState(false);
+
+  const loadAnswers = () => {
+    setLoadMoreAnswers(!loadMoreAnswers);
+  };
 
   return (
-    <div>
-      <span>I'm a question Entry!</span>
-      <span>Helpful? <a src="http://localhost:3001">Yes</a> {yesCount}</span>
+    <div className="question-entry">
+      <span>Q: {props.question.question_body}</span>
+      <span>Helpful? <a>Yes</a> {`(${props.question.question_helpfulness})`}</span>
       <span>|</span>
       <span><a>Add Answer</a></span>
-      {[1, 2].map((answer, i) => {
-        return <Answers key={i}/>;
+      {answers.length > 2 && !loadMoreAnswers && firstAnswers.map((answer, i) => {
+        return <Answers key={i} answer={answer} />;
+      })}
+      {answers.length > 2 && !loadMoreAnswers && <a onClick={loadAnswers}>Load More Answers</a>}
+      {answers.length > 2 && loadMoreAnswers && answers.map((answer, i) => {
+        return <Answers key={i} answer={answer} />;
+      })}
+      {answers.length > 2 && loadMoreAnswers && <a onClick={loadAnswers}>Collapse answers</a>}
+      {answers.length <= 2 && answers.map((answer, i) => {
+        return <Answers key={i} answer={answer} />;
       })}
     </div>
   );
