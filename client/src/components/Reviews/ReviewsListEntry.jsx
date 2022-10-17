@@ -19,22 +19,26 @@ const Thumbnail = styled.img `
 `;
 
 
-
 const ReviewsListEntry = ({review}) => {
 
   const [over250, setOver250] = useState(review.body.length > 50);
   const [showModal, setShowModal] = useState(false);
   const [isScrollable, setIsScrollable] = useState(true);
+  const [photoClicked, setPhotoClicked] = useState(true);
 
 
-
+  const togglePhotoClicked = (photo) => {
+    setPhotoClicked(!photoClicked);
+    photo.clicked = photoClicked;
+    console.log(photo.clicked);
+  };
 
   const toggleShowMore = () => {
     setOver250(!over250);
 
   };
 
-  const togglePhoto = () => {
+  const togglePhoto = (img) => {
     setShowModal(!showModal);
     setIsScrollable(!isScrollable);
     isScrollable ? document.body.style.overflow = 'hidden' : document.body.style.overflow = 'scroll';
@@ -50,7 +54,6 @@ const ReviewsListEntry = ({review}) => {
 
   return (
     <ReviewEntry>
-      {console.log(review)}
       <div className="rev-star-date">
         <div>{starTest(review.rating)}</div>
         <small><div>{review.reviewer_name}, {review.date}</div></small>
@@ -74,8 +77,9 @@ const ReviewsListEntry = ({review}) => {
           <div>
             {review.photos.map((photo, i) => (
               <div>
-                <Thumbnail src={photo.url} onClick={() => { togglePhoto(); }} key={i}></Thumbnail>
-                {showModal ? <PhotosModal toggle={togglePhoto} visible={showModal} photo={photo.url}/> : null}
+
+                <Thumbnail src={photo.url} onClick={() => { togglePhoto(photo.url); togglePhotoClicked(photo); }} key={i} ></Thumbnail>
+                {showModal ? <PhotosModal toggle={togglePhoto} visible={showModal} photo={photo} togglePhotoClicked={togglePhotoClicked}/> : null}
               </div>
             ))}
           </div>

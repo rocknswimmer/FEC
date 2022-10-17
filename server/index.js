@@ -63,7 +63,7 @@ app.get('/reviews/', (req, res) => {
   let options = {
     params: {
       page: 1,
-      count: 6,
+      count: 500,
       sort: 'relevance',
       product_id: req.query.id
     },
