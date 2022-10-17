@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import PhotosModal from './PhotosModal.jsx';
 
 const ReviewEntry = styled.div`
 border-bottom: solid grey 1px;
@@ -23,13 +24,20 @@ const ReviewsListEntry = ({review}) => {
 
   const [over250, setOver250] = useState(review.body.length > 50);
   const [showModal, setShowModal] = useState(false);
+  const [isScrollable, setIsScrollable] = useState(true);
+
+
+
 
   const toggleShowMore = () => {
     setOver250(!over250);
+
   };
 
   const togglePhoto = () => {
     setShowModal(!showModal);
+    setIsScrollable(!isScrollable);
+    isScrollable ? document.body.style.overflow = 'hidden' : document.body.style.overflow = 'scroll';
   };
 
   let starTest = (int) => {
@@ -63,11 +71,17 @@ const ReviewsListEntry = ({review}) => {
       <div>
         {review.photos.length > 0 ?
           <div>
-            {review.photos.map((photo) => (
-              <Thumbnail src={photo.url} onClick={() => {alert('hi!')}}></Thumbnail>
+            {review.photos.map((photo, i) => (
+              <div>
+              <Thumbnail src={photo.url} onClick={() => { togglePhoto(photo.url); }} key={i}></Thumbnail>
+              {showModal ? <PhotosModal toggle={togglePhoto} visible={showModal} photo={photo.url}/> : null}
+              </div>
             ))}
           </div>
           : null}
+      </div>
+      <div>
+
       </div>
     </ReviewEntry>
   );
