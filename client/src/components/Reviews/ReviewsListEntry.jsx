@@ -28,10 +28,10 @@ const ReviewsListEntry = ({review}) => {
 
 
   const togglePhotoClicked = (photo) => {
-    setPhotoClicked(!photoClicked);
     photo.clicked = photoClicked;
-    console.log(photo.clicked);
+    setPhotoClicked(!photoClicked);
   };
+
 
   const toggleShowMore = () => {
     setOver250(!over250);
