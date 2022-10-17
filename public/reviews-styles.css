@@ -20,12 +20,12 @@
 }
 
 .summary {
-  flex: 300px;
+  width: 300px;
   flex-shrink: 0;
 }
 
 .list {
-  flex: 600px;
+  width: 600px;
   flex-shrink: 0;
   /* border-bottom: solid black */
 }
