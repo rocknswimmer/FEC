@@ -10,6 +10,7 @@ const View = ({ productId }) => {
   //Establish pieces of state for View and StyleSelector
   const [currentProduct, setCurrentProduct] = useState({});
   const [otherStyles, setOtherStyles] = useState([]);
+  const [displayedStyle, setDisplayedStyle] = useState({});
 
   //Get methods for View and StyleSelector
   const getCurrentProduct = (productId) => {
@@ -37,15 +38,12 @@ const View = ({ productId }) => {
       .then(results => {
         let stylesArray = results.data.results;
         setOtherStyles(stylesArray);
+        setDisplayedStyle(stylesArray[0]);
       })
       .catch(err => {
         console.log('Here is an error in getOtherStyles ->', err);
       });
   };
-  const newFn = () => {
-    getOtherStyles(productId);
-  };
-
 
   //useEffect
   useEffect(() => {
@@ -53,16 +51,19 @@ const View = ({ productId }) => {
     getOtherStyles(productId);
   }, []);
 
+  //eventhandler to change DisplayedStyle
+  const changeDisplayedStyle = (index) => {
+    setDisplayedStyle(otherStyles[index]);
+  };
+
   return (
     <div className="view-main">
       <ProductImage otherStyles={otherStyles} />
       <div>
-        <ProductName productInfo={currentProduct} />
+        <ProductName productInfo={currentProduct} currentDisplayedStyle ={displayedStyle} />
 
-        {otherStyles.length > 0 && <SelectedStyle otherStyles={otherStyles} productId={productId} />}
-
-
-        {/* <ItemSelection productId = {productId}/> */}
+        {otherStyles.length > 0 && <SelectedStyle otherStyles={otherStyles} productId={productId} changeDisplayedStyle = {changeDisplayedStyle} currentDisplayedStyle ={displayedStyle}/>}
+        <ItemSelection currentDisplayedStyle = {displayedStyle}/>
       </div>
 
       <Description productInfo={currentProduct} />
