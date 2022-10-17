@@ -48,7 +48,7 @@ const Questions = (props) => {
         </button>
       </form>
       <QuestionFeed questions={questions} />
-      <button>MORE ANSWERED QUESTIONS</button>
+      {(questions[0] && questions.length > 2) && <button>MORE ANSWERED QUESTIONS</button>}
       <button>ADD A QUESTION +</button>
     </div>
   );
