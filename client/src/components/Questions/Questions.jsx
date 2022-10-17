@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import QuestionFeed from './QuestionFeed.jsx';
+import axios from 'axios';
 
 const Questions = (props) => {
   const [questions, setQuestions] = useState([]);
   const [moreQuestions, setMoreQuestions] = useState(false);
 
-<<<<<<< HEAD
-=======
   const getCurrentQuestions = () => {
     axios.get('/qa/questions/', {
       params: {
@@ -30,13 +29,12 @@ const Questions = (props) => {
     setMoreQuestions(!moreQuestions);
   };
 
->>>>>>> 9a7cab498bc6bab8a485c08fbe860bc3fb3f0e98
   return (
     <div id="questions">
       <div>Q&A Widget to go here!</div>
-      <form class="question-search-form">
-        <input class="questions-search" type="text" placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS..." />
-        <button class="question-search-button" type="submit">
+      <form className="question-search-form">
+        <input className="questions-search" type="text" placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS..." />
+        <button className="question-search-button" type="submit">
           <img src="search.png"/>
         </button>
       </form>
