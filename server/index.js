@@ -106,6 +106,33 @@ app.put('/reviews/:review_id/report', (req, res) => {
 
 });
 
+//Q&A routes
+
+// Get Questions
+app.get('/qa/questions/', (req, res) => {
+  let urlVariable = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/';
+
+  let options = {
+    'headers': {
+      'Authorization': api
+    },
+    'params': {
+      'product_id': req.query.id
+    }
+  };
+
+  axios.get(urlVariable, options)
+    .then(results => {
+      console.log('answers data: ', results.data);
+      res.send(results.data);
+    })
+    .catch(err => {
+      console.log('error getting questions: ', err);
+      res.status(404).end();
+    });
+
+});
+
 
 app.listen(3001);
 

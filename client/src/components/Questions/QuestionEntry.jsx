@@ -11,9 +11,9 @@ const QuestionEntry = (props) => {
       <span>Helpful? <a src="http://localhost:3001">Yes</a> {yesCount}</span>
       <span>|</span>
       <span><a>Add Answer</a></span>
-      {/* {[1, 2].map(() => {
-        return <Answers />;
-      })} */}
+      {[1, 2].map((answer, i) => {
+        return <Answers key={i}/>;
+      })}
     </div>
   );
 };
