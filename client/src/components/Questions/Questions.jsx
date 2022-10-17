@@ -4,6 +4,7 @@ import axios from 'axios';
 
 const Questions = (props) => {
   const [questions, setQuestions] = useState([]);
+  const [moreQuestions, setMoreQuestions] = useState(false);
 
   const getCurrentQuestions = () => {
     axios.get('/qa/questions/', {
@@ -20,23 +21,13 @@ const Questions = (props) => {
       });
   };
 
-  const getCurrentAnswers = () => {
-    axios.get('/qa/questions/:question_id/answers', {
-      params: {
-        'id': props.productId
-      }
-    })
-      .then(results => {
-        console.log('questions: ', results.data.results);
-      })
-      .catch(err => {
-        console.log('There is an error getting questions from server ', err);
-      });
-  };
-
   useEffect(() => {
     getCurrentQuestions();
   }, []);
+
+  const loadMoreQuestions = () => {
+    setMoreQuestions(!moreQuestions);
+  };
 
   return (
     <div id="questions">
@@ -47,8 +38,8 @@ const Questions = (props) => {
           <img src="search.png"/>
         </button>
       </form>
-      <QuestionFeed questions={questions} />
-      {(questions[0] && questions.length > 2) && <button>MORE ANSWERED QUESTIONS</button>}
+      <QuestionFeed questions={questions} moreQuestions={moreQuestions} />
+      {(questions[0] && questions.length > 2) && <button onClick={loadMoreQuestions}>MORE ANSWERED QUESTIONS</button>}
       <button>ADD A QUESTION +</button>
     </div>
   );
