@@ -17,7 +17,7 @@ const QuestionEntry = (props) => {
   };
 
   return (
-    <div>
+    <div className="question-entry">
       <span>Q: {props.question.question_body}</span>
       <span>Helpful? <a>Yes</a> {`(${props.question.question_helpfulness})`}</span>
       <span>|</span>
