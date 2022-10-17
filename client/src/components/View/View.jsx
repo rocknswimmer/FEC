@@ -35,15 +35,8 @@ const View = ({ productId }) => {
       }
     })
       .then(results => {
-        // setOtherStyles(results.data.results);
         let stylesArray = results.data.results;
-        // Promise.all(results.data.results)
-        //   .then(values => {
-        //     console.log(values, 'promise resolution');
-        //     setOtherStyles(values);
-        //   });
         setOtherStyles(stylesArray);
-        // return stylesArray;
       })
       .catch(err => {
         console.log('Here is an error in getOtherStyles ->', err);
