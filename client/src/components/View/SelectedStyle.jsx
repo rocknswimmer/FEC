@@ -1,9 +1,14 @@
 import React, { useState, useEffect } from 'react';
 
 const SelectedStyle = ({otherStyles}) => {
+  console.log('is the otherStyles an array in SelectedStyle ', Array.isArray(otherStyles));
   return (
     <div>
-      {/* I'm the SelectedStyle.jsx and this is the product Id {productId} i received from App */}
+      {
+        // map.otherStyles((style, index) => {
+        //   return <img className = 'style-thumbnail' key = {index} src = {style.photos.thumbnail_url}/>;
+        // })
+      }
 
 
     </div>
@@ -11,3 +16,5 @@ const SelectedStyle = ({otherStyles}) => {
 };
 
 export default SelectedStyle;
+
+

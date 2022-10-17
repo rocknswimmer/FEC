@@ -9,7 +9,6 @@ import ItemSelection from './SelectedStyle.jsx';
 const View = ({ productId }) => {
   //Establish pieces of state for View and StyleSelector
   const [currentProduct, setCurrentProduct] = useState({});
-
   const [otherStyles, setOtherStyles] = useState([]);
 
   //Get methods for View and StyleSelector
@@ -23,6 +22,7 @@ const View = ({ productId }) => {
         let newProduct = results.data;
         setCurrentProduct(newProduct);
       })
+      // .then()
       .catch(err => {
         console.log('There is an error in the getCurrentProduct fn ', err);
       });
