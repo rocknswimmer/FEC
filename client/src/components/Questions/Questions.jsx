@@ -3,6 +3,7 @@ import QuestionFeed from './QuestionFeed.jsx';
 import axios from 'axios';
 
 const Questions = (props) => {
+  const [questions, setQuestions] = useState([]);
 
   const getCurrentQuestions = () => {
     axios.get('/qa/questions/', {
@@ -11,7 +12,8 @@ const Questions = (props) => {
       }
     })
       .then(results => {
-        console.log('questions: ', results.data.results);
+        // console.log('questions: ', results.data.results);
+        setQuestions(results.data.results);
       })
       .catch(err => {
         console.log('There is an error getting questions from server ', err);
@@ -45,7 +47,7 @@ const Questions = (props) => {
           <img src="search.png"/>
         </button>
       </form>
-      <QuestionFeed />
+      <QuestionFeed questions={questions} />
       <button>MORE ANSWERED QUESTIONS</button>
       <button>ADD A QUESTION +</button>
     </div>
