@@ -1,20 +1,24 @@
 import React, { useState, useEffect } from 'react';
+import {RoundImage, StyleDiv} from './Styled/SelectedStyleImage.styled.jsx';
+import styled from 'styled-components';
+
+
 
 const SelectedStyle = ( {otherStyles, productId} ) => {
 
   return (
-    <div>
+    <StyleDiv>
       {
         otherStyles.map((style, index) => {
           let imgSrc = style.photos[0].thumbnail_url;
-          return <img key ={index} src = {imgSrc} />;
+          return <RoundImage key = {index} img={imgSrc}></RoundImage>;
         })
       }
-    </div>
+    </StyleDiv>
   );
 };
 
 export default SelectedStyle;
 
 
-
+{/* <img key ={index} src = {imgSrc} />  */}
