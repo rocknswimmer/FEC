@@ -7,7 +7,7 @@ const Buttons = (props) => {
 
   return (
     <div>
-      <ReviewsModal />
+      {/* <ReviewsModal /> */}
       <button className="rev-button">MORE REVIEWS</button>
       <button className="rev-button">ADD A REVIEW +</button>
     </div>

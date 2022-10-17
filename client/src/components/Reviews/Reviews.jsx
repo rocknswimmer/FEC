@@ -38,7 +38,8 @@ const Reviews = ({productId}) => {
   }, []);
 
   const ReviewsContainer = styled.div`
-    padding: 4px;
+    padding: 10px;
+    margin: 32px;
     display: flex;
     flex-direction: column;
     flex-shrink: 0;

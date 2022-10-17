@@ -7,8 +7,8 @@ const ReviewsList = ({reviewsList}) => {
   console.log(reviewsList);
   return (
     <div>
-      {reviewsList.map((review) => (
-        <ReviewsListEntry review={review} />
+      {reviewsList.map((review, i) => (
+        <ReviewsListEntry review={review} key={i}/>
       ))}
     </div>
   );
