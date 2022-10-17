@@ -39,7 +39,7 @@ const Questions = (props) => {
   }, []);
 
   return (
-    <div>
+    <div id="questions">
       <div>Q&A Widget to go here!</div>
       <form className="question-search-form">
         <input className="questions-search" type="text" placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS..." />
