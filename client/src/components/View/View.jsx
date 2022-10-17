@@ -4,7 +4,7 @@ import Description from './Description.jsx';
 import ProductImage from './ProductImage.jsx';
 import ProductName from './ProductName.jsx';
 import SelectedStyle from './SelectedStyle.jsx';
-import ItemSelection from './SelectedStyle.jsx';
+import ItemSelection from './ItemSelection.jsx';
 
 const View = ({ productId }) => {
   //Establish pieces of state for View and StyleSelector
@@ -22,7 +22,6 @@ const View = ({ productId }) => {
         let newProduct = results.data;
         setCurrentProduct(newProduct);
       })
-      // .then()
       .catch(err => {
         console.log('There is an error in the getCurrentProduct fn ', err);
       });
@@ -36,12 +35,24 @@ const View = ({ productId }) => {
       }
     })
       .then(results => {
-        setOtherStyles(results.data.results);
+        // setOtherStyles(results.data.results);
+        let stylesArray = results.data.results;
+        // Promise.all(results.data.results)
+        //   .then(values => {
+        //     console.log(values, 'promise resolution');
+        //     setOtherStyles(values);
+        //   });
+        setOtherStyles(stylesArray);
+        // return stylesArray;
       })
       .catch(err => {
         console.log('Here is an error in getOtherStyles ->', err);
       });
   };
+  const newFn = () => {
+    getOtherStyles(productId);
+  };
+
 
   //useEffect
   useEffect(() => {
@@ -51,11 +62,14 @@ const View = ({ productId }) => {
 
   return (
     <div className="view-main">
-      <ProductImage otherStyles = {otherStyles}/>
+      <ProductImage otherStyles={otherStyles} />
       <div>
         <ProductName productInfo={currentProduct} />
-        <SelectedStyle otherStyles={otherStyles} />
-        <ItemSelection />
+
+       {otherStyles.length > 0 && <SelectedStyle otherStyles={otherStyles} productId={productId} />}
+
+
+        {/* <ItemSelection productId = {productId}/> */}
       </div>
 
       <Description productInfo={currentProduct} />

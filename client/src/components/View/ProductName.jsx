@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 const ProductName = ({productInfo}) => {
-  console.log(productInfo);
+  // console.log(productInfo);
   return (
     <div>
       <>Stars *****</>

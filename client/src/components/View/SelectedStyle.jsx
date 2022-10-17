@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from 'react';
 
-const SelectedStyle = ({otherStyles}) => {
-  console.log('is the otherStyles an array in SelectedStyle ', Array.isArray(otherStyles));
+const SelectedStyle = ( {otherStyles, productId} ) => {
+
+  console.log('is the otherStyles an array in SelectedStyle ', Array.isArray(otherStyles), otherStyles);
   return (
     <div>
       {
-        // map.otherStyles((style, index) => {
-        //   return <img className = 'style-thumbnail' key = {index} src = {style.photos.thumbnail_url}/>;
-        // })
-      }
+        otherStyles.map((style, index) => {
+          let imgSrc = style.photos[0].thumbnail_url;
+          return <img src = {imgSrc} />;
 
+        })
+      }
 
     </div>
   );
@@ -18,3 +20,5 @@ const SelectedStyle = ({otherStyles}) => {
 export default SelectedStyle;
 
 
+
+{/* <img className = 'style-thumbnail' key = {index} src = {style.photos.thumbnail_url}/>;  */}

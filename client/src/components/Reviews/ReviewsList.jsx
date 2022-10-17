@@ -4,12 +4,12 @@ import ReviewsListEntry from './ReviewsListEntry.jsx';
 const ReviewsList = ({reviewsList}) => {
 
   //Map ReviewListEntries here
-  console.log(reviewsList);
+  // console.log(reviewsList);
   return (
     <div>
-      {reviewsList.map((review) => (
+      {/* {reviewsList.map((review) => (
         <ReviewsListEntry review={review} />
-      ))}
+      ))} */}
     </div>
   );
 };
