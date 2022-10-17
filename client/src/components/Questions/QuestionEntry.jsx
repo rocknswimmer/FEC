@@ -2,17 +2,18 @@ import React, { useState, useEffect } from 'react';
 import Answers from './Answers.jsx';
 
 const QuestionEntry = (props) => {
-
-  var yesCount = "(count to go here)";
+  const answers = Object.keys(props.question.answers).map((key) => {
+    return props.question.answers[key];
+  });
 
   return (
     <div>
-      <span>I'm a question Entry!</span>
-      <span>Helpful? <a src="http://localhost:3001">Yes</a> {yesCount}</span>
+      <span>Q: {props.question.question_body}</span>
+      <span>Helpful? <a>Yes</a> {`(${props.question.question_helpfulness})`}</span>
       <span>|</span>
       <span><a>Add Answer</a></span>
-      {[1, 2].map((answer, i) => {
-        return <Answers key={i}/>;
+      {answers.map((answer, i) => {
+        return <Answers key={i} answer={answer} />;
       })}
     </div>
   );
