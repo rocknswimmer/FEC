@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 const ItemSelection = ({ currentDisplayedStyle, productId }) => {
 
   const [sizeDropdownIsOpen, setSizeDropDownOpen] = useState(false);
+  const [quantityDropdownIsOpen, setQuantityDropDownOpen] = useState(false);
   const [items, setItems] = useState([]);
   const [selectedItem, setSelectedItem] = useState({});
   const [] = useState();
@@ -32,38 +33,68 @@ const ItemSelection = ({ currentDisplayedStyle, productId }) => {
     setSizeDropDownOpen(false);
   };
 
+  //sets selected Sku for quantity/cart
   const handleItemClick = (index) => {
-    let skuObj =
+    // console.log('index =>', index);
+    let skuObj = {};
+    Object.assign(skuObj, items[index]);
+    // console.log(skuObj, '<---- skuObj');
+    setSelectedItem(skuObj);
   };
 
-  const onSelectDropDown = (event) => {
-    console.log(event.target);
-    setSelectedItem(event.target.value);
-    console.log(selectedItem);
+  //write a clickhandler for quantity
+  const quantityDropDownHandler = (event) => {
+    setQuantityDropDownOpen(!quantityDropdownIsOpen);
+
   };
 
-  useEffect(()=> {
+  const quantityArrayMaker = () => {
+    let quantityArr = [];
+    if (selectedItem.quantity > 15) {
+      quantityArr = Array.from(Array(16).keys());
+      quantityArr.splice(0, 1, 'select the quantity here');
+    } else {
+      quantityArr = Array.from(Array(selectedItem.quantity).keys());
+    }
+    return quantityArr;
+  };
+  // const onSelectDropDown = (event) => {
+  //   console.log(event.target);
+  //   setSelectedItem(event.target.value);
+  //   console.log(selectedItem);
+  // };
+
+  useEffect(() => {
     setItems(arrayMaker(currentDisplayedStyle));
   }, [currentDisplayedStyle]);
 
   return (
-    <div onMouseLeave ={handleMouseLeaving}>
-      <div onClick={toggleDropdown}>
-        Select your style
-        <i></i>
+    <div>
+      <div onMouseLeave={handleMouseLeaving}>
+        <div onClick={toggleDropdown}>
+          Select your style
+          <i></i>
+        </div>
+        <div>
+          {
+            sizeDropdownIsOpen && items.map((item, index) => {
+              return (
+                <div key={index} onClick={(e) => { handleItemClick(index); }} value={item.sku}>
+                  {item.size}
+                </div>
+              );
+            })
+          }
+        </div>
+
       </div>
-      <div>
+      <select onClick={quantityDropDownHandler}>
         {
-          sizeDropdownIsOpen && items.map((item, index) => {
-            return (
-              <div key={index} onClick={onSelectDropDown} value={item.sku}>
-                {item.size}
-              </div>
-            );
+          quantityArrayMaker().map(num => {
+            return <option value ={num}>{num}</option>;
           })
         }
-      </div>
-
+      </select>
     </div>
   );
 };
