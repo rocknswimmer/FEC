@@ -32,7 +32,7 @@ app.get('/products', (req, res) => {
 });
 
 app.get('/products/:product_id/styles', (req, res) => {
-  let urlVariable= `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${req.query.id}/styles`;
+  let urlVariable = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${req.query.id}/styles`;
 
   let options = {
     'headers': {
@@ -62,10 +62,10 @@ app.get('/reviews/', (req, res) => {
   console.log(req.query);
   let options = {
     params: {
-      page: 1,
-      count: 500,
-      sort: 'relevance',
-      product_id: req.query.id
+      'page': 1,
+      'count': 1000,
+      'sort': req.query.sort,
+      'product_id': req.query.id
     },
     headers: {
       'Authorization': api
@@ -74,7 +74,6 @@ app.get('/reviews/', (req, res) => {
 
   axios.get(apiUrl, options)
     .then((data) => {
-      //console.log(data.data);
       res.json(data.data);
       res.end();
     })
