@@ -7,9 +7,10 @@ const Buttons = ({handleMoreReviews}) => {
 
   return (
     <div>
-
-      <button className="rev-button" onClick={() => { handleMoreReviews(); }}>MORE REVIEWS</button>
-      <button className="rev-button">ADD A REVIEW +</button>
+      <div>
+        <button className="rev-button" onClick={() => { handleMoreReviews(); }}>MORE REVIEWS</button>
+        <button className="rev-button">ADD A REVIEW +</button>
+      </div>
     </div>
   );
 };
