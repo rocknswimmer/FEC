@@ -22,9 +22,3 @@ a {
   outline: none;
   margin-left: -33px;
 }
-
-.question-search-button img {
-  width: 20px;
-  height: 20px;
-  object-fit: cover;
-}

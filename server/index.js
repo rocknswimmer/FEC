@@ -122,7 +122,7 @@ app.get('/qa/questions/', (req, res) => {
 
   axios.get(urlVariable, options)
     .then(results => {
-      console.log('answers data: ', results.data);
+      // console.log('answers data: ', results.data);
       res.send(results.data);
     })
     .catch(err => {
