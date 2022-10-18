@@ -6,15 +6,6 @@ const QuestionEntry = (props) => {
     return props.question.answers[key];
   });
 
-  if (answers.length > 2) {
-    var firstAnswers = answers.slice(0, 2);
-  }
-
-  const [loadMoreAnswers, setLoadMoreAnswers] = useState(false);
-
-  const loadAnswers = () => {
-    setLoadMoreAnswers(!loadMoreAnswers);
-  };
 
   return (
     <div className="question-entry">

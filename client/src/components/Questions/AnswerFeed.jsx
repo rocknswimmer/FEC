@@ -13,9 +13,6 @@ const AnswerFeed = (props) => {
     setLoadMoreAnswers(!loadMoreAnswers);
   };
 
-  console.log(props.answers);
-
-
   return (
     <span>
       {props.answers.length > 2 && !loadMoreAnswers && firstAnswers.map((answer, i) => {
