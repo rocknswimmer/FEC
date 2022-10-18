@@ -2,21 +2,35 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import PhotosModal from './PhotosModal.jsx';
 import formattedDate from '../../HelperFunctions/formattedDate.js';
+import {FaCheckCircle} from 'react-icons/fa';
 
 const ReviewEntry = styled.div`
 border-bottom: solid grey 1px;
-padding: 30px;
+padding: 20px;
 display: flex-column;
 align-items: space-between;
+height: auto;
 `;
 
 const ReviewTitle = styled.div`
   font-weight: bold;
+  padding: 15px 0 15px 0;
 `;
 
-const Thumbnail = styled.img `
+const Thumbnail = styled.img`
   width: 40px;
   height: 40px;
+  padding: 15px 0 15px 0;
+`;
+
+const Button = styled.button`
+background: white;
+color: grey;
+font-size: .75em;
+margin: 15px 0 15px 0;;
+padding: 0.25em 1em;
+border: 2px solid grey;
+border-radius: 3px;
 `;
 
 
@@ -55,6 +69,7 @@ const ReviewsListEntry = ({review}) => {
 
   return (
     <ReviewEntry>
+      {console.log(review)}
       <div className="rev-star-date">
         <div>{starTest(review.rating)}</div>
         <small><div>{review.reviewer_name}, {formattedDate(review.date)}</div></small>
@@ -68,7 +83,7 @@ const ReviewsListEntry = ({review}) => {
         {over250 ?
           <div>
             {review.body.substring(0, 50)}... <div>
-              <button onClick={() => (toggleShowMore())}>Show More</button>
+              <Button onClick={() => (toggleShowMore())}>Show More</Button>
             </div>
           </div> : review.body}
       </div>
@@ -86,9 +101,10 @@ const ReviewsListEntry = ({review}) => {
       </div>
       <div>
         {review.recommend ?
-          <div>(Add checkmark) I recommend this product</div> : null}
+          <div><FaCheckCircle style={{color: 'red'}}/> I recommend this product</div> : null}
       </div>
       {/* <input type="range"></input> */}
+      <small><span>Was this review helpful? <a>Yes</a> {`(${review.helpfulness})`} | <a>Report</a> </span></small>
     </ReviewEntry>
   );
 };
