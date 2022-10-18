@@ -93,7 +93,7 @@ const ReviewsListEntry = ({review}) => {
             {review.photos.map((photo, i) => (
               <div className="thumbnail">
                 <Thumbnail src={photo.url} onClick={() => { togglePhoto(photo.url); togglePhotoClicked(photo); }} key={i} ></Thumbnail>
-                {showModal ? <PhotosModal key={i + 1} toggle={togglePhoto} visible={showModal} photo={photo} togglePhotoClicked={togglePhotoClicked}/> : null}
+                {showModal ? <PhotosModal key={i + 1000} toggle={togglePhoto} visible={showModal} photo={photo} togglePhotoClicked={togglePhotoClicked}/> : null}
               </div>
             ))}
           </div>
@@ -102,6 +102,9 @@ const ReviewsListEntry = ({review}) => {
       <div>
         {review.recommend ?
           <div><FaCheckCircle style={{color: 'red'}}/> I recommend this product</div> : null}
+      </div>
+      <div>
+        {/* {review.response ? : } */}
       </div>
       {/* <input type="range"></input> */}
       <small><span>Was this review helpful? <a>Yes</a> {`(${review.helpfulness})`} | <a>Report</a> </span></small>
