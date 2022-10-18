@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import PhotosModal from './PhotosModal.jsx';
+import formattedDate from '../../HelperFunctions/formattedDate.js';
 
 const ReviewEntry = styled.div`
 border-bottom: solid grey 1px;
@@ -56,7 +57,7 @@ const ReviewsListEntry = ({review}) => {
     <ReviewEntry>
       <div className="rev-star-date">
         <div>{starTest(review.rating)}</div>
-        <small><div>{review.reviewer_name}, {review.date}</div></small>
+        <small><div>{review.reviewer_name}, {formattedDate(review.date)}</div></small>
       </div>
       {review.summary.length > 60 ?
         <>
@@ -71,13 +72,11 @@ const ReviewsListEntry = ({review}) => {
             </div>
           </div> : review.body}
       </div>
-      {/* <div>PUT RECOMMENDED HERE</div> */}
       <div>
         {review.photos.length > 0 ?
-          <div>
+          <div className="thumbnails-container">
             {review.photos.map((photo, i) => (
-              <div>
-
+              <div className="thumbnail">
                 <Thumbnail src={photo.url} onClick={() => { togglePhoto(photo.url); togglePhotoClicked(photo); }} key={i} ></Thumbnail>
                 {showModal ? <PhotosModal key={i + 1} toggle={togglePhoto} visible={showModal} photo={photo} togglePhotoClicked={togglePhotoClicked}/> : null}
               </div>
@@ -86,8 +85,10 @@ const ReviewsListEntry = ({review}) => {
           : null}
       </div>
       <div>
-
+        {review.recommend ?
+          <div>(Add checkmark) I recommend this product</div> : null}
       </div>
+      {/* <input type="range"></input> */}
     </ReviewEntry>
   );
 };

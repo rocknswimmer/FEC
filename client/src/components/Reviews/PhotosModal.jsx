@@ -10,11 +10,13 @@ const PhotosModal = ({toggle, visible, photo, togglePhotoClicked}) => {
       {console.log(photo)}
       {visible && photo.clicked ?
         <div className="modal">
+          {/* <button className="photo-modal-close" type="button" onClick={() => {  }}>Close</button> */}
           <div className="modal-pop" role="dialog" aria-modal="true">
-            <img src={photo.url} className="modal-photo"></img>
+
+            <img src={photo.url} className="modal-photo" onClick={() => { toggle(); togglePhotoClicked(photo); }}></img>
             <br></br>
-            <button type="button" onClick={() => { toggle(); togglePhotoClicked(photo); }}>Close</button>
           </div>
+
           <div className="modal-overlay" ></div>
         </div> : null}
     </div>

@@ -74,7 +74,6 @@ app.get('/reviews/', (req, res) => {
 
   axios.get(apiUrl, options)
     .then((data) => {
-      //console.log(data.data);
       res.json(data.data);
       res.end();
     })
