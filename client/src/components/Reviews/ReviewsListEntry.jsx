@@ -107,7 +107,7 @@ const ReviewsListEntry = ({review}) => {
         {/* {review.response ? : } */}
       </div>
       {/* <input type="range"></input> */}
-      <small><span>Was this review helpful? <a>Yes</a> {`(${review.helpfulness})`} | <a>Report</a> </span></small>
+      <small><span>Was this review helpful? <a>Yes</a> {`(${review.helpfulness})`} | <a>No</a> (0) </span></small>
     </ReviewEntry>
   );
 };

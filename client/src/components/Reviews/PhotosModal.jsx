@@ -12,7 +12,6 @@ const PhotosModal = ({toggle, visible, photo, togglePhotoClicked}) => {
           <div className="modal-pop" role="dialog" aria-modal="true">
             <button className="photo-modal-close" type="button" onClick={() => { toggle(); togglePhotoClicked(photo); }}>Close</button>
             <img src={photo.url} className="modal-photo" ></img>
-            <br></br>
           </div>
           <div className="modal-overlay" ></div>
         </div> : null}
