@@ -101,10 +101,15 @@ const ReviewsListEntry = ({review}) => {
       </div>
       <div>
         {review.recommend ?
-          <div><FaCheckCircle style={{color: 'red'}}/> I recommend this product</div> : null}
+          <div className="rev-rec"><FaCheckCircle style={{color: 'red'}}/> I recommend this product</div> : null}
       </div>
       <div>
-        {/* {review.response ? : } */}
+        {review.response ?
+          <div>
+            <h3>Response:</h3>
+            <div>{review.response}</div>
+          </div>
+          : null}
       </div>
       {/* <input type="range"></input> */}
       <small><span>Was this review helpful? <a>Yes</a> {`(${review.helpfulness})`} | <a>No</a> (0) </span></small>

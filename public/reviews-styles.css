@@ -40,11 +40,33 @@
   justify-content: space-between;
 }
 
+.rev-rec {
+  padding: 15px 0 15px 0;
+}
+
+.rev-sort-form {
+  display: inline;
+  margin: 3px
+}
+
+.rev-sort-label {
+  text-decoration: underline;
+}
+
+.rev-form-select {
+  background-color: transparent;
+  border: 0px;
+  text-decoration: underline;
+  font-family: inherit;
+  font-size: inherit;
+}
+
 .modal {
   margin: auto;
   position: fixed;
-
 }
+
+
 
 .modal-pop {
   background: #fff;
