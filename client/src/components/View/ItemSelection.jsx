@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const ItemSelection = ({ currentDisplayedStyle, productId }) => {
+const ItemSelection = ({ currentDisplayedStyle, productId, addToCart, cartContents }) => {
 
   const [sizeDropdownIsOpen, setSizeDropDownOpen] = useState(false);
   const [quantityDropdownIsOpen, setQuantityDropDownOpen] = useState(false);
@@ -51,31 +51,53 @@ const ItemSelection = ({ currentDisplayedStyle, productId }) => {
     setSizeDropDownOpen(false);
   };
 
-//When a sku has been selected, the fn below should make the appropriate num of quantity options
+  //When a sku has been selected, the fn below should make the appropriate num of quantity options
   const quantityArrayMaker = () => {
+    console.log('inside quantityArrayMaker');
+    console.log('these are the currentCartContents >', cartContents);
     let quantityArr = [];
+
+    if (cartContents.length > 0) {
+      cartContents.forEach(obj => {
+        console.log(obj, '<--- cartContents.forEach()');
+        if (obj.sku === selectedItem.sku
+          && obj.product_id === selectedItem.product_id
+          && obj.style_id === selectedItem.style_id) {
+          console.log(selectedItem.quantity, '<---selectedItem quantity before && newSelected quantity ---> ', obj.selectedQty);
+          selectedItem.quantity -= obj.selectedQty;
+          console.log(selectedItem.quantity, '<--- updated selectedItem.quantity');
+        }
+      });
+    }
+
     if (selectedItem.quantity > 15) {
       quantityArr = Array.from(Array(16).keys());
 
     } else if (selectedItem.quantity === 0) {
       // quantityArr make it so it says it's out of stock
+      console.log('this item is out of stock');
     } else {
-      quantityArr = Array.from(Array(selectedItem.quantity).keys());
+      quantityArr = Array.from(Array(selectedItem.quantity + 1).keys());
     }
     quantityArr.splice(0, 1, '--');
     return quantityArr;
   };
 
   //when a quantity has been chosen, it will update the current sku obj
-  const updateSelectedQty = (qty) =>{
-    console.log(qty, '<- qty');
+  const updateSelectedQty = (qty) => {
     let newObj = {};
     Object.assign(newObj, selectedItem);
     newObj.selectedQty = qty;
     setSelectedItem(newObj);
-    console.log('selectedItem -->', selectedItem);
   };
 
+  //button handler
+  const onSubmitButton = (event) => {
+    console.log('adding this item to the cart -->', selectedItem);
+    addToCart(selectedItem);
+  };
+
+  //useEffect
   useEffect(() => {
     setItems(arrayMaker(currentDisplayedStyle));
   }, [currentDisplayedStyle]);
@@ -84,7 +106,7 @@ const ItemSelection = ({ currentDisplayedStyle, productId }) => {
     <div>
       <div onMouseLeave={handleMouseLeavingSizeDropDown}>
         <div onClick={toggleSizeDropdown}>
-          Select your style
+          Select size
           <i></i>
         </div>
         <div>
@@ -100,19 +122,19 @@ const ItemSelection = ({ currentDisplayedStyle, productId }) => {
         </div>
 
       </div>
-      <div onClick={toggleQuantityDropdown} onMouseLeave={ handleMouseLeavingQuantityDropDown}>
+      <div onClick={toggleQuantityDropdown} onMouseLeave={handleMouseLeavingQuantityDropDown}>
         Select Quanitity
         {
           quantityDropdownIsOpen && quantityArrayMaker().map((num, index) => {
-            return (<div key ={index} value ={num} onClick = {(event) => {updateSelectedQty(num); }}>{num}</div>);
+            return (<div key={index} value={num} onClick={(event) => { updateSelectedQty(num); }}>{num}</div>);
           })
         }
       </div>
-      <button>Add to Cart</button>
+      <button onClick={onSubmitButton}>Add to Cart</button>
     </div>
   );
 };
 
 export default ItemSelection;
-
+// addToCart = {addToCart} cart = {cartContents}
 // onClick={e => handleItemClick(e.target.id)}

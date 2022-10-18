@@ -48,17 +48,31 @@ const View = ({ productId }) => {
 
   //Add to Cart <---have not tested this yet
   const addToCart = (cartAddition) => {
+    console.log('inside addToCart at View level, adding the following to the cart -->', cartAddition);
+    console.log('these are the cartContents before  adding', cartContents);
+
+    let foundItemInCart = false;
+
     let newCartArray = cartContents.map((itemObj, index) => {
       let modifiedObj = {};
       Object.assign(modifiedObj, itemObj);
+      console.log(modifiedObj, '<---- this is the modifiedObj inside addToCart');
       if (itemObj.product_id === cartAddition.product_id
           && itemObj.style_id === cartAddition.style_id
           && itemObj.sku === cartAddition.sku) {
         modifiedObj.selectedQty = cartAddition.selectedQty + itemObj.selectedQty;
+        foundItemInCart = true;
       }
       return modifiedObj;
     });
+    if (!foundItemInCart) {
+      newCartArray.push(cartAddition);
+    }
+
+
+    console.log('this is the newCartArray before setCartContents > ', newCartArray);
     setCartContents(newCartArray);
+
   };
 
   //useEffect
@@ -80,7 +94,7 @@ const View = ({ productId }) => {
 
         {otherStyles.length > 0 && <SelectedStyle otherStyles={otherStyles} productId={productId} changeDisplayedStyle={changeDisplayedStyle} currentDisplayedStyle={displayedStyle} />}
 
-        <ItemSelection currentDisplayedStyle={displayedStyle} productId={productId} />
+        <ItemSelection currentDisplayedStyle={displayedStyle} productId={productId} addToCart = {addToCart} cartContents = {cartContents}/>
       </div>
 
       <Description productInfo={currentProduct} />
