@@ -3,6 +3,7 @@ import Answers from './Answers.jsx';
 
 const QuestionEntry = (props) => {
   const answers = Object.keys(props.question.answers).map((key) => {
+    // props.question.answers[key].answerId = key;
     return props.question.answers[key];
   });
 

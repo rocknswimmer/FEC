@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import QuestionFeed from './QuestionFeed.jsx';
 import axios from 'axios';
+import {FaSearch} from 'react-icons/fa';
 
 const Questions = (props) => {
   const [questions, setQuestions] = useState([]);
@@ -35,7 +36,7 @@ const Questions = (props) => {
       <form className="question-search-form">
         <input className="questions-search" type="text" placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS..." />
         <button className="question-search-button" type="submit">
-          <img src="search.png"/>
+          <FaSearch />
         </button>
       </form>
       <QuestionFeed questions={questions} moreQuestions={moreQuestions} />
