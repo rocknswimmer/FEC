@@ -13,6 +13,8 @@ const AnswerFeed = (props) => {
     setLoadMoreAnswers(!loadMoreAnswers);
   };
 
+  console.log(props.answers);
+
 
   return (
     <span>
