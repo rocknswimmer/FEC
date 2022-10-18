@@ -1,7 +1,12 @@
+/**
+ * @jest-environment jsdom
+ */
 /* eslint-disable camelcase */
 import React, { useState, useEffect } from 'react';
 import { render, screen } from '@testing-library/react';
 import QuestionEntry from '../client/src/components/Questions/QuestionEntry.jsx';
+import '@testing-library/react';
+
 
 //make fake question entries with different number of answers to test answer feed conditonaly rendering on info passed to question entry
 
@@ -71,8 +76,8 @@ question_body: 'testing',
 question_helpfulness: 0
 };
 
-test('renders one answer component when question has one answer', async () => {
-  render(<QuestionEntry question={question1} />)
+test('renders one answer component when question has one answer', () => {
+  render(<QuestionEntry question={question1} />);
 
-  expect(screen.getByRole('answer').length).toEqual(1);
+  expect(screen.getByRole('answer')).toEqual(1);
 });
