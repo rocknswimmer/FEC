@@ -32,7 +32,7 @@ const Questions = (props) => {
 
   return (
     <div id="questions">
-      <div>Q&A Widget to go here!</div>
+      <div>QUESTIONS & ANSWERS</div>
       <form className="question-search-form">
         <input className="questions-search" type="text" placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS..." />
         <button className="question-search-button" type="submit">

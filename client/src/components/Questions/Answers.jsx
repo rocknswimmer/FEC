@@ -5,14 +5,16 @@ import formattedDate from '../../HelperFunctions/formattedDate.js';
 const Answers = (props) => {
 
   return (
-    <div className="answer">
-      <div>A: {props.answer.body}</div>
+    <span className="answer">
+      <span>{props.answer.body}</span>
+      <br/>
       <span>by {props.answer.answerer_name}, {formattedDate(props.answer.date)}</span>
       <span> | </span>
       <span>Helpful? <a>Yes</a> {`(${props.answer.helpfulness})`} </span>
       <span> | </span>
       <span><a>Report</a></span>
-    </div>
+      <br/>
+    </span>
   );
 };
 
