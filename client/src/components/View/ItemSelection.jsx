@@ -1,27 +1,22 @@
 import React, { useState, useEffect } from 'react';
 
-const ItemSelection = ({ currentDisplayedStyle }) => {
-
-
-
+const ItemSelection = ({ currentDisplayedStyle, productId }) => {
 
   const [sizeDropdownIsOpen, setSizeDropDownOpen] = useState(false);
-  const [items, setItem] = useState([]);
-  const [selectedItem, setSelectedItem] = useState('');
+  const [items, setItems] = useState([]);
+  const [selectedItem, setSelectedItem] = useState({});
   const [] = useState();
 
 
   //makes array of sku-styles objects
   const arrayMaker = (obj) => {
-    console.log('inarraymaker');
     const styleArr = [];
     for (let key in currentDisplayedStyle.skus) {
       let newObj = currentDisplayedStyle.skus[key];
       newObj.sku = key;
-      newObj.product_id = obj.product_id;
+      newObj.product_id = productId;
       newObj.style_id = obj.style_id;
       styleArr.push(newObj);
-      console.log(newObj);
     }
     return styleArr;
   };
@@ -37,8 +32,8 @@ const ItemSelection = ({ currentDisplayedStyle }) => {
     setSizeDropDownOpen(false);
   };
 
-  const handleItemClick = (id) => {
-    selectedItem = id ? setSelectedItem(null) : setSelectedItem(id);
+  const handleItemClick = (index) => {
+    let skuObj =
   };
 
   const onSelectDropDown = (event) => {
@@ -48,7 +43,7 @@ const ItemSelection = ({ currentDisplayedStyle }) => {
   };
 
   useEffect(()=> {
-    setItem(arrayMaker(currentDisplayedStyle));
+    setItems(arrayMaker(currentDisplayedStyle));
   }, [currentDisplayedStyle]);
 
   return (
