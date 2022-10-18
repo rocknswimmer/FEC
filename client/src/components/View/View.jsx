@@ -11,7 +11,7 @@ const View = ({ productId }) => {
   const [currentProduct, setCurrentProduct] = useState({});
   const [otherStyles, setOtherStyles] = useState([]);
   const [displayedStyle, setDisplayedStyle] = useState({});
-  const [carContents, setCartContents] = useState();
+  const [cartContents, setCartContents] = useState([]);
 
   //Get methods for View and StyleSelector
   const getCurrentProduct = (productId) => {
@@ -46,6 +46,21 @@ const View = ({ productId }) => {
       });
   };
 
+  //Add to Cart <---have not tested this yet
+  const addToCart = (cartAddition) => {
+    let newCartArray = cartContents.map((itemObj, index) => {
+      let modifiedObj = {};
+      Object.assign(modifiedObj, itemObj);
+      if (itemObj.product_id === cartAddition.product_id
+          && itemObj.style_id === cartAddition.style_id
+          && itemObj.sku === cartAddition.sku) {
+        modifiedObj.selectedQty = cartAddition.selectedQty + itemObj.selectedQty;
+      }
+      return modifiedObj;
+    });
+    setCartContents(newCartArray);
+  };
+
   //useEffect
   useEffect(() => {
     getCurrentProduct(productId);
@@ -61,11 +76,11 @@ const View = ({ productId }) => {
     <div className="view-main">
       <ProductImage otherStyles={otherStyles} />
       <div>
-        <ProductName productInfo={currentProduct} currentDisplayedStyle ={displayedStyle} />
+        <ProductName productInfo={currentProduct} currentDisplayedStyle={displayedStyle} />
 
-        {otherStyles.length > 0 && <SelectedStyle otherStyles={otherStyles} productId={productId} changeDisplayedStyle = {changeDisplayedStyle} currentDisplayedStyle ={displayedStyle}/>}
+        {otherStyles.length > 0 && <SelectedStyle otherStyles={otherStyles} productId={productId} changeDisplayedStyle={changeDisplayedStyle} currentDisplayedStyle={displayedStyle} />}
 
-        <ItemSelection currentDisplayedStyle = {displayedStyle} productId = {productId}/>
+        <ItemSelection currentDisplayedStyle={displayedStyle} productId={productId} />
       </div>
 
       <Description productInfo={currentProduct} />

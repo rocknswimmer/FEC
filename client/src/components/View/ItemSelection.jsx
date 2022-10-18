@@ -23,46 +23,58 @@ const ItemSelection = ({ currentDisplayedStyle, productId }) => {
   };
 
   //handler for size dropdown
-  const toggleDropdown = () => {
-    console.log('dropdown should be toggled');
+  const toggleSizeDropdown = () => {
+    console.log('size dropdown should be toggled');
     setSizeDropDownOpen(!sizeDropdownIsOpen);
   };
 
+  const toggleQuantityDropdown = () => {
+    console.log('quantity dropdown should be toggled');
+    setQuantityDropDownOpen(!quantityDropdownIsOpen);
+  };
+
   // Closes the drop down when the mouse stops hovering
-  const handleMouseLeaving = (event) => {
+  const handleMouseLeavingSizeDropDown = (event) => {
     setSizeDropDownOpen(false);
+  };
+
+  const handleMouseLeavingQuantityDropDown = (event) => {
+    setQuantityDropDownOpen(false);
   };
 
   //sets selected Sku for quantity/cart
   const handleItemClick = (index) => {
-    // console.log('index =>', index);
     let skuObj = {};
     Object.assign(skuObj, items[index]);
-    // console.log(skuObj, '<---- skuObj');
+    console.log(skuObj);
     setSelectedItem(skuObj);
+    setSizeDropDownOpen(false);
   };
 
-  //write a clickhandler for quantity
-  const quantityDropDownHandler = (event) => {
-    setQuantityDropDownOpen(!quantityDropdownIsOpen);
-
-  };
-
+//When a sku has been selected, the fn below should make the appropriate num of quantity options
   const quantityArrayMaker = () => {
     let quantityArr = [];
     if (selectedItem.quantity > 15) {
       quantityArr = Array.from(Array(16).keys());
-      quantityArr.splice(0, 1, 'select the quantity here');
+
+    } else if (selectedItem.quantity === 0) {
+      // quantityArr make it so it says it's out of stock
     } else {
       quantityArr = Array.from(Array(selectedItem.quantity).keys());
     }
+    quantityArr.splice(0, 1, '--');
     return quantityArr;
   };
-  // const onSelectDropDown = (event) => {
-  //   console.log(event.target);
-  //   setSelectedItem(event.target.value);
-  //   console.log(selectedItem);
-  // };
+
+  //when a quantity has been chosen, it will update the current sku obj
+  const updateSelectedQty = (qty) =>{
+    console.log(qty, '<- qty');
+    let newObj = {};
+    Object.assign(newObj, selectedItem);
+    newObj.selectedQty = qty;
+    setSelectedItem(newObj);
+    console.log('selectedItem -->', selectedItem);
+  };
 
   useEffect(() => {
     setItems(arrayMaker(currentDisplayedStyle));
@@ -70,8 +82,8 @@ const ItemSelection = ({ currentDisplayedStyle, productId }) => {
 
   return (
     <div>
-      <div onMouseLeave={handleMouseLeaving}>
-        <div onClick={toggleDropdown}>
+      <div onMouseLeave={handleMouseLeavingSizeDropDown}>
+        <div onClick={toggleSizeDropdown}>
           Select your style
           <i></i>
         </div>
@@ -88,13 +100,15 @@ const ItemSelection = ({ currentDisplayedStyle, productId }) => {
         </div>
 
       </div>
-      <select onClick={quantityDropDownHandler}>
+      <div onClick={toggleQuantityDropdown} onMouseLeave={ handleMouseLeavingQuantityDropDown}>
+        Select Quanitity
         {
-          quantityArrayMaker().map(num => {
-            return <option value ={num}>{num}</option>;
+          quantityDropdownIsOpen && quantityArrayMaker().map((num, index) => {
+            return (<div key ={index} value ={num} onClick = {(event) => {updateSelectedQty(num); }}>{num}</div>);
           })
         }
-      </select>
+      </div>
+      <button>Add to Cart</button>
     </div>
   );
 };
