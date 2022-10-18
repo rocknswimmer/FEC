@@ -22,9 +22,14 @@ flex-shrink: 0;
 overflow: scroll;
 `;
 
+let visibleReviewsIndex = 2;
+
 const Reviews = ({productId}) => {
 
   const [reviewsList, setReviewsList] = useState([]);
+  const [visibleReviews, setVisibleReviews] = useState([]);
+
+
 
   const getReviews = (id) => {
 
@@ -33,12 +38,12 @@ const Reviews = ({productId}) => {
       method: 'get',
       params: {
         id: productId,
-        count: 6,
-        page: 1
+        sort: 'relevant'
       }
     })
       .then((response) => {
         setReviewsList(response.data.results);
+        setVisibleReviews(response.data.results.slice(0, visibleReviewsIndex));
         // console.log('in client request', response);
       })
       .catch((err) => {
@@ -50,6 +55,10 @@ const Reviews = ({productId}) => {
     getReviews(productId);
   }, []);
 
+  const handleMoreReviews = () => {
+    visibleReviewsIndex += 2;
+    setVisibleReviews(reviewsList.slice(0, visibleReviewsIndex));
+  };
 
 
   return (
@@ -64,8 +73,8 @@ const Reviews = ({productId}) => {
           </div>
           <div className="list">
             <Dropdown reviewsList={reviewsList}/>
-            <ReviewsList reviewsList={reviewsList}/>
-            <Buttons />
+            <ReviewsList reviewsList={reviewsList} visibleReviews={visibleReviews}/>
+            <Buttons handleMoreReviews={handleMoreReviews}/>
           </div>
         </SummaryListDivider>
       </div>
