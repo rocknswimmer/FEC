@@ -3,51 +3,68 @@ import React, { useState, useEffect } from 'react';
 const ItemSelection = ({ currentDisplayedStyle }) => {
 
 
-  let styleArr = [];
+
+
+  const [sizeDropdownIsOpen, setSizeDropDownOpen] = useState(false);
+  const [items, setItem] = useState([]);
+  const [selectedItem, setSelectedItem] = useState('');
+  const [] = useState();
+
+
+  //makes array of sku-styles objects
   const arrayMaker = (obj) => {
+    console.log('inarraymaker');
+    const styleArr = [];
     for (let key in currentDisplayedStyle.skus) {
       let newObj = currentDisplayedStyle.skus[key];
       newObj.sku = key;
+      newObj.product_id = obj.product_id;
+      newObj.style_id = obj.style_id;
       styleArr.push(newObj);
+      console.log(newObj);
     }
+    return styleArr;
   };
 
-  arrayMaker(currentDisplayedStyle);
-  const [isOpen, setOpen] = useState(false);
-  const [items, setItem] = useState(styleArr);
-  const [selectedItem, setSelectedItem] = useState(null);
-
-
-  //handler for dropdown
+  //handler for size dropdown
   const toggleDropdown = () => {
     console.log('dropdown should be toggled');
-    console.log(styleArr);
-    setOpen(!isOpen);
+    setSizeDropDownOpen(!sizeDropdownIsOpen);
+  };
+
+  // Closes the drop down when the mouse stops hovering
+  const handleMouseLeaving = (event) => {
+    setSizeDropDownOpen(false);
   };
 
   const handleItemClick = (id) => {
-    selectedItem = id ? setSelectedItem(null) : setSelectedItem(id)
+    selectedItem = id ? setSelectedItem(null) : setSelectedItem(id);
   };
 
   const onSelectDropDown = (event) => {
+    console.log(event.target);
     setSelectedItem(event.target.value);
+    console.log(selectedItem);
   };
 
+  useEffect(()=> {
+    setItem(arrayMaker(currentDisplayedStyle));
+  }, [currentDisplayedStyle]);
+
   return (
-    <div>
+    <div onMouseLeave ={handleMouseLeaving}>
       <div onClick={toggleDropdown}>
-        {selectedItem ? items.find(item => item.id === selectedItem).label : "Select your style"}
-        <i className={`fa fa-chevron-right icon ${isOpen && "open"}`}></i>
+        Select your style
+        <i></i>
       </div>
       <div>
         {
-          isOpen && styleArr.map((item, index) => {
+          sizeDropdownIsOpen && items.map((item, index) => {
             return (
-              <div onClick={e => handleItemClick(e.target.id)} key={index}>
+              <div key={index} onClick={onSelectDropDown} value={item.sku}>
                 {item.size}
               </div>
             );
-
           })
         }
       </div>
@@ -57,3 +74,5 @@ const ItemSelection = ({ currentDisplayedStyle }) => {
 };
 
 export default ItemSelection;
+
+// onClick={e => handleItemClick(e.target.id)}

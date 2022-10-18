@@ -7,9 +7,9 @@ import {FaCheckCircle} from 'react-icons/fa';
 
 const SelectedStyle = ( {otherStyles, productId, changeDisplayedStyle, currentDisplayedStyle} ) => {
   //clickListener for displayedStyle
-  const changeDisplayedStyleHandler = (event) => {
-    changeDisplayedStyle(index);
-  };
+  // const changeDisplayedStyleHandler = (event) => {
+  //   changeDisplayedStyle(index);
+  // };
 
   return (
     <StyleDiv>
@@ -23,12 +23,8 @@ const SelectedStyle = ( {otherStyles, productId, changeDisplayedStyle, currentDi
           }} >{currentDisplayedStyle.name === style.name && <FaCheckCircle style={{color: 'red'}}/>}</RoundImage>;
         })
       }
-      {/* <FaCheckCircle style={{color: 'red'}}/> */}
     </StyleDiv>
   );
 };
 
 export default SelectedStyle;
-
-
-{/* <img key ={index} src = {imgSrc} />  */}

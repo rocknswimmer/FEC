@@ -11,6 +11,7 @@ const View = ({ productId }) => {
   const [currentProduct, setCurrentProduct] = useState({});
   const [otherStyles, setOtherStyles] = useState([]);
   const [displayedStyle, setDisplayedStyle] = useState({});
+  const [carContents, setCartContents] = useState();
 
   //Get methods for View and StyleSelector
   const getCurrentProduct = (productId) => {
@@ -63,7 +64,8 @@ const View = ({ productId }) => {
         <ProductName productInfo={currentProduct} currentDisplayedStyle ={displayedStyle} />
 
         {otherStyles.length > 0 && <SelectedStyle otherStyles={otherStyles} productId={productId} changeDisplayedStyle = {changeDisplayedStyle} currentDisplayedStyle ={displayedStyle}/>}
-        <ItemSelection currentDisplayedStyle = {displayedStyle}/>
+
+        <ItemSelection currentDisplayedStyle = {displayedStyle} productId = {productId}/>
       </div>
 
       <Description productInfo={currentProduct} />
