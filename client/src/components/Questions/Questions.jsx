@@ -8,6 +8,7 @@ const Questions = (props) => {
   const [questions, setQuestions] = useState([]);
   const [moreQuestions, setMoreQuestions] = useState(false);
   const [addQuestion, setAddQuestion] = useState(false);
+  const [scrollable, setScrollable] = useState(true);
 
   const getCurrentQuestions = () => {
     axios.get('/qa/questions/', {
@@ -34,6 +35,8 @@ const Questions = (props) => {
 
   const addQuestionModal = () => {
     setAddQuestion(!addQuestion);
+    setScrollable(!scrollable);
+    scrollable ? document.body.style.overflow = 'hidden' : document.body.style.overflow = 'scroll';
   };
 
   return (
@@ -49,7 +52,7 @@ const Questions = (props) => {
       {(questions[0] && questions.length > 2) && !moreQuestions && <button onClick={loadMoreQuestions}>MORE ANSWERED QUESTIONS</button>}
       {(questions[0] && questions.length > 2) && moreQuestions && <button onClick={loadMoreQuestions}>LESS ANSWERED QUESTIONS</button>}
       <button onClick={addQuestionModal}>ADD A QUESTION +</button>
-      {addQuestion && <QuestionModal />}
+      {addQuestion && <QuestionModal close={addQuestionModal}/>}
     </div>
   );
 };
