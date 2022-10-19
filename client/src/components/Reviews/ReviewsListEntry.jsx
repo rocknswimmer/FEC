@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import PhotosModal from './PhotosModal.jsx';
 import formattedDate from '../../HelperFunctions/formattedDate.js';
 import {FaCheckCircle} from 'react-icons/fa';
+import StarRating from '../Stars/StarRating.jsx';
 
 const ReviewEntry = styled.div`
 border-bottom: solid grey 1px;
@@ -70,7 +71,7 @@ const ReviewsListEntry = ({review}) => {
   return (
     <ReviewEntry>
       <div className="rev-star-date">
-        <div>{starTest(review.rating)}</div>
+        <StarRating rating={review.rating}/>
         <small><div>{review.reviewer_name}, {formattedDate(review.date)}</div></small>
       </div>
       {review.summary.length > 60 ?
