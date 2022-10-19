@@ -5,7 +5,7 @@ import formattedDate from '../../HelperFunctions/formattedDate.js';
 const Answers = (props) => {
 
   return (
-    <span className="answer">
+    <span className="answer" data-testid="answer">
       <span>{props.answer.body}</span>
       <br/>
       <span>by {props.answer.answerer_name}, {formattedDate(props.answer.date)}</span>
