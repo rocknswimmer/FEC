@@ -7,6 +7,7 @@ import {FaSearch} from 'react-icons/fa';
 const Questions = (props) => {
   const [questions, setQuestions] = useState([]);
   const [moreQuestions, setMoreQuestions] = useState(false);
+  const [addQuestion, setAddQuestion] = useState(false);
 
   const getCurrentQuestions = () => {
     axios.get('/qa/questions/', {
@@ -31,6 +32,10 @@ const Questions = (props) => {
     setMoreQuestions(!moreQuestions);
   };
 
+  const addQuestionModal = () => {
+    setAddQuestion(!addQuestion);
+  };
+
   return (
     <div id="questions">
       <div>QUESTIONS & ANSWERS</div>
@@ -43,8 +48,8 @@ const Questions = (props) => {
       <QuestionFeed questions={questions} moreQuestions={moreQuestions} />
       {(questions[0] && questions.length > 2) && !moreQuestions && <button onClick={loadMoreQuestions}>MORE ANSWERED QUESTIONS</button>}
       {(questions[0] && questions.length > 2) && moreQuestions && <button onClick={loadMoreQuestions}>LESS ANSWERED QUESTIONS</button>}
-      <button>ADD A QUESTION +</button>
-      <QuestionModal />
+      <button onClick={addQuestionModal}>ADD A QUESTION +</button>
+      {addQuestion && <QuestionModal />}
     </div>
   );
 };
