@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import AnswerFeed from './AnswerFeed.jsx';
 import AnswerModal from './AnswerModal.jsx';
+import axios from 'axios';
 
 const QuestionEntry = (props) => {
   const [addAnswer, setAddAnswer] = useState(false);
@@ -15,6 +16,14 @@ const QuestionEntry = (props) => {
     if (!clickedBefore) {
       setClickedBefore(!clickedBefore);
       //axios put request
+      axios.put('/qa/questions/:question_id/helpful', {question: props.question.question_id})
+        .then((res) => {
+          console.log('successfully put question helpful');
+          //maybe get req, but dont want to refresh page or allow to mark helpful again
+        })
+        .catch((err) => {
+          console.log('error putting question helpful: ', err);
+        });
     }
   };
 

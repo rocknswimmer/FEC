@@ -164,12 +164,12 @@ app.post('/qa/questions/', (req, res) => {
 app.post('/qa/questions/:question_id/ansers', (req, res) => {
   // console.log(req.body);
   // res.send('hit server');
-  let urlVariable = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/?question_id=${req.body.product_id}/ansers`;
+  let urlVariable = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/${req.body.question_id}/answers`;
   let body = {
     'body': JSON.stringify(req.body.body),
     'name': JSON.stringify(req.body.name),
     'email': JSON.stringify(req.body.email),
-    'photos': []//invalid entry but not sure where
+    'photos': []
   };
   let options = {
     'headers': {
@@ -188,6 +188,18 @@ app.post('/qa/questions/:question_id/ansers', (req, res) => {
     });
 });
 
+//Q&A Puts
+app.put('/qa/questions/:question_id/helpful', (req, res) => {
+  // axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/${res.body.question}/helpful`)
+  //   .then((results) => {
+  //     res.send('question marked helpful');
+  //   })
+  //   .catch((err) => {
+  //     console.log('error putting Q helpful: ', err);
+  //     res.status(404).end();
+  //   });
+  console.log(req);
+});
 
 app.listen(3001);
 

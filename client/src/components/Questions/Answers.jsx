@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import formattedDate from '../../HelperFunctions/formattedDate.js';
+import axios from 'axios';
 
 
 const Answers = (props) => {
