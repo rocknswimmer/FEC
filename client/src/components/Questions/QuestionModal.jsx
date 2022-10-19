@@ -19,6 +19,29 @@ const QuestionModal = (props) => {
 
   const onSumbitQ = () => {
     console.log(`submiting question: ${question} email: ${questionEmail} user: ${questionUser}`);
+    let alertQ = false;
+    let alertQUser = false;
+    let alertQEmail = false;
+
+    if (question === '') {
+      alertQ = true;
+    }
+    if (questionUser === '') {
+      alertQUser = true;
+    }
+    if (questionEmail === '') {
+      alertQEmail = true;
+    }
+    if (alertQ || alertQUser || alertQEmail) {
+      let alertString = [{field: question, lable: 'Your Question'}, {field: questionUser, lable: 'Your nickname'}, {field: questionEmail, lable: 'Your Email'}].map((form) => {
+        if (form.field === '') {
+          return form.lable;
+        }
+        return false;
+      }).filter((empty) => { if (empty !== false) { return true; } }).join('\n');
+      alert(`You must enter the following: \n ${alertString}`);
+    }
+
   };
 
 

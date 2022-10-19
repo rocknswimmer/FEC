@@ -52,7 +52,7 @@ const Questions = (props) => {
       {(questions[0] && questions.length > 2) && !moreQuestions && <button onClick={loadMoreQuestions}>MORE ANSWERED QUESTIONS</button>}
       {(questions[0] && questions.length > 2) && moreQuestions && <button onClick={loadMoreQuestions}>LESS ANSWERED QUESTIONS</button>}
       <button onClick={addQuestionModal}>ADD A QUESTION +</button>
-      {addQuestion && <QuestionModal close={addQuestionModal}/>}
+      {addQuestion && <QuestionModal close={addQuestionModal} product={props.productId}/>}
     </div>
   );
 };
