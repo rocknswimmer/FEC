@@ -53,17 +53,17 @@ const View = ({ productId }) => {
 
     let foundItemInCart = false;
 
-    let newCartArray = cartContents.map((itemObj, index) => {
-      let modifiedObj = {};
-      Object.assign(modifiedObj, itemObj);
-      console.log(modifiedObj, '<---- this is the modifiedObj inside addToCart');
-      if (itemObj.product_id === cartAddition.product_id
-          && itemObj.style_id === cartAddition.style_id
-          && itemObj.sku === cartAddition.sku) {
-        modifiedObj.selectedQty = cartAddition.selectedQty + itemObj.selectedQty;
+    let newCartArray = cartContents.map((cartItemObj, index) => {
+      let modifiedCartObj = {};
+      Object.assign(modifiedCartObj, cartItemObj);
+      console.log(modifiedCartObj, '<---- this is the modifiedCartObj inside addToCart');
+      if (cartItemObj.product_id === cartAddition.product_id
+          && cartItemObj.style_id === cartAddition.style_id
+          && cartItemObj.sku === cartAddition.sku) {
+        modifiedCartObj.quantity = cartItemObj.quantity - cartAddition.selectedQty;
         foundItemInCart = true;
       }
-      return modifiedObj;
+      return modifiedCartObj;
     });
     if (!foundItemInCart) {
       newCartArray.push(cartAddition);
