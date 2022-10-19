@@ -160,6 +160,34 @@ app.post('/qa/questions/', (req, res) => {
     });
 });
 
+// Post Answer
+app.post('/qa/questions/:question_id/ansers', (req, res) => {
+  // console.log(req.body);
+  // res.send('hit server');
+  let urlVariable = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/?question_id=${req.body.product_id}/ansers`;
+  let body = {
+    'body': JSON.stringify(req.body.body),
+    'name': JSON.stringify(req.body.name),
+    'email': JSON.stringify(req.body.email),
+    'photos': []//invalid entry but not sure where
+  };
+  let options = {
+    'headers': {
+      'Authorization': api
+    }
+  };
+
+  axios.post(urlVariable, body, options)
+    .then(results => {
+      console.log('question post results:', results);
+      res.send(' queston posted');
+    })
+    .catch((err) => {
+      console.log('error posting questions: ', err);
+      res.status(404).end();
+    });
+});
+
 
 app.listen(3001);
 

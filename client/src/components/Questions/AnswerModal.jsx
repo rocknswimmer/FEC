@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const answerModal = (props) => {
+const AnswerModal = (props) => {
   const [answer, setAnswer] = useState('');
   const [answerUser, setAnswerUser] = useState('');
   const [answerEmail, setAnswerEmail] = useState('');
@@ -19,23 +19,22 @@ const answerModal = (props) => {
   };
 
   const submitAnswer = () => {
-    // axios.post('/qa/questions/:question_id/ansers', {
-    //   body: answer,
-    //   name: answerUser,
-    //   email: answerEmail,
-    //   // eslint-disable-next-line camelcase
-    //   product_id: props.product,
-    //   // eslint-disable-next-line camelcase
-    //   question_id: props.question //need to add question to props once I know where this goes
-    // })
-    //   .then((res) => {
-    //     // console.log('response posting answer to server', res.data);
-    //     props.close();
-    //   })
-    //   .catch((err) => {
-    //     console.log('error posting answer:', err );
-    //   });
-    console.log('clicked posting');
+    axios.post('/qa/questions/:question_id/ansers', {
+      body: answer,
+      name: answerUser,
+      email: answerEmail,
+      photos: [],
+      // eslint-disable-next-line camelcase
+      question_id: props.question //need to add question to props once I know where this goes
+    })
+      .then((res) => {
+        // console.log('response posting answer to server', res.data);
+        props.close();
+      })
+      .catch((err) => {
+        console.log('error posting answer:', err );
+      });
+
   };
 
   const onSumbitA = () => {
