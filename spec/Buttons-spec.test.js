@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
-// import Reviews from '../Reviews/Reviews.jsx';
+import Reviews from '../client/src/components/Reviews/Reviews.jsx';
 import Buttons from '../client/src/components/Reviews/Buttons.jsx';
+import ReviewsListEntry from '../client/src/components/Reviews/ReviewsListEntry.jsx';
+
 
 
 let reviews = [];
