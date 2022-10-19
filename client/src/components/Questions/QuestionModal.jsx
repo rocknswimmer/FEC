@@ -18,7 +18,7 @@ const QuestionModal = (props) => {
   };
 
   const onSumbitQ = () => {
-    console.log(`submiting question: ${question} email: ${questionEmail} user: ${questionUser}`);
+
     let alertQ = false;
     let alertQUser = false;
     let alertQEmail = false;
@@ -40,6 +40,9 @@ const QuestionModal = (props) => {
         return false;
       }).filter((empty) => { if (empty !== false) { return true; } }).join('\n');
       alert(`You must enter the following: \n ${alertString}`);
+    }
+    if (questionEmail.indexOf('@') === -1 || questionEmail.slice(questionEmail.indexOf('@')).indexOf('.') === -1) {
+      alert('email missing @ or . after @, please reformatting to be able to submit');
     }
 
   };
