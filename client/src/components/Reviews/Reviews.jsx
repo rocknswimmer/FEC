@@ -28,22 +28,25 @@ const Reviews = ({productId}) => {
 
   const [reviewsList, setReviewsList] = useState([]);
   const [visibleReviews, setVisibleReviews] = useState([]);
+  const [currentSort, setCurrentSort] = useState('relevance');
 
 
 
-  const getReviews = (id) => {
+  const getReviews = (id = productId, sortSelection = 'relevant') => {
 
     axios({
       url: '/reviews/',
       method: 'get',
       params: {
         id: productId,
-        sort: 'relevant'
+        sort: sortSelection
       }
     })
       .then((response) => {
         setReviewsList(response.data.results);
         setVisibleReviews(response.data.results.slice(0, visibleReviewsIndex));
+        // if(sortSelection === '')
+        // setCurrentSort(sortSelection);
         // console.log('in client request', response);
       })
       .catch((err) => {
@@ -72,9 +75,9 @@ const Reviews = ({productId}) => {
             <Summary />
           </div>
           <div className="list">
-            <Dropdown reviewsList={reviewsList}/>
+            <Dropdown reviewsList={reviewsList} getReviews={getReviews}/>
             <ReviewsList reviewsList={reviewsList} visibleReviews={visibleReviews}/>
-            <Buttons handleMoreReviews={handleMoreReviews}/>
+            <Buttons handleMoreReviews={handleMoreReviews} />
           </div>
         </SummaryListDivider>
       </div>

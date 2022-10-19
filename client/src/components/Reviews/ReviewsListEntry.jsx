@@ -69,7 +69,6 @@ const ReviewsListEntry = ({review}) => {
 
   return (
     <ReviewEntry>
-      {console.log(review)}
       <div className="rev-star-date">
         <div>{starTest(review.rating)}</div>
         <small><div>{review.reviewer_name}, {formattedDate(review.date)}</div></small>
