@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { render, screen } from '@testing-library/react';
 import QuestionEntry from '../client/src/components/Questions/QuestionEntry.jsx';
 
+
 //make fake question entries with different number of answers to test answer feed conditonaly rendering on info passed to question entry
 
 const question1 = {answers: {
@@ -72,7 +73,27 @@ question_helpfulness: 0
 };
 
 test('renders one answer component when question has one answer', async () => {
-  render(<QuestionEntry question={question1} />)
+  render(<QuestionEntry question={question1} />);
 
-  expect(screen.getByRole('answer').length).toEqual(1);
+  await screen.findByTestId('answer');
+
+  expect(screen.getByTestId('answer')).toBeDefined();
+});
+
+test('renders two answer component when question has two answers', async () => {
+  render(<QuestionEntry question={question2} />);
+
+  await screen.findAllByTestId('answer');
+
+
+  expect(screen.getAllByTestId('answer').length).toEqual(2);
+});
+
+test('renders two answer component when question has three answers', async () => {
+  render(<QuestionEntry question={question3} />);
+
+  await screen.findAllByTestId('answer');
+
+
+  expect(screen.getAllByTestId('answer').length).toEqual(2);
 });
