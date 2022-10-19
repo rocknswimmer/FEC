@@ -190,15 +190,20 @@ app.post('/qa/questions/:question_id/ansers', (req, res) => {
 
 //Q&A Puts
 app.put('/qa/questions/:question_id/helpful', (req, res) => {
-  // axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/${res.body.question}/helpful`)
-  //   .then((results) => {
-  //     res.send('question marked helpful');
-  //   })
-  //   .catch((err) => {
-  //     console.log('error putting Q helpful: ', err);
-  //     res.status(404).end();
-  //   });
-  console.log(req);
+  let options = {
+    'headers': {
+      'Authorization': api
+    }
+  };
+  axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/${req.body.question}/helpful`, {}, options)
+    .then((results) => {
+      console.log(results);
+      res.send('question marked helpful');
+    })
+    .catch((err) => {
+      console.log('error putting Q helpful: ', err);
+      res.status(404).end();
+    });
 });
 
 app.listen(3001);
