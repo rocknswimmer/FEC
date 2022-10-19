@@ -40,10 +40,14 @@ const QuestionModal = (props) => {
         return false;
       }).filter((empty) => { if (empty !== false) { return true; } }).join('\n');
       alert(`You must enter the following: \n ${alertString}`);
+      return;
     }
     if (questionEmail.indexOf('@') === -1 || questionEmail.slice(questionEmail.indexOf('@')).indexOf('.') === -1) {
       alert('email missing @ or . after @, please reformatting to be able to submit');
+      return;
     }
+
+    console.log('running rest of function after alert');
 
   };
 
