@@ -11,6 +11,14 @@ const Answers = (props) => {
     if (!clickedYesBefore) {
       setClickedYesBefore(!clickedYesBefore);
       //axios put request
+      axios.put('/qa/answers/:answer_id/helpful', {answer: props.answer.id})
+        .then((res) => {
+          console.log('successfully put answer helpful', res);
+          //maybe get req, but dont want to refresh page or allow to mark helpful again
+        })
+        .catch((err) => {
+          console.log('error putting answer helpful: ', err);
+        });
     }
   };
 
@@ -18,6 +26,14 @@ const Answers = (props) => {
     if (!clickedReportBefore) {
       setClickedReportBefore(!clickedReportBefore);
       //axios put request
+      axios.put('/qa/answers/:answer_id/report', {answer: props.answer.id})
+        .then((res) => {
+          console.log('successfully reported answer', res);
+          //maybe get req, but dont want to refresh page or allow to mark helpful again
+        })
+        .catch((err) => {
+          console.log('error putting answer helpful: ', err);
+        });
     }
   };
 
