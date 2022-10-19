@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { DropDownContainer, DropDownHeader, DropDownListContainer, DropDownList, ListItem } from './Styled/DropDownStyles.jsx';
-import { FaChevronDown, FaMinus } from 'react-icons/fa';
+import {Button, CartContainer} from './Styled/Form.styled.jsx';
+
+import { FaChevronDown, FaMinus, FaPlus } from 'react-icons/fa';
 
 const ItemSelection = ({ currentDisplayedStyle, productId, addToCart, cartContents }) => {
 
@@ -30,7 +32,7 @@ const ItemSelection = ({ currentDisplayedStyle, productId, addToCart, cartConten
     return styleArr;
   };
 
-  //handler for size and quantity dropdown
+  //handlers for size and quantity dropdowns
   const toggleSizeDropdown = () => {
     console.log('size dropdown should be toggled');
     setSizeDropDownOpen(!sizeDropdownIsOpen);
@@ -41,7 +43,7 @@ const ItemSelection = ({ currentDisplayedStyle, productId, addToCart, cartConten
     setQuantityDropDownOpen(!quantityDropdownIsOpen);
   };
 
-  // Closes the drop down when the mouse stops hovering
+  // Closes the dropdowns when the mouse stops hovering
   const handleMouseLeavingSizeDropDown = (event) => {
     setSizeDropDownOpen(false);
   };
@@ -95,7 +97,7 @@ const ItemSelection = ({ currentDisplayedStyle, productId, addToCart, cartConten
   };
 
   //Fn - when a quantity has been chosen, it will update the current sku obj
-  const updateSelectedQty = (qty=1) => {
+  const updateSelectedQty = (qty = 1) => {
     let newObj = {};
     Object.assign(newObj, selectedItem);
     newObj.selectedQty = qty;
@@ -104,31 +106,33 @@ const ItemSelection = ({ currentDisplayedStyle, productId, addToCart, cartConten
 
   //button to add selected items to cart
   const onSubmitButton = (event) => {
-    console.log('adding this item to the cart -->', selectedItem);
-    addToCart(selectedItem);
+    if (sizeChosen) {
+      addToCart(selectedItem);
+    }
   };
 
-  //useEffect to ensure that the sizing updates to newly selected style
+  //useEffect to ensure that the sizing updates to newly selected style and resets size dropdown
   useEffect(() => {
     setItems(sizeArrayMaker(currentDisplayedStyle));
+    setSizeChosen(false);
   }, [currentDisplayedStyle]);
 
   return (
-    <div>
+    <CartContainer>
       {
-        outOfStock && <DropDownContainer>
+        outOfStock && <DropDownContainer className = "dropdown-size-container">
           <DropDownHeader>
             Out of Stock
           </DropDownHeader>
         </DropDownContainer>
       }
       {
-        !outOfStock && <DropDownContainer onMouseLeave={(e) => { handleMouseLeavingSizeDropDown(); }}>
+        !outOfStock && <DropDownContainer className = "dropdown-size-container" onMouseLeave={(e) => { handleMouseLeavingSizeDropDown(); }}>
           <DropDownHeader onClick={toggleSizeDropdown}>
             {
               sizeChosen && <>
                 <p>{selectedItem.size}</p>
-                <FaChevronDown style={{ color: '#B0B0B0' }} />
+                <FaChevronDown style={{ color: '#B0B0B0'}} />
               </>
             }
             {
@@ -139,7 +143,7 @@ const ItemSelection = ({ currentDisplayedStyle, productId, addToCart, cartConten
               </>
             }
           </DropDownHeader>
-          <DropDownListContainer>
+          <DropDownListContainer className = "dropdown-size-container">
             {
               sizeDropdownIsOpen && <DropDownList>
                 {items.map((item, index) => {
@@ -157,13 +161,13 @@ const ItemSelection = ({ currentDisplayedStyle, productId, addToCart, cartConten
         </DropDownContainer>
       }
       {
-        !sizeChosen && <DropDownContainer>
+        !sizeChosen && <DropDownContainer className = "dropdown-qty-container">
           <DropDownHeader>
             <FaMinus style={{ color: '#B0B0B0' }}/> <FaChevronDown style={{ color: '#B0B0B0' }} />
           </DropDownHeader> </DropDownContainer>
       }
       {
-        sizeChosen && <DropDownContainer onClick={toggleQuantityDropdown} onMouseLeave={handleMouseLeavingQuantityDropDown}>
+        sizeChosen && <DropDownContainer className = "dropdown-qty-container" onClick={toggleQuantityDropdown} onMouseLeave={handleMouseLeavingQuantityDropDown}>
           <DropDownHeader>
             1 {<FaChevronDown style={{ color: '#B0B0B0' }} />}
           </DropDownHeader>
@@ -181,8 +185,8 @@ const ItemSelection = ({ currentDisplayedStyle, productId, addToCart, cartConten
         </DropDownContainer>
       }
 
-      <button onClick={onSubmitButton}>Add to Cart</button>
-    </div>
+      <Button onClick={onSubmitButton}>Add to Cart{<FaPlus style={ {color: '#B0B0B0'} }/>}</Button>
+    </CartContainer>
   );
 };
 

@@ -2,11 +2,12 @@ import styled from 'styled-components';
 
 
 const DropDownContainer = styled("div")`
-  width: 10.5em;
+  width: 15em;
   margin: 0 auto;
 `;
 
 const DropDownHeader = styled("div")`
+
   margin-bottom: 0.8em;
   padding: 0.4em 2em 0.4em 1em;
   box-shadow: 0 2px 3px rgba(0, 0, 0, 0.15);
