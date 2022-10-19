@@ -69,7 +69,7 @@ const ItemSelection = ({ currentDisplayedStyle, productId, addToCart, cartConten
         }
       });
     }
-
+/* if the selected thing is already in cart, use qty available in the cart. When setting the cart contents, update quantity availble by subtracting the selectedQty from quantity */
     if (selectedItem.quantity >= 15) {
       quantityArr = Array.from(Array(16).keys());
 
@@ -80,7 +80,7 @@ const ItemSelection = ({ currentDisplayedStyle, productId, addToCart, cartConten
       let len = selectedItem.quantity + 1;
       quantityArr = Array.from(Array(len).keys());
     }
-    quantityArr.splice(0, 1, '--');
+    quantityArr.splice(0, 1);
     return quantityArr;
   };
 
