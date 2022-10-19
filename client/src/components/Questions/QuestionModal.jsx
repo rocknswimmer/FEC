@@ -81,8 +81,12 @@ const QuestionModal = (props) => {
         <label >What is your nickname*</label>
         <input type="text" placeholder="Example: jackson11!" name="username" onChange={onQUser}/>
         <br />
+        For privacy reasons, do not use your full name or email address
+        <br />
         <label >Your email*</label>
         <input type="text" placeholder="Why did you like the product or not?" name="email" onChange={onQEmail}/>
+        <br />
+        For authentication reasons, you will not be emailed
         <br />
         <button onClick={onSumbitQ}>Submit Question</button>
       </div>
