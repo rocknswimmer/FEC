@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import QuestionFeed from './QuestionFeed.jsx';
+import QuestionModal from './QuestionModal.jsx';
 import axios from 'axios';
 import {FaSearch} from 'react-icons/fa';
 
@@ -43,6 +44,7 @@ const Questions = (props) => {
       {(questions[0] && questions.length > 2) && !moreQuestions && <button onClick={loadMoreQuestions}>MORE ANSWERED QUESTIONS</button>}
       {(questions[0] && questions.length > 2) && moreQuestions && <button onClick={loadMoreQuestions}>LESS ANSWERED QUESTIONS</button>}
       <button>ADD A QUESTION +</button>
+      <QuestionModal />
     </div>
   );
 };
