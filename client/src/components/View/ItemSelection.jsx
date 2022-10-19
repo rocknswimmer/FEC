@@ -51,7 +51,7 @@ const ItemSelection = ({ currentDisplayedStyle, productId, addToCart, cartConten
     setSizeDropDownOpen(false);
   };
 
-  //When a sku has been selected, the fn below should make the appropriate num of quantity options
+  //When a sku has been selected, the fn below should make an arr with the appropriate quantity represented.
   const quantityArrayMaker = () => {
     console.log('inside quantityArrayMaker');
     console.log('these are the currentCartContents >', cartContents);
@@ -70,14 +70,15 @@ const ItemSelection = ({ currentDisplayedStyle, productId, addToCart, cartConten
       });
     }
 
-    if (selectedItem.quantity > 15) {
+    if (selectedItem.quantity >= 15) {
       quantityArr = Array.from(Array(16).keys());
 
     } else if (selectedItem.quantity === 0) {
       // quantityArr make it so it says it's out of stock
       console.log('this item is out of stock');
     } else {
-      quantityArr = Array.from(Array(selectedItem.quantity + 1).keys());
+      let len = selectedItem.quantity + 1;
+      quantityArr = Array.from(Array(len).keys());
     }
     quantityArr.splice(0, 1, '--');
     return quantityArr;
