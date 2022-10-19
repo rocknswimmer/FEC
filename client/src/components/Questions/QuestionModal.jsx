@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
 const QuestionModal = (props) => {
   const [question, setQuestion] = useState('');
@@ -17,6 +18,23 @@ const QuestionModal = (props) => {
     setQuestionEmail(e.target.value);
   };
 
+  const submitQuestion = () => {
+    axios.post('/qa/questions/', {
+      body: question,
+      name: questionUser,
+      email: questionEmail,
+      // eslint-disable-next-line camelcase
+      product_id: props.product
+    })
+      .then((res) => {
+        // console.log('response posting question to server', res.data);
+        props.close();
+      })
+      .catch((err) => {
+        console.log('error posting question:', err );
+      });
+  };
+
   const onSumbitQ = () => {
 
     let alertQ = false;
@@ -33,9 +51,9 @@ const QuestionModal = (props) => {
       alertQEmail = true;
     }
     if (alertQ || alertQUser || alertQEmail) {
-      let alertString = [{field: question, lable: 'Your Question'}, {field: questionUser, lable: 'Your nickname'}, {field: questionEmail, lable: 'Your Email'}].map((form) => {
+      let alertString = [{field: question, label: 'Your Question'}, {field: questionUser, label: 'Your nickname'}, {field: questionEmail, label: 'Your Email'}].map((form) => {
         if (form.field === '') {
-          return form.lable;
+          return form.label;
         }
         return false;
       }).filter((empty) => { if (empty !== false) { return true; } }).join('\n');
@@ -47,7 +65,7 @@ const QuestionModal = (props) => {
       return;
     }
 
-    console.log('running rest of function after alert');
+    submitQuestion();
 
   };
 
@@ -57,13 +75,13 @@ const QuestionModal = (props) => {
       <div className="modal-pop">
         <button onClick={props.close}>x</button>
         <br />
-        <lable for="question">Your Question*</lable>
+        <label >Your Question*</label>
         <input type="text" name="question" onChange={onQ} />
         <br />
-        <lable for="username">What is your nickname*</lable>
+        <label >What is your nickname*</label>
         <input type="text" placeholder="Example: jackson11!" name="username" onChange={onQUser}/>
         <br />
-        <lable for="email">Your email*</lable>
+        <label >Your email*</label>
         <input type="text" placeholder="Why did you like the product or not?" name="email" onChange={onQEmail}/>
         <br />
         <button onClick={onSumbitQ}>Submit Question</button>
