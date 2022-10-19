@@ -4,10 +4,18 @@ import formattedDate from '../../HelperFunctions/formattedDate.js';
 
 const Answers = (props) => {
   const [clickedYesBefore, setClickedYesBefore] = useState(false);
+  const [clickedReportBefore, setClickedReportBefore] = useState(false);
 
   const helpfulClicked = () => {
     if (!clickedYesBefore) {
       setClickedYesBefore(!clickedYesBefore);
+      //axios put request
+    }
+  };
+
+  const reportClicked = () => {
+    if (!clickedReportBefore) {
+      setClickedReportBefore(!clickedReportBefore);
       //axios put request
     }
   };
@@ -23,7 +31,7 @@ const Answers = (props) => {
         {clickedYesBefore && `(${props.answer.helpfulness + 1})`}
       </span>
       <span> | </span>
-      <span><a>Report</a></span>
+      <span>{!clickedReportBefore && <a onClick={reportClicked}>Report</a>}{clickedReportBefore && <span>Reported</span>}</span>
       <br/>
     </span>
   );
