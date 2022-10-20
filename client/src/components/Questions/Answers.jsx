@@ -12,6 +12,7 @@ const QAThumbnail = styled.img`
 
 
 const Answers = (props) => {
+
   const formattedPhotosList = () => {
     return (props.answer.photos.map((pho) => {
       return { url: pho, clicked: false };
@@ -23,6 +24,7 @@ const Answers = (props) => {
   const [showPhoModal, setShowPhoModal] = useState(false);
   const [AnsPhotoClicked, setAnsPhotoClicked] = useState(true);
   const [formattedPhotos, setFormattedPhotos] = useState(formattedPhotosList());
+  const [phoIsScrollable, setPhoIsScrollable] = useState(true);
 
 
 
@@ -59,6 +61,8 @@ const Answers = (props) => {
 
   const toggleAnsPhoto = () => {
     setShowPhoModal(!showPhoModal);
+    setPhoIsScrollable(!phoIsScrollable);
+    phoIsScrollable ? document.body.style.overflow = 'hidden' : document.body.style.overflow = 'scroll';
   };
 
   const toggleAnsPhotoClicked = (ansPho) => {
