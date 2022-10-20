@@ -2,6 +2,19 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import StarRating from '../Stars/StarRating.jsx';
 import Characteristic from './Characteristic.jsx';
+import styled from 'styled-components';
+
+const Button = styled.button`
+  background: white;
+  color: grey;
+  font-size: .75em;
+  margin: 15px 0 15px 0;
+  padding: 0.25em 1em;
+  border: 2px solid grey;
+  border-radius: 3px;
+`;
+
+let postableObj = {};
 
 const ReviewModal = ({toggle, productId}) => {
   let name;
@@ -49,13 +62,12 @@ const ReviewModal = ({toggle, productId}) => {
   const [nickname, setNickname] = useState('');
   const [email, setEmail] = useState('');
 
-
   const selectStars = (int) => {
     setStars(int);
   };
 
   const metaData = {
-    product_id: '37315',
+    'product_id': '37315',
     ratings: {
       1: '33',
       2: '7',
@@ -87,6 +99,39 @@ const ReviewModal = ({toggle, productId}) => {
     },
   };
 
+  console.log(metaData.characteristics.Width.id);
+
+
+  console.log("IN MODAL", postableObj)
+
+
+  const handleSubmit = (e) => {
+
+    axios({
+      url: '/reviews',
+      method: 'post',
+      data: {
+        'product_id': productId,
+        rating: stars,
+        summary: summary,
+        body: body,
+        recommend: recommend,
+        name: nickname,
+        email: email,
+        photos: [''],
+        characteristics: postableObj
+      }
+    })
+      .then((response) => {
+        console.log('In Client Post', response);
+      })
+      .catch((err) => {
+        console.log('IN CLIENT POST', err);
+      });
+  };
+
+
+
   return (
     <div>
       <div className="modal">
@@ -104,7 +149,7 @@ const ReviewModal = ({toggle, productId}) => {
               <br/>
               <div>
                 <div>Do you recommend this product? <small>*</small></div>
-                <input type="radio" id="yes" name="rec" onClick={() => setRecommend(true)}/>
+                <input type="radio" id="yes" name="rec" required onClick={() => setRecommend(true)}/>
                 <label htmlFor="yes">Yes</label>
                 <input type="radio" id="no" name="rec" onClick={() => setRecommend(false)}/>
                 <label htmlFor="no">No</label>
@@ -117,7 +162,9 @@ const ReviewModal = ({toggle, productId}) => {
                   char={size}
                   setChar={setSize}
                   name={'Size'}
-                  descr={sizeDescr}/>
+                  descr={sizeDescr}
+                  postableObj={postableObj}
+                  charId={metaData.characteristics.Size.id}/>
                 : null}
               <br/>
               <br/>
@@ -126,7 +173,9 @@ const ReviewModal = ({toggle, productId}) => {
                   char={width}
                   setChar={setWidth}
                   name={'Width'}
-                  descr={widthDescr}/>
+                  descr={widthDescr}
+                  postableObj={postableObj}
+                  charId={metaData.characteristics.Width.id}/>
                 : null}
               <br/>
               {metaData.characteristics.Comfort ?
@@ -134,7 +183,9 @@ const ReviewModal = ({toggle, productId}) => {
                   char={comfort}
                   setChar={setComfort}
                   name={'Comfort'}
-                  descr={comfortDescr}/>
+                  descr={comfortDescr}
+                  postableObj={postableObj}
+                  charId={metaData.characteristics.Comfort.id}/>
                 : null}
               <br/>
               {metaData.characteristics.Quality ?
@@ -142,14 +193,18 @@ const ReviewModal = ({toggle, productId}) => {
                   char={quality}
                   setChar={setQuality}
                   name={'Quality'}
-                  descr={qualityDescr}/>
+                  descr={qualityDescr}
+                  postableObj={postableObj}
+                  charId={metaData.characteristics.Quality.id}/>
                 : null}
               {metaData.characteristics.Length ?
                 <Characteristic
                   char={length}
                   setChar={setLength}
                   name={'Length'}
-                  descr={lengthDescr}/>
+                  descr={lengthDescr}
+                  postableObj={postableObj}
+                  charId={metaData.characteristics.Length.id}/>
                 : null}
               <br/>
               {metaData.characteristics.Fit ?
@@ -157,7 +212,9 @@ const ReviewModal = ({toggle, productId}) => {
                   char={fit}
                   setChar={setFit}
                   name={'Fit'}
-                  descr={fitDescr}/>
+                  descr={fitDescr}
+                  postableObj={postableObj}
+                  charId={metaData.characteristics.Fit.id}/>
                 : null}
               <br/>
 
@@ -166,10 +223,10 @@ const ReviewModal = ({toggle, productId}) => {
                 <input
                   onChange={(e) => setSummary(e.target.value)}
                   type="text"
-                  required
                   placeholder="Example: Best purchase ever!"
                   maxLength="60"
                 />
+                <br/>
                 <div>Review Body <small>*</small></div>
                 <input
                   onChange={(e) => setBody(e.target.value)}
@@ -180,12 +237,11 @@ const ReviewModal = ({toggle, productId}) => {
                   minLength="50"
                 />
               </div>
-
               {body.length >= 50 ?
                 <div><small>Minimum reached</small></div>
                 : <div><small>Minimum required characters left: {minCounter - body.length}</small></div>}
             </div>
-            <button>Upload Photos</button>
+            <Button>Upload Photos</Button>
             <div>
               <div>What is your nickname? <small>*</small></div>
               <input
@@ -193,14 +249,17 @@ const ReviewModal = ({toggle, productId}) => {
                 type="text"
                 placeholder="Example: FrodoSwaggins" />
             </div>
+            <br/>
             <div>
               <div>Your email <small>*</small></div>
               <input
                 onChange={(e) => setEmail(e.target.value)}
+                required
                 type="email"
                 placeholder="Example: frodo11@email.com" />
             </div>
-            <button type="submit">Submit</button>
+            <br/>
+            <Button type="submit" onClick={(e) => handleSubmit(e)}>Submit</Button>
           </form>
         </div>
         <div className="modal-overlay" ></div>

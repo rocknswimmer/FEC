@@ -1,6 +1,8 @@
 import React, {useEffect, useState} from 'react';
 
-const CharacteristicRating = ({char, setChar, name, descr}) => {
+const CharacteristicRating = ({char, setChar, name, descr, postableObj, charId}) => {
+
+  postableObj[`${charId}`] = Number(char);
 
   return (
     <div>
@@ -11,7 +13,8 @@ const CharacteristicRating = ({char, setChar, name, descr}) => {
         <div className="radio-box">
           <input
             onClick={(e) => setChar(e.target.value)}
-            type="radio" name={name}
+            type="radio"
+            name={name}
             value="1"
             required/>
           <label><small>{descr[0]}</small></label>
@@ -50,17 +53,6 @@ const CharacteristicRating = ({char, setChar, name, descr}) => {
         </div>
       </div>
     </div>
-    // <div>
-    //   <input
-    //     type="radio"
-    //     id={descr[0]}
-    //     name={name}
-    //     value={1}
-    //   />
-    //   <label for={descr[0]}>{descr[0]}</label>
-
-  // </div>
-
   );
 };
 

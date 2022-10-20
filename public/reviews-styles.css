@@ -160,10 +160,11 @@
   position: fixed;
   top: 50%;
   left: 50%;
+  width: 50%;
   max-width: 100%;
   max-height: 80%;
   min-height: 30%;
-  min-width: 30%;
+  min-width: 40%;
   transform: translate(-50%, -50%);
 }
 
@@ -175,6 +176,7 @@ div.radio-box {
   width: 90px;
   display: inline-block;
   margin: 5px;
+
 }
 .radio-box label {
   display:block;
@@ -186,6 +188,10 @@ div.radio-box {
   width: 20px;
   display: block;
   margin: 0px auto;
+}
+
+.all-radio-container {
+  border-bottom: solid grey 1px;
 }
 
 /* label {

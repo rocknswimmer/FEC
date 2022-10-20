@@ -57,7 +57,7 @@ app.get('/products/:product_id/styles', (req, res) => {
 //List Reviews
 app.get('/reviews/', (req, res) => {
   //console.log('reviews query', req.query);
-  let apiUrl = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/';
+  let apiUrl = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews';
 
   console.log(req.query);
   let options = {
@@ -93,6 +93,24 @@ app.get('/reviews/meta', (req, res) => {
 //Add a Review
 app.post('/reviews', (req, res) => {
 
+  console.log(req.body);
+  let apiUrl = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews';
+
+  let authHeader = {
+    'headers': {
+      'Authorization': api
+    }
+  };
+
+  axios.post(apiUrl, req.body, authHeader)
+    .then((data) => {
+      res.status(201);
+      res.send('CREATED').end();
+    })
+    .catch((err) => {
+      console.log('error in server post', err);
+      res.end();
+    });
 });
 
 //Mark Review as Helpful

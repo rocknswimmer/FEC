@@ -46,6 +46,7 @@ const StarRating = (props) => {
                 type="radio"
                 name="rating"
                 value={ratingValue}
+                required
                 onClick={() => { setRating(ratingValue); props.selectStars(ratingValue); }}
               />
               <FaStar
