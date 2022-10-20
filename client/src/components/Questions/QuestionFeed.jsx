@@ -30,6 +30,7 @@ const QuestionFeed = (props) => {
       {!props.searchable && !props.moreQuestions && firstQuestions.map((question, i) => {
         return <QuestionEntry key={i} question={question} search={props.searchQuery} searchable={props.searchable} />;
       })}
+      {!props.searchable && props.questions.length === 0 && <p><strong>NO ANSWERED QUESTIONS FOUND</strong></p>}
       {/* searchable */}
       {props.searchable && searchedQuestions.length === 0 && <p> <em>no search results found</em></p>}
       {props.searchable && searchedQuestions.length > 0 && searchedQuestions.map((question, i) => {
