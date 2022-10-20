@@ -44,6 +44,7 @@ const PhotoColumn = styled.div`
 
 const Thumbnails = styled.div`
   background-image: url(${props => props.img});
+  border: ${props => props.photoIndex === props.index ? 'solid white 2px' : 'none'};
   background-position: center;
   background-size:cover;
     margin: 2 px;
