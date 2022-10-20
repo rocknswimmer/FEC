@@ -5,15 +5,15 @@ const CharacteristicRating = ({char, setChar, name, descr}) => {
   return (
     <div>
 
-      {char ? <small><div>{descr[char - 1]}</div></small>
+      {char ? <div><small>{descr[char - 1]}</small></div>
         : <br/>}
-      <br/>
-      <form className="rev-modal-form" action="">
+      <div className="rev-modal-form" >
         <div className="radio-box">
           <input
             onClick={(e) => setChar(e.target.value)}
             type="radio" name={name}
-            value="1"/>
+            value="1"
+            required/>
           <label><small>{descr[0]}</small></label>
         </div>
         <div className="radio-box">
@@ -48,7 +48,7 @@ const CharacteristicRating = ({char, setChar, name, descr}) => {
             value="5"/>
           <label><small>{descr[4]}</small></label>
         </div>
-      </form>
+      </div>
     </div>
     // <div>
     //   <input

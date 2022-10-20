@@ -41,6 +41,15 @@ const ReviewModal = ({toggle, productId}) => {
   const fitDescr = ['Runs tight', 'Runs slightly tight', 'Perfect', 'Runs slightly long', 'Runs long'];
   console.log('fit', fit);
 
+  const [summary, setSummary] = useState('');
+  const [body, setBody] = useState('');
+
+  const [minCounter, setMinCounter] = useState(50);
+
+  const [nickname, setNickname] = useState('');
+  const [email, setEmail] = useState('');
+
+
   const selectStars = (int) => {
     setStars(int);
   };
@@ -81,73 +90,118 @@ const ReviewModal = ({toggle, productId}) => {
   return (
     <div>
       <div className="modal">
-        <div className="modal-pop" role="dialog" aria-modal="true">
+        <div className="rev-modal-pop" role="dialog" aria-modal="true">
           <button className="photo-modal-close" type="button" onClick={() => toggle()}>Close</button>
-          <h2>Write Your Review</h2>
-          <h3>About the {name}</h3>
-          <br/>
-          <div>
+          <form>
+            <h2>Write Your Review</h2>
+            <h3>About the {name}</h3>
+            <br/>
             <div>
-              <div>Overall Rating <small>*</small></div>
-              <StarRating selectStars={selectStars} stars={stars}/>
-            </div>
-            <div>
-              <form>
+              <div>
+                <div>Overall Rating <small>*</small></div>
+                <StarRating selectStars={selectStars} stars={stars}/>
+              </div>
+              <br/>
+              <div>
                 <div>Do you recommend this product? <small>*</small></div>
                 <input type="radio" id="yes" name="rec" onClick={() => setRecommend(true)}/>
                 <label htmlFor="yes">Yes</label>
                 <input type="radio" id="no" name="rec" onClick={() => setRecommend(false)}/>
                 <label htmlFor="no">No</label>
-              </form>
+              </div>
+              <br/>
+              <div>Please select an option for each characteristic below <small>*</small></div>
+              <br/>
+              {metaData.characteristics.Size ?
+                <Characteristic
+                  char={size}
+                  setChar={setSize}
+                  name={'Size'}
+                  descr={sizeDescr}/>
+                : null}
+              <br/>
+              <br/>
+              {metaData.characteristics.Width ?
+                <Characteristic
+                  char={width}
+                  setChar={setWidth}
+                  name={'Width'}
+                  descr={widthDescr}/>
+                : null}
+              <br/>
+              {metaData.characteristics.Comfort ?
+                <Characteristic
+                  char={comfort}
+                  setChar={setComfort}
+                  name={'Comfort'}
+                  descr={comfortDescr}/>
+                : null}
+              <br/>
+              {metaData.characteristics.Quality ?
+                <Characteristic
+                  char={quality}
+                  setChar={setQuality}
+                  name={'Quality'}
+                  descr={qualityDescr}/>
+                : null}
+              {metaData.characteristics.Length ?
+                <Characteristic
+                  char={length}
+                  setChar={setLength}
+                  name={'Length'}
+                  descr={lengthDescr}/>
+                : null}
+              <br/>
+              {metaData.characteristics.Fit ?
+                <Characteristic
+                  char={fit}
+                  setChar={setFit}
+                  name={'Fit'}
+                  descr={fitDescr}/>
+                : null}
+              <br/>
+
+              <div>
+                <div>Review Summary</div>
+                <input
+                  onChange={(e) => setSummary(e.target.value)}
+                  type="text"
+                  required
+                  placeholder="Example: Best purchase ever!"
+                  maxLength="60"
+                />
+                <div>Review Body <small>*</small></div>
+                <input
+                  onChange={(e) => setBody(e.target.value)}
+                  type="textfield"
+                  required
+                  placeholder="Why did you like the product or not?"
+                  maxLength="1000"
+                  minLength="50"
+                />
+              </div>
+
+              {body.length >= 50 ?
+                <div><small>Minimum reached</small></div>
+                : <div><small>Minimum required characters left: {minCounter - body.length}</small></div>}
             </div>
-            {metaData.characteristics.Size ?
-              <Characteristic
-                char={size}
-                setChar={setSize}
-                name={'Size'}
-                descr={sizeDescr}/>
-              : null}
-            <br/>
-            {metaData.characteristics.Width ?
-              <Characteristic
-                char={width}
-                setChar={setWidth}
-                name={'Width'}
-                descr={widthDescr}/>
-              : null}
-            <br/>
-            {metaData.characteristics.Comfort ?
-              <Characteristic
-                char={comfort}
-                setChar={setComfort}
-                name={'Comfort'}
-                descr={comfortDescr}/>
-              : null}
-            <br/>
-            {metaData.characteristics.Quality ?
-              <Characteristic
-                char={quality}
-                setChar={setQuality}
-                name={'Quality'}
-                descr={qualityDescr}/>
-              : null}
-            {metaData.characteristics.Length ?
-              <Characteristic
-                char={length}
-                setChar={setLength}
-                name={'Length'}
-                descr={lengthDescr}/>
-              : null}
-            <br/>
-            {metaData.characteristics.Fit ?
-              <Characteristic
-                char={fit}
-                setChar={setFit}
-                name={'Fit'}
-                descr={fitDescr}/>
-              : null}
-            <br/>
-          </div>
+            <button>Upload Photos</button>
+            <div>
+              <div>What is your nickname? <small>*</small></div>
+              <input
+                onChange={(e) => setNickname(e.target.value)}
+                type="text"
+                placeholder="Example: FrodoSwaggins" />
+            </div>
+            <div>
+              <div>Your email <small>*</small></div>
+              <input
+                onChange={(e) => setEmail(e.target.value)}
+                type="email"
+                placeholder="Example: frodo11@email.com" />
+            </div>
+            <button type="submit">Submit</button>
+          </form>
         </div>
         <div className="modal-overlay" ></div>
       </div>

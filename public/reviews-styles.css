@@ -144,18 +144,41 @@
   display: none;
 }
 
+
+/* REVIEW MODAL */
+
+.rev-modal-pop {
+  background: #fff;
+  border: 2px solid #aaa;
+  border-radius: 5px;
+  z-index: 2;
+  margin: auto;
+  padding: 20px;
+  overflow-y: scroll;
+  overflow: scroll;
+  /* padding: 1em 2em 2em; */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  max-width: 100%;
+  max-height: 80%;
+  min-height: 30%;
+  min-width: 30%;
+  transform: translate(-50%, -50%);
+}
+
 .rev-modal-form {
   width: 100%;
   flex-shrink: 0;
 }
 div.radio-box {
-  width: 100px;
+  width: 90px;
   display: inline-block;
   margin: 5px;
 }
 .radio-box label {
   display:block;
-  width: 100px;
+  width: 90px;
   height: 9px;
   text-align: center;
 }
