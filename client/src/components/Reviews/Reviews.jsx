@@ -12,14 +12,13 @@ margin: 32px;
 display: flex;
 flex-direction: column;
 flex-shrink: 0;
-overflow-y: scroll;
+
 `;
 
 const SummaryListDivider = styled.div`
 width: 100%;
 display: flex;
 flex-shrink: 0;
-overflow: scroll;
 `;
 
 let visibleReviewsIndex = 2;
@@ -28,23 +27,30 @@ const Reviews = ({productId}) => {
 
   const [reviewsList, setReviewsList] = useState([]);
   const [visibleReviews, setVisibleReviews] = useState([]);
+  const [currentSort, setCurrentSort] = useState('relevance');
 
 
 
-  const getReviews = (id) => {
+  const getReviews = (id = productId, sortSelection = 'relevant') => {
 
     axios({
       url: '/reviews/',
       method: 'get',
       params: {
         id: productId,
-        sort: 'relevant'
+        sort: sortSelection
       }
     })
       .then((response) => {
         setReviewsList(response.data.results);
         setVisibleReviews(response.data.results.slice(0, visibleReviewsIndex));
-        // console.log('in client request', response);
+        if (sortSelection === 'helpful') {
+          setCurrentSort('helpfulness');
+        } else if (sortSelection === 'relevant') {
+          setCurrentSort('relevance');
+        } else {
+          setCurrentSort(sortSelection);
+        }
       })
       .catch((err) => {
         console.log('error in client request', err);
@@ -60,7 +66,6 @@ const Reviews = ({productId}) => {
     setVisibleReviews(reviewsList.slice(0, visibleReviewsIndex));
   };
 
-
   return (
     <ReviewsContainer>
       <div>
@@ -72,9 +77,18 @@ const Reviews = ({productId}) => {
             <Summary />
           </div>
           <div className="list">
-            <Dropdown reviewsList={reviewsList}/>
-            <ReviewsList reviewsList={reviewsList} visibleReviews={visibleReviews}/>
-            <Buttons handleMoreReviews={handleMoreReviews}/>
+            <Dropdown reviewsList={reviewsList}
+              getReviews={getReviews}
+              currentSort={currentSort}/>
+            <div className="rev-list-container">
+              <ReviewsList
+                reviewsList={reviewsList}
+                visibleReviews={visibleReviews}/>
+            </div>
+            <Buttons handleMoreReviews={handleMoreReviews}
+              reviewsList={reviewsList}
+              visibleReviews={visibleReviews}
+              productId={productId}/>
           </div>
         </SummaryListDivider>
       </div>
