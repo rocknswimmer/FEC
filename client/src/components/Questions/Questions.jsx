@@ -65,7 +65,7 @@ const Questions = (props) => {
           <FaSearch />
         </button>
       </form>
-      {!searchable && <QuestionFeed questions={questions} moreQuestions={moreQuestions} search={searchQuery} searchable={searchable}/>}
+      <QuestionFeed questions={questions} moreQuestions={moreQuestions} search={searchQuery} searchable={searchable}/>
       {(questions[0] && questions.length > 2) && !moreQuestions && <button onClick={loadMoreQuestions}>MORE ANSWERED QUESTIONS</button>}
       {(questions[0] && questions.length > 2) && moreQuestions && <button onClick={loadMoreQuestions}>LESS ANSWERED QUESTIONS</button>}
       <button onClick={addQuestionModal}>ADD A QUESTION +</button>
