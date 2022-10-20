@@ -11,35 +11,40 @@ const ProductImage = ({ currentDisplayedStyle }) => {
   const [displayedImage, setDisplayedImage] = useState('');
   const [photoIndex, setPhotoIndex] = useState(0);
 
-  // console.log(currentDisplayedStyle, '<------ this is the displayed style from within ProductImage');
 
   //create clickHandler for side arrows
   const clickHanderArrowRight = (event) => {
+    let num= photoIndex;
     if (photoIndex < imageArray.length - 1) {
       setPhotoIndex(photoIndex + 1);
-    } else if (photoIndex === imageArray.length - 1) {
-      setPhotoIndex(0);
+      num +=1;
     }
-    // console.log(photoIndex, imageArray.length - 1, 'array object at index');
-    setDisplayedImage(imageArray[photoIndex].url);
+    // else if (photoIndex === imageArray.length - 1) {
+    //   setPhotoIndex(0);
+    // }
+    setDisplayedImage(imageArray[num].url)
   };
 
   const clickHanderArrowLeft = (event) => {
+    let num = photoIndex;
+
     if (photoIndex === 0) {
       setPhotoIndex(imageArray.length - 1);
+
     }
     if (photoIndex > 0) {
       setPhotoIndex(photoIndex - 1);
+      num -=1;
     }
-    // console.log(photoIndex, imageArray.length - 1, 'array object at index');
-    setDisplayedImage(imageArray[photoIndex].url);
+    setDisplayedImage(imageArray[num].url);
   };
 
   //set photoIndex handler for Carousel
-  const changePhotoToSelectedThumbnail = (number) => {
-    if (number !== photoIndex) {
-      setPhotoIndex(number);
-      setDisplayedImage(imageArray[number].url);
+  const changePhotoToSelectedThumbnail = (num) => {
+
+    if (num !== photoIndex) {
+      setPhotoIndex(num);
+      setDisplayedImage(imageArray[num].url);
     }
   };
 
@@ -62,8 +67,8 @@ const ProductImage = ({ currentDisplayedStyle }) => {
           <MainImage img={displayedImage}>
             <Carousel imageArray={imageArray} photoIndex= {photoIndex} changePhotoToSelectedThumbnail={changePhotoToSelectedThumbnail}/>
             <Expander><FaExpand/></Expander>
-            <LeftArrow onClick = {clickHanderArrowLeft}><FaAngleLeft/></LeftArrow>
-            <RightArrow onClick = {clickHanderArrowRight}><FaAngleRight/></RightArrow>
+            {photoIndex !== 0 && <LeftArrow onClick = {clickHanderArrowLeft}><FaAngleLeft/></LeftArrow>}
+            {photoIndex !== imageArray.length -1 && <RightArrow onClick = {clickHanderArrowRight}><FaAngleRight/></RightArrow>}
           </MainImage>
       }
 
