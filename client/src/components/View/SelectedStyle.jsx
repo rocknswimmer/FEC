@@ -4,12 +4,7 @@ import styled from 'styled-components';
 import {FaCheckCircle} from 'react-icons/fa';
 
 
-
 const SelectedStyle = ( {otherStyles, productId, changeDisplayedStyle, currentDisplayedStyle} ) => {
-  //clickListener for displayedStyle
-  // const changeDisplayedStyleHandler = (event) => {
-  //   changeDisplayedStyle(index);
-  // };
 
   return (
     <StyleDiv>
@@ -17,10 +12,13 @@ const SelectedStyle = ( {otherStyles, productId, changeDisplayedStyle, currentDi
         otherStyles.map((style, index) => {
 
           let imgSrc = style.photos[0].thumbnail_url;
-
-          return <RoundImage key = {index} img={imgSrc} onClick ={(event) => {
-            changeDisplayedStyle(index);
-          }} >{currentDisplayedStyle.name === style.name && <FaCheckCircle style={{color: 'red'}}/>}</RoundImage>;
+          if (imgSrc === null) {
+            return <></>;
+          } else {
+            return <RoundImage key = {index} img={imgSrc} onClick ={(event) => {
+              changeDisplayedStyle(index);
+            }} >{currentDisplayedStyle.style_id === style.style_id && <FaCheckCircle style={{color: 'red'}}/>}</RoundImage>;
+          }
         })
       }
     </StyleDiv>

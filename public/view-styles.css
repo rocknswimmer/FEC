@@ -1,7 +1,20 @@
 .view-main {
   box-sizing: border-box;
-  display: flexbox;
+  display: grid;
+  /* grid-template-columns: repeat(10, 1fr); */
+  grid-template-columns: repeat(10, minmax(0, 1fr));
+  grid-template-rows: repeat(10, minmax(0, 1fr));
   background-color: #D5DBE7;
   width: 100%;
   padding: 20px;
+}
+
+.dropdown-size-container {
+  grid-column-start: 1;
+  grid-column-end: 6;
+}
+
+.dropdown-qty-container {
+  grid-column-start: 7;
+  grid-column-end: -1;
 }

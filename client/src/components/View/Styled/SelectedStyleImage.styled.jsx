@@ -4,6 +4,7 @@ const RoundImage = styled.div`
   border-radius: 50%;
 
   background-image: url(${props => props.img});
+  background-position: center;
   background-size:cover;
     margin: 10px;
     height: 75px;

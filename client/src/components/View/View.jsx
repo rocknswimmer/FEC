@@ -5,6 +5,9 @@ import ProductImage from './ProductImage.jsx';
 import ProductName from './ProductName.jsx';
 import SelectedStyle from './SelectedStyle.jsx';
 import ItemSelection from './ItemSelection.jsx';
+import { StyleView } from './Styled/StyleView.styled.jsx';
+// import {Button} from './Styled/Form.styled.jsx';
+
 
 const View = ({ productId }) => {
   //Establish pieces of state for View and StyleSelector
@@ -46,39 +49,34 @@ const View = ({ productId }) => {
       });
   };
 
-  //Add to Cart <---have not tested this yet
+  //Add to Cart: adds a product to the cart or updates the existing style
   const addToCart = (cartAddition) => {
-    console.log('inside addToCart at View level, adding the following to the cart -->', cartAddition);
-    console.log('these are the cartContents before  adding', cartContents);
-
     let foundItemInCart = false;
 
-    let newCartArray = cartContents.map((itemObj, index) => {
-      let modifiedObj = {};
-      Object.assign(modifiedObj, itemObj);
-      console.log(modifiedObj, '<---- this is the modifiedObj inside addToCart');
-      if (itemObj.product_id === cartAddition.product_id
-          && itemObj.style_id === cartAddition.style_id
-          && itemObj.sku === cartAddition.sku) {
-        modifiedObj.selectedQty = cartAddition.selectedQty + itemObj.selectedQty;
+    let newCartArray = cartContents.map((cartItemObj, index) => {
+      let modifiedCartObj = {};
+      Object.assign(modifiedCartObj, cartItemObj);
+      if (cartItemObj.product_id === cartAddition.product_id
+        && cartItemObj.style_id === cartAddition.style_id
+        && cartItemObj.sku === cartAddition.sku) {
+        modifiedCartObj.quantity = cartItemObj.quantity - cartAddition.selectedQty;
         foundItemInCart = true;
       }
-      return modifiedObj;
+      return modifiedCartObj;
     });
     if (!foundItemInCart) {
+      let newQty = cartAddition.quantity - cartAddition.selectedQty;
+      cartAddition.quantity = newQty;
       newCartArray.push(cartAddition);
     }
-
-
-    console.log('this is the newCartArray before setCartContents > ', newCartArray);
     setCartContents(newCartArray);
-
   };
 
-  //useEffect
+  //useEffect: updates on render
   useEffect(() => {
     getCurrentProduct(productId);
     getOtherStyles(productId);
+    // setDisplayedStyle(otherStyles[0]);
   }, []);
 
   //eventhandler to change DisplayedStyle
@@ -88,16 +86,20 @@ const View = ({ productId }) => {
 
   return (
     <div className="view-main">
-      <ProductImage otherStyles={otherStyles} />
-      <div>
+      <ProductImage otherStyles={otherStyles} currentDisplayedStyle={displayedStyle} />
+      {/* <Description productInfo={currentProduct} /> */}
+      <StyleView>
+
         <ProductName productInfo={currentProduct} currentDisplayedStyle={displayedStyle} />
 
         {otherStyles.length > 0 && <SelectedStyle otherStyles={otherStyles} productId={productId} changeDisplayedStyle={changeDisplayedStyle} currentDisplayedStyle={displayedStyle} />}
 
-        <ItemSelection currentDisplayedStyle={displayedStyle} productId={productId} addToCart = {addToCart} cartContents = {cartContents}/>
-      </div>
+        <ItemSelection currentDisplayedStyle={displayedStyle} productId={productId} addToCart={addToCart} cartContents={cartContents} />
 
-      <Description productInfo={currentProduct} />
+      </StyleView>
+
+
+
     </div>
   );
 };

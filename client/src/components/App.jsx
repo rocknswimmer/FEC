@@ -6,8 +6,8 @@ import Questions from './Questions/Questions.jsx';
 
 
 const App = () => {
-  const randomId = 37311 + Math.floor(Math.random() * 4);
-  const [product, setProduct] = useState(randomId);
+  const randomId = 37311 + Math.floor(Math.random() * 15);
+  const [product, setProduct] = useState(37311);
 
   // useEffect(() => {
   //   const start = 37311;
