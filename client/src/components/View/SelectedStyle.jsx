@@ -5,7 +5,6 @@ import {FaCheckCircle} from 'react-icons/fa';
 
 
 const SelectedStyle = ( {otherStyles, productId, changeDisplayedStyle, currentDisplayedStyle} ) => {
-  const [displayCheck, setDisplayCheck] = useState(true);
 
   return (
     <StyleDiv>
@@ -18,7 +17,7 @@ const SelectedStyle = ( {otherStyles, productId, changeDisplayedStyle, currentDi
           } else {
             return <RoundImage key = {index} img={imgSrc} onClick ={(event) => {
               changeDisplayedStyle(index);
-            }} >{currentDisplayedStyle.name === style.name && <FaCheckCircle style={{color: 'red'}}/>}</RoundImage>;
+            }} >{currentDisplayedStyle.style_id === style.style_id && <FaCheckCircle style={{color: 'red'}}/>}</RoundImage>;
           }
         })
       }

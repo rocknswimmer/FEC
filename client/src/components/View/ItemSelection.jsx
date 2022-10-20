@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { DropDownContainer, DropDownHeader, DropDownListContainer, DropDownList, ListItem } from './Styled/DropDownStyles.jsx';
-import {Button, CartContainer} from './Styled/Form.styled.jsx';
+import { Button, CartContainer } from './Styled/Form.styled.jsx';
 
 import { FaChevronDown, FaMinus, FaPlus } from 'react-icons/fa';
 
@@ -10,6 +10,7 @@ const ItemSelection = ({ currentDisplayedStyle, productId, addToCart, cartConten
   const [quantityDropdownIsOpen, setQuantityDropDownOpen] = useState(false);
   const [outOfStock, setOutOfStock] = useState(false);
   const [sizeChosen, setSizeChosen] = useState(false);
+  const [qtyChosen, setQtyChosen] = useState(0);
   const [items, setItems] = useState([]);
   const [selectedItem, setSelectedItem] = useState({});
 
@@ -18,9 +19,9 @@ const ItemSelection = ({ currentDisplayedStyle, productId, addToCart, cartConten
   //makes array of sku-sizes objects
   const sizeArrayMaker = (obj) => {
     const styleArr = [];
-    for (let key in currentDisplayedStyle.skus) {
-      let newObj = currentDisplayedStyle.skus[key];
-      if (currentDisplayedStyle.skus[key].quantity === null) {
+    for (let key in obj.skus) {
+      let newObj = obj.skus[key];
+      if (obj.skus[key].quantity === null) {
         setOutOfStock(true);
       }
       newObj.sku = key;
@@ -71,11 +72,13 @@ const ItemSelection = ({ currentDisplayedStyle, productId, addToCart, cartConten
 
     if (cartContents.length > 0) {
       cartContents.forEach(cartObj => {
-        // console.log(cartObj, '<--- cartContents.forEach()');
+        console.log(cartObj, '<--- cart is being checked');
         if (cartObj.sku === selectedItem.sku
           && cartObj.product_id === selectedItem.product_id
           && cartObj.style_id === selectedItem.style_id) {
           correctQty = cartObj.quantity;
+        } else {
+          correctQty = selectedItem.quantity;
         }
       });
     } else {
@@ -87,7 +90,7 @@ const ItemSelection = ({ currentDisplayedStyle, productId, addToCart, cartConten
 
     } else if (correctQty === 0) {
       // quantityArr make it so it says it's out of stock
-      setOutOfStock(true);
+      quantityArr.push(0);
       console.log('this item is out of stock');
     } else {
       quantityArr = Array.from(Array(correctQty + 1).keys());
@@ -102,12 +105,15 @@ const ItemSelection = ({ currentDisplayedStyle, productId, addToCart, cartConten
     Object.assign(newObj, selectedItem);
     newObj.selectedQty = qty;
     setSelectedItem(newObj);
+    setQtyChosen(qty);
   };
 
   //button to add selected items to cart
   const onSubmitButton = (event) => {
     if (sizeChosen) {
       addToCart(selectedItem);
+      setQtyChosen(0);
+      setSizeChosen(false);
     }
   };
 
@@ -120,19 +126,19 @@ const ItemSelection = ({ currentDisplayedStyle, productId, addToCart, cartConten
   return (
     <CartContainer>
       {
-        outOfStock && <DropDownContainer className = "dropdown-size-container">
+        outOfStock && <DropDownContainer className="dropdown-size-container">
           <DropDownHeader>
             Out of Stock
           </DropDownHeader>
         </DropDownContainer>
       }
       {
-        !outOfStock && <DropDownContainer className = "dropdown-size-container" onMouseLeave={(e) => { handleMouseLeavingSizeDropDown(); }}>
+        !outOfStock && <DropDownContainer className="dropdown-size-container" onMouseLeave={(e) => { handleMouseLeavingSizeDropDown(); }}>
           <DropDownHeader onClick={toggleSizeDropdown}>
             {
               sizeChosen && <>
                 <p>{selectedItem.size}</p>
-                <FaChevronDown style={{ color: '#B0B0B0'}} />
+                <FaChevronDown style={{ color: '#B0B0B0' }} />
               </>
             }
             {
@@ -143,7 +149,7 @@ const ItemSelection = ({ currentDisplayedStyle, productId, addToCart, cartConten
               </>
             }
           </DropDownHeader>
-          <DropDownListContainer className = "dropdown-size-container">
+          <DropDownListContainer className="dropdown-size-container">
             {
               sizeDropdownIsOpen && <DropDownList>
                 {items.map((item, index) => {
@@ -161,16 +167,23 @@ const ItemSelection = ({ currentDisplayedStyle, productId, addToCart, cartConten
         </DropDownContainer>
       }
       {
-        !sizeChosen && <DropDownContainer className = "dropdown-qty-container">
+        !sizeChosen && <DropDownContainer className="dropdown-qty-container">
           <DropDownHeader>
-            <FaMinus style={{ color: '#B0B0B0' }}/> <FaChevronDown style={{ color: '#B0B0B0' }} />
+            <FaMinus style={{ color: '#B0B0B0' }} /> <FaChevronDown style={{ color: '#B0B0B0' }} />
           </DropDownHeader> </DropDownContainer>
       }
       {
-        sizeChosen && <DropDownContainer className = "dropdown-qty-container" onClick={toggleQuantityDropdown} onMouseLeave={handleMouseLeavingQuantityDropDown}>
-          <DropDownHeader>
-            1 {<FaChevronDown style={{ color: '#B0B0B0' }} />}
-          </DropDownHeader>
+        sizeChosen && <DropDownContainer className="dropdown-qty-container" onClick={toggleQuantityDropdown} onMouseLeave={handleMouseLeavingQuantityDropDown}>
+          {
+            !qtyChosen && <DropDownHeader>
+              1 {<FaChevronDown style={{ color: '#B0B0B0' }} />}
+            </DropDownHeader>
+          }
+          {
+            qtyChosen > 0 && <DropDownHeader>
+              {qtyChosen} <FaChevronDown style={{ color: '#B0B0B0' }} />
+            </DropDownHeader>
+          }
           <DropDownListContainer>
             {
               quantityDropdownIsOpen && <DropDownList>
@@ -185,7 +198,7 @@ const ItemSelection = ({ currentDisplayedStyle, productId, addToCart, cartConten
         </DropDownContainer>
       }
 
-      <Button onClick={onSubmitButton}>Add to Cart{<FaPlus style={ {color: '#B0B0B0'} }/>}</Button>
+      <Button onClick={onSubmitButton}>Add to Cart{<FaPlus style={{ color: '#B0B0B0' }} />}</Button>
     </CartContainer>
   );
 };

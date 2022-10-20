@@ -51,15 +51,11 @@ const View = ({ productId }) => {
 
   //Add to Cart: adds a product to the cart or updates the existing style
   const addToCart = (cartAddition) => {
-    console.log('inside addToCart at View level, adding the following to the cart -->', cartAddition);
-    console.log('these are the cartContents before  adding', cartContents);
-
     let foundItemInCart = false;
 
     let newCartArray = cartContents.map((cartItemObj, index) => {
       let modifiedCartObj = {};
       Object.assign(modifiedCartObj, cartItemObj);
-      console.log(modifiedCartObj, '<---- this is the modifiedCartObj inside addToCart');
       if (cartItemObj.product_id === cartAddition.product_id
         && cartItemObj.style_id === cartAddition.style_id
         && cartItemObj.sku === cartAddition.sku) {
@@ -69,19 +65,18 @@ const View = ({ productId }) => {
       return modifiedCartObj;
     });
     if (!foundItemInCart) {
+      let newQty = cartAddition.quantity - cartAddition.selectedQty;
+      cartAddition.quantity = newQty;
       newCartArray.push(cartAddition);
     }
-
-
-    console.log('this is the newCartArray before setCartContents > ', newCartArray);
     setCartContents(newCartArray);
-
   };
 
   //useEffect: updates on render
   useEffect(() => {
     getCurrentProduct(productId);
     getOtherStyles(productId);
+    // setDisplayedStyle(otherStyles[0]);
   }, []);
 
   //eventhandler to change DisplayedStyle
@@ -91,14 +86,16 @@ const View = ({ productId }) => {
 
   return (
     <div className="view-main">
-      <ProductImage otherStyles={otherStyles} />
-      <Description productInfo={currentProduct} />
+      <ProductImage otherStyles={otherStyles} currentDisplayedStyle={displayedStyle} />
+      {/* <Description productInfo={currentProduct} /> */}
       <StyleView>
+
         <ProductName productInfo={currentProduct} currentDisplayedStyle={displayedStyle} />
 
         {otherStyles.length > 0 && <SelectedStyle otherStyles={otherStyles} productId={productId} changeDisplayedStyle={changeDisplayedStyle} currentDisplayedStyle={displayedStyle} />}
 
         <ItemSelection currentDisplayedStyle={displayedStyle} productId={productId} addToCart={addToCart} cartContents={cartContents} />
+
       </StyleView>
 
 
