@@ -52,7 +52,7 @@ const Questions = (props) => {
 
 
     questions.forEach((q) => {
-      if (q.question_body.includes(searchQuery)) {
+      if (q.question_body.toUpperCase().includes(searchQuery.toUpperCase())) {
         searchedHolder.push(q);
       } else {
         questionDenied.push(q);
@@ -62,7 +62,7 @@ const Questions = (props) => {
     questionDenied.forEach((quest) => {
       let questAns = {};
       Object.keys(quest.answers).forEach((anKey) => {
-        if (quest.answers[anKey].body.includes(searchQuery)) {
+        if (quest.answers[anKey].body.toUpperCase().includes(searchQuery.toUpperCase())) {
           questAns[anKey] = quest.answers[anKey];
         }
       });
