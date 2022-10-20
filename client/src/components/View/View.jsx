@@ -16,7 +16,7 @@ const View = ({ productId }) => {
   const [displayedStyle, setDisplayedStyle] = useState({});
   const [cartContents, setCartContents] = useState([]);
 
-  //Get methods for View and StyleSelector
+  // Get methods for View and StyleSelector
   const getCurrentProduct = (productId) => {
     axios.get('/products', {
       params: {
