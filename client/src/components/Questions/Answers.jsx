@@ -66,9 +66,7 @@ const Answers = (props) => {
   };
 
   const toggleAnsPhotoClicked = (ansPho) => {
-    console.log(ansPho);
     ansPho.clicked = AnsPhotoClicked;
-    console.log(ansPho);
     setAnsPhotoClicked(!AnsPhotoClicked);
   };
 
