@@ -132,6 +132,115 @@ app.get('/qa/questions/', (req, res) => {
 
 });
 
+// Post Questions
+app.post('/qa/questions/', (req, res) => {
+  // console.log(req.body);
+  // res.send('hit server');
+  let urlVariable = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/';
+  let options = {
+    'body': JSON.stringify(req.body.body),
+    'name': JSON.stringify(req.body.name),
+    'email': JSON.stringify(req.body.email),
+    'product_id': Number(JSON.stringify(req.body.product_id))
+  };
+  let authHeaders = {
+    'headers': {
+      'Authorization': api
+    }
+  };
+
+  axios.post(urlVariable, options, authHeaders)
+    .then(results => {
+      // console.log('question post results:', results);
+      res.send(' queston posted');
+    })
+    .catch((err) => {
+      console.log('error posting questions: ', err);
+      res.status(404).end();
+    });
+});
+
+// Post Answer
+app.post('/qa/questions/:question_id/ansers', (req, res) => {
+  // console.log(req.body);
+  // res.send('hit server');
+  let urlVariable = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/${req.body.question_id}/answers`;
+  let body = {
+    'body': JSON.stringify(req.body.body),
+    'name': JSON.stringify(req.body.name),
+    'email': JSON.stringify(req.body.email),
+    'photos': []
+  };
+  let options = {
+    'headers': {
+      'Authorization': api
+    }
+  };
+
+  axios.post(urlVariable, body, options)
+    .then(results => {
+      console.log('question post results:', results);
+      res.send(' queston posted');
+    })
+    .catch((err) => {
+      console.log('error posting questions: ', err);
+      res.status(404).end();
+    });
+});
+
+//Q&A Puts
+app.put('/qa/questions/:question_id/helpful', (req, res) => {
+  let options = {
+    'headers': {
+      'Authorization': api
+    }
+  };
+  axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/${req.body.question}/helpful`, {}, options)
+    .then((results) => {
+      // console.log(results);
+      res.send('question marked helpful');
+    })
+    .catch((err) => {
+      console.log('error putting Q helpful: ', err);
+      res.status(404).end();
+    });
+});
+
+app.put('/qa/answers/:answer_id/helpful', (req, res) => {
+  let options = {
+    'headers': {
+      'Authorization': api
+    }
+  };
+  axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/${req.body.answer}/helpful`, {}, options)
+    .then((results) => {
+      console.log(results);
+      res.send('answer marked helpful');
+    })
+    .catch((err) => {
+      console.log('error reporting answer: ', err);
+      res.status(404).end();
+    });
+});
+
+app.put('/qa/answers/:answer_id/report', (req, res) => {
+  let options = {
+    'headers': {
+      'Authorization': api
+    }
+  };
+  axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/${req.body.answer}/report`, {}, options)
+    .then((results) => {
+      console.log(results);
+      res.send('answer reported');
+    })
+    .catch((err) => {
+      console.log('error reporting answer: ', err);
+      res.status(404).end();
+    });
+});
+
+
 
 app.listen(3001);
 

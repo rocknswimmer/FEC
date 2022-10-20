@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import QuestionFeed from './QuestionFeed.jsx';
+import QuestionModal from './QuestionModal.jsx';
 import axios from 'axios';
 import {FaSearch} from 'react-icons/fa';
 
 const Questions = (props) => {
   const [questions, setQuestions] = useState([]);
   const [moreQuestions, setMoreQuestions] = useState(false);
+  const [addQuestion, setAddQuestion] = useState(false);
+  const [scrollable, setScrollable] = useState(true);
 
   const getCurrentQuestions = () => {
     axios.get('/qa/questions/', {
@@ -30,6 +33,12 @@ const Questions = (props) => {
     setMoreQuestions(!moreQuestions);
   };
 
+  const addQuestionModal = () => {
+    setAddQuestion(!addQuestion);
+    setScrollable(!scrollable);
+    scrollable ? document.body.style.overflow = 'hidden' : document.body.style.overflow = 'scroll';
+  };
+
   return (
     <div id="questions">
       <div>QUESTIONS & ANSWERS</div>
@@ -42,7 +51,8 @@ const Questions = (props) => {
       <QuestionFeed questions={questions} moreQuestions={moreQuestions} />
       {(questions[0] && questions.length > 2) && !moreQuestions && <button onClick={loadMoreQuestions}>MORE ANSWERED QUESTIONS</button>}
       {(questions[0] && questions.length > 2) && moreQuestions && <button onClick={loadMoreQuestions}>LESS ANSWERED QUESTIONS</button>}
-      <button>ADD A QUESTION +</button>
+      <button onClick={addQuestionModal}>ADD A QUESTION +</button>
+      {addQuestion && <QuestionModal close={addQuestionModal} product={props.productId}/>}
     </div>
   );
 };
