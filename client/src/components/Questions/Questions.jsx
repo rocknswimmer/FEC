@@ -81,8 +81,6 @@ const Questions = (props) => {
       }
     });
 
-    console.log('searched questions: ', searchedHolder);
-
     setSearchedQuestions(searchedHolder);
   };
 
