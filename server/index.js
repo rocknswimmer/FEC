@@ -138,9 +138,9 @@ app.post('/qa/questions/', (req, res) => {
   // res.send('hit server');
   let urlVariable = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/';
   let options = {
-    'body': JSON.stringify(req.body.body),
-    'name': JSON.stringify(req.body.name),
-    'email': JSON.stringify(req.body.email),
+    'body': req.body.body,
+    'name': req.body.name,
+    'email': req.body.email,
     'product_id': Number(JSON.stringify(req.body.product_id))
   };
   let authHeaders = {
@@ -166,9 +166,9 @@ app.post('/qa/questions/:question_id/ansers', (req, res) => {
   // res.send('hit server');
   let urlVariable = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/${req.body.question_id}/answers`;
   let body = {
-    'body': JSON.stringify(req.body.body),
-    'name': JSON.stringify(req.body.name),
-    'email': JSON.stringify(req.body.email),
+    'body': req.body.body,
+    'name': req.body.name,
+    'email': req.body.email,
     'photos': []
   };
   let options = {
