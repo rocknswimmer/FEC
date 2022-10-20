@@ -9,6 +9,7 @@ const Questions = (props) => {
   const [moreQuestions, setMoreQuestions] = useState(false);
   const [addQuestion, setAddQuestion] = useState(false);
   const [scrollable, setScrollable] = useState(true);
+  const [searchQuery, setSearchQuery] = useState('');
 
   const getCurrentQuestions = () => {
     axios.get('/qa/questions/', {
@@ -39,11 +40,17 @@ const Questions = (props) => {
     scrollable ? document.body.style.overflow = 'hidden' : document.body.style.overflow = 'scroll';
   };
 
+  const searchChange = (e) => {
+    setSearchQuery(e.target.value);
+  };
+
+  useEffect(() => { console.log(searchQuery); }, [((searchQuery.length > 2) && (searchQuery))]);
+
   return (
     <div id="questions">
       <div>QUESTIONS & ANSWERS</div>
       <form className="question-search-form">
-        <input className="questions-search" type="text" placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS..." />
+        <input className="questions-search" type="text" placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS..." onChange={searchChange} />
         <button className="question-search-button" type="submit">
           <FaSearch />
         </button>
