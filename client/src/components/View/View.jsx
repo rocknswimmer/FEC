@@ -87,7 +87,7 @@ const View = ({ productId }) => {
   return (
     <div className="view-main">
       <ProductImage otherStyles={otherStyles} currentDisplayedStyle={displayedStyle} />
-      {/* <Description productInfo={currentProduct} /> */}
+      <Description productInfo={currentProduct} />
       <StyleView>
 
         <ProductName productInfo={currentProduct} currentDisplayedStyle={displayedStyle} />

@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { SalesPricing, FormerPrice } from './Styled/PricingAndDescription.styled.jsx';
 
 const ProductName = ({ productInfo, currentDisplayedStyle }) => {
-  // const [price, setPrice] = useState(0);
   const [onSale, setOnSale] = useState(false);
 
   useEffect(() => {
@@ -10,7 +9,6 @@ const ProductName = ({ productInfo, currentDisplayedStyle }) => {
     if (currentDisplayedStyle.sale_price) {
       setOnSale(true);
     }
-    console.log(currentDisplayedStyle.sale_price);
   }, [currentDisplayedStyle]);
 
 
