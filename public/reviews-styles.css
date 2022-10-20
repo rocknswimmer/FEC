@@ -143,3 +143,28 @@
 .stars-container input[type="radio"] {
   display: none;
 }
+
+.rev-modal-form {
+  width: 100%;
+  flex-shrink: 0;
+}
+div.radio-box {
+  width: 100px;
+  display: inline-block;
+  margin: 5px;
+}
+.radio-box label {
+  display:block;
+  width: 100px;
+  height: 9px;
+  text-align: center;
+}
+.radio-box input {
+  width: 20px;
+  display: block;
+  margin: 0px auto;
+}
+
+/* label {
+  height: 150px;
+  display: inline-block; } */

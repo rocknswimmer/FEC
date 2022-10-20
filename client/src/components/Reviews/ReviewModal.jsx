@@ -20,21 +20,26 @@ const ReviewModal = ({toggle, productId}) => {
 
   const [size, setSize] = useState(0);
   const sizeDescr = ['A size too small', '1/2 a size too small', 'Perfect', '1/2 a size too big', 'A size too wide'];
-
+  console.log('size', size);
   const [width, setWidth] = useState(0);
   const widthDescr = ['Too narow', 'Slightly narrow', 'Perfect', 'Slightly wide', 'Too wide'];
+  console.log('width', width);
 
   const [comfort, setComfort] = useState(0);
   const comfortDescr = ['Uncomfortable', 'Slightly Uncomfortable', 'Ok', 'Comfortable', 'Perfect'];
+  console.log('comfort', comfort);
 
   const [quality, setQuality] = useState(0);
   const qualityDescr = ['Poor', 'Below average', 'What I expected', 'Pretty great', 'Perfect'];
+  console.log('quality', quality);
 
   const [length, setLength] = useState(0);
   const lengthDescr = ['Runs short', 'Runs slightly short', 'Perfect', 'Runs slightly long', 'Runs long'];
+  console.log('length', length);
 
   const [fit, setFit] = useState(0);
   const fitDescr = ['Runs tight', 'Runs slightly tight', 'Perfect', 'Runs slightly long', 'Runs long'];
+  console.log('fit', fit);
 
   const selectStars = (int) => {
     setStars(int);
@@ -90,11 +95,58 @@ const ReviewModal = ({toggle, productId}) => {
               <form>
                 <div>Do you recommend this product? <small>*</small></div>
                 <input type="radio" id="yes" name="rec" onClick={() => setRecommend(true)}/>
-                <label for="yes">Yes</label>
+                <label htmlFor="yes">Yes</label>
                 <input type="radio" id="no" name="rec" onClick={() => setRecommend(false)}/>
-                <label for="no">No</label>
+                <label htmlFor="no">No</label>
               </form>
             </div>
+            {metaData.characteristics.Size ?
+              <Characteristic
+                char={size}
+                setChar={setSize}
+                name={'Size'}
+                descr={sizeDescr}/>
+              : null}
+            <br/>
+            {metaData.characteristics.Width ?
+              <Characteristic
+                char={width}
+                setChar={setWidth}
+                name={'Width'}
+                descr={widthDescr}/>
+              : null}
+            <br/>
+            {metaData.characteristics.Comfort ?
+              <Characteristic
+                char={comfort}
+                setChar={setComfort}
+                name={'Comfort'}
+                descr={comfortDescr}/>
+              : null}
+            <br/>
+            {metaData.characteristics.Quality ?
+              <Characteristic
+                char={quality}
+                setChar={setQuality}
+                name={'Quality'}
+                descr={qualityDescr}/>
+              : null}
+            {metaData.characteristics.Length ?
+              <Characteristic
+                char={length}
+                setChar={setLength}
+                name={'Length'}
+                descr={lengthDescr}/>
+              : null}
+            <br/>
+            {metaData.characteristics.Fit ?
+              <Characteristic
+                char={fit}
+                setChar={setFit}
+                name={'Fit'}
+                descr={fitDescr}/>
+              : null}
+            <br/>
           </div>
         </div>
         <div className="modal-overlay" ></div>
