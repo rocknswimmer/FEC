@@ -72,7 +72,25 @@ cursor: auto;
 grid-column-start: 10;
 `;
 
-export { MainImage, ExpandedView, ComponentBlock, LeftArrow, RightArrow, Expander, PhotoColumn, Thumbnails };
+const ExpandedImageDiv = styled.div`
+  margin: auto;
+  position: fixed;
+`;
+
+const ModalPop = styled.div`
+background: #fff;
+border: 2px solid #aaa;
+border-radius: 5px;
+z-index: 2;
+margin: auto;
+position: fixed;
+top: 50%;
+left: 50%;
+width: 100%;
+height: 100%;
+`;
+
+export { MainImage, ExpandedView, ComponentBlock, LeftArrow, RightArrow, Expander, PhotoColumn, Thumbnails, ExpandedImageDiv };
 
     // margin: 10px;
     // height: 75px;
