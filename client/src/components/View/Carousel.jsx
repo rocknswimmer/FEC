@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import {PhotoColumn, Thumbnails} from './Styled/LargeImage.styled.jsx';
+import {FaAngleDown, FaAngleUp} from 'react-icons/fa';
+
+
+
 
 const Carousel = ({imageArray, photoIndex, changePhotoToSelectedThumbnail}) => {
 
   // Create clickhandlers for up and down arrows
-  const clickHanderArrowUp = (event) => {
+  const clickHanderArrowDown = (event) => {
     if (photoIndex === 0) {
       setPhotoIndex(imageArray.length - 1);
     }
