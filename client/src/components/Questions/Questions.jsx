@@ -48,11 +48,36 @@ const Questions = (props) => {
 
   const searchedQuestionsMaker = () => {
     let searchedHolder = [];
+    let questionDenied = [];
 
 
     questions.forEach((q) => {
       if (q.question_body.includes(searchQuery)) {
         searchedHolder.push(q);
+      } else {
+        questionDenied.push(q);
+      }
+    });
+
+    questionDenied.forEach((quest) => {
+      let questAns = {};
+      Object.keys(quest.answers).forEach((anKey) => {
+        if (quest.answers[anKey].body.includes(searchQuery)) {
+          questAns[anKey] = quest.answers[anKey];
+        }
+      });
+
+      if (Object.keys(questAns).length > 0) {
+        let qWithSearchedAns = {
+          'question_id': quest.question_id,
+          'question_body': quest.question_body,
+          'question_date': quest.question_date,
+          'asker_name': quest.asker_name,
+          'question_helpfulness': quest.question_helpfulness,
+          'reported': quest.reported,
+          'answers': questAns// all that work to change the answer property
+        };
+        searchedHolder.push(qWithSearchedAns);
       }
     });
 
