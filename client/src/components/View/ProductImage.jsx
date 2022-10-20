@@ -35,6 +35,14 @@ const ProductImage = ({ currentDisplayedStyle }) => {
     setDisplayedImage(imageArray[photoIndex].url);
   };
 
+  //set photoIndex handler for Carousel
+  const changePhotoToSelectedThumbnail = (number) => {
+    if (number !== photoIndex) {
+      setPhotoIndex(number);
+      setDisplayedImage(imageArray[number].url);
+    }
+  };
+
   useEffect(() => {
     if (currentDisplayedStyle.photos) {
       setImageArray(currentDisplayedStyle.photos);
@@ -52,7 +60,7 @@ const ProductImage = ({ currentDisplayedStyle }) => {
       {infoUpdated &&
 
           <MainImage img={displayedImage}>
-            {/* <Carousel/> */}
+            <Carousel imageArray={imageArray} photoIndex= {photoIndex} changePhotoToSelectedThumbnail={changePhotoToSelectedThumbnail}/>
             <Expander><FaExpand/></Expander>
             <LeftArrow onClick = {clickHanderArrowLeft}><FaAngleLeft/></LeftArrow>
             <RightArrow onClick = {clickHanderArrowRight}><FaAngleRight/></RightArrow>

@@ -13,6 +13,8 @@ const Form = styled.form`
 `;
 
 const Button = styled.button`
+grid-column-start: -11;
+grid-column-end: 9;
 background: #ffffff;
 padding: 15px 32px;
 border-color: white;
