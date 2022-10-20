@@ -18,10 +18,10 @@ const QuestionFeed = (props) => {
   return (
     <div>
       {props.moreQuestions && props.questions.map((question, i) => {
-        return <QuestionEntry key={i} question={question} />;
+        return <QuestionEntry key={i} question={question} search={props.searchQuery} searchable={props.searchable} />;
       })}
       {!props.moreQuestions && firstQuestions.map((question, i) => {
-        return <QuestionEntry key={i} question={question} />;
+        return <QuestionEntry key={i} question={question} search={props.searchQuery} searchable={props.searchable} />;
       })}
     </div>
   );

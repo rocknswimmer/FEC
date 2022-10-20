@@ -45,7 +45,7 @@ const QuestionEntry = (props) => {
       <span><a onClick={addAnswerModal}>Add Answer</a></span>
       <br/>
       <span>A: </span>
-      <AnswerFeed answers={answers} />
+      <AnswerFeed answers={answers} search={props.searchQuery} searchable={props.searchable}/>
       {addAnswer && <AnswerModal question={props.question.question_id} close={addAnswerModal}/>}
     </div>
   );
