@@ -6,6 +6,15 @@ const StarRating = (props) => {
 
   const [rating, setRating] = useState(null);
   const [hover, setHover] = useState(null);
+  const [displayRec, setDisplayRec] = useState(null);
+  const ratingsOutcome = ['Poor', 'Fair', 'Average', 'Good', 'Great'];
+
+
+  const hoverDisplay = (val) => {
+    setHover(val);
+    setDisplayRec(val);
+  };
+
 
   if (props.rating) {
     return (
@@ -26,6 +35,9 @@ const StarRating = (props) => {
 
     return (
       <div className="stars-container">
+        {displayRec ?
+          <div><small>{ratingsOutcome[displayRec - 1]}</small></div>
+          : <br/>}
         {[...Array(5)].map((star, i) => {
           const ratingValue = i + 1;
           return (
@@ -40,8 +52,8 @@ const StarRating = (props) => {
                 className="star"
                 color={ratingValue <= ( hover || rating) ? '#ffc107' : 'grey'}
                 size={15}
-                onMouseEnter={() => setHover(ratingValue)}
-                onMouseLeave={() => setHover(null)}
+                onMouseEnter={() => hoverDisplay(ratingValue)}
+                onMouseLeave={() => { setHover(null); setDisplayRec(rating); }}
                 key={i}/>
             </label>
           );

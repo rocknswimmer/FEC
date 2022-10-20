@@ -4,7 +4,6 @@ import StarRating from '../Stars/StarRating.jsx';
 
 const ReviewModal = ({toggle, productId}) => {
   let name;
-
   if (productId === 37311) {
     name = 'Camo Onesie';
   } else if (productId === 37312) {
@@ -15,13 +14,14 @@ const ReviewModal = ({toggle, productId}) => {
     name = 'Slacker\'s Slacks';
   }
 
-  const [stars, setStars] = useState(null);
+  const [recommend, setRecommend] = useState(false);
+  const [stars, setStars] = useState(0);
+  console.log(stars);
+  console.log(recommend);
 
   const selectStars = (int) => {
     setStars(int);
   };
-
-
 
   return (
     <div>
@@ -31,9 +31,21 @@ const ReviewModal = ({toggle, productId}) => {
           <h2>Write Your Review</h2>
           <h3>About the {name}</h3>
           <br/>
-          <div>Overall Rating <small>*</small></div>
-          <StarRating selectStars={selectStars}/>
-
+          <div>
+            <div>
+              <div>Overall Rating <small>*</small></div>
+              <StarRating selectStars={selectStars} stars={stars}/>
+            </div>
+            <div>
+              <form>
+                <div>Do you recommend this product? <small>*</small></div>
+                <input type="radio" id="yes" name="rec" onClick={() => setRecommend(true)}/>
+                <label for="yes">Yes</label>
+                <input type="radio" id="no" name="rec" onClick={() => setRecommend(false)}/>
+                <label for="no">No</label>
+              </form>
+            </div>
+          </div>
         </div>
         <div className="modal-overlay" ></div>
       </div>
