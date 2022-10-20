@@ -3,48 +3,65 @@ import { PhotoColumn, Thumbnails } from './Styled/LargeImage.styled.jsx';
 import { FaAngleDown, FaAngleUp } from 'react-icons/fa';
 
 
-const Carousel = ({ imageArray, photoIndex, changePhotoToSelectedThumbnail }) => {
-  const [thumbnailStartIndex, setThumbnailStartIndex] = useState(0);
-  const [thumbnailEndIndex, setThumbnailEndIndex] = useState(4);
-  const [endOfUpScroll, setEndOfUpScroll] = useState(false);
-  const [endOfDownScroll, setEndOfDownScroll] = useState(false);
-  const numberOfDisplayedThumbnails = 4;
+const Carousel = ({ imageArray, photoIndex, changePhotoToSelectedThumbnail, sendThumbnailUp, thumbnailArray, sendThumbnailDown }) => {
+  const [carouselArray, setCarouselArray] = useState([]);
+  const [indexObj, setIndexObj] = useState({ start: 0, end: 3 });
+  const numberOfDisplayedThumbnails = 5;
+
+  //create scrolling arrayFunction
+  useEffect(() => {
+    let tempArray = thumbnailArray.slice();
+    setCarouselArray(tempArray);
+  }, [thumbnailArray]);
 
   const moveThumbnailsUp = (e) => {
-    if (thumbnailEndIndex < imageArray.length) {
-      setEndOfDownScroll(false);
-      setThumbnailStartIndex(thumbnailStartIndex + 1);
-      setThumbnailEndIndex(thumbnailEndIndex + 1);
-    } else if (thumbnailEndIndex === imageArray.length) {
-      setEndOfUpScroll(true);
-    }
+    let image = carouselArray[0];
+    let tempArray = carouselArray.slice(1);
+    tempArray.push(image);
+    setCarouselArray(tempArray);
   };
 
   const moveThumbnailsDown = (e) => {
-    if (thumbnailStartIndex !== 0) {
-      setEndOfUpScroll(false);
-      setThumbnailStartIndex(thumbnailStartIndex - 1);
-      setThumbnailEndIndex(thumbnailEndIndex - 1);
-    } else {
-      setEndOfDownScroll(true);
-    }
+    let image = carouselArray[carouselArray.length - 1];
+    let tempArray = carouselArray.slice(0, -1);
+    tempArray.unshift(image);
+    setCarouselArray(tempArray);
   };
 
+  useEffect(() => {
+    if (sendThumbnailUp > 0) {
+      let image = carouselArray[0];
+      let tempArray = carouselArray.slice(1);
+      tempArray.push(image);
+      setCarouselArray(tempArray);
+    }
+  }, [sendThumbnailUp]);
+
+  useEffect(() => {
+    if (sendThumbnailDown > 0) {
+      let image = carouselArray[carouselArray.length - 1];
+      let tempArray = carouselArray.slice(0, -1);
+      tempArray.unshift(image);
+      setCarouselArray(tempArray);
+    }
+  }, [sendThumbnailDown]);
   return (
     <PhotoColumn>
-      {!endOfUpScroll && < div onClick={moveThumbnailsUp}><FaAngleUp /></div>}
-      {
-        imageArray.map((photoObj, index) => {
-          let pictureUrl = photoObj.thumbnail_url;
-          if (index < thumbnailEndIndex && index >= thumbnailStartIndex) {
-            return (
-              <Thumbnails key={index} index={index} photoIndex={photoIndex} onClick={(event) => { changePhotoToSelectedThumbnail(index); }} img={pictureUrl}></Thumbnails>
-            );
-          }
+      < div onClick={moveThumbnailsUp}><FaAngleUp /></div>
+      {carouselArray.map((photoObj, index) => {
+        // console.log(photoObj, '<photoObj');
 
-        })
+        let originalIndex = photoObj.originalIndex;
+        // console.log(originalIndex, '<originalIndex');
+        let pictureUrl = photoObj.thumbnail_url;
+        if (index < numberOfDisplayedThumbnails && index >= 0) {
+          return (
+            <Thumbnails key={index} origIndex={originalIndex} photoIndex={photoIndex} onClick={(event) => { changePhotoToSelectedThumbnail(originalIndex); }} img={pictureUrl}></Thumbnails>
+          );
+        }
+      })
       }
-      {!endOfDownScroll && <div onClick={moveThumbnailsDown}><FaAngleDown /></div>}
+      <div onClick={moveThumbnailsDown}><FaAngleDown /></div>
     </PhotoColumn>
   );
 };
