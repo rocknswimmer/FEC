@@ -44,7 +44,11 @@ const Questions = (props) => {
     setSearchQuery(e.target.value);
   };
 
-  useEffect(() => { console.log(searchQuery); }, [((searchQuery.length > 2) && (searchQuery))]);
+  useEffect(() => {
+    if (searchQuery.length !== 2) {
+      console.log(searchQuery);
+    }
+  }, [((searchQuery.length > 2) && (searchQuery))]);
 
   return (
     <div id="questions">
