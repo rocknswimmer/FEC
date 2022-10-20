@@ -82,7 +82,7 @@ const Answers = (props) => {
           {showPhoModal && <AnsPhotosModal key={i + 1000} toggle={() =>{ toggleAnsPhoto(); }} visible={showPhoModal} photo={photo} toggleAnsPhotoClicked={(p) => { toggleAnsPhotoClicked(p); }} />}
         </div>
       ))} */}
-      {props.answer.photos.length > 0 && <div>
+      {props.answer.photos.length > 0 && <div className="thumbnails-container">
         {formattedPhotos.map((photo, i) => (
           <div className="thumbnail" key={i}>
             <QAThumbnail src={photo.url} onClick={() => { toggleAnsPhoto(); toggleAnsPhotoClicked(photo); }} />
@@ -90,7 +90,6 @@ const Answers = (props) => {
           </div>
         ))}
       </div>}
-      {props.answer.photos.length > 0 && <br/>}
       <span>by {props.answer.answerer_name}, {formattedDate(props.answer.date)}</span>
       <span> | </span>
       <span>Helpful? {!clickedYesBefore && <a onClick={helpfulClicked}>Yes</a>}
