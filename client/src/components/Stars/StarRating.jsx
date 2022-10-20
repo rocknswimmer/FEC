@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { FaStar } from 'react-icons/fa';
-{/* <FontAwesomeIcon icon="fa-duotone fa-star-half" />; */}
 
 
 const StarRating = (props) => {

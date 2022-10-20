@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import StarRating from '../Stars/StarRating.jsx';
+import Characteristic from './Characteristic.jsx';
 
 const ReviewModal = ({toggle, productId}) => {
   let name;
@@ -16,11 +17,60 @@ const ReviewModal = ({toggle, productId}) => {
 
   const [recommend, setRecommend] = useState(false);
   const [stars, setStars] = useState(0);
-  console.log(stars);
-  console.log(recommend);
+
+  const [size, setSize] = useState(0);
+  const sizeDescr = ['A size too small', '1/2 a size too small', 'Perfect', '1/2 a size too big', 'A size too wide'];
+
+  const [width, setWidth] = useState(0);
+  const widthDescr = ['Too narow', 'Slightly narrow', 'Perfect', 'Slightly wide', 'Too wide'];
+
+  const [comfort, setComfort] = useState(0);
+  const comfortDescr = ['Uncomfortable', 'Slightly Uncomfortable', 'Ok', 'Comfortable', 'Perfect'];
+
+  const [quality, setQuality] = useState(0);
+  const qualityDescr = ['Poor', 'Below average', 'What I expected', 'Pretty great', 'Perfect'];
+
+  const [length, setLength] = useState(0);
+  const lengthDescr = ['Runs short', 'Runs slightly short', 'Perfect', 'Runs slightly long', 'Runs long'];
+
+  const [fit, setFit] = useState(0);
+  const fitDescr = ['Runs tight', 'Runs slightly tight', 'Perfect', 'Runs slightly long', 'Runs long'];
 
   const selectStars = (int) => {
     setStars(int);
+  };
+
+  const metaData = {
+    product_id: '37315',
+    ratings: {
+      1: '33',
+      2: '7',
+      3: '20',
+      4: '14',
+      5: '20',
+    },
+    recommended: {
+      false: '40',
+      true: '54',
+    },
+    characteristics: {
+      Size: {
+        id: 125044,
+        value: '2.7454545454545455',
+      },
+      Width: {
+        id: 125045,
+        value: '2.9642857142857143',
+      },
+      Comfort: {
+        id: 125046,
+        value: '3.1960784313725490',
+      },
+      Quality: {
+        id: 125047,
+        value: '3.0784313725490196',
+      },
+    },
   };
 
   return (
