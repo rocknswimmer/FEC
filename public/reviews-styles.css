@@ -71,6 +71,12 @@
   width: auto;
 }
 
+.buttons-container {
+  max-width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+
 .modal {
   margin: auto;
   position: fixed;

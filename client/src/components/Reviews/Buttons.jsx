@@ -1,6 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import ReviewModal from './ReviewModal.jsx';
+import styled from 'styled-components';
 
+
+const Button = styled.button`
+  background: white;
+  color: grey;
+  font-size: .75em;
+  margin: 10px 0 0 0;
+  padding: 0.25em 1em;
+  border: 2px solid grey;
+  border-radius: 3px;
+`;
 
 const Buttons = ({handleMoreReviews, reviewsList, visibleReviews, productId}) => {
 
@@ -15,11 +26,11 @@ const Buttons = ({handleMoreReviews, reviewsList, visibleReviews, productId}) =>
 
   return (
     <div>
-      <div>
+      <div className="buttons-container">
         {visibleReviews.length < reviewsList.length ?
-          <button className="rev-button" onClick={() => { handleMoreReviews(); }}>MORE REVIEWS</button>
+          <Button className="rev-button" onClick={() => { handleMoreReviews(); }}>MORE REVIEWS</Button>
           : null}
-        <button className="rev-button" onClick={() => toggleReviewModal()}>ADD A REVIEW +</button>
+        <Button className="rev-button" onClick={() => toggleReviewModal()}>ADD A REVIEW +</Button>
         {showModal ? <ReviewModal toggle={toggleReviewModal} productId={productId}/> : null}
       </div>
     </div>

@@ -42,7 +42,6 @@ const Reviews = ({productId}) => {
       }
     })
       .then((response) => {
-        console.log(response.data);
         setReviewsList(response.data.results);
         setVisibleReviews(response.data.results.slice(0, visibleReviewsIndex));
         if (sortSelection === 'helpful') {
@@ -52,7 +51,6 @@ const Reviews = ({productId}) => {
         } else {
           setCurrentSort(sortSelection);
         }
-        console.log('in client request', response);
       })
       .catch((err) => {
         console.log('error in client request', err);
@@ -67,7 +65,6 @@ const Reviews = ({productId}) => {
     visibleReviewsIndex += 2;
     setVisibleReviews(reviewsList.slice(0, visibleReviewsIndex));
   };
-  console.log(currentSort);
 
   return (
     <ReviewsContainer>
