@@ -11,6 +11,7 @@ const Questions = (props) => {
   const [scrollable, setScrollable] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
   const [searchable, setSearchable] = useState(false);
+  const [searchedQuestions, setSearchedQuestions] = useState([]);
 
   const getCurrentQuestions = () => {
     axios.get('/qa/questions/', {
@@ -45,11 +46,27 @@ const Questions = (props) => {
     setSearchQuery(e.target.value);
   };
 
+  const searchedQuestionsMaker = () => {
+    let searchedHolder = [];
+
+
+    questions.forEach((q) => {
+      if (q.question_body.includes(searchQuery)) {
+        searchedHolder.push(q);
+      }
+    });
+
+    console.log('searched questions: ', searchedHolder);
+
+    setSearchedQuestions(searchedHolder);
+  };
+
   useEffect(() => {
     if (searchQuery.length !== 2) {
       if (searchQuery.length === 3 && !searchable) {
         setSearchable(!searchable);
       }
+      searchedQuestionsMaker();
     } else {
       setSearchable(!searchable);
     }
@@ -65,7 +82,7 @@ const Questions = (props) => {
           <FaSearch />
         </button>
       </form>
-      <QuestionFeed questions={questions} moreQuestions={moreQuestions} search={searchQuery} searchable={searchable}/>
+      <QuestionFeed questions={questions} moreQuestions={moreQuestions} searchable={searchable} searchedQuestions={searchedQuestions}/>
       {(questions[0] && questions.length > 2) && !moreQuestions && <button onClick={loadMoreQuestions}>MORE ANSWERED QUESTIONS</button>}
       {(questions[0] && questions.length > 2) && moreQuestions && <button onClick={loadMoreQuestions}>LESS ANSWERED QUESTIONS</button>}
       <button onClick={addQuestionModal}>ADD A QUESTION +</button>
