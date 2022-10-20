@@ -1,15 +1,37 @@
 import React, { useState, useEffect } from 'react';
+import ReviewModal from './ReviewModal.jsx';
+import styled from 'styled-components';
 
 
-const Buttons = ({handleMoreReviews}) => {
+const Button = styled.button`
+  background: white;
+  color: grey;
+  font-size: .75em;
+  margin: 10px 0 0 0;
+  padding: 0.25em 1em;
+  border: 2px solid grey;
+  border-radius: 3px;
+`;
 
-  const [isModalOpen, setModalIsOpen] = useState(false);
+const Buttons = ({handleMoreReviews, reviewsList, visibleReviews, productId}) => {
+
+  const [showModal, setShowModal] = useState(false);
+  const [isScrollable, setIsScrollable] = useState(true);
+  // console.log(reviewsList)
+  const toggleReviewModal = (img) => {
+    setShowModal(!showModal);
+    setIsScrollable(!isScrollable);
+    isScrollable ? document.body.style.overflow = 'hidden' : document.body.style.overflow = 'scroll';
+  };
 
   return (
     <div>
-      <div>
-        <button className="rev-button" onClick={() => { handleMoreReviews(); }}>MORE REVIEWS</button>
-        <button className="rev-button">ADD A REVIEW +</button>
+      <div className="buttons-container">
+        {visibleReviews.length < reviewsList.length ?
+          <Button className="rev-button" onClick={() => { handleMoreReviews(); }}>MORE REVIEWS</Button>
+          : null}
+        <Button className="rev-button" onClick={() => toggleReviewModal()}>ADD A REVIEW +</Button>
+        {showModal ? <ReviewModal toggle={toggleReviewModal} productId={productId}/> : null}
       </div>
     </div>
   );
