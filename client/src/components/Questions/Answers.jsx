@@ -80,9 +80,9 @@ const Answers = (props) => {
       ))} */}
       {props.answer.photos.length > 0 && <div>
         {formattedPhotos.map((photo, i) => (
-          <div className="thumbnail">
-            <QAThumbnail src={photo.url} onClick={() => { toggleAnsPhoto(); toggleAnsPhotoClicked(photo); }} key={i} />
-            {showPhoModal ? <PhotosModal key={photo.url} toggle={toggleAnsPhoto} visible={showPhoModal} photo={photo} togglePhotoClicked={toggleAnsPhotoClicked} /> : null}
+          <div className="thumbnail" key={i}>
+            <QAThumbnail src={photo.url} onClick={() => { toggleAnsPhoto(); toggleAnsPhotoClicked(photo); }} />
+            {showPhoModal ? <PhotosModal toggle={toggleAnsPhoto} visible={showPhoModal} photo={photo} togglePhotoClicked={toggleAnsPhotoClicked} /> : null}
           </div>
         ))}
       </div>}
