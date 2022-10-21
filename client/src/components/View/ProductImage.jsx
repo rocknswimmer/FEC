@@ -93,7 +93,7 @@ const ProductImage = ({ currentDisplayedStyle }) => {
         <MainImage img={displayedImage} >
 
           {
-            photoExpanded && <ExpandedPhoto displayedImage={displayedImage} photoIndex={photoIndex} arrowRightHandler={clickHanderArrowRight} expandPhoto={expandPhoto} thumbnailArray={thumbnailArray} />
+            photoExpanded && <ExpandedPhoto displayedImage={displayedImage} photoIndex={photoIndex} arrowRightHandler={clickHanderArrowRight} arrowLeftHandler={clickHanderArrowLeft} expandPhoto={expandPhoto} thumbnailArray={thumbnailArray} />
           }
 
           {console.log('inside product image displayed image >', displayedImage)}
