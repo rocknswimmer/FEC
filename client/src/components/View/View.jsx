@@ -9,29 +9,13 @@ import { StyleView } from './Styled/StyleView.styled.jsx';
 // import {Button} from './Styled/Form.styled.jsx';
 
 
-const View = ({ productId }) => {
+const View = ({ productId, currentProduct }) => {
   //Establish pieces of state for View and StyleSelector
-  const [currentProduct, setCurrentProduct] = useState({});
   const [otherStyles, setOtherStyles] = useState([]);
   const [displayedStyle, setDisplayedStyle] = useState({});
   const [cartContents, setCartContents] = useState([]);
 
-  // Get methods for View and StyleSelector
-  const getCurrentProduct = (productId) => {
-    axios.get('/products', {
-      params: {
-        "id": productId
-      }
-    })
-      .then(results => {
-        let newProduct = results.data;
-        setCurrentProduct(newProduct);
-      })
-      .catch(err => {
-        console.log('There is an error in the getCurrentProduct fn ', err);
-      });
-  };
-
+  // Get methods for StyleSelector
   const getOtherStyles = (productId) => {
     const endPoint = `/products/:product_id/styles`;
     axios.get(endPoint, {
@@ -74,9 +58,7 @@ const View = ({ productId }) => {
 
   //useEffect: updates on render
   useEffect(() => {
-    getCurrentProduct(productId);
     getOtherStyles(productId);
-    // setDisplayedStyle(otherStyles[0]);
   }, []);
 
   //eventhandler to change DisplayedStyle
