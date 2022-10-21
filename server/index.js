@@ -218,7 +218,7 @@ app.post('/qa/questions/:question_id/ansers', (req, res) => {
 
   axios.post(urlVariable, body, options)
     .then(results => {
-      console.log('question post results:', results);
+      // console.log('question post results:', results);
       res.send(' queston posted');
     })
     .catch((err) => {
