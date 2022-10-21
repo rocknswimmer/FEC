@@ -136,7 +136,7 @@ const ItemSelection = ({ currentDisplayedStyle, productId, addToCart, cartConten
       }
       {
         !outOfStock && <DropDownContainer className="dropdown-size-container"
-        onMouseLeave={(e) => { handleMouseLeavingSizeDropDown(); }}
+          onMouseLeave={(e) => { handleMouseLeavingSizeDropDown(); }}
         >
           <DropDownHeader onClick={toggleSizeDropdown}>
             {

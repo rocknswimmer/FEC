@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 
 const DropDownContainer = styled("div")`
-  position: relative;
+
   width: 15em;
   margin: 0 auto;
 `;
@@ -22,7 +22,7 @@ const DropDownListContainer = styled("div")``;
 
 const DropDownList = styled("ul")`
   position: absolute;
-  top: 45px;
+  top: 783px;
   padding: 0;
   margin: 0;
   padding-left: 1em;
