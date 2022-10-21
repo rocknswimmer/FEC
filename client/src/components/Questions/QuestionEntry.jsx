@@ -43,9 +43,10 @@ const QuestionEntry = (props) => {
       </span>
       <span>|</span>
       <span><a onClick={addAnswerModal}>Add Answer</a></span>
-      <br/>
-      <span>A: </span>
-      <AnswerFeed answers={answers} />
+      <div className='answer-feed'>
+        <span>A: </span>
+        <AnswerFeed answers={answers} />
+      </div>
       {addAnswer && <AnswerModal question={props.question.question_id} close={addAnswerModal}/>}
     </div>
   );
