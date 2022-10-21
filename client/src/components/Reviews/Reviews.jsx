@@ -23,13 +23,12 @@ flex-shrink: 0;
 
 let visibleReviewsIndex = 2;
 
-const Reviews = ({productId}) => {
+const Reviews = ({productId, metaData}) => {
 
   const [reviewsList, setReviewsList] = useState([]);
   const [visibleReviews, setVisibleReviews] = useState([]);
   const [currentSort, setCurrentSort] = useState('relevance');
 
-  const [metaData, setMetaData] = useState({});
 
   const getReviews = (id = productId, sortSelection = 'relevant') => {
 
@@ -63,26 +62,9 @@ const Reviews = ({productId}) => {
     setVisibleReviews(reviewsList.slice(0, visibleReviewsIndex));
   };
 
-  const getMetaData = (id) => {
-    axios({
-      method: 'get',
-      url: 'reviews/meta',
-      params: {
-        'product_id': id
-      }
-    })
-      .then((response) => {
-        setMetaData(response.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
   useEffect(() => {
     getReviews(productId);
-    getMetaData(productId);
-    console.log('i fire once');
+
   }, []);
   return (
     <ReviewsContainer>
