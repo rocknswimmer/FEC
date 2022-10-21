@@ -25,7 +25,6 @@ const Questions = (props) => {
   const [searchedQuestions, setSearchedQuestions] = useState([]);
 
   const getCurrentQuestions = () => {
-    console.log('button pushed or initial load');
     axios.get('/qa/questions/', {
       params: {
         'id': props.productId
