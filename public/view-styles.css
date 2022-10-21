@@ -18,3 +18,19 @@
   grid-column-start: 7;
   grid-column-end: -1;
 }
+
+.close-out-expanded-view {
+  position: relative;
+  left: 150px;
+  align-self: flex-start;
+};
+.expanded-photo-left {
+  position: relative;
+  left: 150px;
+};
+
+.expanded-photo-right {
+  position: relative;
+  left: -150px;
+};
+
