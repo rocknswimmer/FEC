@@ -3,7 +3,8 @@ a {
 }
 
 #questions {
-  width: 90%;
+  width: 87%;
+  max-height: 85vh;
 }
 .questions-search {
   width: 95%;
@@ -21,4 +22,9 @@ a {
   border: none;
   outline: none;
   margin-left: -33px;
+}
+
+.answer-feed {
+  max-height: 50vh;
+  overflow-y: scroll;
 }

@@ -14,7 +14,7 @@ const AnswerFeed = (props) => {
   };
 
   return (
-    <span>
+    <div className='answer-feed'>
       {props.answers.length > 2 && !loadMoreAnswers && firstAnswers.map((answer, i) => {
         return <Answers key={i} answer={answer} />;
       })}
@@ -26,7 +26,7 @@ const AnswerFeed = (props) => {
       {props.answers.length <= 2 && props.answers.map((answer, i) => {
         return <Answers key={i} answer={answer} />;
       })}
-    </span>
+    </div>
   );
 };
 
