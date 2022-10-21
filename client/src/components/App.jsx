@@ -29,9 +29,7 @@ const App = () => {
   };
 
   useEffect(() => {
-    const start = 37311;
     getMetaData(product);
-    setProduct(randomId);
   }, []);
 
   return (
