@@ -164,7 +164,6 @@ const ReviewModal = ({toggle, productId, getReviews, metaData}) => {
                   charId={metaData.characteristics.Size.id}/>
                 : null}
               <br/>
-              <br/>
               {metaData.characteristics.Width ?
                 <Characteristic
                   char={width}
@@ -194,6 +193,7 @@ const ReviewModal = ({toggle, productId, getReviews, metaData}) => {
                   postableObj={postableObj}
                   charId={metaData.characteristics.Quality.id}/>
                 : null}
+              <br/>
               {metaData.characteristics.Length ?
                 <Characteristic
                   char={length}
