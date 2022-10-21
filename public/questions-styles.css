@@ -9,7 +9,7 @@ a {
 .questions-search {
   width: 95%;
   padding: 10px 35px 10px 15px;
-  border: thick black 5px;
+  border: solid black 1px;
 }
 
 .questions-search-form {
@@ -32,4 +32,8 @@ a {
 .question-feed {
   overflow-y: scroll;
   max-height: 77vh;
+}
+
+.answer {
+  border-bottom: solid grey 1px;
 }

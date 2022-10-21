@@ -71,7 +71,7 @@ const Answers = (props) => {
   };
 
   return (
-    <span className="answer" data-testid="answer">
+    <div className="answer" data-testid="answer">
       <span>{props.answer.body}</span>
       <br/>
       {/* {formattedPhotos.map((photo, i) => (
@@ -97,7 +97,7 @@ const Answers = (props) => {
       <span> | </span>
       <span>{!clickedReportBefore && <a onClick={reportClicked}>Report</a>}{clickedReportBefore && <span>Reported</span>}</span>
       <br/>
-    </span>
+    </div>
   );
 };
 
