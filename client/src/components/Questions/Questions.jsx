@@ -3,6 +3,17 @@ import QuestionFeed from './QuestionFeed.jsx';
 import QuestionModal from './QuestionModal.jsx';
 import axios from 'axios';
 import {FaSearch} from 'react-icons/fa';
+import styled from 'styled-components';
+
+const Button = styled.button`
+  background: white;
+  color: grey;
+  font-size: .75em;
+  margin: 15px 0 15px 0;
+  padding: 0.25em 1em;
+  border: 2px solid grey;
+  border-radius: 3px;
+`;
 
 const Questions = (props) => {
   const [questions, setQuestions] = useState([]);
@@ -109,10 +120,12 @@ const Questions = (props) => {
       <div className='question-feed'>
         <QuestionFeed questions={questions} moreQuestions={moreQuestions} get={() => { getCurrentQuestions(); }} searchable={searchable} searchedQuestions={searchedQuestions} />
       </div>
-      {(questions[0] && questions.length > 2) && !moreQuestions && <button onClick={loadMoreQuestions}>MORE ANSWERED QUESTIONS</button>}
-      {(questions[0] && questions.length > 2) && moreQuestions && <button onClick={loadMoreQuestions}>LESS ANSWERED QUESTIONS</button>}
-      <button onClick={addQuestionModal}>ADD A QUESTION +</button>
-      {addQuestion && <QuestionModal close={addQuestionModal} product={props.productId}/>}
+      <div className='question-buttons'>
+        {(questions[0] && questions.length > 2) && !moreQuestions && <Button onClick={loadMoreQuestions}>MORE ANSWERED QUESTIONS</Button>}
+        {(questions[0] && questions.length > 2) && moreQuestions && <Button onClick={loadMoreQuestions}>LESS ANSWERED QUESTIONS</Button>}
+        <Button onClick={addQuestionModal}>ADD A QUESTION +</Button>
+        {addQuestion && <QuestionModal close={addQuestionModal} product={props.productId} />}
+      </div>
     </div>
   );
 };
