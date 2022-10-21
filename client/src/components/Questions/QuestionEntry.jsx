@@ -46,7 +46,7 @@ const QuestionEntry = (props) => {
     <div className="question-entry">
       <div className='question-line'>
         <div>
-          <span>Q: {props.question.question_body}</span>
+          <span><strong>Q: {props.question.question_body}</strong></span>
         </div>
         <div>
           <span>Helpful?   {!clickedBefore && <a onClick={yesClicked}>  Yes </a>}
