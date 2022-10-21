@@ -1,11 +1,33 @@
 import React, { useState, useEffect } from 'react';
 import formattedDate from '../../HelperFunctions/formattedDate.js';
 import axios from 'axios';
+import styled from 'styled-components';
+import PhotosModal from '../Reviews/PhotosModal.jsx';
+
+const QAThumbnail = styled.img`
+  width: 40px;
+  height: 40px;
+  padding: 15px 0 15px 0;
+`;
 
 
 const Answers = (props) => {
+
+  const formattedPhotosList = () => {
+    return (props.answer.photos.map((pho) => {
+      return { url: pho, clicked: false };
+    }));
+  };
+
   const [clickedYesBefore, setClickedYesBefore] = useState(false);
   const [clickedReportBefore, setClickedReportBefore] = useState(false);
+  const [showPhoModal, setShowPhoModal] = useState(false);
+  const [AnsPhotoClicked, setAnsPhotoClicked] = useState(true);
+  const [formattedPhotos, setFormattedPhotos] = useState(formattedPhotosList());
+  const [phoIsScrollable, setPhoIsScrollable] = useState(true);
+
+
+
 
   const helpfulClicked = () => {
     if (!clickedYesBefore) {
@@ -37,10 +59,35 @@ const Answers = (props) => {
     }
   };
 
+  const toggleAnsPhoto = () => {
+    setShowPhoModal(!showPhoModal);
+    setPhoIsScrollable(!phoIsScrollable);
+    phoIsScrollable ? document.body.style.overflow = 'hidden' : document.body.style.overflow = 'scroll';
+  };
+
+  const toggleAnsPhotoClicked = (ansPho) => {
+    ansPho.clicked = AnsPhotoClicked;
+    setAnsPhotoClicked(!AnsPhotoClicked);
+  };
+
   return (
     <span className="answer" data-testid="answer">
       <span>{props.answer.body}</span>
       <br/>
+      {/* {formattedPhotos.map((photo, i) => (
+        <div className="thumbnail">
+          <QAThumbnail src={photo.photoURL} onClick={() => { toggleAnsPhoto(); toggleAnsPhotoClicked(photo); }} key={i} />
+          {showPhoModal && <AnsPhotosModal key={i + 1000} toggle={() =>{ toggleAnsPhoto(); }} visible={showPhoModal} photo={photo} toggleAnsPhotoClicked={(p) => { toggleAnsPhotoClicked(p); }} />}
+        </div>
+      ))} */}
+      {props.answer.photos.length > 0 && <div className="thumbnails-container">
+        {formattedPhotos.map((photo, i) => (
+          <div className="thumbnail" key={i}>
+            <QAThumbnail src={photo.url} onClick={() => { toggleAnsPhoto(); toggleAnsPhotoClicked(photo); }} />
+            {showPhoModal ? <PhotosModal toggle={toggleAnsPhoto} visible={showPhoModal} photo={photo} togglePhotoClicked={toggleAnsPhotoClicked} /> : null}
+          </div>
+        ))}
+      </div>}
       <span>by {props.answer.answerer_name}, {formattedDate(props.answer.date)}</span>
       <span> | </span>
       <span>Helpful? {!clickedYesBefore && <a onClick={helpfulClicked}>Yes</a>}
