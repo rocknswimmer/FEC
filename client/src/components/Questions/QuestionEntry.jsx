@@ -58,7 +58,7 @@ const QuestionEntry = (props) => {
         </div>
       </div>
       <div className='answer-feed'>
-        <span>A: </span>
+        <span><strong>A: </strong></span>
         <AnswerFeed answers={answers} />
       </div>
       {addAnswer && <AnswerModal question={props.question.question_id} get={props.get} close={addAnswerModal}/>}
