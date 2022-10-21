@@ -78,19 +78,28 @@ const ExpandedImageDiv = styled.div`
 `;
 
 const ModalPop = styled.div`
-background: #fff;
+background-image: url(${props => props.img});
 border: 2px solid #aaa;
 border-radius: 5px;
 z-index: 2;
 margin: auto;
-position: fixed;
-top: 50%;
-left: 50%;
-width: 100%;
-height: 100%;
+
+
+
 `;
 
-export { MainImage, ExpandedView, ComponentBlock, LeftArrow, RightArrow, Expander, PhotoColumn, Thumbnails, ExpandedImageDiv };
+const ModalPhoto = styled.div`
+background-image: url(${props => props.img});
+  background-position: center;
+  background-size:cover;
+    width: auto;
+    height: atuo;
+    color: red;
+    overflow: hidden;
+  object-fit: cover;
+`;
+
+export { MainImage, ExpandedView, ComponentBlock, LeftArrow, RightArrow, Expander, PhotoColumn, Thumbnails, ExpandedImageDiv, ModalPop, ModalPhoto };
 
     // margin: 10px;
     // height: 75px;

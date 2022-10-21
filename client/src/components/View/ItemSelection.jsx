@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { DropDownContainer, DropDownHeader, DropDownListContainer, DropDownList, ListItem } from './Styled/DropDownStyles.jsx';
 import { Button, CartContainer } from './Styled/Form.styled.jsx';
-
 import { FaChevronDown, FaMinus, FaPlus } from 'react-icons/fa';
+import Dropdown from 'react-dropdown';
+import 'react-dropdown/style.css';
 
 const ItemSelection = ({ currentDisplayedStyle, productId, addToCart, cartContents }) => {
 
@@ -125,6 +126,7 @@ const ItemSelection = ({ currentDisplayedStyle, productId, addToCart, cartConten
 
   return (
     <CartContainer>
+      {/* <Dropdown options={items}/> */}
       {
         outOfStock && <DropDownContainer className="dropdown-size-container">
           <DropDownHeader>
@@ -133,11 +135,13 @@ const ItemSelection = ({ currentDisplayedStyle, productId, addToCart, cartConten
         </DropDownContainer>
       }
       {
-        !outOfStock && <DropDownContainer className="dropdown-size-container" onMouseLeave={(e) => { handleMouseLeavingSizeDropDown(); }}>
+        !outOfStock && <DropDownContainer className="dropdown-size-container"
+        onMouseLeave={(e) => { handleMouseLeavingSizeDropDown(); }}
+        >
           <DropDownHeader onClick={toggleSizeDropdown}>
             {
               sizeChosen && <>
-                <p>{selectedItem.size}</p>
+                <span>{selectedItem.size}</span>
                 <FaChevronDown style={{ color: '#B0B0B0' }} />
               </>
             }
