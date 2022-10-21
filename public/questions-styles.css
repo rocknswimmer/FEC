@@ -37,3 +37,9 @@ a {
 .answer {
   border-bottom: solid grey 1px;
 }
+
+.question-line{
+  display: flex;
+  justify-content: space-between;
+}
+

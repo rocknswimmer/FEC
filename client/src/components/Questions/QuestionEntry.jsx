@@ -44,13 +44,19 @@ const QuestionEntry = (props) => {
 
   return (
     <div className="question-entry">
-      <span>Q: {props.question.question_body}</span>
-      <span>Helpful? {!clickedBefore && <a onClick={yesClicked}>Yes</a>}
-        {!clickedBefore && `(${props.question.question_helpfulness})`}
-        {clickedBefore && `(${props.question.question_helpfulness + 1})`}
-      </span>
-      <span>|</span>
-      <span><a onClick={addAnswerModal}>Add Answer</a></span>
+      <div className='question-line'>
+        <div>
+          <span>Q: {props.question.question_body}</span>
+        </div>
+        <div>
+          <span>Helpful?   {!clickedBefore && <a onClick={yesClicked}>  Yes </a>}
+            {!clickedBefore && `(${props.question.question_helpfulness})`}
+            {clickedBefore && `(${props.question.question_helpfulness + 1})`}
+          </span>
+          <span>  |  </span>
+          <span><a onClick={addAnswerModal}>  Add Answer</a></span>
+        </div>
+      </div>
       <div className='answer-feed'>
         <span>A: </span>
         <AnswerFeed answers={answers} />
