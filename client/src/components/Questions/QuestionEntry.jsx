@@ -10,6 +10,14 @@ const QuestionEntry = (props) => {
 
   const answers = Object.keys(props.question.answers).map((key) => {
     return props.question.answers[key];
+  }).sort((a, b) => {
+    if (a.helpfulness > b.helpfulness) {
+      return -1;
+    }
+    if (a.helpfulness < b.helpfulness) {
+      return 1;
+    }
+    return 0;
   });
 
   const yesClicked = () => {
