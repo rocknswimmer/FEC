@@ -11,6 +11,7 @@ const App = () => {
   const [product, setProduct] = useState(37311);
 
   const [metaData, setMetaData] = useState({});
+  const [currentProduct, setCurrentProduct] = useState({});
 
   const getMetaData = (id) => {
     axios({
@@ -28,6 +29,21 @@ const App = () => {
       });
   };
 
+  const getCurrentProduct = (productId) => {
+    axios.get('/products', {
+      params: {
+        "id": productId
+      }
+    })
+      .then(results => {
+        let newProduct = results.data;
+        setCurrentProduct(newProduct);
+      })
+      .catch(err => {
+        console.log('There is an error in the getCurrentProduct fn ', err);
+      });
+  };
+
   useEffect(() => {
     getMetaData(product);
   }, []);
@@ -35,7 +51,7 @@ const App = () => {
   return (
     <div id="app">
       <h1>House Greyjoy</h1>
-      <View productId = {product} />
+      <View productId = {product} currentProduct ={currentProduct} />
       <Questions productId = {product} />
       <Reviews productId={product} metaData={metaData}/>
     </div>
