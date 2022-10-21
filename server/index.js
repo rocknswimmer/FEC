@@ -180,7 +180,7 @@ app.post('/qa/questions/', (req, res) => {
     'body': req.body.body,
     'name': req.body.name,
     'email': req.body.email,
-    'product_id': Number(JSON.stringify(req.body.product_id))
+    'product_id': Number(req.body.product_id)
   };
   let authHeaders = {
     'headers': {
@@ -190,7 +190,7 @@ app.post('/qa/questions/', (req, res) => {
 
   axios.post(urlVariable, options, authHeaders)
     .then(results => {
-      // console.log('question post results:', results);
+      console.log('question post results:', results);
       res.send(' queston posted');
     })
     .catch((err) => {
