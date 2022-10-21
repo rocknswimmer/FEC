@@ -20,7 +20,7 @@ const Button = styled.button`
 let postableObj = {};
 
 
-const ReviewModal = ({toggle, productId, getReviews}) => {
+const ReviewModal = ({toggle, productId, getReviews, metaData}) => {
 
   let name;
   if (productId === 37311) {
@@ -95,39 +95,6 @@ const ReviewModal = ({toggle, productId, getReviews}) => {
     setStars(int);
   };
 
-  const metaData = {
-    'product_id': '37315',
-    ratings: {
-      1: '33',
-      2: '7',
-      3: '20',
-      4: '14',
-      5: '20',
-    },
-    recommended: {
-      false: '40',
-      true: '54',
-    },
-    characteristics: {
-      Size: {
-        id: 125044,
-        value: '2.7454545454545455',
-      },
-      Width: {
-        id: 125045,
-        value: '2.9642857142857143',
-      },
-      Comfort: {
-        id: 125046,
-        value: '3.1960784313725490',
-      },
-      Quality: {
-        id: 125047,
-        value: '3.0784313725490196',
-      },
-    },
-  };
-
   const handleSubmit = (e) => {
 
     axios({
@@ -154,7 +121,12 @@ const ReviewModal = ({toggle, productId, getReviews}) => {
       });
   };
 
-
+  // if (Object.keys(metaData).length === 0) {
+  //   metaData.characteristics = {};
+  //   return (
+  //     <div>{metaData}</div>
+  //   );
+  // }
 
   return (
     <div>
@@ -277,8 +249,8 @@ const ReviewModal = ({toggle, productId, getReviews}) => {
                     publicId={i}
                     fetch-format="auto"
                     quality="auto"
-                    height="40px"
-                    width="40px"
+                    height="80px"
+                    width="80px"
                   />)}
                 </section>
               </div>

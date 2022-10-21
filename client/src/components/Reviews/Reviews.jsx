@@ -29,7 +29,7 @@ const Reviews = ({productId}) => {
   const [visibleReviews, setVisibleReviews] = useState([]);
   const [currentSort, setCurrentSort] = useState('relevance');
 
-
+  const [metaData, setMetaData] = useState({});
 
   const getReviews = (id = productId, sortSelection = 'relevant') => {
 
@@ -57,15 +57,33 @@ const Reviews = ({productId}) => {
       });
   };
 
-  useEffect(() => {
-    getReviews(productId);
-  }, []);
 
   const handleMoreReviews = () => {
     visibleReviewsIndex += 2;
     setVisibleReviews(reviewsList.slice(0, visibleReviewsIndex));
   };
 
+  const getMetaData = (id) => {
+    axios({
+      method: 'get',
+      url: 'reviews/meta',
+      params: {
+        'product_id': id
+      }
+    })
+      .then((response) => {
+        setMetaData(response.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  useEffect(() => {
+    getReviews(productId);
+    getMetaData(productId);
+    console.log('i fire once');
+  }, []);
   return (
     <ReviewsContainer>
 
@@ -90,7 +108,8 @@ const Reviews = ({productId}) => {
               reviewsList={reviewsList}
               visibleReviews={visibleReviews}
               productId={productId}
-              getReviews={getReviews}/>
+              getReviews={getReviews}
+              metaData={metaData}/>
           </div>
         </SummaryListDivider>
       </div>

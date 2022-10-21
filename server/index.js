@@ -88,7 +88,27 @@ app.get('/reviews/', (req, res) => {
 
 //Get Review Metadata
 app.get('/reviews/meta', (req, res) => {
+  let apiUrl = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/meta';
 
+  let options = {
+    params: {
+      'product_id': req.query.product_id
+    },
+    headers: {
+      'Authorization': api
+    }
+  };
+
+  axios.get(apiUrl, options)
+    .then((data) => {
+      res.json(data.data);
+      res.end();
+    })
+    .catch((err) => {
+      console.log('error in server get for meta', err);
+      res.status(500);
+      res.end();
+    });
 });
 
 //Add a Review
