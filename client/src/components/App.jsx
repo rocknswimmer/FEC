@@ -46,6 +46,7 @@ const App = () => {
 
   useEffect(() => {
     getMetaData(product);
+    getCurrentProduct(product);
   }, []);
 
   return (
