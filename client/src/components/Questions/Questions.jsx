@@ -14,6 +14,7 @@ const Questions = (props) => {
   const [searchedQuestions, setSearchedQuestions] = useState([]);
 
   const getCurrentQuestions = () => {
+    console.log('button pushed or initial load');
     axios.get('/qa/questions/', {
       params: {
         'id': props.productId
@@ -105,7 +106,9 @@ const Questions = (props) => {
           <FaSearch />
         </button>
       </form>
-      <QuestionFeed questions={questions} moreQuestions={moreQuestions} searchable={searchable} searchedQuestions={searchedQuestions}/>
+      <div className='question-feed'>
+        <QuestionFeed questions={questions} moreQuestions={moreQuestions} get={() => { getCurrentQuestions(); }} searchable={searchable} searchedQuestions={searchedQuestions} />
+      </div>
       {(questions[0] && questions.length > 2) && !moreQuestions && <button onClick={loadMoreQuestions}>MORE ANSWERED QUESTIONS</button>}
       {(questions[0] && questions.length > 2) && moreQuestions && <button onClick={loadMoreQuestions}>LESS ANSWERED QUESTIONS</button>}
       <button onClick={addQuestionModal}>ADD A QUESTION +</button>

@@ -69,6 +69,9 @@ const AnswerModal = (props) => {
     })
       .then((res) => {
         // console.log('response posting answer to server', res.data);
+        props.get();
+
+        console.log('after submit get');
         props.close();
       })
       .catch((err) => {
