@@ -194,6 +194,13 @@ div.radio-box {
   border-bottom: solid grey 1px;
 }
 
-/* label {
-  height: 150px;
-  display: inline-block; } */
+.rev-body-input {
+  resize: none;
+  height: 84px;
+  width: 250px;
+  font-family: inherit;
+}
+
+.rev-modal-pop input {
+  width: 250px;
+}

@@ -253,9 +253,10 @@ const ReviewModal = ({toggle, productId, getReviews}) => {
                 />
                 <br/>
                 <div>Review Body <small>*</small></div>
-                <input
+                <textarea
+                  className="rev-body-input"
                   onChange={(e) => setBody(e.target.value)}
-                  type="textfield"
+                  type="textarea"
                   required
                   placeholder="Why did you like the product or not?"
                   maxLength="1000"
