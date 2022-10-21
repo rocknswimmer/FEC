@@ -201,3 +201,9 @@ div.radio-box {
   font-family: inherit;
 }
 
+.average-and-stars {
+  display: flex;
+  width: 100;
+  align-items: center;
+  justify-content: flex-start;
+}

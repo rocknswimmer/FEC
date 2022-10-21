@@ -23,7 +23,7 @@ flex-shrink: 0;
 
 let visibleReviewsIndex = 2;
 
-const Reviews = ({productId, metaData}) => {
+const Reviews = ({productId, metaData, currentProduct}) => {
 
   const [reviewsList, setReviewsList] = useState([]);
   const [visibleReviews, setVisibleReviews] = useState([]);
@@ -64,7 +64,6 @@ const Reviews = ({productId, metaData}) => {
 
   useEffect(() => {
     getReviews(productId);
-
   }, []);
   return (
     <ReviewsContainer>
@@ -75,7 +74,7 @@ const Reviews = ({productId, metaData}) => {
         </div>
         <SummaryListDivider>
           <div className="summary">
-            <Summary />
+            <Summary metaData={metaData}/>
           </div>
           <div className="list">
             <Dropdown reviewsList={reviewsList}

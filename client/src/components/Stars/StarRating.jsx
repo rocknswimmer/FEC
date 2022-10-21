@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { FaStar } from 'react-icons/fa';
+import { FaStar, FaStarHalf, FaRegStar, FaDuoToneStarHalf, FaDuoTone } from 'react-icons/fa';
+import {FontAwesomeIcon} from 'react-icons/fa';
 
 
 const StarRating = (props) => {
@@ -24,6 +25,7 @@ const StarRating = (props) => {
           return (
             <FaStar
               className="star"
+              border="1px solid black"
               color={ratingValue <= props.rating ? '#ffc107' : 'grey'}
               size={15}
               key={i}/>
@@ -50,6 +52,7 @@ const StarRating = (props) => {
                 onClick={() => { setRating(ratingValue); props.selectStars(ratingValue); }}
               />
               <FaStar
+                icon="fa-duotone fa-star-half"
                 className="star"
                 color={ratingValue <= ( hover || rating) ? '#ffc107' : 'grey'}
                 size={15}

@@ -113,8 +113,7 @@ const ReviewModal = ({toggle, productId, getReviews, metaData}) => {
       }
     })
       .then((response) => {
-        getReviews(productId);
-        toggle();
+
       })
       .catch((err) => {
         console.log('IN CLIENT POST', err);
@@ -133,7 +132,7 @@ const ReviewModal = ({toggle, productId, getReviews, metaData}) => {
       <div className="modal">
         <div className="rev-modal-pop" role="dialog" aria-modal="true">
           <button className="photo-modal-close" type="button" onClick={() => toggle()}>Close</button>
-          <form onSubmit= {() => false}>
+          <form>
             <h2>Write Your Review</h2>
             <h3>About the {name}</h3>
             <br/>
