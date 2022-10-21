@@ -1,10 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import styled from 'styled-components';
+import {CloudinaryContext, Image} from 'cloudinary-react';
+import { fetchPhotos, openUploadWidget } from '../../HelperFunctions/CloudinaryService.js';
+
+const Button = styled.button`
+  background: white;
+  color: grey;
+  font-size: .75em;
+  margin: 15px 0 15px 0;
+  padding: 0.25em 1em;
+  border: 2px solid grey;
+  border-radius: 3px;
+`;
 
 const AnswerModal = (props) => {
   const [answer, setAnswer] = useState('');
   const [answerUser, setAnswerUser] = useState('');
   const [answerEmail, setAnswerEmail] = useState('');
+
+  const [images, setImages] = useState([]);
+  const photosUrls = [];
 
   const onA = (e) => {
     setAnswer(e.target.value);
@@ -18,12 +34,36 @@ const AnswerModal = (props) => {
     setAnswerEmail(e.target.value);
   };
 
+  const beginUpload = tag => {
+    const uploadOptions = {
+      cloudName: 'dqmnjwd2c',
+      tags: [tag, 'image'],
+      uploadPreset: 'greyjoy_cloud'
+    };
+
+    openUploadWidget(uploadOptions, (error, photos) => {
+      if (!error) {
+        // console.log(photos);
+        if (photos.event === 'success') {
+
+          setImages([...images, photos.info.url]);
+        }
+      } else {
+        console.log(error);
+      }
+    });
+  };
+
+  useEffect(() => {
+    fetchPhotos('image', setImages);
+  }, []);
+
   const submitAnswer = () => {
     axios.post('/qa/questions/:question_id/ansers', {
       body: answer,
       name: answerUser,
       email: answerEmail,
-      photos: [],
+      photos: images,
       // eslint-disable-next-line camelcase
       question_id: props.question //need to add question to props once I know where this goes
     })
@@ -34,6 +74,8 @@ const AnswerModal = (props) => {
       .catch((err) => {
         console.log('error posting answer:', err );
       });
+
+    // console.log(images);
 
   };
 
@@ -90,6 +132,21 @@ const AnswerModal = (props) => {
         <br />
         For authentication reasons, you will not be emailed
         <br />
+        <CloudinaryContext cloudName="dqmnjwd2c">
+          <div>
+            <Button type="button" onClick={() => beginUpload('image')}>Upload Photos</Button>
+            <section>
+              {images.map(i => <Image
+                key={i}
+                publicId={i}
+                fetch-format="auto"
+                quality="auto"
+                height="80px"
+                width="80px"
+              />)}
+            </section>
+          </div>
+        </CloudinaryContext>
         <button onClick={onSumbitA}>Submit Answer</button>
       </div>
       <div className="modal-overlay"></div>
