@@ -78,29 +78,49 @@ const ExpandedImageDiv = styled.div`
 `;
 
 const ModalPop = styled.div`
-background-image: url(${props => props.img});
+display: flex;
+align-items: center;
+background: #fff;
 border: 2px solid #aaa;
+object-fit: contain;
 border-radius: 5px;
 z-index: 2;
 margin: auto;
-
-
-
+overflow-y: scroll;
+overflow: scroll;
+position: fixed;
+top: 50%;
+left: 50%;
+max-width: 95vh;
+max-height: 95vw;
+transform: translate(-50%, -50%);
+svg {
+  color: purple;
+}
 `;
 
-const ModalPhoto = styled.div`
-background-image: url(${props => props.img});
+const ModalPhoto = styled.img`
+  transform: ${props => props.isZoomed ? 'scale(2.5, 2.5)' : null};
+  transform-origin: ${props => props.mouseLocation};
   background-position: center;
   background-size:cover;
-    width: auto;
-    height: atuo;
-    color: red;
-    overflow: hidden;
+  max-height: 100vh;
+  max-width: 100vw;
   object-fit: cover;
 `;
 
-export { MainImage, ExpandedView, ComponentBlock, LeftArrow, RightArrow, Expander, PhotoColumn, Thumbnails, ExpandedImageDiv, ModalPop, ModalPhoto };
+const ModalOverlay = styled.div`
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+z-index: 1;
+background-color: rgb(0, 0, 0);
+opacity: 0.75;
+`;
 
-    // margin: 10px;
-    // height: 75px;
-    // width: 75px;
+export { MainImage, ExpandedView, ComponentBlock, LeftArrow, RightArrow, Expander, PhotoColumn, Thumbnails, ExpandedImageDiv, ModalPop, ModalPhoto, ModalOverlay };
+
+
+// background-image: url(${props => props.img});
