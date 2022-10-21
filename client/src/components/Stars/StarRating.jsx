@@ -41,7 +41,7 @@ const StarRating = (props) => {
         {[...Array(5)].map((star, i) => {
           const ratingValue = i + 1;
           return (
-            <label>
+            <label key={i}>
               <input
                 type="radio"
                 name="rating"

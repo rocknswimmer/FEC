@@ -38,7 +38,7 @@ const ReviewModal = ({toggle, productId, getReviews}) => {
 
   const [size, setSize] = useState(0);
   const sizeDescr = ['A size too small', '1/2 a size too small', 'Perfect', '1/2 a size too big', 'A size too wide'];
-  console.log('size', size);
+
 
   const [width, setWidth] = useState(0);
   const widthDescr = ['Too narow', 'Slightly narrow', 'Perfect', 'Slightly wide', 'Too wide'];
@@ -94,7 +94,6 @@ const ReviewModal = ({toggle, productId, getReviews}) => {
   const selectStars = (int) => {
     setStars(int);
   };
-  console.log(images);
 
   const metaData = {
     'product_id': '37315',
@@ -129,12 +128,6 @@ const ReviewModal = ({toggle, productId, getReviews}) => {
     },
   };
 
-  console.log(metaData.characteristics.Width.id);
-
-
-  console.log('IN MODAL', postableObj);
-
-
   const handleSubmit = (e) => {
 
     axios({
@@ -153,7 +146,6 @@ const ReviewModal = ({toggle, productId, getReviews}) => {
       }
     })
       .then((response) => {
-        console.log('In Client Post', response);
         getReviews(productId);
         toggle();
       })
