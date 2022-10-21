@@ -91,9 +91,9 @@ const ReviewsListEntry = ({review}) => {
         {review.photos.length > 0 ?
           <div className="thumbnails-container">
             {review.photos.map((photo, i) => (
-              <div className="thumbnail">
-                <Thumbnail src={photo.url} onClick={() => { togglePhoto(photo.url); togglePhotoClicked(photo); }} key={i} ></Thumbnail>
-                {showModal ? <PhotosModal key={i + 1000} toggle={togglePhoto} visible={showModal} photo={photo} togglePhotoClicked={togglePhotoClicked}/> : null}
+              <div className="thumbnail" key={i}>
+                <Thumbnail src={photo.url} onClick={() => { togglePhoto(photo.url); togglePhotoClicked(photo); }} ></Thumbnail>
+                {showModal ? <PhotosModal toggle={togglePhoto} visible={showModal} photo={photo} togglePhotoClicked={togglePhotoClicked}/> : null}
               </div>
             ))}
           </div>

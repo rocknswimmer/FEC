@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { FaStar } from 'react-icons/fa';
-{/* <FontAwesomeIcon icon="fa-duotone fa-star-half" />; */}
 
 
 const StarRating = (props) => {
@@ -42,11 +41,12 @@ const StarRating = (props) => {
         {[...Array(5)].map((star, i) => {
           const ratingValue = i + 1;
           return (
-            <label>
+            <label key={i}>
               <input
                 type="radio"
                 name="rating"
                 value={ratingValue}
+                required
                 onClick={() => { setRating(ratingValue); props.selectStars(ratingValue); }}
               />
               <FaStar

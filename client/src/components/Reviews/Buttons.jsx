@@ -13,7 +13,7 @@ const Button = styled.button`
   border-radius: 3px;
 `;
 
-const Buttons = ({handleMoreReviews, reviewsList, visibleReviews, productId}) => {
+const Buttons = ({handleMoreReviews, reviewsList, visibleReviews, productId, getReviews, metaData}) => {
 
   const [showModal, setShowModal] = useState(false);
   const [isScrollable, setIsScrollable] = useState(true);
@@ -28,10 +28,20 @@ const Buttons = ({handleMoreReviews, reviewsList, visibleReviews, productId}) =>
     <div>
       <div className="buttons-container">
         {visibleReviews.length < reviewsList.length ?
-          <Button className="rev-button" onClick={() => { handleMoreReviews(); }}>MORE REVIEWS</Button>
+          <Button
+            className="rev-button"
+            onClick={() => handleMoreReviews()}>MORE REVIEWS</Button>
           : null}
-        <Button className="rev-button" onClick={() => toggleReviewModal()}>ADD A REVIEW +</Button>
-        {showModal ? <ReviewModal toggle={toggleReviewModal} productId={productId}/> : null}
+        <Button
+          className="rev-button"
+          onClick={() => toggleReviewModal()}>ADD A REVIEW +</Button>
+        {showModal ?
+          <ReviewModal
+            toggle={toggleReviewModal}
+            productId={productId}
+            getReviews={getReviews}
+            metaData={metaData}/>
+          : null}
       </div>
     </div>
   );

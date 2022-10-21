@@ -3,6 +3,7 @@ const axios = require('axios');
 const app = express();
 const path = require('path');
 const { api } = require('../client/src/config/config.js');
+require('dotenv').config();
 
 app.use(express.static(path.join(__dirname, '../public')));
 app.use(express.json());
@@ -57,9 +58,8 @@ app.get('/products/:product_id/styles', (req, res) => {
 //List Reviews
 app.get('/reviews/', (req, res) => {
   //console.log('reviews query', req.query);
-  let apiUrl = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/';
+  let apiUrl = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews';
 
-  console.log(req.query);
   let options = {
     params: {
       'page': 1,
@@ -87,12 +87,51 @@ app.get('/reviews/', (req, res) => {
 
 //Get Review Metadata
 app.get('/reviews/meta', (req, res) => {
+  let apiUrl = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/meta';
 
+  let options = {
+    params: {
+      'product_id': req.query.product_id
+    },
+    headers: {
+      'Authorization': api
+    }
+  };
+
+  axios.get(apiUrl, options)
+    .then((data) => {
+      res.json(data.data);
+      res.end();
+    })
+    .catch((err) => {
+      console.log('error in server get for meta', err);
+      res.status(500);
+      res.end();
+    });
 });
 
 //Add a Review
 app.post('/reviews', (req, res) => {
 
+  console.log(req.body);
+  let apiUrl = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews';
+
+  let authHeader = {
+    'headers': {
+      'Authorization': api
+    }
+  };
+
+  axios.post(apiUrl, req.body, authHeader)
+    .then((data) => {
+      res.status(201);
+      res.send('CREATED').end();
+    })
+    .catch((err) => {
+      console.log('error in server post', err);
+      res.status(500);
+      res.end();
+    });
 });
 
 //Mark Review as Helpful

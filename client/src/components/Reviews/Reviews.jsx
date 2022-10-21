@@ -23,12 +23,11 @@ flex-shrink: 0;
 
 let visibleReviewsIndex = 2;
 
-const Reviews = ({productId}) => {
+const Reviews = ({productId, metaData}) => {
 
   const [reviewsList, setReviewsList] = useState([]);
   const [visibleReviews, setVisibleReviews] = useState([]);
   const [currentSort, setCurrentSort] = useState('relevance');
-
 
 
   const getReviews = (id = productId, sortSelection = 'relevant') => {
@@ -57,17 +56,19 @@ const Reviews = ({productId}) => {
       });
   };
 
-  useEffect(() => {
-    getReviews(productId);
-  }, []);
 
   const handleMoreReviews = () => {
     visibleReviewsIndex += 2;
     setVisibleReviews(reviewsList.slice(0, visibleReviewsIndex));
   };
 
+  useEffect(() => {
+    getReviews(productId);
+
+  }, []);
   return (
     <ReviewsContainer>
+
       <div>
         <div>
           <h3 id="rev-header">RATINGS AND REVIEWS</h3>
@@ -88,7 +89,9 @@ const Reviews = ({productId}) => {
             <Buttons handleMoreReviews={handleMoreReviews}
               reviewsList={reviewsList}
               visibleReviews={visibleReviews}
-              productId={productId}/>
+              productId={productId}
+              getReviews={getReviews}
+              metaData={metaData}/>
           </div>
         </SummaryListDivider>
       </div>
