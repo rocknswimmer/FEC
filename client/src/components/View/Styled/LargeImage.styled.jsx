@@ -44,6 +44,7 @@ const PhotoColumn = styled.div`
 
 const Thumbnails = styled.div`
   background-image: url(${props => props.img});
+  border: ${props => props.photoIndex === props.origIndex ? 'solid white 2px' : 'none'};
   background-position: center;
   background-size:cover;
     margin: 2 px;
@@ -71,7 +72,34 @@ cursor: auto;
 grid-column-start: 10;
 `;
 
-export { MainImage, ExpandedView, ComponentBlock, LeftArrow, RightArrow, Expander, PhotoColumn, Thumbnails };
+const ExpandedImageDiv = styled.div`
+  margin: auto;
+  position: fixed;
+`;
+
+const ModalPop = styled.div`
+background-image: url(${props => props.img});
+border: 2px solid #aaa;
+border-radius: 5px;
+z-index: 2;
+margin: auto;
+
+
+
+`;
+
+const ModalPhoto = styled.div`
+background-image: url(${props => props.img});
+  background-position: center;
+  background-size:cover;
+    width: auto;
+    height: atuo;
+    color: red;
+    overflow: hidden;
+  object-fit: cover;
+`;
+
+export { MainImage, ExpandedView, ComponentBlock, LeftArrow, RightArrow, Expander, PhotoColumn, Thumbnails, ExpandedImageDiv, ModalPop, ModalPhoto };
 
     // margin: 10px;
     // height: 75px;

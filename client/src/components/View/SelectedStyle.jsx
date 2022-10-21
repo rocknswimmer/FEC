@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {RoundImage, StyleDiv} from './Styled/SelectedStyleImage.styled.jsx';
-import styled from 'styled-components';
+import {RoundImage, ImageContainer, StyleDiv} from './Styled/SelectedStyleImage.styled.jsx';
 import {FaCheckCircle} from 'react-icons/fa';
 
 
@@ -15,9 +14,9 @@ const SelectedStyle = ( {otherStyles, productId, changeDisplayedStyle, currentDi
           if (imgSrc === null) {
             return <></>;
           } else {
-            return <RoundImage key = {index} img={imgSrc} onClick ={(event) => {
+            return <ImageContainer><RoundImage key = {index} img={imgSrc} onClick ={(event) => {
               changeDisplayedStyle(index);
-            }} >{currentDisplayedStyle.style_id === style.style_id && <FaCheckCircle style={{color: 'red'}}/>}</RoundImage>;
+            }} >{currentDisplayedStyle.style_id === style.style_id && <FaCheckCircle style={{color: 'red'}}/>}</RoundImage>{style.name} </ImageContainer>;
           }
         })
       }
