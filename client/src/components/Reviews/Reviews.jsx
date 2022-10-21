@@ -68,6 +68,7 @@ const Reviews = ({productId}) => {
 
   return (
     <ReviewsContainer>
+
       <div>
         <div>
           <h3 id="rev-header">RATINGS AND REVIEWS</h3>
@@ -88,7 +89,8 @@ const Reviews = ({productId}) => {
             <Buttons handleMoreReviews={handleMoreReviews}
               reviewsList={reviewsList}
               visibleReviews={visibleReviews}
-              productId={productId}/>
+              productId={productId}
+              getReviews={getReviews}/>
           </div>
         </SummaryListDivider>
       </div>

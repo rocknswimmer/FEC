@@ -3,6 +3,7 @@ const axios = require('axios');
 const app = express();
 const path = require('path');
 const { api } = require('../client/src/config/config.js');
+require('dotenv').config();
 
 app.use(express.static(path.join(__dirname, '../public')));
 app.use(express.json());
@@ -109,6 +110,7 @@ app.post('/reviews', (req, res) => {
     })
     .catch((err) => {
       console.log('error in server post', err);
+      res.status(500);
       res.end();
     });
 });

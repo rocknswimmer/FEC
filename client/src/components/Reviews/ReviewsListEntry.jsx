@@ -68,6 +68,8 @@ const ReviewsListEntry = ({review}) => {
     return rating;
   };
 
+  console.log('IN ENTRY PHOTOS',review.photos)
+
   return (
     <ReviewEntry>
       <div className="rev-star-date">

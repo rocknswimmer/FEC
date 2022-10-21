@@ -3,6 +3,9 @@ import axios from 'axios';
 import StarRating from '../Stars/StarRating.jsx';
 import Characteristic from './Characteristic.jsx';
 import styled from 'styled-components';
+import {CloudinaryContext, Image} from 'cloudinary-react';
+import { fetchPhotos, openUploadWidget } from '../../HelperFunctions/CloudinaryService.js';
+
 
 const Button = styled.button`
   background: white;
@@ -16,7 +19,9 @@ const Button = styled.button`
 
 let postableObj = {};
 
-const ReviewModal = ({toggle, productId}) => {
+
+const ReviewModal = ({toggle, productId, getReviews}) => {
+
   let name;
   if (productId === 37311) {
     name = 'Camo Onesie';
@@ -28,31 +33,27 @@ const ReviewModal = ({toggle, productId}) => {
     name = 'Slacker\'s Slacks';
   }
 
-  const [recommend, setRecommend] = useState(false);
+  const [recommend, setRecommend] = useState(null);
   const [stars, setStars] = useState(0);
 
   const [size, setSize] = useState(0);
   const sizeDescr = ['A size too small', '1/2 a size too small', 'Perfect', '1/2 a size too big', 'A size too wide'];
   console.log('size', size);
+
   const [width, setWidth] = useState(0);
   const widthDescr = ['Too narow', 'Slightly narrow', 'Perfect', 'Slightly wide', 'Too wide'];
-  console.log('width', width);
 
   const [comfort, setComfort] = useState(0);
   const comfortDescr = ['Uncomfortable', 'Slightly Uncomfortable', 'Ok', 'Comfortable', 'Perfect'];
-  console.log('comfort', comfort);
 
   const [quality, setQuality] = useState(0);
   const qualityDescr = ['Poor', 'Below average', 'What I expected', 'Pretty great', 'Perfect'];
-  console.log('quality', quality);
 
   const [length, setLength] = useState(0);
   const lengthDescr = ['Runs short', 'Runs slightly short', 'Perfect', 'Runs slightly long', 'Runs long'];
-  console.log('length', length);
 
   const [fit, setFit] = useState(0);
   const fitDescr = ['Runs tight', 'Runs slightly tight', 'Perfect', 'Runs slightly long', 'Runs long'];
-  console.log('fit', fit);
 
   const [summary, setSummary] = useState('');
   const [body, setBody] = useState('');
@@ -62,9 +63,38 @@ const ReviewModal = ({toggle, productId}) => {
   const [nickname, setNickname] = useState('');
   const [email, setEmail] = useState('');
 
+  const [images, setImages] = useState([]);
+  const photosUrls = [];
+
+
+  const beginUpload = tag => {
+    const uploadOptions = {
+      cloudName: 'dqmnjwd2c',
+      tags: [tag, 'image'],
+      uploadPreset: 'greyjoy_cloud'
+    };
+
+    openUploadWidget(uploadOptions, (error, photos) => {
+      if (!error) {
+        console.log(photos);
+        if (photos.event === 'success') {
+
+          setImages([...images, photos.info.url]);
+        }
+      } else {
+        console.log(error);
+      }
+    });
+  };
+
+  useEffect(() => {
+    fetchPhotos('image', setImages);
+  }, []);
+
   const selectStars = (int) => {
     setStars(int);
   };
+  console.log(images);
 
   const metaData = {
     'product_id': '37315',
@@ -102,7 +132,7 @@ const ReviewModal = ({toggle, productId}) => {
   console.log(metaData.characteristics.Width.id);
 
 
-  console.log("IN MODAL", postableObj)
+  console.log('IN MODAL', postableObj);
 
 
   const handleSubmit = (e) => {
@@ -118,12 +148,14 @@ const ReviewModal = ({toggle, productId}) => {
         recommend: recommend,
         name: nickname,
         email: email,
-        photos: [''],
+        photos: images,
         characteristics: postableObj
       }
     })
       .then((response) => {
         console.log('In Client Post', response);
+        getReviews(productId);
+        toggle();
       })
       .catch((err) => {
         console.log('IN CLIENT POST', err);
@@ -137,7 +169,7 @@ const ReviewModal = ({toggle, productId}) => {
       <div className="modal">
         <div className="rev-modal-pop" role="dialog" aria-modal="true">
           <button className="photo-modal-close" type="button" onClick={() => toggle()}>Close</button>
-          <form>
+          <form onSubmit= {() => false}>
             <h2>Write Your Review</h2>
             <h3>About the {name}</h3>
             <br/>
@@ -156,6 +188,7 @@ const ReviewModal = ({toggle, productId}) => {
               </div>
               <br/>
               <div>Please select an option for each characteristic below <small>*</small></div>
+              {/* <button type="button" onClick={() => showWidget()}>CLICK ME</button> */}
               <br/>
               {metaData.characteristics.Size ?
                 <Characteristic
@@ -241,7 +274,22 @@ const ReviewModal = ({toggle, productId}) => {
                 <div><small>Minimum reached</small></div>
                 : <div><small>Minimum required characters left: {minCounter - body.length}</small></div>}
             </div>
-            <Button>Upload Photos</Button>
+
+            <CloudinaryContext cloudName="dqmnjwd2c">
+              <div>
+                <Button type="button" onClick={() => beginUpload('image')}>Upload Photos</Button>
+                <section>
+                  {images.map(i => <Image
+                    key={i}
+                    publicId={i}
+                    fetch-format="auto"
+                    quality="auto"
+                    height="40px"
+                    width="40px"
+                  />)}
+                </section>
+              </div>
+            </CloudinaryContext>
             <div>
               <div>What is your nickname? <small>*</small></div>
               <input
