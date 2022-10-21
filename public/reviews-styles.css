@@ -143,3 +143,61 @@
 .stars-container input[type="radio"] {
   display: none;
 }
+
+
+/* REVIEW MODAL */
+
+.rev-modal-pop {
+  background: #fff;
+  border: 2px solid #aaa;
+  border-radius: 5px;
+  z-index: 2;
+  margin: auto;
+  padding: 20px;
+  overflow-y: scroll;
+  overflow: scroll;
+  /* padding: 1em 2em 2em; */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 50%;
+  max-width: 100%;
+  max-height: 80%;
+  min-height: 30%;
+  min-width: 40%;
+  transform: translate(-50%, -50%);
+}
+
+.rev-modal-form {
+  width: 100%;
+  flex-shrink: 0;
+}
+div.radio-box {
+  width: 90px;
+  display: inline-block;
+  margin: 5px;
+
+}
+.radio-box label {
+  display:block;
+  width: 90px;
+  height: 9px;
+  text-align: center;
+}
+.radio-box input {
+  width: 20px;
+  display: block;
+  margin: 0px auto;
+}
+
+.all-radio-container {
+  border-bottom: solid grey 1px;
+}
+
+.rev-body-input {
+  resize: none;
+  height: 84px;
+  width: 250px;
+  font-family: inherit;
+}
+
