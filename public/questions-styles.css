@@ -55,7 +55,6 @@ a {
   justify-content: space-between;
   padding-top: 10px;
   padding-bottom: 10px;
-  border-bottom: solid grey 1px;
 }
 
 
@@ -80,4 +79,8 @@ a {
   display: grid;
   grid-template-columns: 2em auto;
   padding-top: 10px;
+}
+
+.answer-tag {
+  padding-top: 5px;
 }
