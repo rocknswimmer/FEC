@@ -16,6 +16,7 @@ const StarRating = (props) => {
     setDisplayRec(val);
   };
 
+  let value = Math.ceil(props.rating);
 
   if (props.rating) {
     return (
@@ -26,7 +27,7 @@ const StarRating = (props) => {
             <FaStar
               className="star"
               border="1px solid black"
-              color={ratingValue <= props.rating ? '#ffc107' : 'grey'}
+              color={ratingValue <= value ? '#ffc107' : 'grey'}
               size={15}
               key={i}/>
           );
