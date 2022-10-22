@@ -3,12 +3,15 @@ a {
 }
 
 #questions {
-  width: 90%;
+  width: 87%;
+  max-height: 85vh;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 .questions-search {
   width: 95%;
   padding: 10px 35px 10px 15px;
-  border: thick black 5px;
+  border: solid black 1px;
 }
 
 .questions-search-form {
@@ -21,4 +24,58 @@ a {
   border: none;
   outline: none;
   margin-left: -33px;
+}
+
+.answer-feed {
+  max-height: 50vh;
+  overflow-y: scroll;
+}
+.answer-feed::-webkit-scrollbar {
+  display: none;  /* Safari and Chrome */
+}
+
+.question-feed {
+  overflow-y: scroll;
+  max-height: 77vh;
+}
+.question-feed::-webkit-scrollbar {
+  display: none;  /* Safari and Chrome */
+}
+
+
+.answer {
+  border-bottom: solid grey 1px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.question-line {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.answer-tag {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: solid grey 1px;
+  padding-bottom: 5px;
+}
+
+.qa-title {
+  padding-bottom: 10px;
+}
+
+.qspacer {
+  padding-left: 7px;
+  padding-right: 7px;
+}
+
+.qyes {
+  padding-left: 7px;
+}
+
+.answer-loader {
+  padding-top: 10px;
 }

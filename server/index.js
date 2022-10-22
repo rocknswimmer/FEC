@@ -175,12 +175,12 @@ app.get('/qa/questions/', (req, res) => {
 app.post('/qa/questions/', (req, res) => {
   // console.log(req.body);
   // res.send('hit server');
-  let urlVariable = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/';
+  let urlVariable = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions';
   let options = {
     'body': req.body.body,
     'name': req.body.name,
     'email': req.body.email,
-    'product_id': Number(JSON.stringify(req.body.product_id))
+    'product_id': Number(req.body.product_id)
   };
   let authHeaders = {
     'headers': {
@@ -190,7 +190,7 @@ app.post('/qa/questions/', (req, res) => {
 
   axios.post(urlVariable, options, authHeaders)
     .then(results => {
-      // console.log('question post results:', results);
+      console.log('question post results:', results);
       res.send(' queston posted');
     })
     .catch((err) => {
@@ -208,7 +208,7 @@ app.post('/qa/questions/:question_id/ansers', (req, res) => {
     'body': req.body.body,
     'name': req.body.name,
     'email': req.body.email,
-    'photos': []
+    'photos': req.body.photos
   };
   let options = {
     'headers': {
@@ -218,7 +218,7 @@ app.post('/qa/questions/:question_id/ansers', (req, res) => {
 
   axios.post(urlVariable, body, options)
     .then(results => {
-      console.log('question post results:', results);
+      // console.log('question post results:', results);
       res.send(' queston posted');
     })
     .catch((err) => {
@@ -251,9 +251,9 @@ app.put('/qa/answers/:answer_id/helpful', (req, res) => {
       'Authorization': api
     }
   };
-  axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/${req.body.answer}/helpful`, {}, options)
+  axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/answers/${req.body.answer}/helpful`, {}, options)
     .then((results) => {
-      console.log(results);
+      // console.log(results);
       res.send('answer marked helpful');
     })
     .catch((err) => {
@@ -268,13 +268,36 @@ app.put('/qa/answers/:answer_id/report', (req, res) => {
       'Authorization': api
     }
   };
-  axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/${req.body.answer}/report`, {}, options)
+  axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/answers/${req.body.answer}/report`, {}, options)
     .then((results) => {
-      console.log(results);
+      // console.log(results);
       res.send('answer reported');
     })
     .catch((err) => {
       console.log('error reporting answer: ', err);
+      res.status(404).end();
+    });
+});
+
+// Change request
+app.post('/interactions', (req, res) => {
+  let body = {
+    'element': req.body.element,
+    'widget': req.body.widget,
+    'time': req.body.time
+  };
+  let options = {
+    'headers': {
+      'Authorization': api
+    }
+  };
+  axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/interactions', body, options)
+    .then((results) => {
+      // console.log('interactions results', results);
+      res.send(results.data);
+    })
+    .catch((err) => {
+      console.log('error reporting interaction: ', err);
       res.status(404).end();
     });
 });
