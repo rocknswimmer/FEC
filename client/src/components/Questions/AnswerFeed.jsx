@@ -14,19 +14,22 @@ const AnswerFeed = (props) => {
   };
 
   return (
-    <span>
-      {props.answers.length > 2 && !loadMoreAnswers && firstAnswers.map((answer, i) => {
-        return <Answers key={i} answer={answer} />;
-      })}
-      {props.answers.length > 2 && !loadMoreAnswers && <a onClick={loadAnswers}>Load More Answers</a>}
-      {props.answers.length > 2 && loadMoreAnswers && props.answers.map((answer, i) => {
-        return <Answers key={i} answer={answer} />;
-      })}
-      {props.answers.length > 2 && loadMoreAnswers && <a onClick={loadAnswers}>Collapse answers</a>}
-      {props.answers.length <= 2 && props.answers.map((answer, i) => {
-        return <Answers key={i} answer={answer} />;
-      })}
-    </span>
+    <div className='answer-feed'>
+      <div><strong>A: </strong><strong>X</strong></div>
+      <div>
+        {props.answers.length > 2 && !loadMoreAnswers && firstAnswers.map((answer, i) => {
+          return <Answers key={i} answer={answer} />;
+        })}
+        {props.answers.length > 2 && !loadMoreAnswers && <a onClick={loadAnswers}>Load More Answers</a>}
+        {props.answers.length > 2 && loadMoreAnswers && props.answers.map((answer, i) => {
+          return <Answers key={i} answer={answer} />;
+        })}
+        {props.answers.length > 2 && loadMoreAnswers && <a onClick={loadAnswers}>Collapse answers</a>}
+        {props.answers.length <= 2 && props.answers.map((answer, i) => {
+          return <Answers key={i} answer={answer} />;
+        })}
+      </div>
+    </div>
   );
 };
 
