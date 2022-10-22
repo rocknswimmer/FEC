@@ -13,6 +13,7 @@ const ProductImage = ({ currentDisplayedStyle }) => {
   const [thumbnailArray, setThumbnailArray] = useState([]);
   const [sendThumbnailUp, setSendThumbnailUp] = useState(0);
   const [sendThumbnailDown, setSendThumbnailDown] = useState(0);
+  const [lengthOfImageArray, setLengthOfImageArray] = useState(0);
   const [photoExpanded, setPhotoExpanded] = useState(false);
 
   //create the thumbnailArray
@@ -73,6 +74,8 @@ const ProductImage = ({ currentDisplayedStyle }) => {
     setPhotoExpanded(!photoExpanded);
   };
 
+
+
   useEffect(() => {
     if (currentDisplayedStyle.photos) {
       setImageArray(currentDisplayedStyle.photos);
@@ -83,6 +86,7 @@ const ProductImage = ({ currentDisplayedStyle }) => {
       }
       setDisplayedImage(firstImage);
       createThumbnailArray(currentDisplayedStyle.photos);
+      setLengthOfImageArray(imageArray.length);
     }
   }, [currentDisplayedStyle]);
 
@@ -93,18 +97,33 @@ const ProductImage = ({ currentDisplayedStyle }) => {
         <MainImage img={displayedImage} >
 
           {
-            photoExpanded && <ExpandedPhoto displayedImage={displayedImage} photoIndex={photoIndex} arrowRightHandler={clickHanderArrowRight} arrowLeftHandler={clickHanderArrowLeft} expandPhoto={expandPhoto} thumbnailArray={thumbnailArray} />
+            photoExpanded &&
+            <ExpandedPhoto
+              displayedImage={displayedImage}
+              photoIndex={photoIndex}
+              arrowRightHandler={clickHanderArrowRight}
+              arrowLeftHandler={clickHanderArrowLeft}
+              expandPhoto={expandPhoto}
+              thumbnailArray={thumbnailArray}
+              lengthOfImageArray={lengthOfImageArray}
+              imageArray={imageArray}
+              changePhotoToSelectedIcon={changePhotoToSelectedThumbnail} />
           }
 
-          {console.log('inside product image displayed image >', displayedImage)}
 
-          <Carousel imageArray={imageArray} photoIndex={photoIndex} changePhotoToSelectedThumbnail={changePhotoToSelectedThumbnail} thumbnailArray={thumbnailArray} sendThumbnailUp={sendThumbnailUp} sendThumbnailDown={sendThumbnailDown} />
+          <Carousel
+            imageArray={imageArray}
+            photoIndex={photoIndex}
+            changePhotoToSelectedThumbnail={changePhotoToSelectedThumbnail}
+            thumbnailArray={thumbnailArray}
+            sendThumbnailUp={sendThumbnailUp}
+            sendThumbnailDown={sendThumbnailDown} />
 
-          <Expander><FaExpand onClick={expandPhoto}/></Expander>
+          <Expander><FaExpand className='icon-styled' onClick={expandPhoto} /></Expander>
 
-          {photoIndex !== 0 && <LeftArrow onClick={clickHanderArrowLeft}><FaAngleLeft /></LeftArrow>}
+          {photoIndex !== 0 && <LeftArrow onClick={clickHanderArrowLeft}><FaAngleLeft className='icon-styled' /></LeftArrow>}
 
-          {photoIndex !== imageArray.length - 1 && <RightArrow onClick={clickHanderArrowRight}><FaAngleRight /></RightArrow>}
+          {photoIndex !== imageArray.length - 1 && <RightArrow onClick={clickHanderArrowRight}><FaAngleRight className='icon-styled' /></RightArrow>}
 
         </MainImage>
       }
