@@ -130,3 +130,13 @@ const Questions = (props) => {
 };
 
 export default Questions;
+
+
+/*
+add to all on clicks annoyingly
+const clickTracker = (element, widget) => {
+  post request to interactions api post url
+  make sure every click passes the widget and element names as strings
+  generate date in the function before adding to post request
+}
+*/
