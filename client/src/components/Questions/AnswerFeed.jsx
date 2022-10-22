@@ -15,19 +15,21 @@ const AnswerFeed = (props) => {
 
   return (
     <div >
-      <div className='answer-tag'>
-        <strong>A: </strong>
-      </div>
-      <div className='answer-feed'>
-        {props.answers.length > 2 && !loadMoreAnswers && firstAnswers.map((answer, i) => {
-          return <Answers key={i} answer={answer} />;
-        })}
-        {props.answers.length > 2 && loadMoreAnswers && props.answers.map((answer, i) => {
-          return <Answers key={i} answer={answer} />;
-        })}
-        {props.answers.length <= 2 && props.answers.map((answer, i) => {
-          return <Answers key={i} answer={answer} />;
-        })}
+      <div className='answer-container'>
+        <div className='answer-tag'>
+          <strong>A: </strong>
+        </div>
+        <div className='answer-feed'>
+          {props.answers.length > 2 && !loadMoreAnswers && firstAnswers.map((answer, i) => {
+            return <Answers key={i} answer={answer} />;
+          })}
+          {props.answers.length > 2 && loadMoreAnswers && props.answers.map((answer, i) => {
+            return <Answers key={i} answer={answer} />;
+          })}
+          {props.answers.length <= 2 && props.answers.map((answer, i) => {
+            return <Answers key={i} answer={answer} />;
+          })}
+        </div>
       </div>
       <div>
         {props.answers.length > 2 && !loadMoreAnswers && <div className='answer-loader'><a onClick={loadAnswers}>Load More Answers</a></div>}
