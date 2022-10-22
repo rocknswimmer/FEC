@@ -17,7 +17,7 @@ const AnswerFeed = (props) => {
     <div >
       <div className='answer-tag'>
         <strong>A: </strong>
-        {loadMoreAnswers && <strong onClick={loadAnswers}>close</strong>}
+        {loadMoreAnswers && <a onClick={loadAnswers}>Collapse answers</a>}
       </div>
       <div className='answer-feed'>
         {props.answers.length > 2 && !loadMoreAnswers && firstAnswers.map((answer, i) => {
