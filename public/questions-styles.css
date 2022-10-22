@@ -28,11 +28,18 @@ a {
   max-height: 50vh;
   overflow-y: scroll;
 }
+.answer-feed::-webkit-scrollbar {
+  display: none;  /* Safari and Chrome */
+}
 
 .question-feed {
   overflow-y: scroll;
   max-height: 77vh;
 }
+.question-feed::-webkit-scrollbar {
+  display: none;  /* Safari and Chrome */
+}
+
 
 .answer {
   border-bottom: solid grey 1px;
