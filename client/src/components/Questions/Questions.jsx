@@ -4,6 +4,9 @@ import QuestionModal from './QuestionModal.jsx';
 import axios from 'axios';
 import {FaSearch} from 'react-icons/fa';
 import styled from 'styled-components';
+import {ThemeProvider} from 'styled-components';
+import { GlobalStyles } from '../Mode/globalStyles.js';
+import { lightTheme, darkTheme } from '../Mode/Themes.js';
 
 const Button = styled.button`
   background: white;
@@ -23,6 +26,12 @@ const Questions = (props) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [searchable, setSearchable] = useState(false);
   const [searchedQuestions, setSearchedQuestions] = useState([]);
+
+  const [theme, setTheme] = useState('light');
+  const themeToggler = () => {
+    theme === 'light' ? setTheme('dark') : setTheme('light');
+  };
+
 
   const getCurrentQuestions = () => {
     axios.get('/qa/questions/', {
@@ -122,25 +131,31 @@ const Questions = (props) => {
   };
 
   return (
-    <div id="questions">
-      <button onClick={() => { submitInteraction('test', 'test'); }}>test interactions</button>
-      <div className='qa-title'>QUESTIONS & ANSWERS</div>
-      <form className="question-search-form">
-        <input className="questions-search" type="text" placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS..." onChange={searchChange} />
-        <button className="question-search-button" type="submit">
-          <FaSearch />
-        </button>
-      </form>
-      <div className='question-feed'>
-        <QuestionFeed questions={questions} moreQuestions={moreQuestions} get={() => { getCurrentQuestions(); }} searchable={searchable} searchedQuestions={searchedQuestions} />
-      </div>
-      <div className='question-buttons'>
-        {(questions[0] && questions.length > 2) && !moreQuestions && <Button onClick={loadMoreQuestions}>MORE ANSWERED QUESTIONS</Button>}
-        {(questions[0] && questions.length > 2) && moreQuestions && <Button onClick={loadMoreQuestions}>LESS ANSWERED QUESTIONS</Button>}
-        <Button onClick={addQuestionModal}>ADD A QUESTION +</Button>
-        {addQuestion && <QuestionModal close={addQuestionModal} product={props.productId} />}
-      </div>
-    </div>
+    <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
+      <>
+        <GlobalStyles />
+        <div id="questions">
+          <button onClick={() => { submitInteraction('test', 'test'); }}>test interactions</button>
+          <button onClick={themeToggler}>Switch Theme</button>
+          <div className='qa-title'>QUESTIONS & ANSWERS</div>
+          <form className="question-search-form">
+            <input className="questions-search" type="text" placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS..." onChange={searchChange} />
+            <button className="question-search-button" type="submit">
+              <FaSearch />
+            </button>
+          </form>
+          <div className='question-feed'>
+            <QuestionFeed questions={questions} moreQuestions={moreQuestions} get={() => { getCurrentQuestions(); }} searchable={searchable} searchedQuestions={searchedQuestions} />
+          </div>
+          <div className='question-buttons'>
+            {(questions[0] && questions.length > 2) && !moreQuestions && <Button onClick={loadMoreQuestions}>MORE ANSWERED QUESTIONS</Button>}
+            {(questions[0] && questions.length > 2) && moreQuestions && <Button onClick={loadMoreQuestions}>LESS ANSWERED QUESTIONS</Button>}
+            <Button onClick={addQuestionModal}>ADD A QUESTION +</Button>
+            {addQuestion && <QuestionModal close={addQuestionModal} product={props.productId} />}
+          </div>
+        </div>
+      </>
+    </ThemeProvider>
   );
 };
 
