@@ -17,6 +17,7 @@ const StarRating = (props) => {
 
 
   if (props.rating) {
+    console.log('ive entered into props.rating from within StarRating, props.rating >>', props.rating);
     return (
       <div className="stars-container">
         {[...Array(5)].map((star, i) => {
