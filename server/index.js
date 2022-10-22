@@ -280,7 +280,7 @@ app.put('/qa/answers/:answer_id/report', (req, res) => {
 });
 
 // Change request
-app.put('/interactions', (req, res) => {
+app.post('/interactions', (req, res) => {
   let body = {
     'element': req.body.element,
     'widget': req.body.widget,
@@ -291,7 +291,7 @@ app.put('/interactions', (req, res) => {
       'Authorization': api
     }
   };
-  axios.put('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/interactions', body, options)
+  axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/interactions', body, options)
     .then((results) => {
       console.log('interactions results', results);
       res.send('interaction reported');
