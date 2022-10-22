@@ -45,7 +45,12 @@ a {
   border-bottom: solid grey 1px;
 }
 
-.question-line{
+.question-line {
+  display: flex;
+  justify-content: space-between;
+}
+
+.answer-tag {
   display: flex;
   justify-content: space-between;
 }
