@@ -201,9 +201,52 @@ div.radio-box {
   font-family: inherit;
 }
 
+.star-bars-container {
+  height: 50%;
+  display: flex-column;
+  justify-content: space-between;
+}
+
 .average-and-stars {
   display: flex;
   width: 100;
   align-items: center;
   justify-content: flex-start;
+}
+
+.bar-border {
+  border: solid grey 1px;
+  width: 60%;
+  margin-left: 10px;
+  height: 10px;
+  background-color: lightgrey;
+  margin-right: 10px;
+}
+
+.percentage-bar {
+  height: 10px;
+  background-color: #367c2b;
+}
+
+.char-range {
+  width: 280px;
+ }
+
+ .arrow-down {
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 8px solid rgb(85, 84, 84);
+}
+
+.bar {
+  height: 10px;
+  border: solid grey 1px;
+  background: lightgrey;
+}
+
+.char-bar-descr {
+  display: flex;
+  justify-content: space-between
 }
