@@ -279,6 +279,29 @@ app.put('/qa/answers/:answer_id/report', (req, res) => {
     });
 });
 
+// Change request
+app.put('/interactions', (req, res) => {
+  let body = {
+    'element': req.body.element,
+    'widget': req.body.widget,
+    'time': req.body.time
+  };
+  let options = {
+    'headers': {
+      'Authorization': api
+    }
+  };
+  axios.put('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/interactions', body, options)
+    .then((results) => {
+      console.log('interactions results', results);
+      res.send('interaction reported');
+    })
+    .catch((err) => {
+      console.log('error reporting interaction: ', err);
+      res.status(404).end();
+    });
+});
+
 
 
 app.listen(3001);
