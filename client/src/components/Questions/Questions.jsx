@@ -109,7 +109,7 @@ const Questions = (props) => {
 
   return (
     <div id="questions">
-      <div>QUESTIONS & ANSWERS</div>
+      <div className='qa-title'>QUESTIONS & ANSWERS</div>
       <form className="question-search-form">
         <input className="questions-search" type="text" placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS..." onChange={searchChange} />
         <button className="question-search-button" type="submit">
