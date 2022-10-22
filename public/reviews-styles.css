@@ -33,7 +33,7 @@
 }
 
 .rev-list-container {
-  width: 600px;
+  width: 700px;
   flex-shrink: 0;
   max-height: 80vh;
   overflow-y: scroll;
@@ -240,13 +240,21 @@ div.radio-box {
   border-top: 8px solid rgb(85, 84, 84);
 }
 
+
 .bar {
   height: 10px;
-  border: solid grey 1px;
   background: lightgrey;
+  position: relative;
+  width: 33%;
 }
 
 .char-bar-descr {
   display: flex;
   justify-content: space-between
 }
+
+.bar-container {
+  display: flex;
+  justify-content: space-between;
+}
+

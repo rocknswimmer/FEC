@@ -12,7 +12,7 @@ margin: 32px;
 display: flex;
 flex-direction: column;
 flex-shrink: 0;
-
+max-width:80%;
 `;
 
 const SummaryListDivider = styled.div`

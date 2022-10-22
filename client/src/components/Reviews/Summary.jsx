@@ -41,9 +41,10 @@ const Summary = ({metaData}) => {
           <AverageNumContainer>{averageRating}</AverageNumContainer>
           <StarRating rating={averageRating}/>
         </div>
-        <div> Out of {totalRatings} total reviews</div>
+        <div> Out of {totalRatings} total ratings</div>
       </div>
       <div><small>{percentRec}% of reviews recommend this product</small></div>
+      <br/>
       <div className="star-bars-container">
         <StarBar>
           <a>5 stars</a>
@@ -74,14 +75,13 @@ const Summary = ({metaData}) => {
           <div><small>({metaData.ratings[2]})</small></div>
         </StarBar>
         <StarBar>
-          <a>1 stars</a>
+          <a>1 star</a>
           <div className="bar-border">
             <div className="percentage-bar" style={{width: ((metaData.ratings[1] / totalRatings) * 182) }}></div>
           </div>
           <div><small>({metaData.ratings[1]})</small></div>
         </StarBar>
       </div>
-      <br/>
       <div className="char-bars-container">
         {metaData.characteristics.Size ?
           <div>
