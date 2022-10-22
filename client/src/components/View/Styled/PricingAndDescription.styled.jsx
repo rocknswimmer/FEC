@@ -6,7 +6,6 @@ const SalesPricing = styled.span`
 
 const FormerPrice = styled.span`
   text-decoration: line-through;
-
 `;
 
 const DescriptionDiv = styled.div`
@@ -35,7 +34,7 @@ color: #1DA1F2;
 padding: 1em;
 `;
 
-const Pinterest = styled.span`
+const Pinterest = styled.a`
 font-size: 2em;
 color: #E60023;
 padding: 1em;

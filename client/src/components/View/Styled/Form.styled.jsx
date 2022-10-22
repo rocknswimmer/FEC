@@ -13,14 +13,19 @@ const Form = styled.form`
 `;
 
 const Button = styled.button`
-grid-column-start: 1;
-grid-column-end: 6;
+height: 44px;
+width: 330px;
+display: flex;
+padding: 4px 4px 4px 8px;
+margin-top: 20px;
+justify-content: space-between;
+align-items: center;
 background: #ffffff;
-padding: 15px 32px;
 border-color: white;
 text-align: center;
 box-shadow: 0 2px 3px rgba(0, 0, 0, 0.15);
 font-size: 1.3rem;
+
 font-weight: 500;
 color: #IF2224;
 &:hover {
@@ -29,9 +34,9 @@ color: #IF2224;
 `;
 
 const CartContainer = styled.div`
-display: grid;
-grid-template-columns: repeat(10, minmax(0, 1fr));
-grid-template-rows: repeat(2, 1fr);
+.top-row {
+  display:flex;
+}
 `;
 
 export { Form, Button, CartContainer };
