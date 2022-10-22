@@ -67,3 +67,15 @@ a {
   padding-bottom: 10px;
 }
 
+.qspacer {
+  padding-left: 7px;
+  padding-right: 7px;
+}
+
+.qyes {
+  padding-left: 7px;
+}
+
+.answer-loader {
+  padding-top: 10px;
+}

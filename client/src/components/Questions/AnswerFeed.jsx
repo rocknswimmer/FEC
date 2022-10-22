@@ -23,11 +23,11 @@ const AnswerFeed = (props) => {
         {props.answers.length > 2 && !loadMoreAnswers && firstAnswers.map((answer, i) => {
           return <Answers key={i} answer={answer} />;
         })}
-        {props.answers.length > 2 && !loadMoreAnswers && <a onClick={loadAnswers}>Load More Answers</a>}
+        {props.answers.length > 2 && !loadMoreAnswers && <div className='answer-loader'><a onClick={loadAnswers}>Load More Answers</a></div>}
         {props.answers.length > 2 && loadMoreAnswers && props.answers.map((answer, i) => {
           return <Answers key={i} answer={answer} />;
         })}
-        {props.answers.length > 2 && loadMoreAnswers && <a onClick={loadAnswers}>Collapse answers</a>}
+        {props.answers.length > 2 && loadMoreAnswers && <div className='answer-loader'><a onClick={loadAnswers}>Collapse answers</a></div>}
         {props.answers.length <= 2 && props.answers.map((answer, i) => {
           return <Answers key={i} answer={answer} />;
         })}

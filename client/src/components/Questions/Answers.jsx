@@ -89,12 +89,12 @@ const Answers = (props) => {
         ))}
       </div>}
       <span>by {props.answer.answerer_name}, {formattedDate(props.answer.date)}</span>
-      <span> | </span>
-      <span>Helpful? {!clickedYesBefore && <a onClick={helpfulClicked}>Yes</a>}
+      <span className='qspacer'> | </span>
+      <span>Helpful? {!clickedYesBefore && <a className='qyes' onClick={helpfulClicked}>Yes</a>}
         {!clickedYesBefore && `(${props.answer.helpfulness})`}
         {clickedYesBefore && `(${props.answer.helpfulness + 1})`}
       </span>
-      <span> | </span>
+      <span className='qspacer'> | </span>
       <span>{!clickedReportBefore && <a onClick={reportClicked}>Report</a>}{clickedReportBefore && <span>Reported</span>}</span>
       <br/>
     </div>
