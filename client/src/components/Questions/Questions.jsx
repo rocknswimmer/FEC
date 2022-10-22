@@ -107,8 +107,23 @@ const Questions = (props) => {
     //turn search filter off when searchQuery.length === 2 ?/ how to turn on
   }, [((searchQuery.length > 2) && (searchQuery))]);
 
+  const submitInteraction = (element, widget) => {
+    axios.post('/interactions', {
+      element: element,
+      widget: widget,
+      time: JSON.stringify(Date.now())
+    })
+      .then((res) => {
+        console.log('response from interacting: ', res.data);
+      })
+      .catch((err) => {
+        console.log('error posting interaction:', err );
+      });
+  };
+
   return (
     <div id="questions">
+      <button onClick={() => { submitInteraction('test', 'test'); }}>test interactions</button>
       <div className='qa-title'>QUESTIONS & ANSWERS</div>
       <form className="question-search-form">
         <input className="questions-search" type="text" placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS..." onChange={searchChange} />
