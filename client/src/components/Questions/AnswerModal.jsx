@@ -65,7 +65,7 @@ const AnswerModal = (props) => {
       email: answerEmail,
       photos: images,
       // eslint-disable-next-line camelcase
-      question_id: props.question //need to add question to props once I know where this goes
+      question_id: props.question.question_id //need to add question to props once I know where this goes
     })
       .then((res) => {
         // console.log('response posting answer to server', res.data);
@@ -115,9 +115,6 @@ const AnswerModal = (props) => {
     submitAnswer();
 
   };
-
-  console.log(props.question.question_body);
-
 
   return (
     <div className="modal-qa">
