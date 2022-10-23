@@ -136,7 +136,7 @@ const Questions = (props) => {
       <>
         <GlobalStyles />
         <div id="questions">
-          <button onClick={() => { submitInteraction('test', 'test'); }}>test interactions</button>
+          <button onClick={() => { submitInteraction('element', 'widget'); }}>test interactions</button>
           {(theme === 'light') && <button className='sun' onClick={themeToggler}><BsSunFill size={28} /></button>}
           {(theme !== 'light') && <button className='moon' onClick={themeToggler}><BsMoonStarsFill size={28} /></button>}
           <h1 className='qa-title'>QUESTIONS & ANSWERS</h1>
