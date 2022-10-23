@@ -88,3 +88,15 @@ a {
 #app h1 {
   color: #E8B90E;
 }
+
+.answer-modal-container {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  height: 400px;
+  width: 500px;
+}
+
+.answer-close {
+  margin-bottom: 10px;
+}

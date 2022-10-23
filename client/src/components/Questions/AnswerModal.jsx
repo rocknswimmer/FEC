@@ -120,37 +120,40 @@ const AnswerModal = (props) => {
   return (
     <div className="modal">
       <div className="modal-pop">
-        <button onClick={props.close}>x</button>
-        <br />
-        <label >Your Answer*</label>
-        <input type="text" name="answer" onChange={onA} />
-        <br />
-        <label >What is your nickname*</label>
-        <input type="text" placeholder="Example: jack543!" name="username" onChange={onAUser}/>
-        <br />
-        For privacy reasons, do not use your full name or email address
-        <br />
-        <label >Your email*</label>
-        <input type="text" placeholder="Example: jack@email.com" name="email" onChange={onAEmail}/>
-        <br />
-        For authentication reasons, you will not be emailed
-        <br />
-        <CloudinaryContext cloudName="dqmnjwd2c">
+        <button onClick={props.close} className='answer-close'>x</button>
+        <div className='answer-modal-container'>
           <div>
-            <Button type="button" onClick={() => beginUpload('image')}>Upload Photos</Button>
-            <section>
-              {images.map(i => <Image
-                key={i}
-                publicId={i}
-                fetch-format="auto"
-                quality="auto"
-                height="80px"
-                width="80px"
-              />)}
-            </section>
+            <label >Your Answer*</label>
+            <input type="text" name="answer" onChange={onA} />
           </div>
-        </CloudinaryContext>
-        <button onClick={onSumbitA}>Submit Answer</button>
+          <div>
+            <label >What is your nickname*</label>
+            <input type="text" placeholder="Example: jack543!" name="username" onChange={onAUser} />
+          </div>
+          For privacy reasons, do not use your full name or email address
+          <div>
+            <label >Your email*</label>
+            <input type="text" placeholder="Example: jack@email.com" name="email" onChange={onAEmail} />
+          </div>
+          For authentication reasons, you will not be emailed
+          <br />
+          <CloudinaryContext cloudName="dqmnjwd2c">
+            <div>
+              <Button type="button" onClick={() => beginUpload('image')}>Upload Photos</Button>
+              <section>
+                {images.map(i => <Image
+                  key={i}
+                  publicId={i}
+                  fetch-format="auto"
+                  quality="auto"
+                  height="80px"
+                  width="80px"
+                />)}
+              </section>
+            </div>
+          </CloudinaryContext>
+          <Button onClick={onSumbitA}>Submit Answer</Button>
+        </div>
       </div>
       <div className="modal-overlay"></div>
     </div>
