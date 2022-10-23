@@ -95,82 +95,27 @@ const Reviews = ({productId, metaData, currentProduct}) => {
 
   const handleSort = () => {
 
-    // setStarsFilter([]);
-    // setVisibleReviews([]);
     const uniqueIds = [];
     if (Object.values(toggleObj).includes(true)) {
 
       for (let key in toggleObj) {
         if (toggleObj[key]) {
           let currentFilter = [...ratingsArray[key]];
-          console.log('currentFilter, ', currentFilter);
 
-          console.log(uniqueIds);
+          console.log("UNIQ",uniqueIds);
           const uniqueReviews = currentFilter.filter(rev => {
             const isDuplicate = uniqueIds.includes(rev.review_id);
             console.log('rev, ', rev);
             if (!isDuplicate) {
               uniqueIds.push(rev);
-
             }
           });
-
         }
-
       }
       setStarsFilter([...uniqueIds]);
-
     } else {
       setStarsFilter(reviewsList.slice(0, visibleReviewsIndex));
     }
-
-
-
-    //     if (toggleObj[key]) {
-    //       console.log('starsFilter spread: ', [...starsFilter]);
-    //       console.log('ratigns array spread: ', ...ratingsArray[key]);
-
-    //       if (!starsFilter.includes(ratingsArray[key][0].review_id)) {
-    //         setStarsFilter([...starsFilter, ...ratingsArray[key]]);
-    //       } else {
-    //         setStarsFilter(...starsFilter);
-    //         return;
-    //       }
-    //     }
-    //   }
-    // } else {
-    //   setStarsFilter(reviewsList.slice(0, 2));
-    // }
-
-    // for (let key in toggleObj) {
-    //   if (toggleObj[key]) {
-    //     toggleObj[key] = false;
-    //   }
-    // }
-
-    // setToggleObj({
-    //   1: false,
-    //   2: false,
-    //   3: false,
-    //   4: false,
-    //   5: false
-    // });
-
-
-    // if (toggleObj[5]) {
-    //   setStarsFilter([...starsFilter, ...fiveStars]);
-    // } else if (toggleObj[4]) {
-    //   setStarsFilter([...starsFilter, ...fourStars]);
-    // } else if (toggleObj[3]) {
-    //   setStarsFilter([...starsFilter, ...threeStars]);
-    // } else if (toggleObj[2]) {
-    //   setStarsFilter([...starsFilter, ...twoStars]);
-    // } else if (toggleObj[1]) {
-    //   setStarsFilter([...starsFilter, ...oneStars]);
-    // } else {
-    //
-
-    // }
   };
 
 

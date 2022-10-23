@@ -46,6 +46,7 @@
 
 .rev-star-date {
   display: flex;
+  width:100%;
   justify-content: space-between;
 }
 
@@ -259,3 +260,7 @@ div.radio-box {
   justify-content: space-between;
 }
 
+.linear-gradient-template {
+  width: 0;
+  height: 0;
+}
