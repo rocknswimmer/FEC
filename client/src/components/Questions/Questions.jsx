@@ -136,7 +136,8 @@ const Questions = (props) => {
         <GlobalStyles />
         <div id="questions">
           <button onClick={() => { submitInteraction('test', 'test'); }}>test interactions</button>
-          <button onClick={themeToggler}>Switch Theme</button>
+          {(theme === 'light') && <button onClick={themeToggler}>Switch To Dark</button>}
+          {(theme !== 'light') && <button onClick={themeToggler}>Switch To Light</button>}
           <div className='qa-title'>QUESTIONS & ANSWERS</div>
           <form className="question-search-form">
             <input className="questions-search" type="text" placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS..." onChange={searchChange} />
