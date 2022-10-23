@@ -71,26 +71,32 @@ const QuestionModal = (props) => {
 
 
   return (
-    <div className="modal">
-      <div className="modal-pop">
+    <div className="modal-qa">
+      <div className="modal-pop-qa">
         <button onClick={props.close}>x</button>
-        <br />
-        <label >Your Question*</label>
-        <input type="text" name="question" onChange={onQ} />
-        <br />
-        <label >What is your nickname*</label>
-        <input type="text" placeholder="Example: jackson11!" name="username" onChange={onQUser}/>
-        <br />
-        For privacy reasons, do not use your full name or email address
-        <br />
-        <label >Your email*</label>
-        <input type="text" placeholder="Why did you like the product or not?" name="email" onChange={onQEmail}/>
-        <br />
-        For authentication reasons, you will not be emailed
-        <br />
-        <button onClick={onSumbitQ}>Submit Question</button>
+        <div className='qa-modal-container'>
+          <h2>Ask Your Question</h2>
+          <h3>About the {'(Product Name here)'}</h3>
+          <div>
+            <label >Your Question*</label>
+            <input type="text" name="question" onChange={onQ} />
+          </div>
+          <div>
+            <label >What is your nickname*</label>
+            <input type="text" placeholder="Example: jackson11!" name="username" onChange={onQUser} />
+            <br />
+          For privacy reasons, do not use your full name or email address
+          </div>
+          <div>
+            <label >Your email*</label>
+            <input type="text" placeholder="Why did you like the product or not?" name="email" onChange={onQEmail} />
+            <br />
+          For authentication reasons, you will not be emailed
+          </div>
+          <button onClick={onSumbitQ}>Submit Question</button>
+        </div>
       </div>
-      <div className="modal-overlay"></div>
+      <div className="modal-overlay-qa"></div>
     </div>
   );
 };

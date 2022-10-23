@@ -116,12 +116,16 @@ const AnswerModal = (props) => {
 
   };
 
+  console.log(props.question.question_body);
+
 
   return (
-    <div className="modal">
-      <div className="modal-pop">
+    <div className="modal-qa">
+      <div className="modal-pop-qa">
         <button onClick={props.close} className='answer-close'>x</button>
-        <div className='answer-modal-container'>
+        <div className='qa-modal-container'>
+          <h2>Submit Your Answer</h2>
+          <h3>Product name: {JSON.stringify(props.question.question_body)}</h3>
           <div>
             <label >Your Answer*</label>
             <input type="text" name="answer" onChange={onA} />
@@ -155,7 +159,7 @@ const AnswerModal = (props) => {
           <Button onClick={onSumbitA}>Submit Answer</Button>
         </div>
       </div>
-      <div className="modal-overlay"></div>
+      <div className="modal-overlay-qa"></div>
     </div>
   );
 };
