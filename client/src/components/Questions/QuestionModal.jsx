@@ -1,5 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import styled from 'styled-components';
+
+const Button = styled.button`
+  background: white;
+  color: grey;
+  font-size: .75em;
+  margin: 15px 0 15px 0;
+  padding: 0.25em 1em;
+  border: 2px solid grey;
+  border-radius: 3px;
+`;
 
 const QuestionModal = (props) => {
   const [question, setQuestion] = useState('');
@@ -73,7 +84,7 @@ const QuestionModal = (props) => {
   return (
     <div className="modal-qa">
       <div className="modal-pop-qa">
-        <button onClick={props.close}>x</button>
+        <button onClick={props.close} className='qa-close'>x</button>
         <div className='qa-modal-container'>
           <h2>Ask Your Question</h2>
           <h3>About the {'(Product Name here)'}</h3>
@@ -84,16 +95,14 @@ const QuestionModal = (props) => {
           <div>
             <label >What is your nickname*</label>
             <input type="text" placeholder="Example: jackson11!" name="username" onChange={onQUser} />
-            <br />
-          For privacy reasons, do not use your full name or email address
           </div>
+          For privacy reasons, do not use your full name or email address
           <div>
             <label >Your email*</label>
             <input type="text" placeholder="Why did you like the product or not?" name="email" onChange={onQEmail} />
-            <br />
-          For authentication reasons, you will not be emailed
           </div>
-          <button onClick={onSumbitQ}>Submit Question</button>
+          For authentication reasons, you will not be emailed
+          <Button onClick={onSumbitQ}>Submit Question</Button>
         </div>
       </div>
       <div className="modal-overlay-qa"></div>

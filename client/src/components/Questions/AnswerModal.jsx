@@ -122,7 +122,7 @@ const AnswerModal = (props) => {
   return (
     <div className="modal-qa">
       <div className="modal-pop-qa">
-        <button onClick={props.close} className='answer-close'>x</button>
+        <button onClick={props.close} className='qa-close'>x</button>
         <div className='qa-modal-container'>
           <h2>Submit Your Answer</h2>
           <h3>Product name: {JSON.stringify(props.question.question_body)}</h3>
