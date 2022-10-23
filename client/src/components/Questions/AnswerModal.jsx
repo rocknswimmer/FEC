@@ -111,6 +111,9 @@ const AnswerModal = (props) => {
       alert('email missing @ or . after @, please reformatting to be able to submit');
       return;
     }
+    if (images.length > 5) {
+      alert('can only upload 5 photos');
+    }
 
     submitAnswer();
 
