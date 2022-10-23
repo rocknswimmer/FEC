@@ -3,11 +3,10 @@ import styled from 'styled-components';
 
 const RatingBar = ({val, descr}) => {
 
-  console.log(val);
   return (
 
     <div className="char-range">
-      <div className="arrow-down" style={{marginLeft: (val * 56)}}></div>
+      <div className="arrow-down" style={{marginLeft: (val * 56) - 8}}></div>
       {descr[2] === 'Perfect' ?
         <div>
           <div className="bar-container">
