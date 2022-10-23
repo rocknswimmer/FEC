@@ -62,9 +62,9 @@ const QuestionModal = (props) => {
       alertQEmail = true;
     }
     if (alertQ || alertQUser || alertQEmail) {
-      let alertString = [{field: question, label: 'Your Question'}, {field: questionUser, label: 'Your nickname'}, {field: questionEmail, label: 'Your Email'}].map((form) => {
+      let alertString = [{field: question, div: 'Your Question'}, {field: questionUser, div: 'Your nickname'}, {field: questionEmail, div: 'Your Email'}].map((form) => {
         if (form.field === '') {
-          return form.label;
+          return form.div;
         }
         return false;
       }).filter((empty) => { if (empty !== false) { return true; } }).join('\n');
@@ -84,22 +84,24 @@ const QuestionModal = (props) => {
   return (
     <div className="modal-qa">
       <div className="modal-pop-qa">
-        <button onClick={props.close} className='qa-close'>x</button>
+        <div className='qa-close'> <button onClick={props.close} >x</button> </div>
         <div className='qa-modal-container'>
           <h2>Ask Your Question</h2>
           <h3>About the {'(Product Name here)'}</h3>
           <div>
-            <label >Your Question*</label>
-            <input type="text" name="question" onChange={onQ} />
+            <div >Your Question*</div>
+            <textarea type="textarea" name="question" maxLength="1000" onChange={onQ} />
           </div>
+          <br />
           <div>
-            <label >What is your nickname*</label>
-            <input type="text" placeholder="Example: jackson11!" name="username" onChange={onQUser} />
+            <div >What is your nickname*</div>
+            <input type="text" placeholder="Example: jackson11!" name="username" maxLength="60"onChange={onQUser} />
           </div>
           For privacy reasons, do not use your full name or email address
           <div>
-            <label >Your email*</label>
-            <input type="text" placeholder="Why did you like the product or not?" name="email" onChange={onQEmail} />
+            <br />
+            <div >Your email*</div>
+            <input type="text" placeholder="Why did you like the product or not?" name="email" maxLength="60" onChange={onQEmail} />
           </div>
           For authentication reasons, you will not be emailed
           <Button onClick={onSumbitQ}>Submit Question</Button>

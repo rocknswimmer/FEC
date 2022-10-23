@@ -98,9 +98,9 @@ const AnswerModal = (props) => {
       alertAEmail = true;
     }
     if (alertA || alertAUser || alertAEmail) {
-      let alertString = [{field: answer, label: 'Your answer'}, {field: answerUser, label: 'Your nickname'}, {field: answerEmail, label: 'Your Email'}].map((form) => {
+      let alertString = [{field: answer, div: 'Your answer'}, {field: answerUser, div: 'Your nickname'}, {field: answerEmail, div: 'Your Email'}].map((form) => {
         if (form.field === '') {
-          return form.label;
+          return form.div;
         }
         return false;
       }).filter((empty) => { if (empty !== false) { return true; } }).join('\n');
@@ -122,22 +122,24 @@ const AnswerModal = (props) => {
   return (
     <div className="modal-qa">
       <div className="modal-pop-qa">
-        <button onClick={props.close} className='qa-close'>x</button>
+        <div className='qa-close'><button onClick={props.close} >x</button></div>
         <div className='qa-modal-container'>
           <h2>Submit Your Answer</h2>
           <h3>Product name: {JSON.stringify(props.question.question_body)}</h3>
           <div>
-            <label >Your Answer*</label>
-            <input type="text" name="answer" onChange={onA} />
+            <div >Your Answer*</div>
+            <textarea type="textarea" name="answer" maxLength="1000" onChange={onA} />
           </div>
+          <br />
           <div>
-            <label >What is your nickname*</label>
-            <input type="text" placeholder="Example: jack543!" name="username" onChange={onAUser} />
+            <div >What is your nickname*</div>
+            <input type="text" placeholder="Example: jack543!" name="username" maxLength="60" onChange={onAUser} />
           </div>
           For privacy reasons, do not use your full name or email address
           <div>
-            <label >Your email*</label>
-            <input type="text" placeholder="Example: jack@email.com" name="email" onChange={onAEmail} />
+            <br />
+            <div >Your email*</div>
+            <input type="text" placeholder="Example: jack@email.com" name="email" maxLength="60"onChange={onAEmail} />
           </div>
           For authentication reasons, you will not be emailed
           <br />
