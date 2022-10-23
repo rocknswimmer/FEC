@@ -7,6 +7,7 @@ import styled from 'styled-components';
 import {ThemeProvider} from 'styled-components';
 import { GlobalStyles } from '../Mode/globalStyles.js';
 import { lightTheme, darkTheme } from '../Mode/Themes.js';
+import { BsSunFill, BsMoonStarsFill } from 'react-icons/bs';
 
 const Button = styled.button`
   background: white;
@@ -136,8 +137,8 @@ const Questions = (props) => {
         <GlobalStyles />
         <div id="questions">
           <button onClick={() => { submitInteraction('test', 'test'); }}>test interactions</button>
-          {(theme === 'light') && <button onClick={themeToggler}>Switch To Dark</button>}
-          {(theme !== 'light') && <button onClick={themeToggler}>Switch To Light</button>}
+          {(theme === 'light') && <button className='sun' onClick={themeToggler}><BsSunFill size={28} /></button>}
+          {(theme !== 'light') && <button className='moon' onClick={themeToggler}><BsMoonStarsFill size={28} /></button>}
           <h1 className='qa-title'>QUESTIONS & ANSWERS</h1>
           <form className="question-search-form">
             <input className="questions-search" type="text" placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS..." onChange={searchChange} />

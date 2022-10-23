@@ -139,3 +139,16 @@ a {
   background-color: rgb(0, 0, 0);
   opacity: 0.75;
 }
+
+.sun {
+  color: #E8B90E;
+  background-color: #D5DBE7;
+  border: none;
+}
+
+.moon {
+  color: #D5DBE7;
+  background-color: #1F2224;
+  border: none;
+
+}
