@@ -138,7 +138,7 @@ const Questions = (props) => {
           <button onClick={() => { submitInteraction('test', 'test'); }}>test interactions</button>
           {(theme === 'light') && <button onClick={themeToggler}>Switch To Dark</button>}
           {(theme !== 'light') && <button onClick={themeToggler}>Switch To Light</button>}
-          <div className='qa-title'>QUESTIONS & ANSWERS</div>
+          <h1 className='qa-title'>QUESTIONS & ANSWERS</h1>
           <form className="question-search-form">
             <input className="questions-search" type="text" placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS..." onChange={searchChange} />
             <button className="question-search-button" type="submit">

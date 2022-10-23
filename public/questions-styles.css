@@ -84,3 +84,7 @@ a {
 .answer-tag {
   padding-top: 5px;
 }
+
+#app h1 {
+  color: #E8B90E;
+}

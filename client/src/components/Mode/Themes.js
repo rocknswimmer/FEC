@@ -5,8 +5,8 @@ export const lightTheme = {
   background: '#1A4A4F',
 };
 export const darkTheme = {
-  body: '#1E3130',
+  body: '#1F2224',
   text: '#D5DBE7',
   toggleBorder: '#6B8096',
-  background: '#1F2224',
+  background: '#1E3130', // nice green look but doesnt match house colors as well
 };
