@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import styled from 'styled-components';
 import PhotosModal from './PhotosModal.jsx';
 import formattedDate from '../../HelperFunctions/formattedDate.js';
@@ -25,7 +26,7 @@ const Thumbnail = styled.img`
 `;
 
 const Button = styled.button`
-background: white;
+background: inherit;
 color: grey;
 font-size: .75em;
 margin: 15px 0 15px 0;
@@ -41,6 +42,8 @@ const ReviewsListEntry = ({review}) => {
   const [showModal, setShowModal] = useState(false);
   const [isScrollable, setIsScrollable] = useState(true);
   const [photoClicked, setPhotoClicked] = useState(true);
+  const [helpful, setHelpful] = useState(false);
+
 
   const togglePhotoClicked = (photo) => {
     photo.clicked = photoClicked;
@@ -59,18 +62,37 @@ const ReviewsListEntry = ({review}) => {
     isScrollable ? document.body.style.overflow = 'hidden' : document.body.style.overflow = 'scroll';
   };
 
-  let starTest = (int) => {
-    let rating = '';
-    for (let i = 0; i < int; i++) {
-      rating += '*';
+
+  const clickHelpful = (val) => {
+
+    if (val === 'no') {
+      setHelpful(!helpful);
     }
-    return rating;
+
+    if (!helpful) {
+      setHelpful(!helpful);
+      //axios put request
+      axios.put('/reviews/:review_id/helpful', {'review_id': review.review_id})
+        .then((res) => {
+          console.log('successfully put question helpful');
+          //maybe get req, but dont want to refresh page or allow to mark helpful again
+        })
+        .catch((err) => {
+          console.log('error putting question helpful: ', err);
+        });
+    }
   };
+
+
+  let noNum = Math.floor(Math.random() * 10);
+
 
   return (
     <ReviewEntry>
       <div className="rev-star-date">
-        <StarRating rating={review.rating}/>
+        <div className="static-stars">
+          <StarRating rating={review.rating}/>
+        </div>
         <small><div>{review.reviewer_name}, {formattedDate(review.date)}</div></small>
       </div>
       {review.summary.length > 60 ?
@@ -100,7 +122,7 @@ const ReviewsListEntry = ({review}) => {
       </div>
       <div>
         {review.recommend ?
-          <div className="rev-rec"><FaCheckCircle style={{color: 'red'}}/> I recommend this product</div> : null}
+          <div className="rev-rec"><FaCheckCircle style={{color: '#367c2b'}}/> I recommend this product</div> : null}
       </div>
       <div>
         {review.response ?
@@ -110,8 +132,11 @@ const ReviewsListEntry = ({review}) => {
           </div>
           : null}
       </div>
-      {/* <input type="range"></input> */}
-      <small><span>Was this review helpful? <a>Yes</a> {`(${review.helpfulness})`} | <a>No</a> (0) </span></small>
+      {helpful ?
+        <small><span>Was this review helpful? <span style={{color: '#367c2b'}}>Yes</span> {`(${review.helpfulness + 1})`}</span></small>
+        : <small><span>Was this review helpful? <a onClick={() => clickHelpful()}>Yes</a> {`(${review.helpfulness})`} | <a>No</a> ({noNum}) | <a>Report</a></span></small>
+      }
+
     </ReviewEntry>
   );
 };

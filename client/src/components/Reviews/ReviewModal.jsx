@@ -139,7 +139,9 @@ const ReviewModal = ({toggle, productId, getReviews, metaData}) => {
             <div>
               <div>
                 <div>Overall Rating <small>*</small></div>
-                <StarRating selectStars={selectStars} stars={stars}/>
+                <div className="dynamic-stars">
+                  <StarRating selectStars={selectStars} stars={stars}/>
+                </div>
               </div>
               <br/>
               <div>
@@ -151,8 +153,7 @@ const ReviewModal = ({toggle, productId, getReviews, metaData}) => {
               </div>
               <br/>
               <div>Please select an option for each characteristic below <small>*</small></div>
-              {/* <button type="button" onClick={() => showWidget()}>CLICK ME</button> */}
-              <br/>
+
               {metaData.characteristics.Size ?
                 <Characteristic
                   char={size}
@@ -162,7 +163,7 @@ const ReviewModal = ({toggle, productId, getReviews, metaData}) => {
                   postableObj={postableObj}
                   charId={metaData.characteristics.Size.id}/>
                 : null}
-              <br/>
+
               {metaData.characteristics.Width ?
                 <Characteristic
                   char={width}
@@ -213,15 +214,17 @@ const ReviewModal = ({toggle, productId, getReviews, metaData}) => {
                   charId={metaData.characteristics.Fit.id}/>
                 : null}
               <br/>
-
+              <br/>
               <div>
-                <div>Review Summary</div>
-                <input
-                  onChange={(e) => setSummary(e.target.value)}
-                  type="text"
-                  placeholder="Example: Best purchase ever!"
-                  maxLength="60"
-                />
+                <div className="sum-container">
+                  <div>Review Summary</div>
+                  <input
+                    onChange={(e) => setSummary(e.target.value)}
+                    type="text"
+                    placeholder="Example: Best purchase ever!"
+                    maxLength="60"
+                  />
+                </div>
                 <br/>
                 <div>Review Body <small>*</small></div>
                 <textarea
