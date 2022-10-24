@@ -1,5 +1,4 @@
 
-
 #rev-container {
   display: flex;
   flex-direction: column;
@@ -86,10 +85,10 @@
 .modal {
   margin: auto;
   position: fixed;
+  background: inherit;
 }
 
 .modal-pop {
-
   border: 2px solid #aaa;
   border-radius: 5px;
   z-index: 100;
@@ -100,8 +99,8 @@
   position: fixed;
   top: 50%;
   left: 50%;
-  max-width: 100%;
-  max-height: 100%;
+  max-width: 75%;
+  max-height: 75%;
   min-height: 30%;
   min-width: 30%;
   transform: translate(-50%, -50%);
@@ -185,7 +184,7 @@
   left: 50%;
   width: 50%;
   max-width: 100%;
-  max-height: 75%;
+  height: 75%;
   min-height: 30%;
   min-width: 40%;
   transform: translate(-50%, -50%);

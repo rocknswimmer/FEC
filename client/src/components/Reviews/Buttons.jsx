@@ -34,6 +34,7 @@ const Buttons = ({handleMoreReviews, reviewsList, visibleReviews, productId, get
           : null}
         <Button
           className="rev-button"
+          data-testid="add-button"
           onClick={() => toggleReviewModal()}>ADD A REVIEW +</Button>
         {showModal ?
           <ReviewModal

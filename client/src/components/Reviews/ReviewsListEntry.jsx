@@ -38,7 +38,7 @@ border-radius: 3px;
 
 const ReviewsListEntry = ({review}) => {
 
-  const [over250, setOver250] = useState(review.body.length > 50);
+  const [over250, setOver250] = useState(review.body.length > 250);
   const [showModal, setShowModal] = useState(false);
   const [isScrollable, setIsScrollable] = useState(true);
   const [photoClicked, setPhotoClicked] = useState(true);
@@ -108,7 +108,7 @@ const ReviewsListEntry = ({review}) => {
       <div>
         {over250 ?
           <div>
-            {review.body.substring(0, 50)}... <div>
+            {review.body.substring(0, 250)}... <div>
               <Button onClick={() => (toggleShowMore())}>Show More</Button>
             </div>
           </div> : review.body}
