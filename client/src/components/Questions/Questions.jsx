@@ -6,7 +6,7 @@ import {FaSearch} from 'react-icons/fa';
 import styled from 'styled-components';
 
 const Button = styled.button`
-  background: white;
+  background: inherit;
   color: grey;
   font-size: .75em;
   margin: 10px 10px  0 0;
