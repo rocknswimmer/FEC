@@ -101,7 +101,6 @@ const Reviews = ({productId, metaData, currentProduct}) => {
       for (let key in toggleObj) {
         if (toggleObj[key]) {
           let currentFilter = [...ratingsArray[key]];
-
           console.log("UNIQ",uniqueIds);
           const uniqueReviews = currentFilter.filter(rev => {
             const isDuplicate = uniqueIds.includes(rev.review_id);
@@ -116,6 +115,17 @@ const Reviews = ({productId, metaData, currentProduct}) => {
     } else {
       setStarsFilter(reviewsList.slice(0, visibleReviewsIndex));
     }
+  };
+
+  const handleClearFilter = () => {
+    setStarsFilter(reviewsList.slice(0, visibleReviewsIndex));
+    setToggleObj({
+      1: false,
+      2: false,
+      3: false,
+      4: false,
+      5: false
+    });
   };
 
 
@@ -150,7 +160,8 @@ const Reviews = ({productId, metaData, currentProduct}) => {
               toggleObj={toggleObj}
               setToggleObj={setToggleObj}
               handleClick={handleClick}
-              handleSort={handleSort}/>
+              handleSort={handleSort}
+              handleClearFilter={handleClearFilter}/>
           </div>
           <div className="list">
             <Dropdown reviewsList={reviewsList}
@@ -166,7 +177,8 @@ const Reviews = ({productId, metaData, currentProduct}) => {
               visibleReviews={visibleReviews}
               productId={productId}
               getReviews={getReviews}
-              metaData={metaData}/>
+              metaData={metaData}
+              toggleObj={toggleObj}/>
           </div>
         </SummaryListDivider>
       </div>

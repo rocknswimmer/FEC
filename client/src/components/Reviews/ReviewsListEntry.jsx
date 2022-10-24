@@ -25,7 +25,7 @@ const Thumbnail = styled.img`
 `;
 
 const Button = styled.button`
-background: white;
+background: inherit;
 color: grey;
 font-size: .75em;
 margin: 15px 0 15px 0;
@@ -59,18 +59,16 @@ const ReviewsListEntry = ({review}) => {
     isScrollable ? document.body.style.overflow = 'hidden' : document.body.style.overflow = 'scroll';
   };
 
-  let starTest = (int) => {
-    let rating = '';
-    for (let i = 0; i < int; i++) {
-      rating += '*';
-    }
-    return rating;
-  };
+
+  let noNum = Math.floor(Math.random() * 10);
+
 
   return (
     <ReviewEntry>
       <div className="rev-star-date">
-        <StarRating rating={review.rating}/>
+        <div className="static-stars">
+          <StarRating rating={review.rating}/>
+        </div>
         <small><div>{review.reviewer_name}, {formattedDate(review.date)}</div></small>
       </div>
       {review.summary.length > 60 ?
@@ -100,7 +98,7 @@ const ReviewsListEntry = ({review}) => {
       </div>
       <div>
         {review.recommend ?
-          <div className="rev-rec"><FaCheckCircle style={{color: 'red'}}/> I recommend this product</div> : null}
+          <div className="rev-rec"><FaCheckCircle style={{color: '#367c2b'}}/> I recommend this product</div> : null}
       </div>
       <div>
         {review.response ?
@@ -111,7 +109,7 @@ const ReviewsListEntry = ({review}) => {
           : null}
       </div>
       {/* <input type="range"></input> */}
-      <small><span>Was this review helpful? <a>Yes</a> {`(${review.helpfulness})`} | <a>No</a> (0) </span></small>
+      <small><span>Was this review helpful? <a>Yes</a> {`(${review.helpfulness})`} | <a>No</a> ({noNum}) | <a>Report</a></span></small>
     </ReviewEntry>
   );
 };

@@ -69,6 +69,7 @@
   text-decoration: underline;
   font-family: inherit;
   font-size: inherit;
+  color: inherit;
   width: auto;
 }
 
@@ -101,6 +102,11 @@
   min-width: 30%;
   transform: translate(-50%, -50%);
 }
+
+.modal-pop::-webkit-scrollbar {
+  display: none;  /* Safari and Chrome */
+}
+
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -146,11 +152,22 @@
   display: none;
 }
 
+.static-stars svg {
+  stroke: #333;
+  stroke-width: 20px;
+  fill: #C5D7D9;
+}
+
+.dynamic-stars svg {
+  stroke: #333;
+  stroke-width: 20px;
+}
+
 
 /* REVIEW MODAL */
 
 .rev-modal-pop {
-  background: #fff;
+  background: white;
   border: 2px solid #aaa;
   border-radius: 5px;
   z-index: 2;
@@ -175,14 +192,14 @@
   flex-shrink: 0;
 }
 div.radio-box {
-  width: 90px;
+  width: 70px;
   display: inline-block;
   margin: 5px;
 
 }
 .radio-box label {
   display:block;
-  width: 90px;
+  width: 70px;
   height: 9px;
   text-align: center;
 }
@@ -246,6 +263,7 @@ div.radio-box {
 .bar {
   height: 10px;
   background: lightgrey;
+  border: solid grey 1px;
   position: relative;
   width: 33%;
 }

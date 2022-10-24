@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 
 const Button = styled.button`
-  background: white;
+  background: inherit;
   color: grey;
   font-size: .75em;
   margin: 10px 0 0 0;
@@ -13,7 +13,7 @@ const Button = styled.button`
   border-radius: 3px;
 `;
 
-const Buttons = ({handleMoreReviews, reviewsList, visibleReviews, productId, getReviews, metaData}) => {
+const Buttons = ({handleMoreReviews, reviewsList, visibleReviews, productId, getReviews, metaData, toggleObj}) => {
 
   const [showModal, setShowModal] = useState(false);
   const [isScrollable, setIsScrollable] = useState(true);
@@ -27,7 +27,7 @@ const Buttons = ({handleMoreReviews, reviewsList, visibleReviews, productId, get
   return (
     <div>
       <div className="buttons-container">
-        {visibleReviews.length < reviewsList.length ?
+        {visibleReviews.length < reviewsList.length && !Object.values(toggleObj).includes(true) ?
           <Button
             className="rev-button"
             onClick={() => handleMoreReviews()}>MORE REVIEWS</Button>
