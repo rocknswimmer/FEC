@@ -1,13 +1,13 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import styled from 'styled-components';
-
+import { BsSunFill, BsMoonStarsFill } from 'react-icons/bs';
 
 
 const HeaderContainer = styled.div`
   position: fixed;
     top: -15px;
-  z-index: 10;
+  z-index: 2;
   background-color: #34363A;
   display: flex;
   align-item: left;
@@ -29,13 +29,25 @@ const Squid = styled.img`
 z-index: 15;
 `;
 
-const Header = () => {
+const Header = ({ theme, themeToggler, interact }) => {
 
 
   return (
     <HeaderContainer>
       <Greyjoy>House Greyjoy</Greyjoy>
       {/* <Squid src={require('image.png')}/> */}
+      {(theme === 'light') &&
+        <button className='sun'
+          onClick={() => { themeToggler(); interact('themeToggler', 'Header'); }}>
+          <BsSunFill size={28} />
+          Theme
+        </button>}
+
+      {(theme !== 'light') &&
+        <button className='moon'
+          onClick={() => { themeToggler(); interact('themeToggler', 'Header'); }}>
+          <BsMoonStarsFill size={28} />
+        </button>}
     </HeaderContainer>
   );
 };

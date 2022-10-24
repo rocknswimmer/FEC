@@ -154,13 +154,13 @@ a {
 
 .sun {
   color: #E8B90E;
-  background-color: #D5DBE7;
+  background: inherit;
   border: none;
 }
 
 .moon {
   color: #D5DBE7;
-  background-color: #1F2224;
+  background: inherit;
   border: none;
 
 }
