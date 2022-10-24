@@ -12,12 +12,22 @@ const StarBar = styled.div`
   display: flex;
   align-items: center;
   &:hover {
-    background-color: lightblue;
+    background-color: lightyellow;
   }
   margin-bottom: 5px;
 `;
 
-const Summary = ({metaData, reviewsList, setReviewsList, visibleReviews, setVisibleReviews, starsFilter, setStarsFilter, toggleObj, setToggleObj, handleClick, handleSort}) => {
+const Button = styled.button`
+  background: inherit;
+  color: grey;
+  font-size: .75em;
+  margin: 10px 0 0 0;
+  padding: 0.25em 1em;
+  border: 2px solid grey;
+  border-radius: 3px;
+`;
+
+const Summary = ({metaData, reviewsList, setReviewsList, visibleReviews, setVisibleReviews, starsFilter, setStarsFilter, toggleObj, setToggleObj, handleClick, handleSort, handleClearFilter}) => {
 
   if (!Object.keys(metaData).length) {
     return null;
@@ -45,7 +55,9 @@ const Summary = ({metaData, reviewsList, setReviewsList, visibleReviews, setVisi
       <div>
         <div className="average-and-stars">
           <AverageNumContainer>{averageRating}</AverageNumContainer>
-          <StarRating rating={averageRating}/>
+          <div className="static-stars">
+            <StarRating rating={averageRating}/>
+          </div>
         </div>
         <div> Out of {totalRatings} total ratings</div>
       </div>
@@ -105,6 +117,9 @@ const Summary = ({metaData, reviewsList, setReviewsList, visibleReviews, setVisi
           </div>
           <div><small>({metaData.ratings[1]})</small></div>
         </StarBar>
+        {Object.values(toggleObj).includes(true) ?
+          <Button onClick={() => handleClearFilter()}>Clear filters</Button>
+          : <br/>}
       </div>
       <div className="char-bars-container">
         {metaData.characteristics.Size ?
