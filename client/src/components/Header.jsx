@@ -16,6 +16,7 @@ const HeaderContainer = styled.div`
   font-family: 'Bad Script', cursive;
   border-bottom: solid 4px #E8B90E;
   padding-left: 25px;
+
 `;
 
 const Greyjoy = styled.h1`
