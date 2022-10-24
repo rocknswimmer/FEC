@@ -17,9 +17,9 @@ a {
 }
 
 .questions-search {
-  width: 95%;
-  padding: 10px 35px 10px 15px;
-  border: solid black 1px;
+  width: 98%;
+  padding: 10px 0px 10px 15px;
+  border: none;
 }
 
 .questions-search-form {
@@ -31,11 +31,11 @@ a {
   background: transparent;
   border: none;
   outline: none;
-  margin-left: -33px;
+  margin-left: -35px;
 }
 
 .answer-feed {
-  max-height: 40vh;
+  max-height: 30vh;
   overflow-y: scroll;
 }
 .answer-feed::-webkit-scrollbar {
