@@ -42,7 +42,8 @@ const ReviewsListEntry = ({review}) => {
   const [showModal, setShowModal] = useState(false);
   const [isScrollable, setIsScrollable] = useState(true);
   const [photoClicked, setPhotoClicked] = useState(true);
-  const [helpfulClicked, setHelpfulClicked] = useState(false);
+  const [helpful, setHelpful] = useState(false);
+
 
   const togglePhotoClicked = (photo) => {
     photo.clicked = photoClicked;
@@ -65,11 +66,11 @@ const ReviewsListEntry = ({review}) => {
   const clickHelpful = (val) => {
 
     if (val === 'no') {
-      setHelpfulClicked(!helpfulClicked);
+      setHelpful(!helpful);
     }
 
-    if (!helpfulClicked) {
-      setHelpfulClicked(!helpfulClicked);
+    if (!helpful) {
+      setHelpful(!helpful);
       //axios put request
       axios.put('/reviews/:review_id/helpful', {'review_id': review.review_id})
         .then((res) => {
@@ -131,7 +132,7 @@ const ReviewsListEntry = ({review}) => {
           </div>
           : null}
       </div>
-      {helpfulClicked ?
+      {helpful ?
         <small><span>Was this review helpful? <span style={{color: '#367c2b'}}>Yes</span> {`(${review.helpfulness + 1})`}</span></small>
         : <small><span>Was this review helpful? <a onClick={() => clickHelpful()}>Yes</a> {`(${review.helpfulness})`} | <a>No</a> ({noNum}) | <a>Report</a></span></small>
       }
