@@ -11,10 +11,10 @@ module.exports = {
   // bail: 0,
 
   // The directory where Jest should store its cached dependency information
-  // cacheDirectory: "/private/var/folders/p4/782dsnb54_q3kw67x6xf7z140000gn/T/jest_dx",
+  // cacheDirectory: "/private/var/folders/t5/39j1rdv138n63m09lxyy4gjc0000gn/T/jest_dx",
 
   // Automatically clear mock calls, instances, contexts and results before every test
-  // clearMocks: false,
+  clearMocks: true,
 
   // Indicates whether the coverage information should be collected while executing the test
   collectCoverage: true,
@@ -192,4 +192,9 @@ module.exports = {
 
   // Whether to use watchman for file crawling
   // watchman: true,
+  moduleNameMapper: {
+    "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
+    '\\.(css|less)$': '<rootDir>/__mocks__/styleMock.js',
+  },
+  transformIgnorePatterns: ['<rootDir>/node_modules/(?!(axios)/)']
 };
