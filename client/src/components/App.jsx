@@ -3,9 +3,10 @@ import { useState, useEffect } from 'react';
 import Reviews from './Reviews/Reviews.jsx';
 import View from './View/View.jsx';
 import Questions from './Questions/Questions.jsx';
+import Header from './Header.jsx';
 import axios from 'axios';
 import styled from 'styled-components';
-import {ThemeProvider} from 'styled-components';
+import { ThemeProvider } from 'styled-components';
 import { GlobalStyles } from './Mode/globalStyles.js';
 import { lightTheme, darkTheme } from './Mode/Themes.js';
 import { BsSunFill, BsMoonStarsFill } from 'react-icons/bs';
@@ -70,7 +71,7 @@ const App = () => {
         console.log('response from interacting: ', res.data);
       })
       .catch((err) => {
-        console.log('error posting interaction:', err );
+        console.log('error posting interaction:', err);
       });
   };
   // example useage
@@ -81,12 +82,24 @@ const App = () => {
       <>
         <GlobalStyles />
         <div id="app">
-          <h1>House Greyjoy</h1>
-          {/* {(theme === 'light') && <button className='sun' onClick={themeToggler}><BsSunFill size={28} /></button>}
-              {(theme !== 'light') && <button className='moon' onClick={themeToggler}><BsMoonStarsFill size={28} /></button>} */}
-          <View productId={product} currentProduct={currentProduct} metaData={metaData} interact={(element, widget) => { submitInteraction(element, widget); } }/>
-          <Questions productId={product} currentProduct={currentProduct} interact={(element, widget) => { submitInteraction(element, widget); }}/>
-          <Reviews productId={product} metaData={metaData} currentProduct={currentProduct} interact={(element, widget) => { submitInteraction(element, widget); }}/>
+          <Header
+            theme = {theme}
+            themeToggler ={themeToggler}
+            interact={(element, widget) => { submitInteraction(element, widget); }} />
+          <View
+            productId={product}
+            currentProduct={currentProduct}
+            metaData={metaData}
+            interact={(element, widget) => { submitInteraction(element, widget); }} />
+          <Questions
+            productId={product}
+            currentProduct={currentProduct}
+            interact={(element, widget) => { submitInteraction(element, widget); }} />
+          <Reviews
+            productId={product}
+            metaData={metaData}
+            currentProduct={currentProduct}
+            interact={(element, widget) => { submitInteraction(element, widget); }} />
         </div>
       </>
     </ThemeProvider>
