@@ -174,7 +174,7 @@
   background: white;
   border: 2px solid #aaa;
   border-radius: 5px;
-  z-index: 2;
+  z-index: 25;
   margin: auto;
   padding: 20px;
   overflow-y: scroll;
@@ -185,7 +185,7 @@
   left: 50%;
   width: 50%;
   max-width: 100%;
-  max-height: 80%;
+  max-height: 75%;
   min-height: 30%;
   min-width: 40%;
   transform: translate(-50%, -50%);

@@ -14,7 +14,7 @@ import { BsSunFill, BsMoonStarsFill } from 'react-icons/bs';
 
 const App = () => {
   const randomId = 37311 + Math.floor(Math.random() * 15);
-  const [product, setProduct] = useState(37311);
+  const [product, setProduct] = useState(37312);
 
   const [metaData, setMetaData] = useState({});
   const [currentProduct, setCurrentProduct] = useState({});
