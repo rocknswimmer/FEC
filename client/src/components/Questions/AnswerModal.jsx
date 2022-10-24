@@ -65,7 +65,7 @@ const AnswerModal = (props) => {
       email: answerEmail,
       photos: images,
       // eslint-disable-next-line camelcase
-      question_id: props.question //need to add question to props once I know where this goes
+      question_id: props.question.question_id //need to add question to props once I know where this goes
     })
       .then((res) => {
         // console.log('response posting answer to server', res.data);
@@ -98,9 +98,9 @@ const AnswerModal = (props) => {
       alertAEmail = true;
     }
     if (alertA || alertAUser || alertAEmail) {
-      let alertString = [{field: answer, label: 'Your answer'}, {field: answerUser, label: 'Your nickname'}, {field: answerEmail, label: 'Your Email'}].map((form) => {
+      let alertString = [{field: answer, div: 'Your answer'}, {field: answerUser, div: 'Your nickname'}, {field: answerEmail, div: 'Your Email'}].map((form) => {
         if (form.field === '') {
-          return form.label;
+          return form.div;
         }
         return false;
       }).filter((empty) => { if (empty !== false) { return true; } }).join('\n');
@@ -111,48 +111,57 @@ const AnswerModal = (props) => {
       alert('email missing @ or . after @, please reformatting to be able to submit');
       return;
     }
+    if (images.length > 5) {
+      alert('can only upload 5 photos');
+    }
 
     submitAnswer();
 
   };
 
-
   return (
-    <div className="modal">
-      <div className="modal-pop">
-        <button onClick={props.close}>x</button>
-        <br />
-        <label >Your Answer*</label>
-        <input type="text" name="answer" onChange={onA} />
-        <br />
-        <label >What is your nickname*</label>
-        <input type="text" placeholder="Example: jack543!" name="username" onChange={onAUser}/>
-        <br />
-        For privacy reasons, do not use your full name or email address
-        <br />
-        <label >Your email*</label>
-        <input type="text" placeholder="Example: jack@email.com" name="email" onChange={onAEmail}/>
-        <br />
-        For authentication reasons, you will not be emailed
-        <br />
-        <CloudinaryContext cloudName="dqmnjwd2c">
+    <div className="modal-qa">
+      <div className="modal-pop-qa">
+        <div className='qa-close'><button onClick={props.close} >x</button></div>
+        <div className='qa-modal-container'>
+          <h2>Submit Your Answer</h2>
+          <h3>Product name: {JSON.stringify(props.question.question_body)}</h3>
           <div>
-            <Button type="button" onClick={() => beginUpload('image')}>Upload Photos</Button>
-            <section>
-              {images.map(i => <Image
-                key={i}
-                publicId={i}
-                fetch-format="auto"
-                quality="auto"
-                height="80px"
-                width="80px"
-              />)}
-            </section>
+            <div >Your Answer*</div>
+            <textarea type="textarea" name="answer" maxLength="1000" onChange={onA} />
           </div>
-        </CloudinaryContext>
-        <button onClick={onSumbitA}>Submit Answer</button>
+          <br />
+          <div>
+            <div >What is your nickname*</div>
+            <input type="text" placeholder="Example: jack543!" name="username" maxLength="60" onChange={onAUser} />
+          </div>
+          For privacy reasons, do not use your full name or email address
+          <div>
+            <br />
+            <div >Your email*</div>
+            <input type="text" placeholder="Example: jack@email.com" name="email" maxLength="60"onChange={onAEmail} />
+          </div>
+          For authentication reasons, you will not be emailed
+          <br />
+          <CloudinaryContext cloudName="dqmnjwd2c">
+            <div>
+              <Button type="button" onClick={() => beginUpload('image')}>Upload Photos</Button>
+              <section>
+                {images.map(i => <Image
+                  key={i}
+                  publicId={i}
+                  fetch-format="auto"
+                  quality="auto"
+                  height="80px"
+                  width="80px"
+                />)}
+              </section>
+            </div>
+          </CloudinaryContext>
+          <Button onClick={onSumbitA}>Submit Answer</Button>
+        </div>
       </div>
-      <div className="modal-overlay"></div>
+      <div className="modal-overlay-qa"></div>
     </div>
   );
 };
