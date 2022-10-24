@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { DropDownContainer, DropDownHeader, DropDownListContainer, DropDownList, ListItem } from './Styled/DropDownStyles.jsx';
+import { DropDownContainer, DropDownHeader, DropDownListContainer, DropDownList, ListItem, DropDownListQty } from './Styled/DropDownStyles.jsx';
 import { Button, CartContainer } from './Styled/Form.styled.jsx';
 import { FaChevronDown, FaMinus, FaPlus } from 'react-icons/fa';
 import Dropdown from 'react-dropdown';
@@ -15,7 +15,14 @@ const ItemSelection = ({ currentDisplayedStyle, productId, addToCart, cartConten
   const [items, setItems] = useState([]);
   const [selectedItem, setSelectedItem] = useState({});
 
-
+  const isOutOfSize = () => {
+    const obj = cartContents.find(cartObj => cartObj.sku === selectedItem.sku);
+    if (obj) {
+      return obj.quantity === 0;
+    } else {
+      return false;
+    }
+  };
 
   //makes array of sku-sizes objects
   const sizeArrayMaker = (obj) => {
@@ -42,7 +49,9 @@ const ItemSelection = ({ currentDisplayedStyle, productId, addToCart, cartConten
 
   const toggleQuantityDropdown = () => {
     console.log('quantity dropdown should be toggled');
-    setQuantityDropDownOpen(!quantityDropdownIsOpen);
+    if (!isOutOfSize()) {
+      setQuantityDropDownOpen(!quantityDropdownIsOpen);
+    }
   };
 
   // Closes the dropdowns when the mouse stops hovering
@@ -91,8 +100,8 @@ const ItemSelection = ({ currentDisplayedStyle, productId, addToCart, cartConten
 
     } else if (correctQty === 0) {
       // quantityArr make it so it says it's out of stock
-      quantityArr.push(0);
       console.log('this item is out of stock');
+      return [];
     } else {
       quantityArr = Array.from(Array(correctQty + 1).keys());
     }
@@ -127,82 +136,84 @@ const ItemSelection = ({ currentDisplayedStyle, productId, addToCart, cartConten
   return (
     <CartContainer>
       {/* <Dropdown options={items}/> */}
-      {
-        outOfStock && <DropDownContainer className="dropdown-size-container">
-          <DropDownHeader>
-            Out of Stock
-          </DropDownHeader>
-        </DropDownContainer>
-      }
-      {
-        !outOfStock && <DropDownContainer className="dropdown-size-container"
-        onMouseLeave={(e) => { handleMouseLeavingSizeDropDown(); }}
-        >
-          <DropDownHeader onClick={toggleSizeDropdown}>
-            {
-              sizeChosen && <>
-                <span>{selectedItem.size}</span>
-                <FaChevronDown style={{ color: '#B0B0B0' }} />
-              </>
-            }
-            {
-              !sizeChosen && <>
-                Select Size
-                <FaChevronDown style={{ color: '#B0B0B0' }} />
-
-              </>
-            }
-          </DropDownHeader>
-          <DropDownListContainer className="dropdown-size-container">
-            {
-              sizeDropdownIsOpen && <DropDownList>
-                {items.map((item, index) => {
-                  return (
-                    <ListItem key={index} onClick={(e) => { handleSizeSelection(index); }} value={item.sku}>
-                      {item.size}
-                    </ListItem>
-                  );
-                })}
-              </DropDownList>
-
-            }
-          </DropDownListContainer>
-
-        </DropDownContainer>
-      }
-      {
-        !sizeChosen && <DropDownContainer className="dropdown-qty-container">
-          <DropDownHeader>
-            <FaMinus style={{ color: '#B0B0B0' }} /> <FaChevronDown style={{ color: '#B0B0B0' }} />
-          </DropDownHeader> </DropDownContainer>
-      }
-      {
-        sizeChosen && <DropDownContainer className="dropdown-qty-container" onClick={toggleQuantityDropdown} onMouseLeave={handleMouseLeavingQuantityDropDown}>
-          {
-            !qtyChosen && <DropDownHeader>
-              1 {<FaChevronDown style={{ color: '#B0B0B0' }} />}
+      <div className="top-row">
+        {
+          outOfStock && <DropDownContainer className="dropdown-size-container">
+            <DropDownHeader>
+              Out of Stock
             </DropDownHeader>
-          }
-          {
-            qtyChosen > 0 && <DropDownHeader>
-              {qtyChosen} <FaChevronDown style={{ color: '#B0B0B0' }} />
-            </DropDownHeader>
-          }
-          <DropDownListContainer>
-            {
-              quantityDropdownIsOpen && <DropDownList>
-                {
-                  quantityArrayMaker().map((num, index) => {
-                    return (<ListItem key={index} value={num} onClick={(event) => { updateSelectedQty(num); }}>{num}</ListItem>);
-                  })
-                }
-              </DropDownList>
-            }
-          </DropDownListContainer>
-        </DropDownContainer>
-      }
+          </DropDownContainer>
+        }
+        {
+          !outOfStock && <DropDownContainer className="dropdown-size-container"
+            onMouseLeave={(e) => { handleMouseLeavingSizeDropDown(); }}
+          >
+            <DropDownHeader onClick={toggleSizeDropdown}>
+              {
+                sizeChosen && <>
+                  <span>{selectedItem.size}</span>
+                  <FaChevronDown style={{ color: '#B0B0B0' }} />
+                </>
+              }
+              {
+                !sizeChosen && <>
+                  Select Size
+                  <FaChevronDown style={{ color: '#B0B0B0' }} />
 
-      <Button onClick={onSubmitButton}>Add to Cart{<FaPlus style={{ color: '#B0B0B0' }} />}</Button>
+                </>
+              }
+            </DropDownHeader>
+            <DropDownListContainer className="dropdown-size-container">
+              {
+                sizeDropdownIsOpen && <DropDownList>
+                  {items.map((item, index) => {
+                    return (
+                      <ListItem key={index} onClick={(e) => { handleSizeSelection(index); }} value={item.sku}>
+                        {item.size}
+                      </ListItem>
+                    );
+                  })}
+                </DropDownList>
+
+              }
+            </DropDownListContainer>
+
+          </DropDownContainer>
+        }
+        {
+          !sizeChosen && <DropDownContainer className="dropdown-qty-container">
+            <DropDownHeader>
+              <FaMinus style={{ color: '#B0B0B0' }} /> <FaChevronDown style={{ color: '#B0B0B0' }} />
+            </DropDownHeader> </DropDownContainer>
+        }
+        {
+          sizeChosen && <DropDownContainer className="dropdown-qty-container" onClick={toggleQuantityDropdown} onMouseLeave={handleMouseLeavingQuantityDropDown}>
+            {
+              !qtyChosen && <DropDownHeader>
+                {isOutOfSize() ? 'out of stock' : 1}
+                {<FaChevronDown style={{ color: '#B0B0B0' }} />}
+              </DropDownHeader>
+            }
+            {
+              qtyChosen > 0 && <DropDownHeader>
+                {qtyChosen} <FaChevronDown style={{ color: '#B0B0B0' }} />
+              </DropDownHeader>
+            }
+            <DropDownListContainer>
+              {
+                quantityDropdownIsOpen && <DropDownListQty>
+                  {
+                    quantityArrayMaker().map((num, index) => {
+                      return (<ListItem key={index} value={num} onClick={(event) => { updateSelectedQty(num); }}>{num}</ListItem>);
+                    })
+                  }
+                </DropDownListQty>
+              }
+            </DropDownListContainer>
+          </DropDownContainer>
+        }
+      </div>
+      <Button disabled={isOutOfSize()} className="add-to-cart-button" onClick={onSubmitButton}>Add to Cart{<FaPlus style={{ color: '#B0B0B0' }} />}</Button>
     </CartContainer>
   );
 };

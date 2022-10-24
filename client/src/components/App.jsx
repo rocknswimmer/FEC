@@ -52,7 +52,7 @@ const App = () => {
   return (
     <div id="app">
       <h1>House Greyjoy</h1>
-      <View productId = {product} currentProduct ={currentProduct} />
+      <View productId = {product} currentProduct ={currentProduct} metaData={metaData}/>
       <Questions productId = {product} />
       <Reviews productId={product} metaData={metaData}/>
     </div>

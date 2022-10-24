@@ -24,9 +24,9 @@ const Description = ({ productInfo, currentDisplayedStyle }) => {
       <h3>{productInfo.slogan}</h3>
       <p>{productInfo.description}</p>
       <SocialDiv>
-        <Fb> <FaFacebook/> </Fb>
-        <Twitter className='twitter-share-button' href={`https://twitter.com/intent/tweet?text=Hello%20world`} ><FaTwitter /></Twitter>
-        <Pinterest> <FaPinterest /> </Pinterest>
+        <Fb target={'_blank'} href={`https://www.facebook.com`} > <FaFacebook /> </Fb>
+        <Twitter className='twitter-share-button' target={'_blank'} href={`https://twitter.com/intent/tweet?text=Hello%20world`} ><FaTwitter /></Twitter>
+        <Pinterest target={'_blank'} href={`https://www.pinterest.com`}> <FaPinterest /> </Pinterest>
       </SocialDiv>
     </DescriptionDiv>
   );

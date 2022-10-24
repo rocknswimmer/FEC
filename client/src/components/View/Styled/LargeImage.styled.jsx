@@ -14,16 +14,20 @@ const MainImage = styled.div`
   grid-template-rows: repeat(10, minmax(0, 1fr));
   margin-left: 20px;
   margin-right: 20px;
-  width: 100%;
   height: 100%;
   background-image: url(${props => props.img});
   background-position: center;
   background-size:cover;
     width: auto;
     height: atuo;
-    color: red;
+
     overflow: hidden;
   object-fit: cover;
+  svg {
+    stroke: #333;
+    stroke-width: 20px;
+    fill: #C5D7D9;
+  }
 `;
 
 const ExpandedView = styled.div`
@@ -32,6 +36,7 @@ const ExpandedView = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(3, 100px);
+
 `;
 const PhotoColumn = styled.div`
   cursor: auto;
@@ -78,29 +83,68 @@ const ExpandedImageDiv = styled.div`
 `;
 
 const ModalPop = styled.div`
-background-image: url(${props => props.img});
+display: flex;
+align-items: center;
+object-fit: fill;
+overflow: hidden;
+background: black;
 border: 2px solid #aaa;
-border-radius: 5px;
 z-index: 2;
 margin: auto;
+position: fixed;
+top: 50%;
+left: 50%;
+max-width: 95vh;
+max-height: 95vw;
+transform: translate(-50%, -50%);
+svg {
+  stroke: #333;
+  stroke-width: 20px;
+  fill: #C5D7D9;
+  cursor: pointer;
+}
+`;
 
+const ModalPhoto = styled.img`
+  transform: ${props => props.isZoomed ? 'scale(2.5, 2.5)' : null};
+  transform-origin: ${props => props.mouseLocation};
+  max-height: 100vh;
+  max-width: 100vw;
+`;
 
+const ModalOverlay = styled.div`
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+z-index: 1;
+background-color: rgb(0, 0, 0);
+opacity: 0.75;
+`;
+
+const ExpandedPhotoControls = styled.div`
+width: 100%;
+display: flex;
+font-weight: 1em;
+flex-direction: row;
+position: fixed;
+justify-content: space-between;
+z-index: 4;
+`;
+
+const IconHolder = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  z-index: 4;
+  position: fixed;
+  top: 90%;
 
 `;
 
-const ModalPhoto = styled.div`
-background-image: url(${props => props.img});
-  background-position: center;
-  background-size:cover;
-    width: auto;
-    height: atuo;
-    color: red;
-    overflow: hidden;
-  object-fit: cover;
-`;
+export { MainImage, ExpandedView, ComponentBlock, LeftArrow, RightArrow, Expander, PhotoColumn, Thumbnails, ExpandedImageDiv, ModalPop, ModalPhoto, ModalOverlay, IconHolder, ExpandedPhotoControls };
 
-export { MainImage, ExpandedView, ComponentBlock, LeftArrow, RightArrow, Expander, PhotoColumn, Thumbnails, ExpandedImageDiv, ModalPop, ModalPhoto };
 
-    // margin: 10px;
-    // height: 75px;
-    // width: 75px;
+// background-image: url(${props => props.img});

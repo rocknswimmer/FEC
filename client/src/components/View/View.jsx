@@ -9,7 +9,7 @@ import { StyleView } from './Styled/StyleView.styled.jsx';
 // import {Button} from './Styled/Form.styled.jsx';
 
 
-const View = ({ productId, currentProduct }) => {
+const View = ({ productId, currentProduct, metaData }) => {
   //Establish pieces of state for View and StyleSelector
   const [otherStyles, setOtherStyles] = useState([]);
   const [displayedStyle, setDisplayedStyle] = useState({});
@@ -53,12 +53,14 @@ const View = ({ productId, currentProduct }) => {
       cartAddition.quantity = newQty;
       newCartArray.push(cartAddition);
     }
+    console.log(newCartArray, "here is the updated cart from View");
     setCartContents(newCartArray);
   };
 
   //useEffect: updates on render
   useEffect(() => {
     getOtherStyles(productId);
+
   }, []);
 
   //eventhandler to change DisplayedStyle
@@ -72,7 +74,7 @@ const View = ({ productId, currentProduct }) => {
       <Description productInfo={currentProduct} />
       <StyleView>
 
-        <ProductName productInfo={currentProduct} currentDisplayedStyle={displayedStyle} />
+        <ProductName productInfo={currentProduct} currentDisplayedStyle={displayedStyle} metaData={metaData}/>
 
         {otherStyles.length > 0 && <SelectedStyle otherStyles={otherStyles} productId={productId} changeDisplayedStyle={changeDisplayedStyle} currentDisplayedStyle={displayedStyle} />}
 
