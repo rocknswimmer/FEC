@@ -9,10 +9,12 @@ import Buttons from './Buttons.jsx';
 const ReviewsContainer = styled.div`
 padding: 10px;
 margin: 32px;
+margin-bottom: 0;
 display: flex;
 flex-direction: column;
 flex-shrink: 0;
 max-width:80%;
+
 `;
 
 const SummaryListDivider = styled.div`
@@ -61,10 +63,7 @@ const Reviews = ({productId, metaData, currentProduct}) => {
 
   const handleMoreReviews = () => {
     visibleReviewsIndex += 2;
-
     setVisibleReviews(reviewsList.slice(0, visibleReviewsIndex));
-
-
   };
 
   const [toggleObj, setToggleObj] = useState({

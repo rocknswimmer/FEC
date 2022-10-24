@@ -214,7 +214,7 @@ const ReviewModal = ({toggle, productId, getReviews, metaData}) => {
                   charId={metaData.characteristics.Fit.id}/>
                 : null}
               <br/>
-                <br/>
+              <br/>
               <div>
                 <div className="sum-container">
                   <div>Review Summary</div>

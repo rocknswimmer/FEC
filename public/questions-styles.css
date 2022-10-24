@@ -154,12 +154,17 @@ a {
 
 .sun {
   color: #E8B90E;
-  background-color: #D5DBE7;
+  background: inherit;
   border: none;
 }
 
 .moon {
   color: #D5DBE7;
-  background-color: #1F2224;
+  background: inherit;
   border: none;
+<<<<<<< HEAD
 }
+=======
+
+}
+>>>>>>> 3863a8b5f59e942bf8926e04048d0f56f3e713f3

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import styled from 'styled-components';
 import PhotosModal from './PhotosModal.jsx';
 import formattedDate from '../../HelperFunctions/formattedDate.js';
@@ -41,6 +42,7 @@ const ReviewsListEntry = ({review}) => {
   const [showModal, setShowModal] = useState(false);
   const [isScrollable, setIsScrollable] = useState(true);
   const [photoClicked, setPhotoClicked] = useState(true);
+  const [helpfulClicked, setHelpfulClicked] = useState(false);
 
   const togglePhotoClicked = (photo) => {
     photo.clicked = photoClicked;
@@ -57,6 +59,27 @@ const ReviewsListEntry = ({review}) => {
     setShowModal(!showModal);
     setIsScrollable(!isScrollable);
     isScrollable ? document.body.style.overflow = 'hidden' : document.body.style.overflow = 'scroll';
+  };
+
+
+  const clickHelpful = (val) => {
+
+    if (val === 'no') {
+      setHelpfulClicked(!helpfulClicked);
+    }
+
+    if (!helpfulClicked) {
+      setHelpfulClicked(!helpfulClicked);
+      //axios put request
+      axios.put('/reviews/:review_id/helpful', {'review_id': review.review_id})
+        .then((res) => {
+          console.log('successfully put question helpful');
+          //maybe get req, but dont want to refresh page or allow to mark helpful again
+        })
+        .catch((err) => {
+          console.log('error putting question helpful: ', err);
+        });
+    }
   };
 
 
@@ -108,8 +131,11 @@ const ReviewsListEntry = ({review}) => {
           </div>
           : null}
       </div>
-      {/* <input type="range"></input> */}
-      <small><span>Was this review helpful? <a>Yes</a> {`(${review.helpfulness})`} | <a>No</a> ({noNum}) | <a>Report</a></span></small>
+      {helpfulClicked ?
+        <small><span>Was this review helpful? <span style={{color: '#367c2b'}}>Yes</span> {`(${review.helpfulness + 1})`}</span></small>
+        : <small><span>Was this review helpful? <a onClick={() => clickHelpful()}>Yes</a> {`(${review.helpfulness})`} | <a>No</a> ({noNum}) | <a>Report</a></span></small>
+      }
+
     </ReviewEntry>
   );
 };

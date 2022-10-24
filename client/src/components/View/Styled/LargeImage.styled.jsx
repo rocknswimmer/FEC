@@ -26,7 +26,7 @@ const MainImage = styled.div`
   svg {
     stroke: #333;
     stroke-width: 20px;
-    fill: #C5D7D9;
+    fill: white;
   }
 `;
 
@@ -100,7 +100,7 @@ transform: translate(-50%, -50%);
 svg {
   stroke: #333;
   stroke-width: 20px;
-  fill: #C5D7D9;
+  fill: #E8B90E;
   cursor: pointer;
 }
 `;
@@ -114,7 +114,7 @@ const ModalPhoto = styled.img`
 
 const ModalOverlay = styled.div`
 position: fixed;
-top: 0;
+top: 150px;
 left: 0;
 width: 100%;
 height: 100%;
@@ -130,7 +130,7 @@ font-weight: 1em;
 flex-direction: row;
 position: fixed;
 justify-content: space-between;
-z-index: 4;
+z-index: 12;
 `;
 
 const IconHolder = styled.div`
