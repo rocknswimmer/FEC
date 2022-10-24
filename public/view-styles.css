@@ -33,6 +33,11 @@ width: 330px;
   right: 0px;
 };
 
+.static-stars svg {
+  stroke: #333;
+  stroke-width: 20px;
+  fill: #C5D7D9;
+}
 /* .expanded-photo-left {
   position: relative;
   left: 150px;

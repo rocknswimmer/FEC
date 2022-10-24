@@ -8,14 +8,30 @@ const ExpandedPhoto = ({ displayedImage, photoIndex, arrowRightHandler, expandPh
 
 
   const [isZoomed, setIsZoomed] = useState(false);
-  const [mouseLocation, setMouseLocation] = useState('');
-  // zoom clickhandler
+  const [mouseLocation, setMouseLocation] = useState('center');
+  const [cursorType, setCursorType] = useState({});
 
+  const cursorCrossHair = {
+    cursor: 'crosshair'
+  };
+
+  const cursorZoomOut = {
+    cursor: 'zoom-out'
+  };
 
   const zoom = (event) => {
     // console.log(event);
-    setMouseLocation(`${event.clientX}px ${event.clientY}px`);
-    setIsZoomed(!isZoomed);
+    if (isZoomed === false) {
+      setMouseLocation(`${event.clientX}px ${event.clientY}px`);
+      setIsZoomed(!isZoomed);
+      setCursorType(cursorZoomOut);
+    } else {
+      console.log('zoom event listener firing on case where isZoomed= true');
+      setIsZoomed(false);
+      setMouseLocation('center');
+      setCursorType(cursorCrossHair);
+    }
+
   };
 
 
@@ -24,12 +40,49 @@ const ExpandedPhoto = ({ displayedImage, photoIndex, arrowRightHandler, expandPh
   return (
     <>
       <ExpandedImageDiv >
-        <ModalPop className="modal-pop" role="dialog" aria-modal="true" >
+        <ModalPop
+          className="modal-pop"
+          role="dialog"
+          aria-modal="true"
+        >
 
           <ExpandedPhotoControls>
-            <FaAngleLeft className="expanded-photo-left" onClick={arrowLeftHandler} />
-            <FaAngleRight className="expanded-photo-right" onClick={arrowRightHandler} />
-            <FaWindowClose onClick={expandPhoto} className="close-out-expanded-view" />
+            {photoIndex !== 0 &&
+              <FaAngleLeft
+                className="expanded-photo-left"
+                onClick={arrowLeftHandler} />}
+            {
+              photoIndex === 0 &&
+              <FaAngleLeft
+                className="expanded-photo-left"
+                style={
+                  {
+                    stroke: 'rgba(0,0,0,0)',
+                    fill: 'rgba(0,0,0,0)'
+                  }
+                }
+              />
+            }
+            {photoIndex !== imageArray.length - 1 &&
+              <FaAngleRight
+                className="expanded-photo-right"
+                onClick={arrowRightHandler} />}
+            {
+              photoIndex === imageArray.length - 1 &&
+              <FaAngleRight
+                className="expanded-photo-left"
+                style={
+                  {
+                    stroke: 'rgba(0,0,0,0)',
+                    fill: 'rgba(0,0,0,0)'
+                  }
+                }
+              />
+            }
+
+            <FaWindowClose
+              onClick={expandPhoto}
+              className="close-out-expanded-view" />
 
             <IconHolder>
               {
@@ -37,7 +90,16 @@ const ExpandedPhoto = ({ displayedImage, photoIndex, arrowRightHandler, expandPh
                   if (num === photoIndex) {
                     return <div key={index}><FaCamera className='icon-styled' /></div>;
                   } else {
-                    return <div key={index} number={index} onClick={(e) => { changePhotoToSelectedIcon(index); }}><FaCircle style={{height: '20px'}} className='icon-styled' /></div>;
+                    return (
+                      <div
+                        key={index}
+                        number={index}
+                        onClick={(e) => { changePhotoToSelectedIcon(index); }}>
+                        <FaCircle
+                          style={{ height: '20px' }}
+                          className='icon-styled'
+                        />
+                      </div>);
 
                   }
                 })
@@ -45,11 +107,18 @@ const ExpandedPhoto = ({ displayedImage, photoIndex, arrowRightHandler, expandPh
             </IconHolder>
           </ExpandedPhotoControls>
 
-          <ModalPhoto src={displayedImage} mouseLocation={mouseLocation} isZoomed={isZoomed} onClick={zoom} />
+          <ModalPhoto
+            src={displayedImage}
+            isZoomed={isZoomed}
+            mouseLocation={mouseLocation}
+            style = {cursorType}
+            onClick={zoom}
+          />
 
 
         </ModalPop>
-        <ModalOverlay></ModalOverlay>
+        <ModalOverlay>
+        </ModalOverlay>
       </ExpandedImageDiv>
 
     </>

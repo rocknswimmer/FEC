@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Carousel from './Carousel.jsx';
-import { FaAngleLeft, FaAngleRight, FaExpand } from 'react-icons/fa';
+import { FaAngleLeft, FaAngleRight, FaExpand, FaSearch } from 'react-icons/fa';
 import { MainImage, ExpandedView, ComponentBlock, LeftArrow, RightArrow, Expander } from './Styled/LargeImage.styled.jsx';
 import ExpandedPhoto from './ExpandedPhoto.jsx';
 
@@ -35,16 +35,22 @@ const ProductImage = ({ currentDisplayedStyle }) => {
   };
 
   //create clickHandler for side arrows
+
   const clickHanderArrowRight = (event) => {
     let num = photoIndex;
     if (photoIndex < imageArray.length - 1) {
       setPhotoIndex(photoIndex + 1);
       num += 1;
     }
+
+    setDisplayedImage(imageArray[num].url);
+  };
+
+  const clickHanderRightArrowMainImage = (event) => {
     let otherNum = sendThumbnailUp;
     otherNum += 1;
     setSendThumbnailUp(otherNum);
-    setDisplayedImage(imageArray[num].url)
+
   };
 
   const clickHanderArrowLeft = (event) => {
@@ -132,7 +138,7 @@ const ProductImage = ({ currentDisplayedStyle }) => {
 
           {photoIndex !== 0 && <LeftArrow onClick={clickHanderArrowLeft}><FaAngleLeft className='icon-styled' /></LeftArrow>}
 
-          {photoIndex !== imageArray.length - 1 && <RightArrow onClick={clickHanderArrowRight}><FaAngleRight className='icon-styled' /></RightArrow>}
+          {photoIndex !== imageArray.length - 1 && <RightArrow onClick={clickHanderArrowRight} onClick={clickHanderRightArrowMainImage}><FaAngleRight className='icon-styled' /></RightArrow>}
 
         </MainImage>
       }

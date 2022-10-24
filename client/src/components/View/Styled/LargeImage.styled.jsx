@@ -1,4 +1,7 @@
 import styled from 'styled-components';
+
+
+
 const ComponentBlock = styled.div`
   grid-column-start: 1;
   grid-column-end:7;
@@ -45,6 +48,7 @@ const PhotoColumn = styled.div`
   flex-direction: column;
   grid-row-start 2;
   grid-row-end: 10;
+  cursor: pointer
 `;
 
 const Thumbnails = styled.div`
@@ -57,19 +61,22 @@ const Thumbnails = styled.div`
     width: 75px;
 
   object-fit: cover;
+  cursor: pointer
 `;
 
 const LeftArrow = styled.div`
-  cursor: auto;
+
   grid-column-start: 3;
   grid-row-start: 6;
+  cursor: pointer
 
 `;
 
 const RightArrow = styled.div`
-cursor: auto;
+
 grid-column-start: 10;
 grid-row-start: 6;
+cursor: pointer
 `;
 
 const Expander = styled.div`
@@ -96,7 +103,9 @@ top: 50%;
 left: 50%;
 max-width: 95vh;
 max-height: 95vw;
+cursor: crosshair;
 transform: translate(-50%, -50%);
+
 svg {
   stroke: #333;
   stroke-width: 20px;
@@ -106,10 +115,11 @@ svg {
 `;
 
 const ModalPhoto = styled.img`
-  transform: ${props => props.isZoomed ? 'scale(2.5, 2.5)' : null};
+  transform: ${props => props.isZoomed ? 'scale(2.5, 2.5)' : 'scale(1)'};
   transform-origin: ${props => props.mouseLocation};
   max-height: 95vh;
   max-width: 95vw;
+
 `;
 
 const ModalOverlay = styled.div`
@@ -120,7 +130,8 @@ width: 100%;
 height: 100%;
 z-index: 1;
 background-color: rgb(0, 0, 0);
-opacity: 0.75;
+opacity: 0.85;
+cursor: auto;
 `;
 
 const ExpandedPhotoControls = styled.div`
