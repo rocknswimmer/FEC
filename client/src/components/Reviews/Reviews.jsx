@@ -135,7 +135,7 @@ const Reviews = ({productId, metaData, currentProduct}) => {
 
       <div>
         <div>
-          <h3 id="rev-header">RATINGS AND REVIEWS</h3>
+          <h1 id="rev-header">RATINGS AND REVIEWS</h1>
         </div>
         <SummaryListDivider>
           <div className="summary">
