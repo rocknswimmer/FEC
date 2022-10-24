@@ -40,7 +40,7 @@ const Header = ({ theme, themeToggler, interact }) => {
         <button className='sun'
           onClick={() => { themeToggler(); interact('themeToggler', 'Header'); }}>
           <BsSunFill size={28} />
-          Theme
+
         </button>}
 
       {(theme !== 'light') &&
