@@ -3,12 +3,16 @@ a {
 }
 
 #questions {
-  width: 90%;
+  width: 87%;
+  max-height: 85vh;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
 }
 .questions-search {
   width: 95%;
   padding: 10px 35px 10px 15px;
-  border: thick black 5px;
+  border: solid black 1px;
 }
 
 .questions-search-form {
@@ -21,4 +25,142 @@ a {
   border: none;
   outline: none;
   margin-left: -33px;
+}
+
+.answer-feed {
+  max-height: 50vh;
+  overflow-y: scroll;
+}
+.answer-feed::-webkit-scrollbar {
+  display: none;  /* Safari and Chrome */
+}
+
+.question-feed {
+  overflow-y: scroll;
+  max-height: 77vh;
+}
+.question-feed::-webkit-scrollbar {
+  display: none;  /* Safari and Chrome */
+}
+
+
+.answer {
+  border-bottom: solid grey 1px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.question-line {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+
+.qa-title {
+  padding-bottom: 10px;
+}
+
+.qspacer {
+  padding-left: 7px;
+  padding-right: 7px;
+}
+
+.qyes {
+  padding-left: 7px;
+}
+
+.answer-loader {
+  padding-top: 10px;
+}
+
+.answer-container {
+  display: grid;
+  grid-template-columns: 2em auto;
+  padding-top: 10px;
+}
+
+.answer-tag {
+  padding-top: 5px;
+}
+
+#app h1 {
+  color: #E8B90E;
+}
+
+.qa-modal-container {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  flex-shrink: 0;
+}
+
+.qa-modal-container textarea {
+  width: 95%;
+  min-height: 5em;
+}
+
+.qa-modal-container input {
+  min-width: 60ch;
+}
+
+.qa-close {
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.modal-qa {
+  margin: auto;
+  position: fixed;
+}
+
+.modal-pop-qa {
+  background: #1E3130;
+  border: 2px solid #aaa;
+  color: #D5DBE7;
+  border-radius: 5px;
+  z-index: 2;
+  margin: auto;
+  overflow-y: scroll;
+  overflow: scroll;
+  /* padding: 1em 2em 2em; */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  max-width: 100%;
+  max-height: 100%;
+  min-height: 30%;
+  min-width: 30%;
+  transform: translate(-50%, -50%);
+}
+.modal-pop-qa::-webkit-scrollbar {
+  display: none;  /* Safari and Chrome */
+}
+
+.modal-overlay-qa {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background-color: rgb(0, 0, 0);
+  opacity: 0.75;
+}
+
+.sun {
+  color: #E8B90E;
+  background-color: #D5DBE7;
+  border: none;
+}
+
+.moon {
+  color: #D5DBE7;
+  background-color: #1F2224;
+  border: none;
+
 }

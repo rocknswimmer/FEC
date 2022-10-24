@@ -42,7 +42,6 @@ const ReviewsListEntry = ({review}) => {
   const [isScrollable, setIsScrollable] = useState(true);
   const [photoClicked, setPhotoClicked] = useState(true);
 
-
   const togglePhotoClicked = (photo) => {
     photo.clicked = photoClicked;
     setPhotoClicked(!photoClicked);
@@ -106,7 +105,7 @@ const ReviewsListEntry = ({review}) => {
       <div>
         {review.response ?
           <div>
-            <h3>Response:</h3>
+            <h3>Response from seller:</h3>
             <div>{review.response}</div>
           </div>
           : null}

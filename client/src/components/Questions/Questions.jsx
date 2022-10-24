@@ -3,6 +3,21 @@ import QuestionFeed from './QuestionFeed.jsx';
 import QuestionModal from './QuestionModal.jsx';
 import axios from 'axios';
 import {FaSearch} from 'react-icons/fa';
+import styled from 'styled-components';
+import {ThemeProvider} from 'styled-components';
+import { GlobalStyles } from '../Mode/globalStyles.js';
+import { lightTheme, darkTheme } from '../Mode/Themes.js';
+import { BsSunFill, BsMoonStarsFill } from 'react-icons/bs';
+
+const Button = styled.button`
+  background: white;
+  color: grey;
+  font-size: .75em;
+  margin: 10px 10px  0 0;
+  padding: 0.5em 1em;
+  border: 2px solid grey;
+  border-radius: 3px;
+`;
 
 const Questions = (props) => {
   const [questions, setQuestions] = useState([]);
@@ -12,6 +27,12 @@ const Questions = (props) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [searchable, setSearchable] = useState(false);
   const [searchedQuestions, setSearchedQuestions] = useState([]);
+
+  const [theme, setTheme] = useState('light');
+  const themeToggler = () => {
+    theme === 'light' ? setTheme('dark') : setTheme('light');
+  };
+
 
   const getCurrentQuestions = () => {
     axios.get('/qa/questions/', {
@@ -96,22 +117,58 @@ const Questions = (props) => {
     //turn search filter off when searchQuery.length === 2 ?/ how to turn on
   }, [((searchQuery.length > 2) && (searchQuery))]);
 
+  const submitInteraction = (element, widget) => {
+    axios.post('/interactions', {
+      element: element,
+      widget: widget,
+      time: JSON.stringify(Date.now())
+    })
+      .then((res) => {
+        console.log('response from interacting: ', res.data);
+      })
+      .catch((err) => {
+        console.log('error posting interaction:', err );
+      });
+  };
+
   return (
-    <div id="questions">
-      <div>QUESTIONS & ANSWERS</div>
-      <form className="question-search-form">
-        <input className="questions-search" type="text" placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS..." onChange={searchChange} />
-        <button className="question-search-button" type="submit">
-          <FaSearch />
-        </button>
-      </form>
-      <QuestionFeed questions={questions} moreQuestions={moreQuestions} searchable={searchable} searchedQuestions={searchedQuestions}/>
-      {(questions[0] && questions.length > 2) && !moreQuestions && <button onClick={loadMoreQuestions}>MORE ANSWERED QUESTIONS</button>}
-      {(questions[0] && questions.length > 2) && moreQuestions && <button onClick={loadMoreQuestions}>LESS ANSWERED QUESTIONS</button>}
-      <button onClick={addQuestionModal}>ADD A QUESTION +</button>
-      {addQuestion && <QuestionModal close={addQuestionModal} product={props.productId}/>}
-    </div>
+    <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
+      <>
+        <GlobalStyles />
+        <div id="questions">
+          <button onClick={() => { submitInteraction('element', 'widget'); }}>test interactions</button>
+          {(theme === 'light') && <button className='sun' onClick={themeToggler}><BsSunFill size={28} /></button>}
+          {(theme !== 'light') && <button className='moon' onClick={themeToggler}><BsMoonStarsFill size={28} /></button>}
+          <h1 className='qa-title'>QUESTIONS & ANSWERS</h1>
+          <form className="question-search-form">
+            <input className="questions-search" type="text" placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS..." onChange={searchChange} />
+            <button className="question-search-button" type="submit">
+              <FaSearch />
+            </button>
+          </form>
+          <div className='question-feed'>
+            <QuestionFeed questions={questions} moreQuestions={moreQuestions} get={() => { getCurrentQuestions(); }} searchable={searchable} searchedQuestions={searchedQuestions} />
+          </div>
+          <div className='question-buttons'>
+            {(questions[0] && questions.length > 2) && !moreQuestions && <Button onClick={loadMoreQuestions}>MORE ANSWERED QUESTIONS</Button>}
+            {(questions[0] && questions.length > 2) && moreQuestions && <Button onClick={loadMoreQuestions}>LESS ANSWERED QUESTIONS</Button>}
+            <Button onClick={addQuestionModal}>ADD A QUESTION +</Button>
+            {addQuestion && <QuestionModal close={addQuestionModal} product={props.productId} />}
+          </div>
+        </div>
+      </>
+    </ThemeProvider>
   );
 };
 
 export default Questions;
+
+
+/*
+add to all on clicks annoyingly
+const clickTracker = (element, widget) => {
+  post request to interactions api post url
+  make sure every click passes the widget and element names as strings
+  generate date in the function before adding to post request
+}
+*/

@@ -32,7 +32,7 @@ const App = () => {
   const getCurrentProduct = (productId) => {
     axios.get('/products', {
       params: {
-        "id": productId
+        'id': productId
       }
     })
       .then(results => {
@@ -54,7 +54,7 @@ const App = () => {
       <h1>House Greyjoy</h1>
       <View productId = {product} currentProduct ={currentProduct} metaData={metaData}/>
       <Questions productId = {product} />
-      <Reviews productId={product} metaData={metaData}/>
+      <Reviews productId={product} metaData={metaData} currentProduct={currentProduct}/>
     </div>
   );
 };
