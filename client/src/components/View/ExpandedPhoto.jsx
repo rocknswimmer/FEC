@@ -27,9 +27,43 @@ const ExpandedPhoto = ({ displayedImage, photoIndex, arrowRightHandler, expandPh
         <ModalPop className="modal-pop" role="dialog" aria-modal="true" >
 
           <ExpandedPhotoControls>
-            <FaAngleLeft className="expanded-photo-left" onClick={arrowLeftHandler} />
-            <FaAngleRight className="expanded-photo-right" onClick={arrowRightHandler} />
-            <FaWindowClose onClick={expandPhoto} className="close-out-expanded-view" />
+            {photoIndex !== 0 &&
+              <FaAngleLeft
+                className="expanded-photo-left"
+                onClick={arrowLeftHandler} />}
+            {
+              photoIndex === 0 &&
+              <FaAngleLeft
+                className="expanded-photo-left"
+                style={
+                  {
+                    stroke: 'rgba(0,0,0,0)',
+                    fill: 'rgba(0,0,0,0)'
+
+                  }
+                }
+              />
+            }
+            {photoIndex !== imageArray.length - 1 &&
+              <FaAngleRight
+                className="expanded-photo-right"
+                onClick={arrowRightHandler} />}
+            {
+              photoIndex === imageArray.length - 1 &&
+              <FaAngleRight
+                className="expanded-photo-left"
+                style={
+                  {
+                    stroke: 'rgba(0,0,0,0)',
+                    fill: 'rgba(0,0,0,0)'
+                  }
+                }
+              />
+            }
+
+            <FaWindowClose
+              onClick={expandPhoto}
+              className="close-out-expanded-view" />
 
             <IconHolder>
               {
@@ -37,7 +71,16 @@ const ExpandedPhoto = ({ displayedImage, photoIndex, arrowRightHandler, expandPh
                   if (num === photoIndex) {
                     return <div key={index}><FaCamera className='icon-styled' /></div>;
                   } else {
-                    return <div key={index} number={index} onClick={(e) => { changePhotoToSelectedIcon(index); }}><FaCircle style={{height: '20px'}} className='icon-styled' /></div>;
+                    return (
+                      <div
+                        key={index}
+                        number={index}
+                        onClick={(e) => { changePhotoToSelectedIcon(index); }}>
+                        <FaCircle
+                          style={{ height: '20px' }}
+                          className='icon-styled'
+                        />
+                      </div>);
 
                   }
                 })
@@ -45,11 +88,17 @@ const ExpandedPhoto = ({ displayedImage, photoIndex, arrowRightHandler, expandPh
             </IconHolder>
           </ExpandedPhotoControls>
 
-          <ModalPhoto src={displayedImage} mouseLocation={mouseLocation} isZoomed={isZoomed} onClick={zoom} />
+          <ModalPhoto
+            src={displayedImage}
+            mouseLocation={mouseLocation}
+            isZoomed={isZoomed}
+            onClick={zoom}
+          />
 
 
         </ModalPop>
-        <ModalOverlay></ModalOverlay>
+        <ModalOverlay>
+        </ModalOverlay>
       </ExpandedImageDiv>
 
     </>

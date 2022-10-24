@@ -45,6 +45,7 @@ const PhotoColumn = styled.div`
   flex-direction: column;
   grid-row-start 2;
   grid-row-end: 10;
+  cursor: pointer
 `;
 
 const Thumbnails = styled.div`
@@ -57,12 +58,14 @@ const Thumbnails = styled.div`
     width: 75px;
 
   object-fit: cover;
+  cursor: pointer
 `;
 
 const LeftArrow = styled.div`
   cursor: auto;
   grid-column-start: 3;
   grid-row-start: 6;
+  cursor: pointer
 
 `;
 
@@ -70,6 +73,7 @@ const RightArrow = styled.div`
 cursor: auto;
 grid-column-start: 10;
 grid-row-start: 6;
+cursor: pointer
 `;
 
 const Expander = styled.div`
@@ -120,7 +124,7 @@ width: 100%;
 height: 100%;
 z-index: 1;
 background-color: rgb(0, 0, 0);
-opacity: 0.75;
+opacity: 0.85;
 `;
 
 const ExpandedPhotoControls = styled.div`
