@@ -11,7 +11,7 @@ const HeaderContainer = styled.div`
   background-color: #34363A;
   display: flex;
   align-item: left;
-  height: 150px;
+  height: 80px;
   width: 100%;
   font-family: 'Bad Script', cursive;
   border-bottom: solid 4px #E8B90E;
@@ -40,7 +40,7 @@ const Header = ({ theme, themeToggler, interact }) => {
         <button className='sun'
           onClick={() => { themeToggler(); interact('themeToggler', 'Header'); }}>
           <BsSunFill size={28} />
-          Theme
+
         </button>}
 
       {(theme !== 'light') &&
