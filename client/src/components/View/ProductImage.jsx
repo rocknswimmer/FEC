@@ -15,6 +15,7 @@ const ProductImage = ({ currentDisplayedStyle }) => {
   const [sendThumbnailDown, setSendThumbnailDown] = useState(0);
   const [lengthOfImageArray, setLengthOfImageArray] = useState(0);
   const [photoExpanded, setPhotoExpanded] = useState(false);
+  const [isScrollable, setIsScorllable] = useState(true);
 
   //create the thumbnailArray
   const createThumbnailArray = (array) => {
@@ -72,6 +73,14 @@ const ProductImage = ({ currentDisplayedStyle }) => {
   // handler to expand photo
   const expandPhoto = (e) => {
     setPhotoExpanded(!photoExpanded);
+    setIsScorllable(! isScrollable);
+    // let scrollSetting = isScrollable;
+    // if (!scrollSetting) {
+    //   document.body.style.overflow = 'hidden';
+    // } else if (scrollSetting) {
+    //   document.body.style.overflow = 'scroll';
+    // }
+
   };
 
 

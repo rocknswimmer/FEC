@@ -79,7 +79,7 @@ grid-column-start: 10;
 
 const ExpandedImageDiv = styled.div`
   margin: auto;
-  position: fixed;
+
 `;
 
 const ModalPop = styled.div`
@@ -89,7 +89,7 @@ object-fit: fill;
 overflow: hidden;
 background: black;
 border: 2px solid #aaa;
-z-index: 2;
+z-index: 15;
 margin: auto;
 position: fixed;
 top: 50%;
@@ -100,7 +100,7 @@ transform: translate(-50%, -50%);
 svg {
   stroke: #333;
   stroke-width: 20px;
-  fill: #E8B90E;
+  fill: white;
   cursor: pointer;
 }
 `;
@@ -108,13 +108,13 @@ svg {
 const ModalPhoto = styled.img`
   transform: ${props => props.isZoomed ? 'scale(2.5, 2.5)' : null};
   transform-origin: ${props => props.mouseLocation};
-  max-height: 100vh;
-  max-width: 100vw;
+  max-height: 95vh;
+  max-width: 95vw;
 `;
 
 const ModalOverlay = styled.div`
 position: fixed;
-top: 150px;
+top: 0;
 left: 0;
 width: 100%;
 height: 100%;
