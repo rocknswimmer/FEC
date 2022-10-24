@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import Reviews from './Reviews/Reviews.jsx';
 import View from './View/View.jsx';
 import Questions from './Questions/Questions.jsx';
+// import Header from './Header.jsx';
 import axios from 'axios';
 
 
@@ -51,10 +52,10 @@ const App = () => {
 
   return (
     <div id="app">
-      <h1>House Greyjoy</h1>
-      <View productId = {product} currentProduct ={currentProduct} metaData={metaData}/>
-      <Questions productId = {product} />
-      <Reviews productId={product} metaData={metaData} currentProduct={currentProduct}/>
+      <Header />
+      <View productId={product} currentProduct={currentProduct} metaData={metaData} />
+      <Questions productId={product} />
+      <Reviews productId={product} metaData={metaData} currentProduct={currentProduct} />
     </div>
   );
 };

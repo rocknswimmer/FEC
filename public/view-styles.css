@@ -1,4 +1,6 @@
 .view-main {
+  position: relative;
+    top: 150px;
   box-sizing: border-box;
   display: grid;
   /* grid-template-columns: repeat(10, 1fr); */
