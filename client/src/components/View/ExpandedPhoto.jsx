@@ -8,14 +8,30 @@ const ExpandedPhoto = ({ displayedImage, photoIndex, arrowRightHandler, expandPh
 
 
   const [isZoomed, setIsZoomed] = useState(false);
-  const [mouseLocation, setMouseLocation] = useState('');
-  // zoom clickhandler
+  const [mouseLocation, setMouseLocation] = useState('center');
+  const [cursorType, setCursorType] = useState({});
 
+  const cursorCrossHair = {
+    cursor: 'crosshair'
+  };
+
+  const cursorZoomOut = {
+    cursor: 'zoom-out'
+  };
 
   const zoom = (event) => {
     // console.log(event);
-    setMouseLocation(`${event.clientX}px ${event.clientY}px`);
-    setIsZoomed(!isZoomed);
+    if (isZoomed === false) {
+      setMouseLocation(`${event.clientX}px ${event.clientY}px`);
+      setIsZoomed(!isZoomed);
+      setCursorType(cursorZoomOut);
+    } else {
+      console.log('zoom event listener firing on case where isZoomed= true');
+      setIsZoomed(false);
+      setMouseLocation('center');
+      setCursorType(cursorCrossHair);
+    }
+
   };
 
 
@@ -24,7 +40,11 @@ const ExpandedPhoto = ({ displayedImage, photoIndex, arrowRightHandler, expandPh
   return (
     <>
       <ExpandedImageDiv >
-        <ModalPop className="modal-pop" role="dialog" aria-modal="true" >
+        <ModalPop
+          className="modal-pop"
+          role="dialog"
+          aria-modal="true"
+        >
 
           <ExpandedPhotoControls>
             {photoIndex !== 0 &&
@@ -39,7 +59,6 @@ const ExpandedPhoto = ({ displayedImage, photoIndex, arrowRightHandler, expandPh
                   {
                     stroke: 'rgba(0,0,0,0)',
                     fill: 'rgba(0,0,0,0)'
-
                   }
                 }
               />
@@ -90,8 +109,9 @@ const ExpandedPhoto = ({ displayedImage, photoIndex, arrowRightHandler, expandPh
 
           <ModalPhoto
             src={displayedImage}
-            mouseLocation={mouseLocation}
             isZoomed={isZoomed}
+            mouseLocation={mouseLocation}
+            style = {cursorType}
             onClick={zoom}
           />
 

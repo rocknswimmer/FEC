@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Carousel from './Carousel.jsx';
-import { FaAngleLeft, FaAngleRight, FaExpand } from 'react-icons/fa';
+import { FaAngleLeft, FaAngleRight, FaExpand, FaSearch } from 'react-icons/fa';
 import { MainImage, ExpandedView, ComponentBlock, LeftArrow, RightArrow, Expander } from './Styled/LargeImage.styled.jsx';
 import ExpandedPhoto from './ExpandedPhoto.jsx';
 
