@@ -1,14 +1,21 @@
 a {
   text-decoration: underline;
+  cursor: pointer;
 }
 
 #questions {
   width: 87%;
-  max-height: 85vh;
+  max-height: 93vh;
   padding-top: 10px;
   padding-bottom: 10px;
   margin-bottom: 10px;
+  overflow-y: scroll;
 }
+
+#questions::-webkit-scrollbar {
+  display: none;  /* Safari and Chrome */
+}
+
 .questions-search {
   width: 95%;
   padding: 10px 35px 10px 15px;
@@ -28,7 +35,7 @@ a {
 }
 
 .answer-feed {
-  max-height: 50vh;
+  max-height: 40vh;
   overflow-y: scroll;
 }
 .answer-feed::-webkit-scrollbar {
@@ -37,7 +44,7 @@ a {
 
 .question-feed {
   overflow-y: scroll;
-  max-height: 77vh;
+  max-height: 73vh;
 }
 .question-feed::-webkit-scrollbar {
   display: none;  /* Safari and Chrome */
