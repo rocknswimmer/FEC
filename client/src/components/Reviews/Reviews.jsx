@@ -12,7 +12,7 @@ margin: 32px;
 display: flex;
 flex-direction: column;
 flex-shrink: 0;
-
+max-width:80%;
 `;
 
 const SummaryListDivider = styled.div`
@@ -23,12 +23,14 @@ flex-shrink: 0;
 
 let visibleReviewsIndex = 2;
 
-const Reviews = ({productId, metaData}) => {
+const Reviews = ({productId, metaData, currentProduct}) => {
 
   const [reviewsList, setReviewsList] = useState([]);
   const [visibleReviews, setVisibleReviews] = useState([]);
   const [currentSort, setCurrentSort] = useState('relevance');
+  const [starsFilter, setStarsFilter] = useState([]);
 
+  console.log('STARS RATING IN HIGHEST COMPONENT', starsFilter);
 
   const getReviews = (id = productId, sortSelection = 'relevant') => {
 
@@ -59,23 +61,96 @@ const Reviews = ({productId, metaData}) => {
 
   const handleMoreReviews = () => {
     visibleReviewsIndex += 2;
+
     setVisibleReviews(reviewsList.slice(0, visibleReviewsIndex));
+
+
   };
 
+  const [toggleObj, setToggleObj] = useState({
+    1: false,
+    2: false,
+    3: false,
+    4: false,
+    5: false
+  });
+  console.log(Object.values(toggleObj));
+
+  const fiveStars = reviewsList.filter(rev => rev.rating === 5);
+  const fourStars = reviewsList.filter(rev => rev.rating === 4);
+  const threeStars = reviewsList.filter(rev => rev.rating === 3);
+  const twoStars = reviewsList.filter(rev => rev.rating === 2);
+  const oneStars = reviewsList.filter(rev => rev.rating === 1);
+
+  const ratingsArray = [null, oneStars, twoStars, threeStars, fourStars, fiveStars];
+
+  const handleClick = (number) => {
+
+    console.log('IN HANDLE CLICK', toggleObj[number]);
+    toggleObj[number] = !toggleObj[number];
+    let temp = JSON.parse(JSON.stringify(toggleObj));
+    console.log(toggleObj);
+    setToggleObj(temp);
+  };
+
+  const handleSort = () => {
+
+    const uniqueIds = [];
+    if (Object.values(toggleObj).includes(true)) {
+
+      for (let key in toggleObj) {
+        if (toggleObj[key]) {
+          let currentFilter = [...ratingsArray[key]];
+
+          console.log("UNIQ",uniqueIds);
+          const uniqueReviews = currentFilter.filter(rev => {
+            const isDuplicate = uniqueIds.includes(rev.review_id);
+            console.log('rev, ', rev);
+            if (!isDuplicate) {
+              uniqueIds.push(rev);
+            }
+          });
+        }
+      }
+      setStarsFilter([...uniqueIds]);
+    } else {
+      setStarsFilter(reviewsList.slice(0, visibleReviewsIndex));
+    }
+  };
+
+
+
+  useEffect(() => {
+    handleSort();
+    setVisibleReviews(starsFilter);
+  }, Object.values(toggleObj));
+
+
+  console.log('VISIBLE REVIEWS', visibleReviews);
   useEffect(() => {
     getReviews(productId);
-
   }, []);
   return (
     <ReviewsContainer>
 
       <div>
         <div>
-          <h3 id="rev-header">RATINGS AND REVIEWS</h3>
+          <h1 id="rev-header">RATINGS AND REVIEWS</h1>
         </div>
         <SummaryListDivider>
           <div className="summary">
-            <Summary />
+            <Summary
+              metaData={metaData}
+              reviewsList={reviewsList}
+              setReviewsList={setReviewsList}
+              visibleReviews={visibleReviews}
+              setVisibleReviews={setVisibleReviews}
+              starsFilter={starsFilter}
+              setStarsFilter={setStarsFilter}
+              toggleObj={toggleObj}
+              setToggleObj={setToggleObj}
+              handleClick={handleClick}
+              handleSort={handleSort}/>
           </div>
           <div className="list">
             <Dropdown reviewsList={reviewsList}
