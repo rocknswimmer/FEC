@@ -15,3 +15,6 @@ it('ProductName Category displays proper category', () => {
 
   expect(getByText('Penguin', { exact: false })).toBeTruthy();
 });
+
+
+// https://testing-library.com/docs/ecosystem-jest-dom/
