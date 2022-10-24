@@ -36,8 +36,10 @@ const ProductName = ({ productInfo, currentDisplayedStyle, metaData }) => {
 
   return (
     <div>
-      <div className="rev-star-date">
-        <StarRating rating={averageStarRating} />
+      <div className="static-stars">
+        <StarRating
+          rating={averageStarRating}
+        />
       </div>
       <h4 className="category">CATEGORY: {productInfo.category}</h4>
       <h1>{productInfo.name}</h1>
@@ -51,7 +53,7 @@ const ProductName = ({ productInfo, currentDisplayedStyle, metaData }) => {
         </>
       }
 
-    </div>
+    </div >
   );
 };
 
