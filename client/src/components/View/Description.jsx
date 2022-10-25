@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { FaTwitter, FaFacebook, FaPinterest } from 'react-icons/fa';
 import { DescriptionDiv, SocialDiv, Twitter, Fb, Pinterest } from './Styled/PricingAndDescription.styled.jsx';
 
-const Description = ({ productInfo, currentDisplayedStyle }) => {
+const Description = ({ productInfo, currentDisplayedStyle, interact }) => {
   const [socialPhrase, setSocialPhrase] = useState('');
 
   const socialPrompt = () => {

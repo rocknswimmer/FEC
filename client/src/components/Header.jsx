@@ -36,11 +36,13 @@ const Header = ({ theme, themeToggler, interact }) => {
   return (
     <HeaderContainer>
       <Greyjoy>House Greyjoy</Greyjoy>
-      <Squid src={'logo.png'}/>
+
+      <Squid
+        src={'logo.png'}
+      />
       {(theme === 'light') &&
         <button className='sun'
-          onClick={() => { themeToggler(); interact('themeToggler', 'Header'); }}
-        >
+          onClick={() => { themeToggler(); interact('themeToggler', 'Header'); }} >
           <BsSunFill size={28} />
         </button>}
 

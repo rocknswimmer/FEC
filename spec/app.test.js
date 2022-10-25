@@ -6,5 +6,5 @@ import App from '../client/src/components/App.jsx';
 
 describe('Jest+RTL Workshop', function() {
   const user = userEvent.setup();
-  it()
+  // it()
 });

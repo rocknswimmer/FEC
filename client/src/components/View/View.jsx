@@ -6,7 +6,7 @@ import ProductName from './ProductName.jsx';
 import SelectedStyle from './SelectedStyle.jsx';
 import ItemSelection from './ItemSelection.jsx';
 import { StyleView } from './Styled/StyleView.styled.jsx';
-// import {Button} from './Styled/Form.styled.jsx';
+
 
 
 const View = ({ productId, currentProduct, metaData }) => {
@@ -53,7 +53,7 @@ const View = ({ productId, currentProduct, metaData }) => {
       cartAddition.quantity = newQty;
       newCartArray.push(cartAddition);
     }
-    // console.log(newCartArray, "here is the updated cart from View");
+    console.log(newCartArray, "here is the updated cart from View");
     setCartContents(newCartArray);
   };
 
@@ -70,22 +70,46 @@ const View = ({ productId, currentProduct, metaData }) => {
 
   return (
     <div className="view-main">
-      <ProductImage otherStyles={otherStyles} currentDisplayedStyle={displayedStyle} />
-      <Description productInfo={currentProduct} />
+      <ProductImage
+        otherStyles={otherStyles}
+        currentDisplayedStyle={displayedStyle}
+        interact={(element, widget) => { submitInteraction(element, widget); }}
+      />
+      <Description
+        productInfo={currentProduct}
+        interact={(element, widget) => { submitInteraction(element, widget); }}
+      />
       <StyleView>
 
-        <ProductName productInfo={currentProduct} currentDisplayedStyle={displayedStyle} metaData={metaData}/>
+        <ProductName
+          productInfo={currentProduct}
+          currentDisplayedStyle={displayedStyle}
+          metaData={metaData}
+          interact={(element, widget) => { submitInteraction(element, widget); }}
+        />
 
-        {otherStyles.length > 0 && <SelectedStyle otherStyles={otherStyles} productId={productId} changeDisplayedStyle={changeDisplayedStyle} currentDisplayedStyle={displayedStyle} />}
+        {otherStyles.length > 0
+          && <SelectedStyle
+            otherStyles={otherStyles}
+            productId={productId}
+            changeDisplayedStyle={changeDisplayedStyle}
+            currentDisplayedStyle={displayedStyle}
+            interact={(element, widget) => { submitInteraction(element, widget); }}
+          />}
 
-        <ItemSelection currentDisplayedStyle={displayedStyle} productId={productId} addToCart={addToCart} cartContents={cartContents} />
+        <ItemSelection
+          currentDisplayedStyle={displayedStyle}
+          productId={productId}
+          addToCart={addToCart}
+          cartContents={cartContents}
+          interact={(element, widget) => { submitInteraction(element, widget); }}
+        />
 
       </StyleView>
-
-
-
     </div>
   );
 };
 
 export default View;
+
+// onClick={() => { themeToggler(); interact('themeToggler', 'Header'); }}
