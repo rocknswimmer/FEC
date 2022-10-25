@@ -74,8 +74,7 @@ const App = () => {
         console.log('error posting interaction:', err);
       });
   };
-  // example useage
-  // <button onClick={(element, widget) => { submitInteraction(element, widget); }}>test interactions</button>
+
 
   return (
     <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>

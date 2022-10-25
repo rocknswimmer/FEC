@@ -14,10 +14,14 @@ const SelectedStyle = ({ otherStyles, productId, changeDisplayedStyle, currentDi
             return <></>;
           } else {
             return (
-              <ImageContainer>
+              <ImageContainer
+                data-testid="round_image"
+                key={index}
+                >
 
                 <RoundImage
-                  key={index}
+                  data-testid="image"
+
                   img={imgSrc}
                   onClick={(event) => {
                     changeDisplayedStyle(index);
@@ -25,6 +29,7 @@ const SelectedStyle = ({ otherStyles, productId, changeDisplayedStyle, currentDi
                   {
                     currentDisplayedStyle.style_id === style.style_id &&
                     <FaCheckCircle
+                      data-testid="checkmark"
                       style={{ color: 'red' }}
                     />
                   }

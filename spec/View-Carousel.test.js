@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import userEvent from '@testing-library/user-event';
-import ProductName from '../client/src/components/View/ProductName.jsx';
+import Carousel from '../client/src/components/View/Carousel.jsx';
 
 
 import App from '../client/src/components/App.jsx';
@@ -89,89 +89,75 @@ const dummyCurrentDisplayedStyle = {
   }
 };
 
-const dummyMetaData = {
-  'product_id': '37311',
-  'ratings': {
-    '1': '49',
-    '2': '26',
-    '3': '78',
-    '4': '113',
-    '5': '278'
+const dummyImageArray = [
+
+  {
+    'thumbnail_url': 'https://images.unsplash.com/photo-1530092376999-2431865aa8df?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80',
+    'url': 'https://images.unsplash.com/photo-1530092376999-2431865aa8df?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2734&q=80',
+    'originalIndex': 0
   },
-  'recommended': {
-    'false': '89',
-    'true': '455'
+  {
+    'thumbnail_url': 'https://images.unsplash.com/photo-1487174244970-cd18784bb4a4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80',
+    'url': 'https://images.unsplash.com/photo-1487174244970-cd18784bb4a4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1652&q=80',
+    'originalIndex': 1
   },
-  'characteristics': {
-    'Fit': {
-      'id': 125031,
-      'value': '3.0562130177514793'
-    },
-    'Length': {
-      'id': 125032,
-      'value': '3.1424501424501425'
-    },
-    'Comfort': {
-      'id': 125033,
-      'value': '3.2345679012345679'
-    },
-    'Quality': {
-      'id': 125034,
-      'value': '3.2666666666666667'
-    }
+  {
+    'thumbnail_url': 'https://images.unsplash.com/photo-1488554378835-f7acf46e6c98?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80',
+    'url': 'https://images.unsplash.com/photo-1488554378835-f7acf46e6c98?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1651&q=80',
+    'originalIndex': 2
+  },
+  {
+    'thumbnail_url': 'https://images.unsplash.com/photo-1486025402772-bc179c8dfb0e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80',
+    'url': 'https://images.unsplash.com/photo-1486025402772-bc179c8dfb0e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80',
+    'originalIndex': 3
+  },
+  {
+    'thumbnail_url': 'https://images.unsplash.com/photo-1473691955023-da1c49c95c78?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80',
+    'url': 'https://images.unsplash.com/photo-1473691955023-da1c49c95c78?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80',
+    'originalIndex': 4
+  },
+  {
+    'thumbnail_url': 'https://images.unsplash.com/photo-1517456837005-d757b959ae2b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=60',
+    'url': 'https://images.unsplash.com/photo-1517456837005-d757b959ae2b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60',
+    'originalIndex': 5
+
   }
-};
+];
 
 
-describe('should render Product Name component with multiple different properties', () => {
 
-  it('should render Product Name', () => {
+
+// const Carousel = ({ imageArray, photoIndex, changePhotoToSelectedThumbnail, sendThumbnailUp, thumbnailArray, sendThumbnailDown, interact })
+
+describe('Carousel exists and renders 5 images at a time', () => {
+
+
+
+  it('it should have a container div', () => {
     render(
-      <ProductName
-        productInfo={dummyProductInfo}
-        currentDisplayedStyle={dummyCurrentDisplayedStyle}
-        metaData={dummyMetaData}
+      <Carousel
+        thumbnailArray={dummyImageArray}
+        photoIndex={0}
+        lengthOfImageArray={6}
+        imageArray={dummyCurrentDisplayedStyle.photos}
       />
     );
-    expect(screen.getByTestId('product_name')).toHaveTextContent('Camo Onesie');
-  });
-  it('should display the proper category', () => {
-    render(
-      <ProductName
-        productInfo={dummyProductInfo}
-        currentDisplayedStyle={dummyCurrentDisplayedStyle}
-        metaData={dummyMetaData}
-      />
-    );
-    expect(screen.getByTestId('category_test')).toHaveTextContent('Jackets');
-  });
-  it('should show the sales price', () => {
-    render(
-      <ProductName
-        productInfo={dummyProductInfo}
-        currentDisplayedStyle={dummyCurrentDisplayedStyle}
-        metaData={dummyMetaData}
-      />
-    );
-    expect(screen.getByTestId('sales_price')).toHaveTextContent('100.00');
-    expect(screen.getByTestId('sales_price')).toHaveStyle('color: red');
 
-  });
-  it('should show the original price', ()=> {
-    render(
-      <ProductName
-        productInfo={dummyProductInfo}
-        currentDisplayedStyle={dummyCurrentDisplayedStyle}
-        metaData={dummyMetaData}
-      />
-    );
-    expect(screen.getByTestId('original_price')).toHaveTextContent('140.00');
-    expect(screen.getByTestId('original_price')).toHaveStyle('text-decoration: line-through');
+    expect(screen.getByTestId('photoColumn')).toBeTruthy();
   });
 
+  it('should render correct number of thumbnails', () => {
+    render(
+      <Carousel
+        thumbnailArray={dummyImageArray}
+        photoIndex={0}
+        lengthOfImageArray={6}
+        imageArray={dummyCurrentDisplayedStyle.photos}
+      />
+    );
+
+    expect(screen.getAllByTestId('thumbnail_pic')).toHaveLength(5);
+  });
 });
 
-
-
-// https://testing-library.com/docs/ecosystem-jest-dom/
 

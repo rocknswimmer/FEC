@@ -82,14 +82,20 @@ const ExpandedPhoto = ({ displayedImage, photoIndex, arrowRightHandler, expandPh
               onClick={expandPhoto}
               className="close-out-expanded-view" />
 
-            <IconHolder>
+            <IconHolder
+
+            >
               {
                 Array.from(Array(imageArray.length).keys()).map((num, index) => {
                   if (num === photoIndex) {
-                    return <div key={index}><FaCamera className='icon-styled' /></div>;
+                    return <div
+                      key={index}
+                    >
+                      <FaCamera className='icon-styled' /></div>;
                   } else {
                     return (
                       <div
+                        data-testid="icon"
                         key={index}
                         number={index}
                         onClick={(e) => { changePhotoToSelectedIcon(index); }}>
@@ -106,6 +112,7 @@ const ExpandedPhoto = ({ displayedImage, photoIndex, arrowRightHandler, expandPh
           </ExpandedPhotoControls>
 
           <ModalPhoto
+            data-testid="modal"
             src={displayedImage}
             isZoomed={isZoomed}
             mouseLocation={mouseLocation}
@@ -118,7 +125,6 @@ const ExpandedPhoto = ({ displayedImage, photoIndex, arrowRightHandler, expandPh
         <ModalOverlay>
         </ModalOverlay>
       </ExpandedImageDiv>
-
     </>
   );
 };

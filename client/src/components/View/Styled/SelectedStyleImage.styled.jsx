@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 const ImageContainer = styled.div`
+  justify-text: center;
   padding: 10px;
 `;
 
