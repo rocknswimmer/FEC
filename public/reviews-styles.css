@@ -328,7 +328,7 @@ div.radio-box {
 }
 
 input:checked + .slider {
-  background-color: #2196F3;
+  background-color: #0c6ab6;
 }
 
 input:focus + .slider {
@@ -345,7 +345,7 @@ input:checked + .slider:before {
 .slider.round {
   border-radius: 34px;
   display: flex;
-  justify-content: space-around;
+  /* justify-content: space-around; */
   align-items: center;
 }
 
