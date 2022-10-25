@@ -4,7 +4,7 @@ import { FaCamera, FaAngleLeft, FaAngleRight, FaWindowClose, FaCircle, FaStar } 
 import { ExpandedImageDiv, ExpandedView, ComponentBlock, LeftArrow, RightArrow, ModalPop, ModalPhoto, ModalOverlay, IconHolder, ExpandedPhotoControls } from './Styled/LargeImage.styled.jsx';
 
 
-const ExpandedPhoto = ({ displayedImage, photoIndex, arrowRightHandler, expandPhoto, arrowLeftHandler, lengthOfImageArray, changePhotoToSelectedIcon, imageArray }) => {
+const ExpandedPhoto = ({ displayedImage, photoIndex, arrowRightHandler, expandPhoto, arrowLeftHandler, lengthOfImageArray, changePhotoToSelectedIcon, imageArray, interact }) => {
 
 
   const [isZoomed, setIsZoomed] = useState(false);

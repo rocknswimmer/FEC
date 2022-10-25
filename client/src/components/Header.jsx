@@ -16,6 +16,7 @@ const HeaderContainer = styled.div`
   font-family: 'Bad Script', cursive;
   border-bottom: solid 4px #E8B90E;
   padding-left: 25px;
+
 `;
 
 const Greyjoy = styled.h1`
@@ -35,19 +36,9 @@ const Header = ({ theme, themeToggler, interact }) => {
   return (
     <HeaderContainer>
       <Greyjoy>House Greyjoy</Greyjoy>
+
       <Squid src={'logo.png'}/>
 
-
-      {/* {(theme === 'light') &&
-        <button className='sun'
-          onClick={() => { themeToggler(); interact('themeToggler', 'Header'); }}>
-          <BsSunFill size={28} />
-        </button>}
-      {(theme !== 'light') &&
-        <button className='moon'
-          onClick={() => { themeToggler(); interact('themeToggler', 'Header'); }}>
-          <BsMoonStarsFill size={28} />
-        </button>} */}
       <label class="switch">
         <input
           type="checkbox"
