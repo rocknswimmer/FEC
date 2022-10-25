@@ -95,7 +95,7 @@ const ReviewsListEntry = ({review, theme}) => {
   return (
     <ReviewEntry>
       <div className="rev-star-date">
-        <div className="static-stars">
+        <div className="static-stars" data-testid="rev-summary">
           <StarRating rating={review.rating}/>
         </div>
         <small><div>{review.reviewer_name}, {formattedDate(review.date)}</div></small>
@@ -115,7 +115,7 @@ const ReviewsListEntry = ({review, theme}) => {
       </div>
       <div>
         {review.photos.length > 0 ?
-          <div className="thumbnails-container">
+          <div data-testid="photo-thumb"className="thumbnails-container">
             {review.photos.map((photo, i) => (
               <div className="thumbnail" key={i}>
                 <Thumbnail src={photo.url} onClick={() => { togglePhoto(photo.url); togglePhotoClicked(photo); }} ></Thumbnail>

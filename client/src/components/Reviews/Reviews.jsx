@@ -32,8 +32,6 @@ const Reviews = ({productId, metaData, currentProduct, theme}) => {
   const [currentSort, setCurrentSort] = useState('relevance');
   const [starsFilter, setStarsFilter] = useState([]);
 
-  console.log('STARS RATING IN HIGHEST COMPONENT', starsFilter);
-
   const getReviews = (id = productId, sortSelection = 'relevant') => {
 
     //WRITE HELPFULNESS SORT: if sortSelection === helpfullness, array.sort on current list, set both visible and reviews list to sorted
@@ -75,7 +73,6 @@ const Reviews = ({productId, metaData, currentProduct, theme}) => {
     4: false,
     5: false
   });
-  console.log(Object.values(toggleObj));
 
   const fiveStars = reviewsList.filter(rev => rev.rating === 5);
   const fourStars = reviewsList.filter(rev => rev.rating === 4);
@@ -86,11 +83,8 @@ const Reviews = ({productId, metaData, currentProduct, theme}) => {
   const ratingsArray = [null, oneStars, twoStars, threeStars, fourStars, fiveStars];
 
   const handleClick = (number) => {
-
-    console.log('IN HANDLE CLICK', toggleObj[number]);
     toggleObj[number] = !toggleObj[number];
     let temp = JSON.parse(JSON.stringify(toggleObj));
-    console.log(toggleObj);
     setToggleObj(temp);
   };
 
@@ -102,10 +96,8 @@ const Reviews = ({productId, metaData, currentProduct, theme}) => {
       for (let key in toggleObj) {
         if (toggleObj[key]) {
           let currentFilter = [...ratingsArray[key]];
-          console.log("UNIQ",uniqueIds);
           const uniqueReviews = currentFilter.filter(rev => {
             const isDuplicate = uniqueIds.includes(rev.review_id);
-            console.log('rev, ', rev);
             if (!isDuplicate) {
               uniqueIds.push(rev);
             }
@@ -142,11 +134,10 @@ const Reviews = ({productId, metaData, currentProduct, theme}) => {
     getReviews(productId);
   }, []);
   return (
-    <ReviewsContainer>
-
+    <ReviewsContainer data-testid="rev-container">
       <div>
         <div>
-          <h1 id="rev-header">RATINGS AND REVIEWS</h1>
+          <h1 data-testid="rev-header" className="rev-header">RATINGS AND REVIEWS</h1>
         </div>
         <SummaryListDivider>
           <div className="summary">
