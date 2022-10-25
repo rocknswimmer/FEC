@@ -5,7 +5,7 @@ import { FaChevronDown, FaMinus, FaPlus } from 'react-icons/fa';
 import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
 
-const ItemSelection = ({ currentDisplayedStyle, productId, addToCart, cartContents }) => {
+const ItemSelection = ({ currentDisplayedStyle, productId, addToCart, cartContents, interact }) => {
 
   const [sizeDropdownIsOpen, setSizeDropDownOpen] = useState(false);
   const [quantityDropdownIsOpen, setQuantityDropDownOpen] = useState(false);

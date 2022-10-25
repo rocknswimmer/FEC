@@ -5,7 +5,7 @@ import { MainImage, ExpandedView, ComponentBlock, LeftArrow, RightArrow, Expande
 import ExpandedPhoto from './ExpandedPhoto.jsx';
 
 
-const ProductImage = ({ currentDisplayedStyle }) => {
+const ProductImage = ({ currentDisplayedStyle, interact }) => {
   const [imageArray, setImageArray] = useState([]);
   const [infoUpdated, setInfoUpdated] = useState(false);
   const [displayedImage, setDisplayedImage] = useState('');
@@ -79,17 +79,12 @@ const ProductImage = ({ currentDisplayedStyle }) => {
   // handler to expand photo
   const expandPhoto = (e) => {
     setPhotoExpanded(!photoExpanded);
-    setIsScorllable(! isScrollable);
-    // let scrollSetting = isScrollable;
-    // if (!scrollSetting) {
-    //   document.body.style.overflow = 'hidden';
-    // } else if (scrollSetting) {
-    //   document.body.style.overflow = 'scroll';
-    // }
-
+    setIsScorllable(!isScrollable);
+    let scrollSetting = isScrollable;
+    if (!scrollSetting) {
+      document.body.style.overflow = 'hidden';
+    }
   };
-
-
 
   useEffect(() => {
     if (currentDisplayedStyle.photos) {
@@ -107,7 +102,8 @@ const ProductImage = ({ currentDisplayedStyle }) => {
 
   return (
     <ComponentBlock>
-      {infoUpdated &&
+      {
+        infoUpdated &&
 
         <MainImage img={displayedImage} >
 
@@ -134,11 +130,31 @@ const ProductImage = ({ currentDisplayedStyle }) => {
             sendThumbnailUp={sendThumbnailUp}
             sendThumbnailDown={sendThumbnailDown} />
 
-          <Expander><FaExpand className='icon-styled' onClick={expandPhoto} /></Expander>
+          <Expander>
+            <FaExpand
+              className='icon-styled'
+              onClick={expandPhoto}
+            />
+          </Expander>
 
-          {photoIndex !== 0 && <LeftArrow onClick={clickHanderArrowLeft}><FaAngleLeft className='icon-styled' /></LeftArrow>}
+          {photoIndex !== 0 &&
+            <LeftArrow
+              onClick={clickHanderArrowLeft}
+            >
+              <FaAngleLeft
+                className='icon-styled'
+              />
+            </LeftArrow>}
 
-          {photoIndex !== imageArray.length - 1 && <RightArrow onClick={clickHanderArrowRight} onClick={clickHanderRightArrowMainImage}><FaAngleRight className='icon-styled' /></RightArrow>}
+          {photoIndex !== imageArray.length - 1
+            && <RightArrow
+              onClick={clickHanderArrowRight}
+              onClick={clickHanderRightArrowMainImage}
+            >
+              <FaAngleRight
+                className='icon-styled'
+              />
+            </RightArrow>}
 
         </MainImage>
       }

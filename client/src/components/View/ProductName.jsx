@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import StarRating from '../Stars/StarRating.jsx';
 import { SalesPricing, FormerPrice } from './Styled/PricingAndDescription.styled.jsx';
 
-const ProductName = ({ productInfo, currentDisplayedStyle, metaData }) => {
+const ProductName = ({ productInfo, currentDisplayedStyle, metaData, interact }) => {
   const [onSale, setOnSale] = useState(false);
   const [metaDataRatings, setMetaDataRatings] = useState({});
   const [averageStarRating, setAverageStarRating] = useState(0);
@@ -41,15 +41,34 @@ const ProductName = ({ productInfo, currentDisplayedStyle, metaData }) => {
           rating={averageStarRating}
         />
       </div>
-      <h4 className="category">CATEGORY: {productInfo.category}</h4>
+
+      <h4
+        data-testid="category_test"
+        className="category">
+        CATEGORY: {productInfo.category}
+      </h4>
       <h1>{productInfo.name}</h1>
       {
-        !onSale && <h3> Price: ${productInfo.default_price}</h3>
+        !onSale &&
+        <h3> Price:
+          ${productInfo.default_price}
+        </h3>
       }
       {
-        onSale && <>
-          <h3>On Sale Now: <SalesPricing>  ${currentDisplayedStyle.sale_price} </SalesPricing></h3>
-          <h3>Original Price:  <FormerPrice>$ {currentDisplayedStyle.original_price}</FormerPrice></h3>
+        onSale &&
+        <>
+          <h3>On Sale Now:
+            <SalesPricing>
+              ${currentDisplayedStyle.sale_price}
+            </SalesPricing>
+          </h3>
+
+          <h3>Original Price:
+            <FormerPrice>
+              $ {currentDisplayedStyle.original_price}
+            </FormerPrice>
+          </h3>
+
         </>
       }
 

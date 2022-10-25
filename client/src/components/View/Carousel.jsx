@@ -3,7 +3,7 @@ import { PhotoColumn, Thumbnails } from './Styled/LargeImage.styled.jsx';
 import { FaAngleDown, FaAngleUp } from 'react-icons/fa';
 
 
-const Carousel = ({ imageArray, photoIndex, changePhotoToSelectedThumbnail, sendThumbnailUp, thumbnailArray, sendThumbnailDown }) => {
+const Carousel = ({ imageArray, photoIndex, changePhotoToSelectedThumbnail, sendThumbnailUp, thumbnailArray, sendThumbnailDown, interact }) => {
   const [carouselArray, setCarouselArray] = useState([]);
   const [indexObj, setIndexObj] = useState({ start: 0, end: 3 });
   const numberOfDisplayedThumbnails = 5;
