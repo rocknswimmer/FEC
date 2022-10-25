@@ -49,16 +49,16 @@ const QuestionEntry = (props) => {
           <span><strong>Q: {props.question.question_body}</strong></span>
         </div>
         <div>
-          <span>Helpful?   {!clickedBefore && <a className='qyes' onClick={yesClicked}>  Yes </a>}
+          <span>Helpful?   {!clickedBefore && <a className='qyes' onClick={() => { yesClicked(); props.interact('question helpful', 'Q&A'); }}>  Yes </a>}
             {!clickedBefore && `(${props.question.question_helpfulness})`}
             {clickedBefore && `(${props.question.question_helpfulness + 1})`}
           </span>
           <span className='qspacer'> | </span>
-          <span><a onClick={addAnswerModal}>  Add Answer</a></span>
+          <span><a onClick={() => { addAnswerModal(); props.interact('add answer', 'Q&A'); }}>  Add Answer</a></span>
         </div>
       </div>
-      <AnswerFeed answers={answers} />
-      {addAnswer && <AnswerModal get={props.get} close={addAnswerModal} question={props.question} currentProduct={props.currentProduct}/>}
+      <AnswerFeed answers={answers} interact={props.interact} />
+      {addAnswer && <AnswerModal get={props.get} close={addAnswerModal} question={props.question} currentProduct={props.currentProduct} interact={props.interact}/>}
     </div>
   );
 };

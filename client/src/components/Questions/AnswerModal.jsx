@@ -123,7 +123,7 @@ const AnswerModal = (props) => {
   return (
     <div className="modal-qa">
       <div className="modal-pop-qa">
-        <div className='qa-close'><button onClick={props.close} >x</button></div>
+        <div className='qa-close'><button onClick={() => { props.close(); props.interact('add answer close', 'Q&A'); }} >x</button></div>
         <div className='qa-modal-container'>
           <h2>Submit Your Answer</h2>
           <h3>{props.currentProduct.name}: {props.question.question_body}</h3>
@@ -146,7 +146,7 @@ const AnswerModal = (props) => {
           <br />
           <CloudinaryContext cloudName="dqmnjwd2c">
             <div>
-              <Button type="button" onClick={() => beginUpload('image')}>Upload Photos</Button>
+              <Button type="button" onClick={() => { beginUpload('image'); props.interact('upload answer photo', 'Q&A'); }}>Upload Photos</Button>
               <section>
                 {images.map(i => <Image
                   key={i}
@@ -159,7 +159,7 @@ const AnswerModal = (props) => {
               </section>
             </div>
           </CloudinaryContext>
-          <Button onClick={onSumbitA}>Submit Answer</Button>
+          <Button onClick={() => { onSumbitA(); props.interact('submit answer', 'Q&A'); }}>Submit Answer</Button>
         </div>
       </div>
       <div className="modal-overlay-qa"></div>
