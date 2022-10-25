@@ -34,9 +34,11 @@ const Header = ({ theme, themeToggler, interact }) => {
 
   return (
     <HeaderContainer>
-      <Greyjoy>House Greyjoy</Greyjoy>
-      <Squid src={'logo.png'}/>
-      {(theme === 'light') &&
+
+        <Greyjoy>House Greyjoy</Greyjoy>
+        <Squid src={'logo.png'}/>
+
+      {/* {(theme === 'light') &&
         <button className='sun'
           onClick={() => { themeToggler(); interact('themeToggler', 'Header'); }}>
           <BsSunFill size={28} />
@@ -45,7 +47,7 @@ const Header = ({ theme, themeToggler, interact }) => {
         <button className='moon'
           onClick={() => { themeToggler(); interact('themeToggler', 'Header'); }}>
           <BsMoonStarsFill size={28} />
-        </button>}
+        </button>} */}
       <label class="switch">
         <input
           type="checkbox"
@@ -64,7 +66,6 @@ const Header = ({ theme, themeToggler, interact }) => {
             />
           </span>
         </span>
-
       </label>
     </HeaderContainer>
   );

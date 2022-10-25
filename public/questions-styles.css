@@ -162,7 +162,8 @@ a {
 .sun {
   color: #E8B90E;
   background: none;
-  margin-top: 8px;
+  margin-top: 6px;
+  margin-right: 3px;
   border: none;
 }
 
@@ -170,6 +171,6 @@ a {
   color: black;
   background: none;
   border: none;
-  margin-bottom: 12px;
+  margin: 8px;
   margin-right: 4px;
 }
