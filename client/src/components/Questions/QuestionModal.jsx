@@ -87,7 +87,7 @@ const QuestionModal = (props) => {
         <div className='qa-close'> <button onClick={props.close} >x</button> </div>
         <div className='qa-modal-container'>
           <h2>Ask Your Question</h2>
-          <h3>About the {'(Product Name here)'}</h3>
+          <h3>About the {props.currentProduct.name}</h3>
           <div>
             <div >Your Question*</div>
             <textarea type="textarea" name="question" maxLength="1000" onChange={onQ} />

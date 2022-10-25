@@ -1,6 +1,6 @@
 export const lightTheme = {
   body: '#D5DBE7',
-  text: '#1E3130',
+  text: '#1F2224',
   toggleBorder: '#FFF',
   background: '#1A4A4F',
 };
