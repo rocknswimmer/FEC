@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 const DropDownContainer = styled("div")`
   margin-right: 10px;
+  color: #IF2224;
 
 `;
 
@@ -57,6 +58,7 @@ const DropDownListQty = styled("ul")`
 
 const ListItem = styled("li")`
   list-style: none;
+  color: #IF2224;
   margin-bottom: 0.8em;
   &:hover {
     background-color: #D5DBE7;

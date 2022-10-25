@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 const ImageContainer = styled.div`
+  justify-text: center;
   padding: 10px;
 `;
 
@@ -22,6 +23,10 @@ const StyleDiv = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(3, 1fr);
+  svg {
+    stroke: #333;
+    stroke-width: 10px;
+  }
 
 `;
 

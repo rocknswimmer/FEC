@@ -47,7 +47,7 @@ const ProductName = ({ productInfo, currentDisplayedStyle, metaData, interact })
         className="category">
         CATEGORY: {productInfo.category}
       </h4>
-      <h1>{productInfo.name}</h1>
+      <h1 data-testid="product_name">{productInfo.name}</h1>
       {
         !onSale &&
         <h3> Price:
@@ -58,13 +58,13 @@ const ProductName = ({ productInfo, currentDisplayedStyle, metaData, interact })
         onSale &&
         <>
           <h3>On Sale Now:
-            <SalesPricing>
+            <SalesPricing data-testid="sales_price">
               ${currentDisplayedStyle.sale_price}
             </SalesPricing>
           </h3>
 
-          <h3>Original Price:
-            <FormerPrice>
+          <h3 >Original Price:
+            <FormerPrice data-testid="original_price">
               $ {currentDisplayedStyle.original_price}
             </FormerPrice>
           </h3>

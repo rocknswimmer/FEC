@@ -46,17 +46,26 @@ const Carousel = ({ imageArray, photoIndex, changePhotoToSelectedThumbnail, send
     }
   }, [sendThumbnailDown]);
   return (
-    <PhotoColumn>
-      < div onClick={moveThumbnailsUp}><FaAngleUp /></div>
+    <PhotoColumn
+      data-testid="photoColumn"
+    >
+      < div
+        onClick={moveThumbnailsUp}>
+        <FaAngleUp />
+      </div>
       {carouselArray.map((photoObj, index) => {
-        // console.log(photoObj, '<photoObj');
-
         let originalIndex = photoObj.originalIndex;
-        // console.log(originalIndex, '<originalIndex');
         let pictureUrl = photoObj.thumbnail_url;
         if (index < numberOfDisplayedThumbnails && index >= 0) {
           return (
-            <Thumbnails key={index} origIndex={originalIndex} photoIndex={photoIndex} onClick={(event) => { changePhotoToSelectedThumbnail(originalIndex); }} img={pictureUrl}></Thumbnails>
+            <Thumbnails
+              data-id="thumbnail_pic"
+              key={index}
+              origIndex={originalIndex}
+              photoIndex={photoIndex}
+              onClick={(event) => { changePhotoToSelectedThumbnail(originalIndex); }}
+              img={pictureUrl}>
+            </Thumbnails>
           );
         }
       })
