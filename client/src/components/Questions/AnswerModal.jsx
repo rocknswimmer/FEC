@@ -119,7 +119,7 @@ const AnswerModal = (props) => {
 
 
   };
-  console.log('current:', props.currentProduct);
+
   return (
     <div className="modal-qa">
       <div className="modal-pop-qa">

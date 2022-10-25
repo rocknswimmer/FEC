@@ -43,7 +43,7 @@ const QuestionEntry = (props) => {
 
 
   return (
-    <div className="question-entry">
+    <div className="question-entry" data-testid="question">
       <div className='question-line'>
         <div>
           <span><strong>Q: {props.question.question_body}</strong></span>
