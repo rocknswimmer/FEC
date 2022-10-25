@@ -34,10 +34,8 @@ const Header = ({ theme, themeToggler, interact }) => {
 
   return (
     <HeaderContainer>
-
-        <Greyjoy>House Greyjoy</Greyjoy>
-        <Squid src={'logo.png'}/>
-
+      <Greyjoy>House Greyjoy</Greyjoy>
+      <Squid src={'logo.png'}/>
       {/* {(theme === 'light') &&
         <button className='sun'
           onClick={() => { themeToggler(); interact('themeToggler', 'Header'); }}>
