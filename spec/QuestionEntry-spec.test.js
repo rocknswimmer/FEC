@@ -47,26 +47,26 @@ question_helpfulness: 0
 const question3 = {answers: {
   1: {
     id: 1,
-    body: 'a',
+    body: 'first',
     date: '2022-09-06T00:00:00.000Z',
     answerer_name: 'u',
-    helpfulness: 0,
+    helpfulness: 1,
     photos: []
   },
   2: {
     id: 2,
-    body: 'a',
+    body: 'second',
     date: '2022-09-06T00:00:00.000Z',
     answerer_name: 'u',
-    helpfulness: 0,
+    helpfulness: 2,
     photos: []
   },
   3: {
     id: 3,
-    body: 'a',
+    body: 'third',
     date: '2022-09-06T00:00:00.000Z',
     answerer_name: 'u',
-    helpfulness: 0,
+    helpfulness: 3,
     photos: []
   }
 },

@@ -117,15 +117,16 @@ const AnswerModal = (props) => {
 
     submitAnswer();
 
-  };
 
+  };
+  console.log('current:', props.currentProduct);
   return (
     <div className="modal-qa">
       <div className="modal-pop-qa">
         <div className='qa-close'><button onClick={props.close} >x</button></div>
         <div className='qa-modal-container'>
           <h2>Submit Your Answer</h2>
-          <h3>Product name: {JSON.stringify(props.question.question_body)}</h3>
+          <h3>{props.currentProduct.name}: {props.question.question_body}</h3>
           <div>
             <div >Your Answer*</div>
             <textarea type="textarea" name="answer" maxLength="1000" onChange={onA} />
