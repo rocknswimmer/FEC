@@ -1,9 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+import React from 'react';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import '@testing-library/jest-dom';
+import userEvent from '@testing-library/user-event';
+import App from '../client/src/components/App.jsx';
 import Reviews from '../client/src/components/Reviews/Reviews.jsx';
 import Buttons from '../client/src/components/Reviews/Buttons.jsx';
 import ReviewsListEntry from '../client/src/components/Reviews/ReviewsListEntry.jsx';
 
+const toggleObj = {1: true, 2: false};
+const visibleReviews = [1, 2, 3];
+const reviewsList = [1, 2, 3];
 
 
 let reviews = [];
@@ -14,15 +20,20 @@ const clickTest = () => {
   reviews.push(element);
 };
 
-test('use jsdom in this test file', () => {
-  const element = document.createElement('div');
-  expect(element).not.toBeNull();
-});
+describe('Testing new config', () => {
+
+
+  it('use jsdom in this test file', () => {
+    const element = document.createElement('div');
+    expect(element).not.toBeNull();
+  });
 
 
 
-test('should render Buttons component and recognize buttons within it', () => {
-  render(<Buttons />);
-  const buttons = screen.getAllByText('ADD A REVIEW +');
-  expect(buttons).not.toBeNull();
+  it('should render Buttons component and recognize buttons within it', () => {
+    render(<Buttons visibleReviews={visibleReviews} reviewsList={reviewsList} toggleObj={toggleObj}/>);
+
+
+    expect(screen.getByTestId('add-button')).toHaveTextContent('ADD A REVIEW +');
+  });
 });

@@ -8,7 +8,7 @@ import { fetchPhotos, openUploadWidget } from '../../HelperFunctions/CloudinaryS
 
 
 const Button = styled.button`
-  background: white;
+  background: inherit;
   color: grey;
   font-size: .75em;
   margin: 15px 0 15px 0;
@@ -241,7 +241,6 @@ const ReviewModal = ({toggle, productId, getReviews, metaData}) => {
                 <div><small>Minimum reached</small></div>
                 : <div><small>Minimum required characters left: {minCounter - body.length}</small></div>}
             </div>
-
             <CloudinaryContext cloudName="dqmnjwd2c">
               <div>
                 <Button type="button" onClick={() => beginUpload('image')}>Upload Photos</Button>
