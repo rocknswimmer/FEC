@@ -26,7 +26,7 @@ const QuestionFeed = (props) => {
       })}
       {!props.searchable && props.questions.length === 0 && <p><strong>NO ANSWERED QUESTIONS FOUND</strong></p>}
       {/* searchable */}
-      {props.searchable && props.searchedQuestions.length === 0 && <p> <em>no search results found</em></p>}
+      {props.searchable && props.searchedQuestions.length === 0 && <p> <em data-testid="questionless">no search results found</em></p>}
       {props.searchable && props.searchedQuestions.length > 0 && props.searchedQuestions.map((question, i) => {
         return <QuestionEntry key={i} question={question} get={props.get} currentProduct={props.currentProduct} interact={props.interact} />;
       })}

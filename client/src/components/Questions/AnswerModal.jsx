@@ -121,7 +121,7 @@ const AnswerModal = (props) => {
   };
 
   return (
-    <div className="modal-qa">
+    <div className="modal-qa" data-testid="amodal">
       <div className="modal-pop-qa">
         <div className='qa-close'><button onClick={() => { props.close(); props.interact('add answer close', 'Q&A'); }} >x</button></div>
         <div className='qa-modal-container'>

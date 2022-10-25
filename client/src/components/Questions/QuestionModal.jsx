@@ -82,7 +82,7 @@ const QuestionModal = (props) => {
 
 
   return (
-    <div className="modal-qa">
+    <div className="modal-qa" data-testid="qmodal">
       <div className="modal-pop-qa">
         <div className='qa-close'> <button onClick={() => { props.close(); props.interact('close add question', 'Q&A'); }} >x</button> </div>
         <div className='qa-modal-container'>

@@ -59,7 +59,7 @@ describe('Testing new config', () => {
   it('should render Buttons component and recognize buttons within it', () => {
     render(<QuestionFeed questions={[question3]} moreQuestions={false} searchable={true} searchedQuestions={[]} currentProduct={{name: 'test'}} />);
 
-    expect(screen.getByTestId('questions')).toBeDefined();
+    expect(screen.getByTestId('questionless')).toBeDefined();
   });
 
 });
