@@ -138,9 +138,9 @@ const ReviewsListEntry = ({review}) => {
           : null}
       </div>
       {helpful && !reported && <small><span>Was this review helpful? <span style={{color: '#367c2b'}}>Yes <FaCheckCircle style={{color: '#367c2b'}}/></span></span></small>}
-      {notHelpful && !reported && <small><span>Was this review helpful? <span style={{color: '#C81D11'}}>No <FaTimesCircle style={{color: '#C81D11'}}/> | </span><a onClick={() => clickReported()}>Report</a></span></small>}
+      {notHelpful && !reported && <small><span>Was this review helpful? <span style={{color: '#C81D11'}}>No <FaTimesCircle style={{color: '#C81D11'}} /></span><a onClick={() => clickReported()}>Report</a></span></small>}
       {(!helpful && !notHelpful && !reported) && <small><span>Was this review helpful? <a onClick={() => clickHelpful()}>Yes</a> {`(${review.helpfulness})`} | <a onClick={() => setNotHelpful(true)}>No</a> ({noNum}) | <a onClick={() => clickReported()}>Report</a></span></small>}
-      {reported && <small><span style={{color: '#E8B90E'}}>Reported <FaExclamationCircle style={{color: '#E8B90E'}}/></span></small>}
+      {reported && <small><span style={{color: '#E8B90E'}}>Reported<FaExclamationCircle style={{color: '#E8B90E'}}/></span></small>}
     </ReviewEntry>
   );
 };

@@ -38,16 +38,34 @@ const Header = ({ theme, themeToggler, interact }) => {
       <Squid src={'logo.png'}/>
       {(theme === 'light') &&
         <button className='sun'
-          onClick={() => { themeToggler(); interact('themeToggler', 'Header'); }}
-        >
+          onClick={() => { themeToggler(); interact('themeToggler', 'Header'); }}>
           <BsSunFill size={28} />
         </button>}
-
       {(theme !== 'light') &&
         <button className='moon'
           onClick={() => { themeToggler(); interact('themeToggler', 'Header'); }}>
           <BsMoonStarsFill size={28} />
         </button>}
+      <label class="switch">
+        <input
+          type="checkbox"
+          i={<BsSunFill size={28} />}/>
+        <span class="slider round"
+          onClick={() => { themeToggler(); interact('themeToggler', 'Header'); }}>
+          <span className='sun'
+            onClick={() => { themeToggler(); interact('themeToggler', 'Header'); }}>
+            <BsSunFill size={22} />
+          </span>
+          <span className='sun'
+            onClick={() => { themeToggler(); interact('themeToggler', 'Header'); }}>
+            <BsMoonStarsFill
+              size={18}
+              style={{'color': 'black'}}
+            />
+          </span>
+        </span>
+
+      </label>
     </HeaderContainer>
   );
 };
