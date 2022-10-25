@@ -12,7 +12,7 @@ const StarBar = styled.div`
   display: flex;
   align-items: center;
   &:hover {
-    background-color: lightyellow;
+    background-color: #E8B90E;
   }
   margin-bottom: 5px;
 `;

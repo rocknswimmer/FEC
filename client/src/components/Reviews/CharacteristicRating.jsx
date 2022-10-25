@@ -9,8 +9,8 @@ const CharacteristicRating = ({char, setChar, name, descr, postableObj, charId})
 
       {char ? <div><small>{descr[char - 1]}</small></div>
         : <br/>}
-      <div className="rev-modal-form" >
-        <div className="radio-box">
+      <div data-testid="modal" className="rev-modal-form" >
+        <div data-testid="radio-box" className="radio-box">
           <input
             onClick={(e) => setChar(e.target.value)}
             type="radio"

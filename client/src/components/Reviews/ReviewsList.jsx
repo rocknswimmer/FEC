@@ -5,9 +5,6 @@ let reviewCount = 0;
 
 const ReviewsList = ({reviewsList, visibleReviews}) => {
 
-
-  //Map ReviewListEntries here
-  // console.log(reviewsList);
   return (
     <div>
       {visibleReviews.map((review, i) => (
