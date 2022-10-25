@@ -25,7 +25,7 @@ flex-shrink: 0;
 
 let visibleReviewsIndex = 2;
 
-const Reviews = ({productId, metaData, currentProduct}) => {
+const Reviews = ({productId, metaData, currentProduct, theme}) => {
 
   const [reviewsList, setReviewsList] = useState([]);
   const [visibleReviews, setVisibleReviews] = useState([]);
@@ -179,7 +179,8 @@ const Reviews = ({productId, metaData, currentProduct}) => {
               productId={productId}
               getReviews={getReviews}
               metaData={metaData}
-              toggleObj={toggleObj}/>
+              toggleObj={toggleObj}
+              theme={theme}/>
           </div>
         </SummaryListDivider>
       </div>

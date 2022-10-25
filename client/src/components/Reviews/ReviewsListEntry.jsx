@@ -36,7 +36,7 @@ border-radius: 3px;
 `;
 
 
-const ReviewsListEntry = ({review}) => {
+const ReviewsListEntry = ({review, theme}) => {
 
   const [over250, setOver250] = useState(review.body.length > 250);
   const [showModal, setShowModal] = useState(false);
@@ -119,7 +119,13 @@ const ReviewsListEntry = ({review}) => {
             {review.photos.map((photo, i) => (
               <div className="thumbnail" key={i}>
                 <Thumbnail src={photo.url} onClick={() => { togglePhoto(photo.url); togglePhotoClicked(photo); }} ></Thumbnail>
-                {showModal ? <PhotosModal toggle={togglePhoto} visible={showModal} photo={photo} togglePhotoClicked={togglePhotoClicked}/> : null}
+                {showModal ?
+                  <PhotosModal toggle={togglePhoto}
+                    visible={showModal}
+                    photo={photo}
+                    togglePhotoClicked={togglePhotoClicked}
+                    theme={theme}/>
+                  : null}
               </div>
             ))}
           </div>

@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import axios from 'axios';
 
 
-const PhotosModal = ({toggle, visible, photo, togglePhotoClicked}) => {
+const PhotosModal = ({toggle, visible, photo, togglePhotoClicked, theme}) => {
 
   return (
     <div>

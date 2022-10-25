@@ -100,6 +100,7 @@ const App = () => {
 
           <Reviews
             productId={product}
+            theme={theme}
             metaData={metaData}
             currentProduct={currentProduct}
             interact={(element, widget) => { submitInteraction(element, widget); }} />

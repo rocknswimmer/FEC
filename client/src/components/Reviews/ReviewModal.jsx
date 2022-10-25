@@ -20,7 +20,7 @@ const Button = styled.button`
 let postableObj = {};
 
 
-const ReviewModal = ({toggle, productId, getReviews, metaData}) => {
+const ReviewModal = ({toggle, productId, getReviews, metaData, theme}) => {
 
   let name;
   if (productId === 37311) {
@@ -66,6 +66,8 @@ const ReviewModal = ({toggle, productId, getReviews, metaData}) => {
   const [images, setImages] = useState([]);
   const photosUrls = [];
 
+  const lightTheme = '#D5D8E7';
+  const darkTheme = '#1F2224';
 
   const beginUpload = tag => {
     const uploadOptions = {
@@ -120,17 +122,12 @@ const ReviewModal = ({toggle, productId, getReviews, metaData}) => {
       });
   };
 
-  // if (Object.keys(metaData).length === 0) {
-  //   metaData.characteristics = {};
-  //   return (
-  //     <div>{metaData}</div>
-  //   );
-  // }
+
 
   return (
     <div>
       <div className="modal">
-        <div className="rev-modal-pop" role="dialog" aria-modal="true">
+        <div style={theme === 'light' ? {background: lightTheme} : {background: darkTheme}} className="rev-modal-pop" role="dialog" aria-modal="true">
           <button className="photo-modal-close" type="button" onClick={() => toggle()}>Close</button>
           <form>
             <h2>Write Your Review</h2>
