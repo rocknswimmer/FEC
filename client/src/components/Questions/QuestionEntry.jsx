@@ -58,7 +58,7 @@ const QuestionEntry = (props) => {
         </div>
       </div>
       <AnswerFeed answers={answers} />
-      {addAnswer && <AnswerModal get={props.get} close={addAnswerModal} question={props.question}/>}
+      {addAnswer && <AnswerModal get={props.get} close={addAnswerModal} question={props.question} currentProduct={props.currentProduct}/>}
     </div>
   );
 };

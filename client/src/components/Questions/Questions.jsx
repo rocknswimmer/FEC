@@ -118,13 +118,13 @@ const Questions = (props) => {
         </button>
       </form>
       <div className='question-feed'>
-        <QuestionFeed questions={questions} moreQuestions={moreQuestions} get={() => { getCurrentQuestions(); }} searchable={searchable} searchedQuestions={searchedQuestions} />
+        <QuestionFeed questions={questions} moreQuestions={moreQuestions} get={() => { getCurrentQuestions(); }} searchable={searchable} searchedQuestions={searchedQuestions} currentProduct={props.currentProduct} />
       </div>
       <div className='question-buttons'>
-        {(questions[0] && questions.length > 2) && !moreQuestions && <Button onClick={loadMoreQuestions}>MORE ANSWERED QUESTIONS</Button>}
+        {(questions[0] && questions.length > 2) && !moreQuestions && <Button onClick={() => { loadMoreQuestions(); props.interact('more questions button', 'Q&A'); }}>MORE ANSWERED QUESTIONS</Button>}
         {(questions[0] && questions.length > 2) && moreQuestions && <Button onClick={loadMoreQuestions}>LESS ANSWERED QUESTIONS</Button>}
         <Button onClick={addQuestionModal}>ADD A QUESTION +</Button>
-        {addQuestion && <QuestionModal close={addQuestionModal} product={props.productId} />}
+        {addQuestion && <QuestionModal close={addQuestionModal} product={props.productId} currentProduct={props.currentProduct} />}
       </div>
     </div>
   );
