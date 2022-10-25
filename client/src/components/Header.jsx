@@ -37,20 +37,27 @@ const Header = ({ theme, themeToggler, interact }) => {
     <HeaderContainer>
       <Greyjoy>House Greyjoy</Greyjoy>
 
-      <Squid
-        src={'logo.png'}
-      />
-      {(theme === 'light') &&
-        <button className='sun'
-          onClick={() => { themeToggler(); interact('themeToggler', 'Header'); }} >
-          <BsSunFill size={28} />
-        </button>}
+      <Squid src={'logo.png'}/>
 
-      {(theme !== 'light') &&
-        <button className='moon'
+      <label class="switch">
+        <input
+          type="checkbox"
+          i={<BsSunFill size={28} />}/>
+        <span class="slider round"
           onClick={() => { themeToggler(); interact('themeToggler', 'Header'); }}>
-          <BsMoonStarsFill size={28} />
-        </button>}
+          <span className='sun'
+            onClick={() => { themeToggler(); interact('themeToggler', 'Header'); }}>
+            <BsSunFill size={22} />
+          </span>
+          <span className='sun'
+            onClick={() => { themeToggler(); interact('themeToggler', 'Header'); }}>
+            <BsMoonStarsFill
+              size={18}
+              style={{'color': 'black'}}
+            />
+          </span>
+        </span>
+      </label>
     </HeaderContainer>
   );
 };

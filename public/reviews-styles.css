@@ -1,5 +1,4 @@
 
-
 #rev-container {
   display: flex;
   flex-direction: column;
@@ -86,10 +85,10 @@
 .modal {
   margin: auto;
   position: fixed;
+  background: inherit;
 }
 
 .modal-pop {
-
   border: 2px solid #aaa;
   border-radius: 5px;
   z-index: 100;
@@ -100,8 +99,8 @@
   position: fixed;
   top: 50%;
   left: 50%;
-  max-width: 100%;
-  max-height: 100%;
+  max-width: 75%;
+  max-height: 75%;
   min-height: 30%;
   min-width: 30%;
   transform: translate(-50%, -50%);
@@ -174,7 +173,7 @@
   background: white;
   border: 2px solid #aaa;
   border-radius: 5px;
-  z-index: 2;
+  z-index: 25;
   margin: auto;
   padding: 20px;
   overflow-y: scroll;
@@ -183,9 +182,9 @@
   position: fixed;
   top: 50%;
   left: 50%;
-  width: 50%;
+  width: 40%;
   max-width: 100%;
-  max-height: 80%;
+  height: 70%;
   min-height: 30%;
   min-width: 40%;
   transform: translate(-50%, -50%);
@@ -285,4 +284,74 @@ div.radio-box {
 .linear-gradient-template {
   width: 0;
   height: 0;
+}
+
+/* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+  margin-top: 30px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #0c6ab6;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+  display: flex;
+  /* justify-content: space-around; */
+  align-items: center;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }

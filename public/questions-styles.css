@@ -161,12 +161,19 @@ a {
 
 .sun {
   color: #E8B90E;
-  background: inherit;
+  background: none;
+  margin-top: 6px;
+  margin-bottom: -3px;
+  margin-left: 5px;
+  margin-right: 4px;
   border: none;
 }
 
 .moon {
-  color: #D5DBE7;
-  background: inherit;
+  color: black;
+  background: none;
   border: none;
+  margin-top: 5px;
+  margin-bottom: -3px;
+  margin-left: 8px;
 }

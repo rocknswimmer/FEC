@@ -3,7 +3,7 @@ import axios from 'axios';
 import styled from 'styled-components';
 import PhotosModal from './PhotosModal.jsx';
 import formattedDate from '../../HelperFunctions/formattedDate.js';
-import {FaCheckCircle} from 'react-icons/fa';
+import {FaCheckCircle, FaTimesCircle, FaExclamationCircle} from 'react-icons/fa';
 import StarRating from '../Stars/StarRating.jsx';
 
 const ReviewEntry = styled.div`
@@ -38,18 +38,18 @@ border-radius: 3px;
 
 const ReviewsListEntry = ({review}) => {
 
-  const [over250, setOver250] = useState(review.body.length > 50);
+  const [over250, setOver250] = useState(review.body.length > 250);
   const [showModal, setShowModal] = useState(false);
   const [isScrollable, setIsScrollable] = useState(true);
   const [photoClicked, setPhotoClicked] = useState(true);
   const [helpful, setHelpful] = useState(false);
-
+  const [notHelpful, setNotHelpful] = useState(false);
+  const [reported, setReported] = useState(false);
 
   const togglePhotoClicked = (photo) => {
     photo.clicked = photoClicked;
     setPhotoClicked(!photoClicked);
   };
-
 
   const toggleShowMore = () => {
     setOver250(!over250);
@@ -62,13 +62,7 @@ const ReviewsListEntry = ({review}) => {
     isScrollable ? document.body.style.overflow = 'hidden' : document.body.style.overflow = 'scroll';
   };
 
-
-  const clickHelpful = (val) => {
-
-    if (val === 'no') {
-      setHelpful(!helpful);
-    }
-
+  const clickHelpful = () => {
     if (!helpful) {
       setHelpful(!helpful);
       //axios put request
@@ -81,6 +75,17 @@ const ReviewsListEntry = ({review}) => {
           console.log('error putting question helpful: ', err);
         });
     }
+  };
+
+  const clickReported = () => {
+    setReported(true);
+    axios.put('/reviews/:review_id/report', {'review_id': review.review_id})
+      .then((res) => {
+        console.log('successfully put question helpful');
+      })
+      .catch((err) => {
+        console.log('error putting question helpful: ', err);
+      });
   };
 
 
@@ -103,7 +108,7 @@ const ReviewsListEntry = ({review}) => {
       <div>
         {over250 ?
           <div>
-            {review.body.substring(0, 50)}... <div>
+            {review.body.substring(0, 250)}... <div>
               <Button onClick={() => (toggleShowMore())}>Show More</Button>
             </div>
           </div> : review.body}
@@ -132,11 +137,10 @@ const ReviewsListEntry = ({review}) => {
           </div>
           : null}
       </div>
-      {helpful ?
-        <small><span>Was this review helpful? <span style={{color: '#367c2b'}}>Yes</span> {`(${review.helpfulness + 1})`}</span></small>
-        : <small><span>Was this review helpful? <a onClick={() => clickHelpful()}>Yes</a> {`(${review.helpfulness})`} | <a>No</a> ({noNum}) | <a>Report</a></span></small>
-      }
-
+      {helpful && !reported && <small><span>Was this review helpful? <span style={{color: '#367c2b'}}>Yes <FaCheckCircle style={{color: '#367c2b'}}/></span></span></small>}
+      {notHelpful && !reported && <small><span>Was this review helpful? <span style={{color: '#C81D11'}}>No <FaTimesCircle style={{color: '#C81D11'}} /> </span><a onClick={() => clickReported()}>Report</a></span></small>}
+      {(!helpful && !notHelpful && !reported) && <small><span>Was this review helpful? <a onClick={() => clickHelpful()}>Yes</a> {`(${review.helpfulness})`} | <a onClick={() => setNotHelpful(true)}>No</a> ({noNum}) | <a onClick={() => clickReported()}>Report</a></span></small>}
+      {reported && <small><span style={{color: '#E8B90E'}}>Reported <FaExclamationCircle style={{color: '#E8B90E'}}/></span></small>}
     </ReviewEntry>
   );
 };

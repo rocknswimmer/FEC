@@ -136,7 +136,7 @@ app.post('/reviews', (req, res) => {
 
 //Mark Review as Helpful
 app.put('/reviews/:review_id/helpful', (req, res) => {
-  console.log(req.body)
+  console.log(req.body);
   let options = {
     'headers': {
       'Authorization': api
@@ -157,6 +157,22 @@ app.put('/reviews/:review_id/helpful', (req, res) => {
 
 //Report Review
 app.put('/reviews/:review_id/report', (req, res) => {
+
+  let options = {
+    'headers': {
+      'Authorization': api
+    }
+  };
+  axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/${req.body.review_id}/report`, {}, options)
+    .then((results) => {
+      console.log(results);
+      res.send('review reported');
+    })
+    .catch((err) => {
+      console.log('error putting Q helpful: ', err);
+      res.status(404).end();
+    });
+
 
 });
 
