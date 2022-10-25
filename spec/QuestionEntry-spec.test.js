@@ -101,4 +101,10 @@ describe( 'Question Entry tests', function() {
     expect(screen.getAllByTestId('answer').length).toEqual(2);
   });
 
+  //test sort
+
+  // test yes put
+
+  // test answer modal function
+
 });
