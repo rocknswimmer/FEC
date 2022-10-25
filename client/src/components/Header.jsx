@@ -36,6 +36,8 @@ const Header = ({ theme, themeToggler, interact }) => {
     <HeaderContainer>
       <Greyjoy>House Greyjoy</Greyjoy>
       <Squid src={'logo.png'}/>
+
+
       {/* {(theme === 'light') &&
         <button className='sun'
           onClick={() => { themeToggler(); interact('themeToggler', 'Header'); }}>
