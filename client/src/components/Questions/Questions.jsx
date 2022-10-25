@@ -32,7 +32,8 @@ const Questions = (props) => {
     })
       .then(results => {
         // console.log('questions: ', results.data.results);
-        setQuestions(results.data.results);
+        let answeredQuestions = results.data.results.filter((question) => { return (Object.keys(question.answers)[0] !== undefined); });
+        setQuestions(answeredQuestions);
       })
       .catch(err => {
         console.log('There is an error getting questions from server ', err);
@@ -104,7 +105,6 @@ const Questions = (props) => {
     } else {
       setSearchable(!searchable);
     }
-    //turn search filter off when searchQuery.length === 2 ?/ how to turn on
   }, [((searchQuery.length > 2) && (searchQuery))]);
 
 
@@ -131,13 +131,3 @@ const Questions = (props) => {
 };
 
 export default Questions;
-
-
-/*
-add to all on clicks annoyingly
-const clickTracker = (element, widget) => {
-  post request to interactions api post url
-  make sure every click passes the widget and element names as strings
-  generate date in the function before adding to post request
-}
-*/
