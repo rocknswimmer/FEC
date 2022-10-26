@@ -7,6 +7,12 @@ const ComponentBlock = styled.div`
   grid-column-end:7;
   grid-row-start: 1;
   grid-row-end: 8;
+  @media (max-width: 958px) {
+    grid-column-start: 1;
+    grid-column-end: 11;
+    grid-row-start:1;
+    grid-row-end: 5;
+}
 `;
 
 const MainImage = styled.div`
