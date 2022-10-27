@@ -43,12 +43,10 @@ const ItemSelection = ({ currentDisplayedStyle, productId, addToCart, cartConten
 
   //handlers for size and quantity dropdowns
   const toggleSizeDropdown = () => {
-    console.log('size dropdown should be toggled');
     setSizeDropDownOpen(!sizeDropdownIsOpen);
   };
 
   const toggleQuantityDropdown = () => {
-    console.log('quantity dropdown should be toggled');
     if (!isOutOfSize()) {
       setQuantityDropDownOpen(!quantityDropdownIsOpen);
     }
@@ -67,7 +65,6 @@ const ItemSelection = ({ currentDisplayedStyle, productId, addToCart, cartConten
   const handleSizeSelection = (index) => {
     let skuObj = {};
     Object.assign(skuObj, items[index]);
-    // console.log(skuObj);
     setSizeChosen(true);
     setSelectedItem(skuObj);
     setSizeDropDownOpen(false);
@@ -75,14 +72,11 @@ const ItemSelection = ({ currentDisplayedStyle, productId, addToCart, cartConten
 
   //When a sku / size has been selected, the fn below should make an arr with the appropriate quantity represented.
   const quantityArrayMaker = () => {
-    // console.log('inside quantityArrayMaker');
-    // console.log('these are the currentCartContents >', cartContents);
     let quantityArr = [];
     let correctQty;
 
     if (cartContents.length > 0) {
       cartContents.forEach(cartObj => {
-        console.log(cartObj, '<--- cart is being checked');
         if (cartObj.sku === selectedItem.sku
           && cartObj.product_id === selectedItem.product_id
           && cartObj.style_id === selectedItem.style_id) {
@@ -94,13 +88,10 @@ const ItemSelection = ({ currentDisplayedStyle, productId, addToCart, cartConten
     } else {
       correctQty = selectedItem.quantity;
     }
-    /* if the selected thing is already in cart, use qty available in the cart. When setting the cart contents, update quantity availble by subtracting the selectedQty from quantity */
     if (correctQty >= 15) {
       quantityArr = Array.from(Array(16).keys());
 
     } else if (correctQty === 0) {
-      // quantityArr make it so it says it's out of stock
-      console.log('this item is out of stock');
       return [];
     } else {
       quantityArr = Array.from(Array(correctQty + 1).keys());
@@ -111,12 +102,10 @@ const ItemSelection = ({ currentDisplayedStyle, productId, addToCart, cartConten
 
   //Fn - when a quantity has been chosen, it will update the current sku obj
   const updateSelectedQty = (qty = 1) => {
-    console.log('this is selected item updating selected quantity', qty);
     let newObj = {};
     Object.assign(newObj, selectedItem);
 
     newObj.selectedQty = qty;
-    console.log(newObj, 'newObj in updatedSelectedQty');
     setSelectedItem(newObj);
     setQtyChosen(qty);
   };
