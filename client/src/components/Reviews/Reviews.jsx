@@ -34,7 +34,6 @@ const Reviews = ({productId, metaData, currentProduct, theme}) => {
   const [currentSort, setCurrentSort] = useState('relevance');
   const [starsFilter, setStarsFilter] = useState([]);
 
-
   const getReviews = (id = productId, sortSelection = 'relevant') => {
 
     //WRITE HELPFULNESS SORT: if sortSelection === helpfullness, array.sort on current list, set both visible and reviews list to sorted
