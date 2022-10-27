@@ -1,4 +1,5 @@
 const path = require("path");
+const TerserPlugin = require("terser-webpack-plugin");
 
 module.exports = {
   mode: "development",
@@ -19,6 +20,10 @@ module.exports = {
         use: ['style-loader','css-loader']
       }
     ]
+  },
+  optimization: {  //added from terser read me
+    minimize: true,
+    minimizer: [new TerserPlugin()],
   },
   // [devtool] this is an additional source map that will let the browser know what files are running our code.
   // Helps with error tracing. Without it we will not know where our errors are coming from because it will state that everything inside the bundle file.
