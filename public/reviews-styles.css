@@ -10,7 +10,7 @@
   width: 100%;
   display: flex;
   flex-shrink: 0;
-  overflow: scroll;
+  /* overflow: scroll; */
 }
 
 .rev-header {
@@ -26,7 +26,6 @@
 .summary {
   width: 300px;
   flex-shrink: 0;
-
 }
 
 @media (max-width: 958px){
