@@ -462,9 +462,6 @@ describe('it should show all the styles mapped into pictures', () => {
 
   });
 
-
-
-
 });
 
 
