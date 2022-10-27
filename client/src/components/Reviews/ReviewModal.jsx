@@ -128,7 +128,7 @@ const ReviewModal = ({toggle, productId, getReviews, metaData, theme}) => {
     <div>
       <div data-testid="rev-modal" className="modal">
         <div style={theme === 'light' ? {background: lightTheme} : {background: darkTheme}} className="rev-modal-pop" role="dialog" aria-modal="true">
-          <button className="photo-modal-close" type="button" onClick={() => toggle()}>Close</button>
+          <button className="rev-modal-close" type="button" onClick={() => toggle()}>Close</button>
           <form>
             <h2 data-testid="write-rev" className="write-rev">Write Your Review</h2>
             <h3>About the {name}</h3>
