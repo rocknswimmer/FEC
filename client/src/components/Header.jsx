@@ -5,12 +5,16 @@ import { BsSunFill, BsMoonStarsFill } from 'react-icons/bs';
 
 
 const HeaderContainer = styled.div`
+  box-sizing: border-box;
   position: fixed;
     top: -15px;
+    left: 0px;
   z-index: 2;
+  padding-right: 50px;
+  padding-left: 40px;
   background-color: black;
   display: flex;
-  align-item: left;
+  justify-content: space-between;
   height: 80px;
   width: 100%;
   font-family: 'Bad Script', cursive;
@@ -27,7 +31,15 @@ const Greyjoy = styled.h1`
 
 const Squid = styled.img`
 margin: 5px;
-z-index: 15;
+z-index: 3;
+`;
+
+const ContainerDiv = styled.div`
+  display: flex;
+  margin-left: 10px;
+  padding-left: 10px;
+  width: auto;
+
 `;
 
 const Header = ({ theme, themeToggler, interact }) => {
@@ -35,14 +47,16 @@ const Header = ({ theme, themeToggler, interact }) => {
 
   return (
     <HeaderContainer>
-      <Greyjoy>House Greyjoy</Greyjoy>
+      <ContainerDiv>
+        <Greyjoy>House Greyjoy</Greyjoy>
 
-      <Squid src={'logo.png'}/>
+        <Squid src={'logo.png'} />
 
+      </ContainerDiv>
       <label className="switch">
         <input
           type="checkbox"
-          i={<BsSunFill size={28} />}/>
+          i={<BsSunFill size={28} />} />
         <span className="slider round"
           onClick={() => { themeToggler(); interact('themeToggler', 'Header'); }}>
           <span className='sun'
@@ -53,11 +67,12 @@ const Header = ({ theme, themeToggler, interact }) => {
             onClick={() => { themeToggler(); interact('themeToggler', 'Header'); }}>
             <BsMoonStarsFill
               size={18}
-              style={{'color': 'black'}}
+              style={{ 'color': 'black' }}
             />
           </span>
         </span>
       </label>
+
     </HeaderContainer>
   );
 };
