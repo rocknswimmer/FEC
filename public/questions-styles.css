@@ -80,8 +80,7 @@ a {
 }
 
 body::-webkit-scrollbar {
-  background: inherit;  /* Safari and Chrome */
-  width: 3px;
+  display: none;
 }
 
 body::-webkit-scrollbar-thumb {
