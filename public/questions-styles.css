@@ -80,9 +80,11 @@ a {
 }
 
 body::-webkit-scrollbar {
-  display: none;
+   display: none;
+  background: inherit;
+  width: 3px;
 }
-
+/*
 body::-webkit-scrollbar-thumb {
   background: grey;
   visibility: hidden;
@@ -90,7 +92,7 @@ body::-webkit-scrollbar-thumb {
 }
 body:hover::-webkit-scrollbar-thumb {
   visibility: visible;
-}
+} */
 
 
 .answer {
