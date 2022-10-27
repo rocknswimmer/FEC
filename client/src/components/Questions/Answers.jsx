@@ -74,28 +74,22 @@ const Answers = (props) => {
     <div className="answer" data-testid="answer">
       <span>{props.answer.body}</span>
       <br/>
-      {/* {formattedPhotos.map((photo, i) => (
-        <div className="thumbnail">
-          <QAThumbnail src={photo.photoURL} onClick={() => { toggleAnsPhoto(); toggleAnsPhotoClicked(photo); }} key={i} />
-          {showPhoModal && <AnsPhotosModal key={i + 1000} toggle={() =>{ toggleAnsPhoto(); }} visible={showPhoModal} photo={photo} toggleAnsPhotoClicked={(p) => { toggleAnsPhotoClicked(p); }} />}
-        </div>
-      ))} */}
       {props.answer.photos.length > 0 && <div className="thumbnails-container">
         {formattedPhotos.map((photo, i) => (
           <div className="thumbnail" key={i}>
-            <QAThumbnail src={photo.url} onClick={() => { toggleAnsPhoto(); toggleAnsPhotoClicked(photo); }} />
+            <QAThumbnail src={photo.url} onClick={() => { toggleAnsPhoto(); toggleAnsPhotoClicked(photo); props.interact('answer thumbnail', 'Q&A'); }} />
             {showPhoModal ? <PhotosModal toggle={toggleAnsPhoto} visible={showPhoModal} photo={photo} togglePhotoClicked={toggleAnsPhotoClicked} /> : null}
           </div>
         ))}
       </div>}
       <span>by {props.answer.answerer_name}, {formattedDate(props.answer.date)}</span>
       <span className='qspacer'> | </span>
-      <span>Helpful? {!clickedYesBefore && <a className='qyes' onClick={helpfulClicked}>Yes</a>}
+      <span>Helpful? {!clickedYesBefore && <a className='qyes' onClick={() => { helpfulClicked(); props.interact('answer helpful', 'Q&A'); }}>Yes</a>}
         {!clickedYesBefore && `(${props.answer.helpfulness})`}
         {clickedYesBefore && `(${props.answer.helpfulness + 1})`}
       </span>
       <span className='qspacer'> | </span>
-      <span>{!clickedReportBefore && <a onClick={reportClicked}>Report</a>}{clickedReportBefore && <span>Reported</span>}</span>
+      <span>{!clickedReportBefore && <a onClick={() => { reportClicked(); props.interact('report answer', 'Q&A'); }}>Report</a>}{clickedReportBefore && <span>Reported</span>}</span>
       <br/>
     </div>
   );

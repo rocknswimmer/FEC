@@ -13,7 +13,7 @@ const Button = styled.button`
   border-radius: 3px;
 `;
 
-const Buttons = ({handleMoreReviews, reviewsList, visibleReviews, productId, getReviews, metaData, toggleObj}) => {
+const Buttons = ({handleMoreReviews, reviewsList, visibleReviews, productId, getReviews, metaData, toggleObj, theme}) => {
 
   const [showModal, setShowModal] = useState(false);
   const [isScrollable, setIsScrollable] = useState(true);
@@ -38,6 +38,7 @@ const Buttons = ({handleMoreReviews, reviewsList, visibleReviews, productId, get
           onClick={() => toggleReviewModal()}>ADD A REVIEW +</Button>
         {showModal ?
           <ReviewModal
+            theme={theme}
             toggle={toggleReviewModal}
             productId={productId}
             getReviews={getReviews}

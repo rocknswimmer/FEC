@@ -5,8 +5,8 @@ const RatingBar = ({val, descr}) => {
 
   return (
 
-    <div className="char-range">
-      <div className="arrow-down" style={{marginLeft: (val * 56) - 8}}></div>
+    <div data-testid="range-bar" className="char-range">
+      <div data-testid="arrow" className="arrow-down" style={{marginLeft: (val * 56) - 8}}></div>
       {descr[2] === 'Perfect' ?
         <div>
           <div className="bar-container">
