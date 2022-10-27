@@ -13,12 +13,7 @@ margin-bottom: 0;
 display: flex;
 flex-direction: column;
 flex-shrink: 0;
-max-width:80%;
-&::-webkit-scrollbar {
-  width: 10px;
-  border: 15px solid red;
-}
-
+max-width:80%
 `;
 
 const SummaryListDivider = styled.div`
