@@ -187,7 +187,8 @@ app.get('/qa/questions/', (req, res) => {
       'Authorization': api
     },
     'params': {
-      'product_id': req.query.id
+      'product_id': req.query.id,
+      'count': 1000
     }
   };
 

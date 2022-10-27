@@ -36,7 +36,7 @@ border-radius: 3px;
 `;
 
 
-const ReviewsListEntry = ({review}) => {
+const ReviewsListEntry = ({review, theme}) => {
 
   const [over250, setOver250] = useState(review.body.length > 250);
   const [showModal, setShowModal] = useState(false);
@@ -95,7 +95,7 @@ const ReviewsListEntry = ({review}) => {
   return (
     <ReviewEntry>
       <div className="rev-star-date">
-        <div className="static-stars">
+        <div className="static-stars" data-testid="rev-summary">
           <StarRating rating={review.rating}/>
         </div>
         <small><div>{review.reviewer_name}, {formattedDate(review.date)}</div></small>
@@ -115,11 +115,17 @@ const ReviewsListEntry = ({review}) => {
       </div>
       <div>
         {review.photos.length > 0 ?
-          <div className="thumbnails-container">
+          <div data-testid="photo-thumb"className="thumbnails-container">
             {review.photos.map((photo, i) => (
               <div className="thumbnail" key={i}>
                 <Thumbnail src={photo.url} onClick={() => { togglePhoto(photo.url); togglePhotoClicked(photo); }} ></Thumbnail>
-                {showModal ? <PhotosModal toggle={togglePhoto} visible={showModal} photo={photo} togglePhotoClicked={togglePhotoClicked}/> : null}
+                {showModal ?
+                  <PhotosModal toggle={togglePhoto}
+                    visible={showModal}
+                    photo={photo}
+                    togglePhotoClicked={togglePhotoClicked}
+                    theme={theme}/>
+                  : null}
               </div>
             ))}
           </div>

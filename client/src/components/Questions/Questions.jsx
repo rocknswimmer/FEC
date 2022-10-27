@@ -32,7 +32,8 @@ const Questions = (props) => {
     })
       .then(results => {
         // console.log('questions: ', results.data.results);
-        setQuestions(results.data.results);
+        let answeredQuestions = results.data.results.filter((question) => { return (Object.keys(question.answers)[0] !== undefined); });
+        setQuestions(answeredQuestions);
       })
       .catch(err => {
         console.log('There is an error getting questions from server ', err);
@@ -104,12 +105,11 @@ const Questions = (props) => {
     } else {
       setSearchable(!searchable);
     }
-    //turn search filter off when searchQuery.length === 2 ?/ how to turn on
   }, [((searchQuery.length > 2) && (searchQuery))]);
 
 
   return (
-    <div id="questions">
+    <div id="questions" data-testid="questions">
       <h1 className='qa-title'>QUESTIONS & ANSWERS</h1>
       <form className="question-search-form">
         <input className="questions-search" type="text" placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS..." onChange={searchChange} />
@@ -118,26 +118,16 @@ const Questions = (props) => {
         </button>
       </form>
       <div className='question-feed'>
-        <QuestionFeed questions={questions} moreQuestions={moreQuestions} get={() => { getCurrentQuestions(); }} searchable={searchable} searchedQuestions={searchedQuestions} currentProduct={props.currentProduct} />
+        <QuestionFeed questions={questions} moreQuestions={moreQuestions} get={() => { getCurrentQuestions(); }} searchable={searchable} searchedQuestions={searchedQuestions} currentProduct={props.currentProduct} interact={props.interact} />
       </div>
       <div className='question-buttons'>
         {(questions[0] && questions.length > 2) && !moreQuestions && <Button onClick={() => { loadMoreQuestions(); props.interact('more questions button', 'Q&A'); }}>MORE ANSWERED QUESTIONS</Button>}
-        {(questions[0] && questions.length > 2) && moreQuestions && <Button onClick={loadMoreQuestions}>LESS ANSWERED QUESTIONS</Button>}
-        <Button onClick={addQuestionModal}>ADD A QUESTION +</Button>
-        {addQuestion && <QuestionModal close={addQuestionModal} product={props.productId} currentProduct={props.currentProduct} />}
+        {(questions[0] && questions.length > 2) && moreQuestions && <Button onClick={() => { loadMoreQuestions(); props.interact('less questions button', 'Q&A'); }}>LESS ANSWERED QUESTIONS</Button>}
+        <Button onClick={() => { addQuestionModal(); props.interact('add question button', 'Q&A'); }}>ADD A QUESTION +</Button>
+        {addQuestion && <QuestionModal close={addQuestionModal} product={props.productId} currentProduct={props.currentProduct} interact={props.interact} />}
       </div>
     </div>
   );
 };
 
 export default Questions;
-
-
-/*
-add to all on clicks annoyingly
-const clickTracker = (element, widget) => {
-  post request to interactions api post url
-  make sure every click passes the widget and element names as strings
-  generate date in the function before adding to post request
-}
-*/

@@ -82,9 +82,9 @@ const QuestionModal = (props) => {
 
 
   return (
-    <div className="modal-qa">
+    <div className="modal-qa" data-testid="qmodal">
       <div className="modal-pop-qa">
-        <div className='qa-close'> <button onClick={props.close} >x</button> </div>
+        <div className='qa-close'> <button onClick={() => { props.close(); props.interact('close add question', 'Q&A'); }} >x</button> </div>
         <div className='qa-modal-container'>
           <h2>Ask Your Question</h2>
           <h3>About the {props.currentProduct.name}</h3>
@@ -104,7 +104,7 @@ const QuestionModal = (props) => {
             <input type="text" placeholder="Why did you like the product or not?" name="email" maxLength="60" onChange={onQEmail} />
           </div>
           For authentication reasons, you will not be emailed
-          <Button onClick={onSumbitQ}>Submit Question</Button>
+          <Button onClick={() => { onSumbitQ(); props.interact('submit question', 'Q&A'); }}>Submit Question</Button>
         </div>
       </div>
       <div className="modal-overlay-qa"></div>
