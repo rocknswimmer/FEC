@@ -41,7 +41,6 @@
   max-height: 75vh;
   overflow-y: scroll;
   position:relative;
-  transition: 1s;
 }
 
 .rev-list-container::-webkit-scrollbar {
