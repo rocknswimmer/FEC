@@ -218,3 +218,9 @@ body:hover::-webkit-scrollbar-thumb {
   margin-top: 2px;
   margin-left: 8px;
 }
+
+.header-container {
+  width: 100vw;
+  display: flex;
+  justify-content: space-between;
+}
