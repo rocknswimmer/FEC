@@ -17,7 +17,7 @@ const ComponentBlock = styled.div`
 `;
 
 const MainImage = styled.div`
-  cursor: zoom-in;
+  cursor: url(magnifying-glass-solid-32-32.svg) 0 0, auto;
   display: grid;
   font-size: 3em;
   grid-template-columns: repeat(10, minmax(0, 1fr));
@@ -37,17 +37,6 @@ const MainImage = styled.div`
     fill: white;
   }
 `;
-
-
-// const Image = styled.img`
-
-//   grid-column-start: 1;
-//   grid-column-end: 11;
-//   grid-row-start: 1;
-//   grid-row-end: 11;
-//   object-fit: fill
-// `;
-
 
 const ExpandedView = styled.div`
   cursor: auto;
@@ -84,7 +73,7 @@ const Thumbnails = styled.div`
 const LeftArrow = styled.div`
   grid-column-start: 3;
   grid-row-start: 6;
-  z-index: 2;
+  z-index: 1;
   cursor: pointer
 `;
 
@@ -92,7 +81,7 @@ const RightArrow = styled.div`
 grid-column-start: 10;
 grid-column-end: 11;
 grid-row-start: 6;
-z-index: 2;
+z-index: 1;
 cursor: pointer
 `;
 
@@ -121,7 +110,7 @@ top: 50%;
 left: 50%;
 max-width: 95vh;
 max-height: 95vw;
-cursor: crosshair;
+cursor: zoom-in;
 transform: translate(-50%, -50%);
 
 svg {
@@ -146,7 +135,7 @@ top: 0;
 left: 0;
 width: 100%;
 height: 100%;
-z-index: 1;
+z-index: 2;
 background-color: rgb(0, 0, 0);
 opacity: 0.85;
 cursor: auto;

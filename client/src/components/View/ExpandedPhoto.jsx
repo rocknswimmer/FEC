@@ -1,18 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Carousel from './Carousel.jsx';
 import { FaCamera, FaAngleLeft, FaAngleRight, FaWindowClose, FaCircle, FaStar } from 'react-icons/fa';
 import { ExpandedImageDiv, ExpandedView, ComponentBlock, LeftArrow, RightArrow, ModalPop, ModalPhoto, ModalOverlay, IconHolder, ExpandedPhotoControls } from './Styled/LargeImage.styled.jsx';
 
 
 const ExpandedPhoto = ({ displayedImage, photoIndex, arrowRightHandler, expandPhoto, arrowLeftHandler, lengthOfImageArray, changePhotoToSelectedIcon, imageArray, interact }) => {
-
-
+  // const modalPhotoRef = useRef(null);
   const [isZoomed, setIsZoomed] = useState(false);
   const [mouseLocation, setMouseLocation] = useState('center');
   const [cursorType, setCursorType] = useState({});
+  // let mouseMoveListener;
 
   const cursorCrossHair = {
-    cursor: 'crosshair'
+    cursor: 'zoom-in'
   };
 
   const cursorZoomOut = {
@@ -20,19 +20,48 @@ const ExpandedPhoto = ({ displayedImage, photoIndex, arrowRightHandler, expandPh
   };
 
   const zoom = (event) => {
-    // console.log(event);
     if (isZoomed === false) {
       setMouseLocation(`${event.clientX}px ${event.clientY}px`);
       setIsZoomed(!isZoomed);
       setCursorType(cursorZoomOut);
     } else {
-      console.log('zoom event listener firing on case where isZoomed= true');
+      // console.log('zoom event listener firing on case where isZoomed= true');
       setIsZoomed(false);
       setMouseLocation('center');
       setCursorType(cursorCrossHair);
     }
-
   };
+
+  // const pan = (event) => {
+  //   const img = modalPhotoRef.current;
+  //   let mouseIsDown = false;
+  //   let topCoord;
+  //   let leftCoord;
+  //   img.addEventListener('mousedown', (event) => {
+  //     mouseIsDown = true;
+  //     setTimeout(() => {
+  //       mouseMoveListener = img.addEventListener('mousemove', (event) => {
+  //         // console.log(getComputedStyle(img))
+  //         // topCoord = parseInt(getComputedStyle(img).top.replace('px', ''));
+  //         // leftCoord = parseInt(getComputedStyle(img).left.replace('px', ''));
+  //         // if (mouseIsDown) {
+  //         //   img.style.top = `${topCoord + event.movementY}px`;
+  //         //   img.style.left = `${leftCoord + event.movementX}px`;
+  //         //   // console.log(img.style.top, img.style.left);
+  //         // }
+  //       });
+  //     }, 50);
+  //   });
+
+  //   img.addEventListener('mouseup', (event) => {
+  //     mouseIsDown = false;
+  //     img.removeEventListener('mousemove', mouseMoveListener);
+  //   });
+  // };
+
+  // const dragStart = (event) => {
+  //   event.preventDefault();
+  // };
 
 
   return (
@@ -112,12 +141,15 @@ const ExpandedPhoto = ({ displayedImage, photoIndex, arrowRightHandler, expandPh
           </ExpandedPhotoControls>
 
           <ModalPhoto
+            // ref={modalPhotoRef}
             data-testid="modal"
             src={displayedImage}
             isZoomed={isZoomed}
             mouseLocation={mouseLocation}
-            style = {cursorType}
+            style={cursorType}
             onClick={zoom}
+            // onMouseDown={pan}
+            // onDragStart={dragStart}
           />
 
 

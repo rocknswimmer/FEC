@@ -28,7 +28,6 @@ const SelectedStyle = ({ otherStyles, productId, changeDisplayedStyle, currentDi
                   {
                     currentDisplayedStyle.style_id === style.style_id &&
                     <FaCheckCircle
-                      id="check"
                       data-testid="checkmark"
                       style={{ color: 'red' }}
                     />

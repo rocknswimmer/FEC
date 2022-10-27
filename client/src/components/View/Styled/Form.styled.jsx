@@ -39,4 +39,8 @@ margin-top: 38px;
 }
 `;
 
-export { Form, Button, CartContainer };
+const FeatureContainer = styled.div`
+
+`;
+
+export { Form, Button, CartContainer, FeatureContainer };
