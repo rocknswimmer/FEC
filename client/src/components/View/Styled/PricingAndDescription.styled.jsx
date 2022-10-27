@@ -14,6 +14,12 @@ const DescriptionDiv = styled.div`
   grid-column-end: 6;
   grid-row-start: 8;
   grid-row-end: 11;
+  @media (max-width: 958px) {
+    grid-column-start: 1;
+    grid-colum-end: 11;
+    grid-row-start: 5;
+    grid-row-end: 6;
+}
 `;
 
 const SocialDiv = styled.div`

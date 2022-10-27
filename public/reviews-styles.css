@@ -26,6 +26,24 @@
 .summary {
   width: 300px;
   flex-shrink: 0;
+
+}
+@media (max-width: 958px){
+  .reviews-div-within-container{
+      display: flex;
+      width: 100%;
+      flex-direction: column;
+    }
+}
+
+@media (max-width: 958px){
+  .summary .list{
+    width: 100%;
+    flex-shrink: 1;
+  }
+  .summary {
+    flex-direction: column;
+  }
 }
 
 .list {

@@ -21,6 +21,9 @@ const SummaryListDivider = styled.div`
 width: 100%;
 display: flex;
 flex-shrink: 0;
+@media (max-width: 958px){
+  flex-direction: column
+}
 `;
 
 let visibleReviewsIndex = 2;
