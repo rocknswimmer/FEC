@@ -34,11 +34,6 @@ const Reviews = ({productId, metaData, currentProduct, theme}) => {
   const [currentSort, setCurrentSort] = useState('relevance');
   const [starsFilter, setStarsFilter] = useState([]);
 
-<<<<<<< HEAD
-  // console.log('STARS RATING IN HIGHEST COMPONENT', starsFilter);
-
-=======
->>>>>>> d445a138267ee24727134745e990d564564d6681
   const getReviews = (id = productId, sortSelection = 'relevant') => {
 
     //WRITE HELPFULNESS SORT: if sortSelection === helpfullness, array.sort on current list, set both visible and reviews list to sorted
@@ -80,10 +75,6 @@ const Reviews = ({productId, metaData, currentProduct, theme}) => {
     4: false,
     5: false
   });
-<<<<<<< HEAD
-  // console.log(Object.values(toggleObj));
-=======
->>>>>>> d445a138267ee24727134745e990d564564d6681
 
   const fiveStars = reviewsList.filter(rev => rev.rating === 5);
   const fourStars = reviewsList.filter(rev => rev.rating === 4);
