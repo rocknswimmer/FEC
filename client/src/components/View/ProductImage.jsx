@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Carousel from './Carousel.jsx';
 import { FaAngleLeft, FaAngleRight, FaExpand, FaSearch } from 'react-icons/fa';
-import { MainImage, ExpandedView, ComponentBlock, LeftArrow, RightArrow, Expander } from './Styled/LargeImage.styled.jsx';
+import { MainImage, ExpandedView, ComponentBlock, LeftArrow, RightArrow, Expander, EmptyDivForClicking } from './Styled/LargeImage.styled.jsx';
 import ExpandedPhoto from './ExpandedPhoto.jsx';
 
 
@@ -50,6 +50,7 @@ const ProductImage = ({ currentDisplayedStyle, interact }) => {
     let otherNum = sendThumbnailUp;
     otherNum += 1;
     setSendThumbnailUp(otherNum);
+    clickHanderArrowRight();
 
   };
 
@@ -79,9 +80,12 @@ const ProductImage = ({ currentDisplayedStyle, interact }) => {
   // handler to expand photo
   const expandPhoto = (e) => {
     setPhotoExpanded(!photoExpanded);
-    setIsScorllable(!isScrollable);
     let scrollSetting = isScrollable;
-    if (!scrollSetting) {
+    setIsScorllable(!scrollSetting);
+    if (isScrollable) {
+      document.body.style.overflow = 'scroll';
+    }
+    if (!isScrollable) {
       document.body.style.overflow = 'hidden';
     }
   };
@@ -105,14 +109,15 @@ const ProductImage = ({ currentDisplayedStyle, interact }) => {
       {
         infoUpdated &&
 
-        <MainImage img={displayedImage} >
+        <MainImage
+          img={displayedImage} >
 
           {
             photoExpanded &&
             <ExpandedPhoto
               displayedImage={displayedImage}
               photoIndex={photoIndex}
-              arrowRightHandler={clickHanderArrowRight}
+              arrowRightHandler={clickHanderRightArrowMainImage}
               arrowLeftHandler={clickHanderArrowLeft}
               expandPhoto={expandPhoto}
               thumbnailArray={thumbnailArray}
@@ -123,17 +128,16 @@ const ProductImage = ({ currentDisplayedStyle, interact }) => {
 
 
           <Carousel
+            onClick={(e) => { }}
             imageArray={imageArray}
             photoIndex={photoIndex}
             changePhotoToSelectedThumbnail={changePhotoToSelectedThumbnail}
             thumbnailArray={thumbnailArray}
             sendThumbnailUp={sendThumbnailUp}
             sendThumbnailDown={sendThumbnailDown} />
-
           <Expander>
             <FaExpand
               className='icon-styled'
-              onClick={expandPhoto}
             />
           </Expander>
 
@@ -145,17 +149,24 @@ const ProductImage = ({ currentDisplayedStyle, interact }) => {
                 className='icon-styled'
               />
             </LeftArrow>}
-
-          {photoIndex !== imageArray.length - 1
+          {
+            photoIndex !== imageArray.length - 1
             && <RightArrow
-              onClick={clickHanderArrowRight}
               onClick={clickHanderRightArrowMainImage}
             >
               <FaAngleRight
                 className='icon-styled'
               />
-            </RightArrow>}
+            </RightArrow>
+          }
+          {
+            !photoExpanded &&
+            <EmptyDivForClicking
+              onClick={expandPhoto}
+            >
 
+            </EmptyDivForClicking>
+          }
         </MainImage>
       }
 

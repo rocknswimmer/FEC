@@ -38,6 +38,10 @@ width: 330px;
   stroke-width: 20px;
   fill: #C5D7D9;
 }
+
+#id {
+  align-self: flex-end;
+}
 /* .expanded-photo-left {
   position: relative;
   left: 150px;

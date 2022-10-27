@@ -10,11 +10,12 @@ const DropDownContainer = styled("div")`
 const DropDownHeader = styled("div")`
   display: flex;
   justify-content: space-between;
+  color: black;
   padding: 4px 4px 4px 8px;
   box-shadow: 0 2px 3px rgba(0, 0, 0, 0.15);
   font-weight: 500;
   font-size: 1.3rem;
-  color: #IF2224;
+
   background: #ffffff;
 `;
 

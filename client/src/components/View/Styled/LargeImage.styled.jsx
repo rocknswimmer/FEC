@@ -7,6 +7,7 @@ const ComponentBlock = styled.div`
   grid-column-end:7;
   grid-row-start: 1;
   grid-row-end: 8;
+  display: flex;
   @media (max-width: 958px) {
     grid-column-start: 1;
     grid-column-end: 11;
@@ -21,23 +22,32 @@ const MainImage = styled.div`
   font-size: 3em;
   grid-template-columns: repeat(10, minmax(0, 1fr));
   grid-template-rows: repeat(10, minmax(0, 1fr));
+  background-image: url(${props => props.img});
   margin-left: 20px;
   margin-right: 20px;
   height: 100%;
-  background-image: url(${props => props.img});
-  background-position: center;
-  background-size:cover;
-    width: auto;
-    height: atuo;
-
+  background-position: 25% 0%;
+  background-size: cover;
+    height: auto;
     overflow: hidden;
-  object-fit: cover;
+
   svg {
     stroke: #333;
     stroke-width: 20px;
     fill: white;
   }
 `;
+
+
+// const Image = styled.img`
+
+//   grid-column-start: 1;
+//   grid-column-end: 11;
+//   grid-row-start: 1;
+//   grid-row-end: 11;
+//   object-fit: fill
+// `;
+
 
 const ExpandedView = styled.div`
   cursor: auto;
@@ -54,40 +64,42 @@ const PhotoColumn = styled.div`
   flex-direction: column;
   grid-row-start 2;
   grid-row-end: 10;
+  align-items: center;
   cursor: pointer
 `;
 
 const Thumbnails = styled.div`
   background-image: url(${props => props.img});
   border: ${props => props.photoIndex === props.origIndex ? 'solid white 2px' : 'none'};
+  border-bottom: ${props => props.photoIndex === props.origIndex ? 'solid white 5px' : 'none'};
   background-position: center;
   background-size:cover;
     margin: 2 px;
     height: 75px;
     width: 75px;
-
   object-fit: cover;
   cursor: pointer
 `;
 
 const LeftArrow = styled.div`
-
   grid-column-start: 3;
   grid-row-start: 6;
+  z-index: 2;
   cursor: pointer
-
 `;
 
 const RightArrow = styled.div`
-
 grid-column-start: 10;
+grid-column-end: 11;
 grid-row-start: 6;
+z-index: 2;
 cursor: pointer
 `;
 
 const Expander = styled.div`
 cursor: auto;
 grid-column-start: 10;
+grid-row-start: 1;
 `;
 
 const ExpandedImageDiv = styled.div`
@@ -161,7 +173,18 @@ const IconHolder = styled.div`
 
 `;
 
-export { MainImage, ExpandedView, ComponentBlock, LeftArrow, RightArrow, Expander, PhotoColumn, Thumbnails, ExpandedImageDiv, ModalPop, ModalPhoto, ModalOverlay, IconHolder, ExpandedPhotoControls };
+const EmptyDivForClicking = styled.div`
+  grid-column-start:2;
+  grid-column-end: 11;
+  grid-row-start: 1;
+  grid-row-end: 11;
+  margin-left: 20px;
+  background-color: #000;
+  opacity: 0;
+
+`;
+
+export { MainImage, ExpandedView, ComponentBlock, LeftArrow, RightArrow, Expander, PhotoColumn, Thumbnails, ExpandedImageDiv, ModalPop, ModalPhoto, ModalOverlay, IconHolder, ExpandedPhotoControls, EmptyDivForClicking };
 
 
 // background-image: url(${props => props.img});

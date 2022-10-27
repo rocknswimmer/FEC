@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 const Form = styled.form`
   border-radius: 50%;
-
   background-image: url(${props => props.img});
   background-size:cover;
     margin: 10px;
@@ -34,6 +33,7 @@ color: #IF2224;
 `;
 
 const CartContainer = styled.div`
+margin-top: 38px;
 .top-row {
   display:flex;
 }

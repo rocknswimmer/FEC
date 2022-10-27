@@ -14,6 +14,10 @@ display: flex;
 flex-direction: column;
 flex-shrink: 0;
 max-width:80%;
+&::-webkit-scrollbar {
+  width: 10px;
+  border: 15px solid red;
+}
 
 `;
 
@@ -35,7 +39,7 @@ const Reviews = ({productId, metaData, currentProduct}) => {
   const [currentSort, setCurrentSort] = useState('relevance');
   const [starsFilter, setStarsFilter] = useState([]);
 
-  console.log('STARS RATING IN HIGHEST COMPONENT', starsFilter);
+  // console.log('STARS RATING IN HIGHEST COMPONENT', starsFilter);
 
   const getReviews = (id = productId, sortSelection = 'relevant') => {
 
@@ -78,7 +82,7 @@ const Reviews = ({productId, metaData, currentProduct}) => {
     4: false,
     5: false
   });
-  console.log(Object.values(toggleObj));
+  // console.log(Object.values(toggleObj));
 
   const fiveStars = reviewsList.filter(rev => rev.rating === 5);
   const fourStars = reviewsList.filter(rev => rev.rating === 4);
@@ -140,7 +144,7 @@ const Reviews = ({productId, metaData, currentProduct}) => {
   }, Object.values(toggleObj));
 
 
-  console.log('VISIBLE REVIEWS', visibleReviews);
+  // console.log('VISIBLE REVIEWS', visibleReviews);
   useEffect(() => {
     getReviews(productId);
   }, []);

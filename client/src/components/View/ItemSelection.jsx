@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { DropDownContainer, DropDownHeader, DropDownListContainer, DropDownList, ListItem, DropDownListQty } from './Styled/DropDownStyles.jsx';
-import { Button, CartContainer } from './Styled/Form.styled.jsx';
+import { Button, CartContainer, FeatureContainer } from './Styled/Form.styled.jsx';
 import { FaChevronDown, FaMinus, FaPlus } from 'react-icons/fa';
 import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
 
-const ItemSelection = ({ currentDisplayedStyle, productId, addToCart, cartContents, interact }) => {
+const ItemSelection = ({ currentDisplayedStyle, productId, addToCart, cartContents, currentProduct, interact }) => {
 
   const [sizeDropdownIsOpen, setSizeDropDownOpen] = useState(false);
   const [quantityDropdownIsOpen, setQuantityDropDownOpen] = useState(false);
@@ -152,7 +152,6 @@ const ItemSelection = ({ currentDisplayedStyle, productId, addToCart, cartConten
 
   return (
     <CartContainer>
-      {/* <Dropdown options={items}/> */}
       <div className="top-row">
         {
           outOfStock &&

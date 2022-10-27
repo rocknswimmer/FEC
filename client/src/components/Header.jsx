@@ -39,11 +39,11 @@ const Header = ({ theme, themeToggler, interact }) => {
 
       <Squid src={'logo.png'}/>
 
-      <label class="switch">
+      <label className="switch">
         <input
           type="checkbox"
           i={<BsSunFill size={28} />}/>
-        <span class="slider round"
+        <span className="slider round"
           onClick={() => { themeToggler(); interact('themeToggler', 'Header'); }}>
           <span className='sun'
             onClick={() => { themeToggler(); interact('themeToggler', 'Header'); }}>

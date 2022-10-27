@@ -53,7 +53,7 @@ const View = ({ productId, currentProduct, metaData }) => {
       cartAddition.quantity = newQty;
       newCartArray.push(cartAddition);
     }
-    console.log(newCartArray, "here is the updated cart from View");
+    console.log(newCartArray, 'here is the updated cart from View');
     setCartContents(newCartArray);
   };
 
@@ -102,6 +102,7 @@ const View = ({ productId, currentProduct, metaData }) => {
           productId={productId}
           addToCart={addToCart}
           cartContents={cartContents}
+          currentProduct = {currentProduct}
           interact={(element, widget) => { submitInteraction(element, widget); }}
         />
 

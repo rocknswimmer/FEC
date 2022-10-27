@@ -14,19 +14,22 @@ const RoundImage = styled.div`
     margin: 10px;
     height: 75px;
     width: 75px;
-
   object-fit: cover;
 `;
+
+
 
 const StyleDiv = styled.div`
   width: 100%;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
   svg {
     stroke: #333;
     stroke-width: 10px;
   }
+
+}
 
 `;
 

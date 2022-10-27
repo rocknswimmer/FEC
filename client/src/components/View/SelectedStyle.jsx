@@ -17,8 +17,7 @@ const SelectedStyle = ({ otherStyles, productId, changeDisplayedStyle, currentDi
               <ImageContainer
                 data-testid="round_image"
                 key={index}
-                >
-
+              >
                 <RoundImage
                   data-testid="image"
 
@@ -29,6 +28,7 @@ const SelectedStyle = ({ otherStyles, productId, changeDisplayedStyle, currentDi
                   {
                     currentDisplayedStyle.style_id === style.style_id &&
                     <FaCheckCircle
+                      id="check"
                       data-testid="checkmark"
                       style={{ color: 'red' }}
                     />
