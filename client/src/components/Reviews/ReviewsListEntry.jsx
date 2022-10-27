@@ -15,7 +15,7 @@ height: auto;
 `;
 
 const ReviewTitle = styled.div`
-  font-weight: bold;
+  font-weight: 800;
   padding: 15px 0 15px 0;
 `;
 

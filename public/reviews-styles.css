@@ -194,7 +194,7 @@
 /* REVIEW MODAL */
 
 .rev-modal-pop {
-
+  transition: .5s linear;
   border: 2px solid #aaa;
   border-radius: 5px;
   z-index: 25;
