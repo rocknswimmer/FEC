@@ -5,11 +5,13 @@ import { BsSunFill, BsMoonStarsFill } from 'react-icons/bs';
 
 
 const HeaderContainer = styled.div`
+  box-sizing: border-box;
   position: fixed;
     top: -15px;
+    left: 0px;
   z-index: 2;
-  padding-right: 150px;
-  padding-left: 120px;
+  padding-right: 50px;
+  padding-left: 40px;
   background-color: black;
   display: flex;
   justify-content: space-between;
@@ -34,9 +36,10 @@ z-index: 3;
 
 const ContainerDiv = styled.div`
   display: flex;
-  margin-left: 50px;
-  padding-left: 50px;
+  margin-left: 10px;
+  padding-left: 10px;
   width: auto;
+
 `;
 
 const Header = ({ theme, themeToggler, interact }) => {
