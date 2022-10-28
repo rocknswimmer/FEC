@@ -33,4 +33,4 @@ module.exports = {
     // [port] what port on our local machine to run the dev server
     port: 3000,
   }
-}
+};
