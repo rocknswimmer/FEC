@@ -4,10 +4,14 @@ const app = express();
 const path = require('path');
 const { api } = require('../client/src/config/config.js');
 require('dotenv').config();
+var compression = require('compression');
 
+app.use(compression());
 app.use(express.static(path.join(__dirname, '../public')));
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
+
+
 
 
 //PRODUCT VIEW ROUTES
