@@ -66,6 +66,23 @@
   background: grey;
 }
 
+/*  */
+.rev-modal-pop::-webkit-scrollbar {
+  width: 0.7em;
+  background: inherit;
+  opacity: 0.6
+}
+
+.rev-modal-pop::-webkit-scrollbar-thumb {
+  border-radius: 100px;
+  background: inherit;
+}
+
+.rev-modal-pop:hover::-webkit-scrollbar-thumb {
+  background: grey;
+}
+/*  */
+
 .rev-entry {
   border-bottom: solid grey 1px;
 }
@@ -210,7 +227,6 @@
   margin: auto;
   padding: 20px;
   overflow-y: scroll;
-  overflow: scroll;
   /* padding: 1em 2em 2em; */
   position: fixed;
   top: 50%;
