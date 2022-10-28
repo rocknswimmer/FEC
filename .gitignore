@@ -1,5 +1,8 @@
 /node_modules/
 /public/bundle.js
+/public/bundle.js.gz
+/public/bundle.js.LICENSE.txt
+
 
 ##API Keys ##
 /client/src/config/config.js
