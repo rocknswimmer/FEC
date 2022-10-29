@@ -5,11 +5,10 @@ import { ExpandedImageDiv, ExpandedView, ComponentBlock, LeftArrow, RightArrow, 
 
 
 const ExpandedPhoto = ({ displayedImage, photoIndex, arrowRightHandler, expandPhoto, arrowLeftHandler, lengthOfImageArray, changePhotoToSelectedIcon, imageArray, interact }) => {
-  // const modalPhotoRef = useRef(null);
   const [isZoomed, setIsZoomed] = useState(false);
   const [mouseLocation, setMouseLocation] = useState('center');
   const [cursorType, setCursorType] = useState({});
-  // let mouseMoveListener;
+
 
   const cursorCrossHair = {
     cursor: 'zoom-in'
@@ -25,44 +24,11 @@ const ExpandedPhoto = ({ displayedImage, photoIndex, arrowRightHandler, expandPh
       setIsZoomed(!isZoomed);
       setCursorType(cursorZoomOut);
     } else {
-      // console.log('zoom event listener firing on case where isZoomed= true');
       setIsZoomed(false);
       setMouseLocation('center');
       setCursorType(cursorCrossHair);
     }
   };
-
-  // const pan = (event) => {
-  //   const img = modalPhotoRef.current;
-  //   let mouseIsDown = false;
-  //   let topCoord;
-  //   let leftCoord;
-  //   img.addEventListener('mousedown', (event) => {
-  //     mouseIsDown = true;
-  //     setTimeout(() => {
-  //       mouseMoveListener = img.addEventListener('mousemove', (event) => {
-  //         // console.log(getComputedStyle(img))
-  //         // topCoord = parseInt(getComputedStyle(img).top.replace('px', ''));
-  //         // leftCoord = parseInt(getComputedStyle(img).left.replace('px', ''));
-  //         // if (mouseIsDown) {
-  //         //   img.style.top = `${topCoord + event.movementY}px`;
-  //         //   img.style.left = `${leftCoord + event.movementX}px`;
-  //         //   // console.log(img.style.top, img.style.left);
-  //         // }
-  //       });
-  //     }, 50);
-  //   });
-
-  //   img.addEventListener('mouseup', (event) => {
-  //     mouseIsDown = false;
-  //     img.removeEventListener('mousemove', mouseMoveListener);
-  //   });
-  // };
-
-  // const dragStart = (event) => {
-  //   event.preventDefault();
-  // };
-
 
   return (
     <>

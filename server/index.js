@@ -330,7 +330,6 @@ app.post('/interactions', (req, res) => {
   };
   axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/interactions', body, options)
     .then((results) => {
-      // console.log('interactions results', results);
       res.send(results.data);
     })
     .catch((err) => {

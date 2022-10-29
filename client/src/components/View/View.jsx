@@ -36,7 +36,7 @@ const View = ({ productId, currentProduct, metaData }) => {
   //Add to Cart: adds a product to the cart or updates the existing style
   const addToCart = (cartAddition) => {
     let foundItemInCart = false;
-    console.log(cartAddition, 'this is the item added to cart');
+    // console.log(cartAddition, 'this is the item added to cart');
     let newCartArray = cartContents.map((cartItemObj, index) => {
       let modifiedCartObj = {};
       Object.assign(modifiedCartObj, cartItemObj);
@@ -53,7 +53,7 @@ const View = ({ productId, currentProduct, metaData }) => {
       cartAddition.quantity = newQty;
       newCartArray.push(cartAddition);
     }
-    console.log(newCartArray, 'here is the updated cart from View');
+    // console.log(newCartArray, 'here is the updated cart from View');
     setCartContents(newCartArray);
   };
 

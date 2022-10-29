@@ -31,7 +31,7 @@ const DropDownList = styled("ul")`
   background: #ffffff;
   border: 2px solid #e5e5e5;
   box-sizing: border-box;
-  color: #IF2224;
+  color: black;
   font-size: 1.3rem;
   font-weight: 500;
   &:first-child {
@@ -49,7 +49,7 @@ const DropDownListQty = styled("ul")`
   background: #ffffff;
   border: 2px solid #e5e5e5;
   box-sizing: border-box;
-  color: #IF2224;
+  color: black;
   font-size: 1.3rem;
   font-weight: 500;
   &:first-child {

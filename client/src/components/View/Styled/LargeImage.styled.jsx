@@ -26,7 +26,8 @@ const MainImage = styled.div`
   margin-left: 20px;
   margin-right: 20px;
   height: 100%;
-  background-position: 25% 0%;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
   background-size: cover;
     height: auto;
     overflow: hidden;
