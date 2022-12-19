@@ -16,7 +16,7 @@ This project is designed to emulate a professional development project wherein c
     * Reviews
 * Installation Guide
 * Shared Functions
-* Q&A Widget
+
 
 **<span style="text-decoration:underline;">Server: </span>**
 
@@ -45,7 +45,7 @@ A sibling component to App.jsx, this renders the ‘House Greyjoy’ name, logo 
 
 **<span style="text-decoration:underline;">Q&A Widget:</span>**
 
-The main features of this component are the questions feed, a search bar and the add questions or add answers modals. Each question in the questions feed has its own answer feed. Both feeds have an initial load count of 2. The questions feed is also currently just displaying answered questions as per the business docs. The search bar starts searching once the term is 3 characters long, and searches for matching question or answer text, displaying all answers if the question name contains the term but only the answers matching the search when only answer body text matches. The add questions modal is almost useless without postman or some other way to see data, since only answered questions will display. The add answers modal will reperform the get request and load the answer into the feed on submission.
+The main features of this component are the questions feed, a search bar and the add questions or add answers modals. Each question in the questions feed has its own answer feed. Both feeds have an initial load count of 2. The questions feed is also currently just displaying answered questions as per the business docs. The search bar starts searching once the term is 3 characters long, and searches for matching question or answer text, displaying all answers if the question name contains the term but only the answers matching the search when only answer body text matches. The add questions modal is almost useless without postman or some other way to see data, since only answered questions will display. The add answers modal will perform the get request and load the answer into the feed on submission.
 
 **<span style="text-decoration:underline;">Reviews:</span>**
 
@@ -69,7 +69,7 @@ The Reviews component consists of a rating summary, a reviews list, a sortable d
 
     or npm run build to compile a production build.
 
-4. Run npm run-server-dev to start the server up.
+4. Run npm run server-dev to start the server up.
 5. The port is currently set to  3001 to change that simply change the number in app.listen at the bottom of server/index.js
 
 **Dev Dependencies:**
