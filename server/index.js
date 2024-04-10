@@ -184,7 +184,7 @@ app.put('/reviews/:review_id/report', (req, res) => {
 
 // Get Questions
 app.get('/qa/questions/', (req, res) => {
-  let urlVariable = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/';
+  let urlVariable = 'http://localhost:3003/qa/questions/';
 
   let options = {
     'headers': {
@@ -212,7 +212,7 @@ app.get('/qa/questions/', (req, res) => {
 app.post('/qa/questions/', (req, res) => {
   // console.log(req.body);
   // res.send('hit server');
-  let urlVariable = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions';
+  let urlVariable = 'http://localhost:3003/qa/questions';
   let options = {
     'body': req.body.body,
     'name': req.body.name,
@@ -240,7 +240,7 @@ app.post('/qa/questions/', (req, res) => {
 app.post('/qa/questions/:question_id/ansers', (req, res) => {
   // console.log(req.body);
   // res.send('hit server');
-  let urlVariable = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/${req.body.question_id}/answers`;
+  let urlVariable = `http://localhost:3003/qa/questions/${req.body.question_id}/answers`;
   let body = {
     'body': req.body.body,
     'name': req.body.name,
@@ -271,7 +271,7 @@ app.put('/qa/questions/:question_id/helpful', (req, res) => {
       'Authorization': api
     }
   };
-  axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/${req.body.question}/helpful`, {}, options)
+  axios.put(`http://localhost:3003/qa/questions/${req.body.question}/helpful`, {}, options)
     .then((results) => {
       // console.log(results);
       res.send('question marked helpful');
@@ -288,7 +288,7 @@ app.put('/qa/answers/:answer_id/helpful', (req, res) => {
       'Authorization': api
     }
   };
-  axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/answers/${req.body.answer}/helpful`, {}, options)
+  axios.put(`http://localhost:3003/qa/answers/${req.body.answer}/helpful`, {}, options)
     .then((results) => {
       // console.log(results);
       res.send('answer marked helpful');
@@ -305,7 +305,7 @@ app.put('/qa/answers/:answer_id/report', (req, res) => {
       'Authorization': api
     }
   };
-  axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/answers/${req.body.answer}/report`, {}, options)
+  axios.put(`http://localhost:3003/qa/answers/${req.body.answer}/report`, {}, options)
     .then((results) => {
       // console.log(results);
       res.send('answer reported');

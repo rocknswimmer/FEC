@@ -86,14 +86,14 @@ const App = () => {
             themeToggler ={themeToggler}
             interact={(element, widget) => { submitInteraction(element, widget); }} />
 
-          <View
+          {/* <View
             productId={product}
             currentProduct={currentProduct}
             metaData={metaData}
-            interact={(element, widget) => { submitInteraction(element, widget); }} />
+            interact={(element, widget) => { submitInteraction(element, widget); }} /> */}
 
           <Questions
-            productId={product}
+            productId={37313}
             currentProduct={currentProduct}
             interact={(element, widget) => { submitInteraction(element, widget); }} />
 

@@ -25,6 +25,7 @@ const Questions = (props) => {
   const [searchedQuestions, setSearchedQuestions] = useState([]);
 
   const getCurrentQuestions = () => {
+    console.log("product id", props.productID)
     axios.get('/qa/questions/', {
       params: {
         'id': props.productId
